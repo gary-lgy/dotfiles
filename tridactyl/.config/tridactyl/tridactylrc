@@ -6,7 +6,7 @@ set hintnames numeric
 set homepages ["duckduckgo.com"]
 set incsearch true
 set modeindicatorshowkeys true
-set newtab duckduckgo
+set newtabfocus urlbar
 set scrollduration 150
 set searchengine duckduckgo
 set smoothscroll true

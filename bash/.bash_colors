@@ -1,6 +1,8 @@
 #!/bin/bash
 
-NC='\033[0m'       # Text Reset
+# shellcheck disable=SC2034
+
+RESET='\033[0m'           # Reset color
 
 # Regular Colors
 BLACK='\033[0;30m'        # Black
