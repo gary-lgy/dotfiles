@@ -22,6 +22,7 @@ __unstow fzf
 __unstow git
 __unstow ignore
 __unstow nvim
+__unstow ranger
 __unstow scripts
 __unstow tridactyl
 __unstow vim

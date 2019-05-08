@@ -10,7 +10,7 @@ if ! command -v apt-get &>/dev/null; then
 fi
 
 # List of packages to install
-packages=(git stow neovim curl bash-completion fish fd silversearcher-ag xclip fasd tree htop pass buku)
+packages=(git stow neovim curl bash-completion fish fd silversearcher-ag xclip fasd tree htop pass buku ranger w3m poppler)
 
 apt_install() {
   # Do nothing if the package is already installed

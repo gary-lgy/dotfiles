@@ -145,5 +145,5 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
   # Alt-x to cd into one of the parent directories
   bind \ex "fzf-bcd-widget"
   # Alt-r to cd into a recent directory
-  bind \er "fzf-cd-recent-widget"
+  bind \ev "fzf-cd-recent-widget"
 end

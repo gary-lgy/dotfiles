@@ -14,3 +14,6 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # Add nix into PATH
 [ -e /home/gary/.nix-profile/etc/profile.d/nix.sh ] && . /home/gary/.nix-profile/etc/profile.d/nix.sh
+
+# Prevent ranger from loading default configurations
+export RANGER_LOAD_DEFAULT_RC=FALSE
