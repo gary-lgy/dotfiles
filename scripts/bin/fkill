@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# fkill - kill processes selected with fzf
+# Usage: fkill [SIG]
+# Example: fkill [SIG]INT
+
+# list only the ones you can kill.
+if [ "$UID" != "0" ]; then
+  pid=$(ps -f -u $UID | fzf-tmux -m --header-lines=1 | awk '{print $2}')
+else
+  pid=$(ps -ef | fzf-tmux -m --header-lines= 1 | awk '{print $2}')
+fi  
+
+if [ -n "$pid" ]; then
+  echo "Send ${1:-SIGTERM} to:"
+  ps -o pid,command -p $pid
+  echo $pid | xargs kill -"${1:-SIGTERM}"
+fi  

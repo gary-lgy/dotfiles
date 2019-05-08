@@ -1,0 +1,9 @@
+source ~/.vimrc
+source ~/.vim/vimrc.d/3_general.vim
+source ~/.vim/vimrc.d/7_keys.vim
+
+set surround
+set multiple-cursors
+
+set noerrorbells
+set visualbell

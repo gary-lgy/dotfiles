@@ -1,0 +1,63 @@
+# vim: ft=conf
+.git
+
+tmp
+docs
+.thumbnails
+
+/.npm
+/.node_modules
+node_modules
+.bundle
+/.gem
+/.vim/plugged
+/.node-gyp
+/.yarn
+
+# nix related stuff
+/.nix-defexpr
+/.nix-profile/share
+/.nix-profile/lib
+
+.cache
+cache
+Cache
+CachedData
+__pycache__
+
+*Trash*
+Trash
+*RECYCLE.BIN*
+
+# pCloudDrive is a cloud back-up drive for the shared data partition
+# Ignore it to prevent double counting
+/pCloudDrive
+
+# Ignore app files
+/.local/share
+/.vscode/extensions
+.idea
+/.mozilla/firefox
+/.thunderbird
+/.gimp*
+/.eclipse
+/snap/telegram-desktop
+/.*dbeaver*
+/.sogouinput
+/Zotero
+/.zotero
+/.matlab
+*RubyMine*
+*JetBrains*
+*TelegramDesktop*
+
+# Ignore config files
+/.config/google-chrome
+/.config/chromium
+/.config/Code
+/.config/SogouPY
+/.config/libreoffice
+/.config/sogou-qimpanel
+/.config/pcloud
+/.config/fcitx
+/.config/coc

@@ -1,0 +1,9 @@
+--pager="less -RF"
+
+--theme="OneHalfDark"
+
+--map-syntax .ignore:gitignore
+--map-syntax .gitignore_global:gitignore
+
+--map-syntax h:cpp
+--map-syntax .jsh:java

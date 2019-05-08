@@ -1,0 +1,25 @@
+[user]
+	name = Liu Guangyuan (Gary)
+	email = garyliu2122@gmail.com
+[credential]
+	username = gary-lgy
+[core]
+	excludesfile = /home/gary/.gitignore_global
+  ; -X: --no-init               do not clear the screen
+  pager = diff-so-fancy | less --tabs=4 -R
+[push]
+	default = simple
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse

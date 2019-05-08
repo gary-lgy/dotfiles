@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# Tag and branch browser
+# ALT-c: git checkout {branch,tag}
+# Enter (Alt-s): git show {branch,tag}
+
+# Exit if not in git repo
+git rev-parse HEAD 1>/dev/null || exit 1
+
+# Important for git pager to work with fzf
+# For some reason, the default F flag used by git causes diffs shorter than a screenful not to be shown
+export LESS=R
+
+# Get all tags
+tags=$(
+  git tag |
+  awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') ||
+  exit 1
+
+# Get all branches
+branches=$(
+  git branch --all | grep -v "HEAD\|no branch" |
+  sed "s/.* //" | sed "s#remotes/##" |
+  sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') ||
+  exit 1
+
+# Combine the results
+[ -n "$tags" ] && candidates=$(echo "$tags"; echo "$branches") || candidates="$branches"
+
+# Command fired when Enter is pressed. Launches git show on the selected tag/branch.
+enter_command="git log {2..} >/dev/tty"
+
+# Header message
+key_color="\033[4;35m"
+normal_color="\033[0m"
+header=$(echo -e ":: ${key_color}alt-c${normal_color} to checkout, ${key_color}alt-s${normal_color} to show")
+
+# Select a target to checkout with fzf
+target=$(
+  echo "$candidates" |
+  fzf-tmux --no-hscroll --no-multi --ansi --height=70% \
+    --preview-window=right:70%:wrap \
+    --preview="git log -200 --color=always \
+      --format='%C(yellow)%h %C(auto)%s (%C(blue)%cr by %C(green)%cN)' \
+      HEAD..{2..}" \
+    --header="$header" \
+    --bind "alt-s:execute:$enter_command" \
+    --bind "enter:execute:$enter_command" \
+    --bind "ctrl-m:execute:$enter_command" \
+    --bind "alt-c:accept") ||
+exit
+
+# Checkout the selected tag/branch, if any
+git checkout "$(echo "$target" | cut -f2-)"

@@ -1,0 +1,40 @@
+" vim: ft=vim
+" Configurations
+set externalclipboardcmd xclip
+set hintfiltermode vimperator
+set hintnames numeric
+set homepages ["duckduckgo.com"]
+set incsearch true
+set modeindicatorshowkeys true
+set newtab duckduckgo
+set scrollduration 150
+set searchengine duckduckgo
+set smoothscroll true
+set theme dark
+guiset gui full
+
+" Normal mode key-bindings
+bind J tabnext
+bind K tabprev
+unbind d
+unbind u
+bind d scrollpage 0.5
+bind u scrollpage -0.5
+bind x tabclose
+bind X undo
+
+" input mode key-bindings
+bind --mode=input <C-a>  text.beginning_of_line
+bind --mode=input <C-e>  text.end_of_line
+bind --mode=input <C-k>  text.kill_line
+bind --mode=input <C-u>  text.backward_kill_line
+
+bind --mode=input <C-b>  text.backward_char
+bind --mode=input <C-f>  text.forward_char
+bind --mode=input <C-h>  text.backward_delete_char " does not work
+bind --mode=input <C-d>  text.delete_char
+
+bind --mode=input <A-b>  text.backward_word
+bind --mode=input <A-f>  text.forward_word " stops working on last word of the line
+bind --mode=input <A-BS> text.backward_kill_word
+bind --mode=input <A-d>  text.kill_word
