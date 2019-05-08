@@ -2,7 +2,7 @@
 
 # nix packages:
 ## for Arch: nox (asdf)
-## for Debian/Ubuntu: nox fzf diff-so-fancy direnv tree bat tldr albert
+## for Debian/Ubuntu: nox fzf diff-so-fancy direnv bat tldr albert
 # Copy and paste before running the script
 nix_packages=(nox)
 

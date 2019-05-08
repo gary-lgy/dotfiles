@@ -27,7 +27,7 @@ pacman_install() {
 }
 
 echo "Installing packages from official repo..."
-pacman_packages=(git nvim curl bash-completion fish fd ag fzf xclip diff-so-fancy fasd tree bat htop tldr pass albert)
+pacman_packages=(git stow nvim curl bash-completion fish fd ag fzf xclip diff-so-fancy fasd tree bat htop tldr pass albert)
 for pac in "${pacman_packages[@]}"; do
   pacman_install "$pac"
 done

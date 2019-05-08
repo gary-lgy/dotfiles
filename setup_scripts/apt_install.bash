@@ -23,7 +23,7 @@ apt_install() {
 }
 
 echo "Installing packages..."
-packages=(git nvim curl bash-completion fish checkinstall fd silversearcher-ag xclip fasd htop pass)
+packages=(git stow nvim curl bash-completion fish fd silversearcher-ag xclip fasd tree htop pass)
 for pac in "${packages[@]}"; do
   apt_install "$pac"
 done
