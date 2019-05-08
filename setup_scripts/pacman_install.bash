@@ -1,21 +1,29 @@
 #!/usr/bin/env bash
 
+trap "echo 'Cancelled.'; exit 255" SIGINT
+
 # Exit if pacman is not found
 if ! command -v pacman &>/dev/null; then
   echo >&2 "cannot find pacman."
   exit 1
 fi
 
-pacman_install() {
-  local package opts
-  package="$1"
-  shift 1
+# List of packages to install
+pacman_packages=(git stow neovim curl bash-completion fish fd the_silver_searcher fzf xclip diff-so-fancy fasd tree bat htop tldr pass albert)
+
+aur_packages=(direnv buku)
+
+function install {
+  local manager package opts
+  manager="$1"
+  package="$2"
+  shift 2
   opts=("$@")
 
   # Do nothing if the package is already installed
-  command -v "$package" &>/dev/null && echo "$package is present." && return
+  pacman -Q "$package" &>/dev/null && echo "$package is present." && return
 
-  echo "$package might not be present. Attempt to install with pacman..."
+  echo "$package might not be present. Attempt to install with ${manager}..."
 
   # System upgrade
   if [ -z "$sys_upgraded" ]; then
@@ -23,13 +31,12 @@ pacman_install() {
     sys_upgraded=1
   fi
 
-  sudo pacman -S "${opts[@]}" "$package"
+  sudo "$manager" -S "${opts[@]}" "$package"
 }
 
 echo "Installing packages from official repo..."
-pacman_packages=(git stow nvim curl bash-completion fish fd ag fzf xclip diff-so-fancy fasd tree bat htop tldr pass albert)
 for pac in "${pacman_packages[@]}"; do
-  pacman_install "$pac"
+  install pacman "$pac"
 done
 
 # Install pikaur as AUR helper
@@ -46,9 +53,8 @@ else
 fi
 
 echo "Installing packages from AUR..."
-aur_packages=(direnv)
 for pac in "${aur_packages[@]}"; do
-  pikaur -S "$pac"
+  install pikaur "$pac"
 done
 
 echo "Done."

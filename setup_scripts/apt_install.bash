@@ -2,14 +2,19 @@
 
 # FIXME: not tested
 
+trap "echo 'Cancelled.'; exit 255" SIGINT
+
 if ! command -v apt-get &>/dev/null; then
   echo >&2 "Cannot find apt."
   exit 1
 fi
 
+# List of packages to install
+packages=(git stow neovim curl bash-completion fish fd silversearcher-ag xclip fasd tree htop pass buku)
+
 apt_install() {
   # Do nothing if the package is already installed
-  command -v "$1" &>/dev/null && echo "$1 is present." && return
+  dpkg-query -W -f '${Status}' "$1" | grep -q "ok installed" && echo "$1 is present." && return
 
   echo "$1 is not present. Installling with pacman..."
 
@@ -23,7 +28,6 @@ apt_install() {
 }
 
 echo "Installing packages..."
-packages=(git stow nvim curl bash-completion fish fd silversearcher-ag xclip fasd tree htop pass)
 for pac in "${packages[@]}"; do
   apt_install "$pac"
 done
