@@ -9,7 +9,7 @@ echo -e "${PURPLE}Starting to stow${RESET}"
 
 function __stow {
   echo -e "${BLUE}Stowing ${1}${RESET}"
-  stow --dir="$HOME/dotfiles" "$1"
+  stow --no-folding --dir="$HOME/dotfiles" "$1"
 }
 
 __stow albert

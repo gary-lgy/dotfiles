@@ -9,7 +9,7 @@ echo -e "${PURPLE}Starting cleanup${RESET}"
 
 function __unstow {
   echo -e "${BLUE}Unstowing ${1}${RESET}"
-  stow -D --dir="$HOME/dotfiles" "$1"
+  stow -D --no-folding --dir="$HOME/dotfiles" "$1"
 }
 
 __unstow albert
