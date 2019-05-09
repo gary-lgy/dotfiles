@@ -18,8 +18,8 @@ nnoremap gj j
 nnoremap gk k
 
 " Remap %
-nnoremap <Tab> %
-vnoremap <Tab> %
+nmap <Tab> %
+vmap <Tab> %
 "}}}
 
 " Text manipulation{{{
