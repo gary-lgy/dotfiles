@@ -44,7 +44,7 @@ if command -v pikaur &>/dev/null; then
   echo "pikaur is present."
 else
   echo "pikaur is not present. Installing from AUR..."
-  install base-devel "--needed" &&
+  install pacman base-devel "--needed" &&
   mkdir -p ~/.tmp/pikaur &&
   git clone https://aur.archlinux.org/pikaur.git ~/.tmp/pikaur &&
   cd ~/.tmp/pikaur &&
