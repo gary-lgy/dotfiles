@@ -9,7 +9,7 @@ if ! command -v pacman &>/dev/null; then
 fi
 
 # List of packages to install
-pacman_packages=(git stow neovim curl bash-completion pkgfile fish fd the_silver_searcher fzf xclip diff-so-fancy fasd tree bat htop tldr pass albert ranger w3m poppler)
+pacman_packages=(git stow neovim curl bash-completion pkgfile fish fd the_silver_searcher fzf xdg-utils xclip pandoc diff-so-fancy fasd tree bat htop tldr pass albert ranger w3m imlib2 poppler)
 
 aur_packages=(direnv buku)
 

@@ -8,7 +8,11 @@ set encoding=utf-8
 
 " Use fish shell
 set shell=fish
-set termguicolors
+if $TERM == 'rxvt-unicode-256-colors'
+  set notermguicolors
+else
+  set termguicolors
+endif
 if has('nvim')
   autocmd BufEnter term://* startinsert
 endif

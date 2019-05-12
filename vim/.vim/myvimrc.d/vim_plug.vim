@@ -104,6 +104,8 @@ Plug 'scrooloose/nerdtree' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { '
 " Colorschemes
 Plug 'flazz/vim-colorschemes'
 
+" Org-mode in vim
+Plug 'jceb/vim-orgmode'
 "}}}
 "******************************* Not Actually Useful but wth ********************************{{{
 
