@@ -18,14 +18,15 @@ fi
 base=(networkmanager network-manager-applet git neovim stow bash-completion pkgfile xclip tree openssh htop sysstat acpi)
 audio=(pulseaudio pulseaudio-alsa alsa-utils)
 terminal_emulator=(rxvt-unicode-pixbuf urxvt-perls)
-x=(xorg-server xorg-xinit xorg-xset xdg-utils gtk2 gtk3)
-productivity=(python python-neovim fish fd the_silver_searcher fzf shellcheck diff-so-fancy fasd bat tldr direnv pandoc texlive-core)
+x=(xorg-server xorg-xinit xorg-xrdb xorg-xset xdg-utils gtk2 gtk3)
+productivity=(python python-neovim fish fd the_silver_searcher fzf shellcheck diff-so-fancy fasd bat tldr direnv)
+documents=(zathura zathura-pdf-poppler pandoc texlive-core)
 ranger=(ranger poppler)
 i3=(i3-gaps i3blocks betterlockscreen compton rofi feh)
 fonts=(adobe-source-code-pro-fonts noto-fonts otf-font-awesome ttf-montserrat)
 misc=(pass rofi-pass buku buku_run-git)
 
-packages=( "${base[@]}" "${audio[@]}" "${terminal_emulator[@]}" "${x[@]}" "${productivity[@]}" "${ranger[@]}" "${i3[@]}" "${fonts[@]}" "${misc[@]}" )
+packages=( "${base[@]}" "${audio[@]}" "${terminal_emulator[@]}" "${x[@]}" "${documents[@]}" "${productivity[@]}" "${ranger[@]}" "${i3[@]}" "${fonts[@]}" "${misc[@]}" )
 
 function install {
   local package="$1"
