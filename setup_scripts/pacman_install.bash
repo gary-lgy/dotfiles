@@ -18,7 +18,7 @@ fi
 base=(networkmanager network-manager-applet git neovim stow bash-completion pkgfile xclip tree openssh htop sysstat acpi)
 audio=(pulseaudio pulseaudio-alsa alsa-utils)
 terminal_emulator=(rxvt-unicode-pixbuf urxvt-perls)
-x=(xorg-server xorg-xinit xorg-xset xdg-utils)
+x=(xorg-server xorg-xinit xorg-xset xdg-utils gtk2 gtk3)
 productivity=(python python-neovim fish fd the_silver_searcher fzf shellcheck diff-so-fancy fasd bat tldr direnv pandoc texlive-core)
 ranger=(ranger poppler)
 i3=(i3-gaps i3blocks betterlockscreen compton rofi feh)
