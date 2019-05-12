@@ -9,11 +9,14 @@ set modeindicatorshowkeys true
 set newtabfocus urlbar
 set scrollduration 150
 set searchengine duckduckgo
-set smoothscroll true
 set theme dark
 guiset gui full
 
 " Normal mode key-bindings
+unbind j
+unbind k
+bind j scrollline 5
+bind k scrollline -5
 bind J tabnext
 bind K tabprev
 unbind d
@@ -24,17 +27,5 @@ bind x tabclose
 bind X undo
 
 " input mode key-bindings
-bind --mode=input <C-a>  text.beginning_of_line
-bind --mode=input <C-e>  text.end_of_line
-bind --mode=input <C-k>  text.kill_line
-bind --mode=input <C-u>  text.backward_kill_line
-
-bind --mode=input <C-b>  text.backward_char
-bind --mode=input <C-f>  text.forward_char
-bind --mode=input <C-h>  text.backward_delete_char " does not work
-bind --mode=input <C-d>  text.delete_char
-
-bind --mode=input <A-b>  text.backward_word
-bind --mode=input <A-f>  text.forward_word " stops working on last word of the line
+" The rest can be set from GTK settings
 bind --mode=input <A-BS> text.backward_kill_word
-bind --mode=input <A-d>  text.kill_word

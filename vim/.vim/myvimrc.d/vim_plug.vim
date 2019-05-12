@@ -69,6 +69,11 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " A git wrapper. (Not sure if it is actually required)
 Plug 'tpope/vim-fugitive'
 
+" Preview CSS colors
+Plug 'gko/vim-coloresque'
+
+" Org-mode in vim
+Plug 'jceb/vim-orgmode'
 "}}}
 "******************************** Enhancements **********************************{{{
 " Plugins that improves vim experience in general.

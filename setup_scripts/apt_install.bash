@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# FIXME: not tested
+# Note: no longer updated
 
 trap "echo 'Cancelled.'; exit 255" SIGINT
 

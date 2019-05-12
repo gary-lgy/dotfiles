@@ -12,19 +12,25 @@ function __unstow {
   stow -D --no-folding --dir="$HOME/dotfiles" "$1"
 }
 
-__unstow albert
 __unstow bash
 __unstow bat
+__unstow buku_run
 __unstow dircolors
 __unstow editorconfig
 __unstow fish
+__unstow fontconfig
 __unstow fzf
 __unstow git
+__unstow gtk-3.0
+__unstow i3
+__unstow i3blocks
 __unstow ignore
 __unstow nvim
 __unstow ranger
+__unstow rofi-pass
 __unstow scripts
 __unstow tridactyl
 __unstow vim
+__unstow x
 
 echo -e "${GREEN}Done${RESET}"

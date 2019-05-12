@@ -5,6 +5,7 @@ tmp
 docs
 .thumbnails
 
+# modules
 /.npm
 /.node_modules
 node_modules
@@ -19,19 +20,23 @@ node_modules
 /.nix-profile/share
 /.nix-profile/lib
 
+# cache
 .cache
 cache
 Cache
 CachedData
 __pycache__
 
+# trash
 *Trash*
 Trash
 *RECYCLE.BIN*
 
-# pCloudDrive is a cloud back-up drive for the shared data partition
-# Ignore it to prevent double counting
+# cloud drive
 /pCloudDrive
+
+# password store
+/.password-store
 
 # Ignore app files
 /.local/share
@@ -51,7 +56,7 @@ Trash
 *JetBrains*
 *TelegramDesktop*
 
-# Ignore config files
+# Ignore some config files
 /.config/google-chrome
 /.config/chromium
 /.config/Code
