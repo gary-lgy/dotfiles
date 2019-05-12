@@ -19,19 +19,23 @@ base=(networkmanager network-manager-applet git neovim stow bash-completion pkgf
 audio=(pulseaudio pulseaudio-alsa alsa-utils)
 terminal_emulator=(rxvt-unicode-pixbuf urxvt-perls)
 x=(xorg-server xorg-xinit xorg-xset xdg-utils gtk2 gtk3)
-productivity=(python python-neovim fish fd the_silver_searcher fzf shellcheck diff-so-fancy fasd bat tldr direnv pandoc texlive-core)
+productivity=(python python-neovim fish fd the_silver_searcher fzf shellcheck diff-so-fancy fasd bat tldr direnv)
+documents=(pandoc texlive-core zathura zathura-pdf-poppler)
 ranger=(ranger poppler)
 i3=(i3-gaps i3blocks betterlockscreen compton rofi feh)
 fonts=(adobe-source-code-pro-fonts noto-fonts otf-font-awesome ttf-montserrat)
-misc=(pass rofi-pass buku buku_run-git)
+password=(pass rofi-pass)
+web_browsing=(firefox buku buku_run-git)
 
-packages=( "${base[@]}" "${audio[@]}" "${terminal_emulator[@]}" "${x[@]}" "${productivity[@]}" "${ranger[@]}" "${i3[@]}" "${fonts[@]}" "${misc[@]}" )
+packages=( "${base[@]}" "${audio[@]}" "${terminal_emulator[@]}" "${x[@]}" "${productivity[@]}" "${documents[@]}" "${ranger[@]}" "${i3[@]}" "${fonts[@]}" "${password[@]}" "${web_browsing[@]}" )
 
 function install {
   local package="$1"
 
-  # Do nothing if the package is already installed
-  pacman -Q "$package" &>/dev/null && echo -e "${GREEN}${package} is present.${RESET}" && return
+  # Do not reinstall if the package is already installed
+  pacman -Q "$package" &>/dev/null &&
+  echo -e "${GREEN}${package} is present.${RESET}" &&
+  sudo pacman -D --asexplicit "$package" && return
 
   echo -e "${YELLOW}${package} is not present.${RESET}"
 
@@ -56,7 +60,6 @@ if command -v pikaur &>/dev/null; then
   echo -e "${GREEN}pikaur is present.${RESET}"
 else
   echo -e "${YELLOW}pikaur is not present. Installing from AUR...${RESET}"
-  install base-devel &&
   mkdir -p ~/.tmp/pikaur &&
   git clone https://aur.archlinux.org/pikaur.git ~/.tmp/pikaur &&
   cd ~/.tmp/pikaur &&

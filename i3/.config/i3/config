@@ -198,6 +198,6 @@ bindsym $mod+shift+x exec betterlockscreen -l
 
 # Auto Start Applications {{{
 exec nm-applet
-exec_always compton -f --vsync --inactive-opacity 0.9
+exec_always compton -f --vsync --inactive-opacity 0.6 --active-opacity 0.7
 exec_always feh --bg-scale ~/Pictures/Wallpapers/current.jpg
 # }}}

@@ -39,6 +39,8 @@ set relativenumber
 set mouse=a
 set cursorline
 colorscheme gruvbox
+set background=dark
+highlight Normal ctermbg=None guibg=None
 
 " Search
 set hlsearch " Highlight search items
