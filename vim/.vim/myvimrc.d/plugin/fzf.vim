@@ -32,3 +32,24 @@ nnoremap <leader>f; :History:<CR>
 nnoremap <leader>fs :History/<CR>
 nnoremap <leader>fc :Commits<CR>
 " BCommits
+
+" Preview
+" :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+" :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+			\ call fzf#vim#ag(<q-args>,
+			\                 <bang>0 ? fzf#vim#with_preview('up:60%')
+			\                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+			\                 <bang>0)<Paste>
+
+" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+command! -bang -nargs=* Rg
+			\ call fzf#vim#grep(
+			\   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+			\   <bang>0 ? fzf#vim#with_preview('up:60%')
+			\           : fzf#vim#with_preview('right:50%:hidden', '?'),
+			\   <bang>0)
+
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+			\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)

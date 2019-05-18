@@ -16,6 +16,7 @@ __stow bash
 __stow bat
 __stow buku_run
 __stow dircolors
+__stow dunst
 __stow editorconfig
 __stow fish
 __stow fontconfig

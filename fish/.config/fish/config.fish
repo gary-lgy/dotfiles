@@ -27,8 +27,16 @@ eval (dircolors -c ~/.dircolors)
 # Set up fzf
 test -f ~/.config/fish/fzf.fish; and source ~/.config/fish/fzf.fish
 
+# rbenv
+source (rbenv init -|psub)
+
 # Hook direnv into fish
 direnv hook fish | source
+
+# Fasd aliases
+abbr --global j z
+abbr --global v f -e nvim
+abbr --global o a -e xdg-open
 #}}}
 
 ######################    Abbreviations    #######################{{{

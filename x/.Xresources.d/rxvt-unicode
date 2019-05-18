@@ -13,7 +13,7 @@ URxvt.scrollBar: false
 !}}}
 
 ! Perl Extensions{{{
-URxvt.perl-ext-common: default,url-select,keyboard-select
+URxvt.perl-ext-common: default,url-select,keyboard-select,resize-font
 
 ! url-select
 URxvt.keysym.M-u: perl:url-select:select_next
@@ -22,6 +22,12 @@ URxvt.url-select.underline: true
 
 ! keyboard-select
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
+
+! resize-font
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-plus:      resize-font:bigger
+URxvt.keysym.C-equal:     resize-font:reset
+URxvt.keysym.C-question:  resize-font:show
 !}}}
 
 ! Appearance{{{
@@ -56,10 +62,16 @@ URxvt.color15: #f3f3f3
 
 ! Fonts
 URxvt*font: xft:monospace:size=10,\
+            xft:Source Code Pro:size=10,\
             xft:Noto Sans Mono:size=10,\
+            xft:Noto Color Emoji,\
             xft:Font Awesome 5 Free,\
             xft:Font Awesome 5 Brands
 URxvt.letterspace: -2
+
+! Transparency
+URxvt.transparent: true
+URxvt.shading: 30
 !}}}
 
 ! vim: ft=xdefaults

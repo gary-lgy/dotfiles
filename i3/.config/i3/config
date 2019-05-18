@@ -84,19 +84,29 @@ bindsym $mod+a focus parent
 
 # Workspaces{{{
 # Assign names
+# 1: CLI
+# 2: Browser
+# 3. IDE
+# 4. Ranger
+# 5. Org
+# 6. Scratch
+# 7. Server
+# 8. Documents
+# 9. Chat
+# 10. Media
 set $ws1 "1 "
 set $ws2 "2 "
-set $ws3 "3 "
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
+set $ws6 "6 "
+set $ws7 "7 "
+set $ws8 "8 "
+set $ws9 "9 "
 set $ws10 "10 "
 
 # Force applications to start on specified workspaces
-assign [class="Firefox"] $ws2
+assign [class="Rambox"] $ws9
 assign [class="feh"] $ws10
 
 # switch to workspace
@@ -170,6 +180,18 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym --release XF86AudioMute exec pkill -SIGRTMIN+10 i3blocks
 bindsym --release XF86AudioLowerVolume exec pkill -SIGRTMIN+10 i3blocks
 bindsym --release XF86AudioRaiseVolume exec pkill -SIGRTMIN+10 i3blocks
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -ctrl intel_backlight -inc 10 -fps 20
+bindsym XF86MonBrightnessDown exec xbacklight -ctrl intel_backlight -dec 10 -fps 20
+bindsym --release XF86MonBrightnessUp exec pkill -SIGRTMIN+9 i3blocks
+bindsym --release XF86MonBrightnessDown exec pkill -SIGRTMIN+9 i3blocks
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 #}}}
 
 # Bar{{{
@@ -197,7 +219,12 @@ bindsym $mod+shift+x exec betterlockscreen -l
 #}}}
 
 # Auto Start Applications {{{
+exec i3-msg 'workspace $ws2; exec $browser'
+exec i3-msg 'workspace $ws4; exec $terminal -e ranger'
+exec i3-msg 'workspace $ws9; exec rambox'
+exec dunst
 exec nm-applet
-exec_always compton -f --vsync --inactive-opacity 0.6 --active-opacity 0.7
+exec_always compton -f --vsync --inactive-dim 0.1
 exec_always feh --bg-scale ~/Pictures/Wallpapers/current.jpg
+exec i3-msg 'workspace $ws1'
 # }}}

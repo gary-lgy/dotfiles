@@ -74,6 +74,9 @@ Plug 'gko/vim-coloresque'
 
 " Org-mode in vim
 Plug 'jceb/vim-orgmode'
+
+" For Rails development
+Plug 'tpope/vim-rails'
 "}}}
 "******************************** Enhancements **********************************{{{
 " Plugins that improves vim experience in general.

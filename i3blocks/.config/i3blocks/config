@@ -1,8 +1,8 @@
 # i3blocks config file
 #
-##############################################################################
-# RAM # Disk # CPU # Network # Battery # Battery Temperature # Volume # Time #
-##############################################################################
+###########################################################################################
+# RAM # Disk # CPU # Network # Battery # Battery Temperature # Brightness # Volume # Time #
+###########################################################################################
 #
 # List of valid properties:
 #
@@ -32,7 +32,7 @@ markup=none
 # Memory usage
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=
+label=🧠
 separator=false
 instance=mem
 interval=30
@@ -47,33 +47,32 @@ interval=30
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-label=
+label=💾
 instance=/
 interval=30
 separator=false
 
 [disk]
-label=
+label=🏠
 interval=30
 
 # CPU usage
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=
+label=💻
 interval=1
 #min_width=CPU: 100.00%
 separator=false
 
 [load_average]
-label=
+label=📈
 interval=5
 
 # Network interface monitoring
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
-instance=wls1
 label=
 interval=10
 separator=false
@@ -86,7 +85,7 @@ interval=1
 # Battery indicator
 # The battery instance defaults to 0.
 [battery]
-label=⚡
+label=🔋
 #instance=1
 interval=30
 separator=false
@@ -96,8 +95,17 @@ separator=false
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [temperature]
-label=
+label=🌡
 interval=10
+separator=false
+
+# Screen Backlight Intensity
+# Display the current backlight level using acpilight
+[backlight]
+command=echo "$(xbacklight -get)%"
+label=🔆
+interval=once
+signal=9
 separator=false
 
 # Volume indicator
@@ -106,7 +114,7 @@ separator=false
 # See the script for details.
 [volume]
 command=/usr/lib/i3blocks/volume "1%" pulse
-label=♪
+label=🔉
 instance=Master
 #instance=PCM
 interval=once
@@ -114,8 +122,8 @@ signal=10
 
 # Date Time
 [time]
-label= 
-command=date '+%a %b %d  %H:%M:%S'
+label=📅 
+command=date '+%a %b %d ⌚ %H:%M:%S'
 interval=1
 
 # Generic media player support

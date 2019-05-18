@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Keyboard configuration specified in xinitrc will be lost after Bluetooth keyboard restarts.
+# This is a temporary workaround to set the desired configuration (manually).
+
+# Log
+LOG=/home/gary/filco_xset_log
+
+echo "( $(whoami) )Running at $(date)..." >> "$LOG"
+
+# Swap Caps Lock and Left Ctrl
+DISPLAY=:0 /usr/bin/setxkbmap -layout us -option ctrl:swapcaps -v 10 >> "$LOG" 2>&1 && echo "ctrl caps swap succeeded!" >> "$LOG" || echo "ctrl caps swap failed" >> "$LOG"
+# Adjust keyboard delay
+DISPLAY=:0 /usr/bin/xset r rate 250 30 >> "$LOG" 2>&1 && echo "xset rate succeeded" >> "$LOG" || echo "xset rate failed" >> "$LOG"
+# Turn off beep
+DISPLAY=:0 /usr/bin/xset -b b off >> "$LOG" 2>&1 && echo "turn off beep succeeded" >> "$LOG" || echo "turn off beep failed" >> "$LOG"

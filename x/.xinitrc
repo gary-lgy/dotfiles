@@ -30,12 +30,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# Swap Caps Lock and Left Ctrl
-setxkbmap -layout us -option ctrl:swapcaps
-# Adjust keyboard delay
-xset r rate 250 30
-# Turn off beep
-xset -b b off
+~/bin/kbconfig
 # Add font paths
 xset +fp /usr/share/fonts/adobe-source-code-pro/
 xset +fp /usr/share/fonts/noto/

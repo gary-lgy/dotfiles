@@ -16,6 +16,7 @@ __unstow bash
 __unstow bat
 __unstow buku_run
 __unstow dircolors
+__unstow dunst
 __unstow editorconfig
 __unstow fish
 __unstow fontconfig

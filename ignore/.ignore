@@ -11,13 +11,16 @@ docs
 node_modules
 .bundle
 /.gem
+/.rbenv
 /.vim/plugged
 /.node-gyp
 /.yarn
+/.vscode-oss/extensions
 
 # nix related stuff
 /.nix-defexpr
 /.nix-profile/share
+/.nix-profile/include
 /.nix-profile/lib
 
 # cache
@@ -60,9 +63,13 @@ Trash
 /.config/google-chrome
 /.config/chromium
 /.config/Code
+/.config/Code - OSS
 /.config/SogouPY
 /.config/libreoffice
 /.config/sogou-qimpanel
 /.config/pcloud
 /.config/fcitx
 /.config/coc
+/.config/Rambox
+/.config/pulse
+/.config/fisher

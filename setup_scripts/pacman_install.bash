@@ -17,17 +17,17 @@ fi
 # List of packages to install
 base=(networkmanager network-manager-applet git neovim stow bash-completion pkgfile xclip tree openssh htop sysstat acpi)
 audio=(pulseaudio pulseaudio-alsa alsa-utils)
-terminal_emulator=(rxvt-unicode-pixbuf urxvt-perls)
-x=(xorg-server xorg-xinit xorg-xrdb xorg-xset xdg-utils gtk2 gtk3)
-productivity=(python python-neovim fish fd the_silver_searcher fzf shellcheck diff-so-fancy fasd bat tldr direnv)
+terminal_emulator=(rxvt-unicode-pixbuf urxvt-perls urxvt-resize-font-git)
+x=(xorg-server xorg-xinit xorg-xrdb xorg-xset xdg-utils acpilight gtk2 gtk3)
+utilities=(python python-neovim fish fd the_silver_searcher ripgrep fzf ranger shellcheck diff-so-fancy fasd bat tldr direnv unzip pass)
 documents=(zathura zathura-pdf-poppler pandoc texlive-core)
-ranger=(ranger poppler)
-i3=(i3-gaps i3blocks betterlockscreen compton rofi feh)
-fonts=(adobe-source-code-pro-fonts noto-fonts otf-font-awesome ttf-montserrat)
-password=(pass rofi-pass)
-web_browsing=(firefox buku buku_run-git)
+# libreoffice
+i3=(i3-gaps i3blocks betterlockscreen compton feh dunst)
+fonts=(adobe-source-code-pro-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji otf-font-awesome)
+web_browsing=(firefox buku)
+rofi=(rofi rofimoji-git rofi-pass buku_run-git)
 
-packages=( "${base[@]}" "${audio[@]}" "${terminal_emulator[@]}" "${x[@]}" "${productivity[@]}" "${documents[@]}" "${ranger[@]}" "${i3[@]}" "${fonts[@]}" "${password[@]}" "${web_browsing[@]}" )
+packages=( "${base[@]}" "${audio[@]}" "${terminal_emulator[@]}" "${x[@]}" "${utilities[@]}" "${documents[@]}" "${rofi[@]}" "${i3[@]}" "${fonts[@]}" "${password[@]}" "${web_browsing[@]}" )
 
 function install {
   local package="$1"

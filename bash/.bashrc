@@ -30,6 +30,8 @@ command -v fasd 2>/dev/null 1>&2 && eval "$(fasd --init auto)"
 # direnv
 command -v direnv 2>/dev/null 1>&2 && eval "$(direnv hook bash)"
 
+# rbenv
+eval "$(rbenv init -)"
 #############################    Bash Options    ##############################
 shopt -s autocd
 shopt -s cdspell

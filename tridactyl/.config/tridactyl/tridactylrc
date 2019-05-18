@@ -1,14 +1,17 @@
 " vim: ft=vim
 " Configurations
+set allowautofocus false
 set externalclipboardcmd xclip
 set hintfiltermode vimperator
 set hintnames numeric
 set homepages ["duckduckgo.com"]
 set incsearch true
 set modeindicatorshowkeys true
+set newtab duckduckgo.com
 set newtabfocus urlbar
 set scrollduration 150
 set searchengine duckduckgo
+set  tabopencontaineraware
 set theme dark
 guiset gui full
 
@@ -25,7 +28,14 @@ bind d scrollpage 0.5
 bind u scrollpage -0.5
 bind x tabclose
 bind X undo
+unbind D
+bind D tabduplicate
 
 " input mode key-bindings
 " The rest can be set from GTK settings
 bind --mode=input <A-BS> text.backward_kill_word
+
+" Commandline mode key-bindings
+bind --mode=ex <C-[> ex.hide_and_clear
+bind --mode=ex <C-p> ex.prev_history
+bind --mode=ex <C-n> ex.next_history
