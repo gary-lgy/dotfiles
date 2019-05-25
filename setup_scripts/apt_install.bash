@@ -16,7 +16,7 @@ apt_install() {
   # Do nothing if the package is already installed
   dpkg-query -W -f '${Status}' "$1" | grep -q "ok installed" && echo "$1 is present." && return
 
-  echo "$1 is not present. Installling with pacman..."
+  echo "$1 is not present. Installling with apt"
 
   # System upgrade
   if [ -z "$sys_upgraded" ]; then

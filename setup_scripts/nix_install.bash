@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # nix packages:
-## for Arch: nox (asdf)
-## for Debian/Ubuntu: nox fzf diff-so-fancy direnv bat tldr albert
+## for Arch: nox
+## for Debian/Ubuntu: nox fzf diff-so-fancy direnv bat tldr
 # Copy and paste before running the script
 nix_packages=(nox)
 
@@ -24,7 +24,7 @@ else
   curl https://nixos.org/nix/install | sh &&
   echo 'Remember to setup cron jobs to collect garbage for nix.' &&
   source ~/.nix-profile/etc/profile.d/nix.sh ||
-  (echo >&2 "Could not install nix." && exit 1)
+  { echo >&2 "Could not install nix." && exit 1; }
 fi
 
 echo "Installing nix packages..."
