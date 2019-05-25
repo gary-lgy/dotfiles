@@ -3,6 +3,7 @@
 	email = garyliu2122@gmail.com
 [credential]
 	username = gary-lgy
+	helper = cache
 [core]
 	excludesfile = /home/gary/.gitignore_global
   ; -X: --no-init               do not clear the screen

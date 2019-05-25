@@ -26,7 +26,6 @@ nnoremap <leader>f. :Files ./<CR>
 nnoremap <leader>fa :Files ~<CR>
 nnoremap <leader>fg :GFiles?<CR>
 nnoremap <leader>fb :Buffers<CR>
-nnoremap <leader>a  :Ag<space>
 nnoremap <leader>ff :History<CR>
 nnoremap <leader>f; :History:<CR>
 nnoremap <leader>fs :History/<CR>
@@ -40,7 +39,7 @@ command! -bang -nargs=* Ag
 			\ call fzf#vim#ag(<q-args>,
 			\                 <bang>0 ? fzf#vim#with_preview('up:60%')
 			\                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-			\                 <bang>0)<Paste>
+			\                 <bang>0)
 
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 command! -bang -nargs=* Rg

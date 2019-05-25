@@ -7,6 +7,12 @@ nnoremap <leader>/ :noh<CR>
 " Indent entire buffer
 nnoremap <leader>i gg=G<C-O>
 
+" New buffer
+nnoremap <leader>e :edit<space>
+
+" Escape in terminal
+tnoremap <Esc> <C-\><C-n>
+
 " Remappings to retain sanity{{{
 " Make Y's behavior consistent with other commands.
 noremap Y y$
@@ -22,28 +28,6 @@ nmap <Tab> %
 vmap <Tab> %
 "}}}
 
-" Text manipulation{{{
-" Move stuff around{{{
-nnoremap <M-j> :m+1<CR>==
-nnoremap <M-k> :m-2<CR>==
-inoremap <M-j> <Esc>:m+1<CR>==i
-inoremap <M-k> <Esc>:m-2<CR>==i
-vnoremap <M-j> :m '>+1<CR>gv=gv
-vnoremap <M-k> :m '<-2<CR>gv=gv
-"}}}
-
-" Add lines above or below current line.{{{
-nnoremap [<space> O<Esc>
-nnoremap ]<space> o<Esc>
-"}}}
-
-"" Auto format pasted text{{{
-" This is enabled in miniyank.vim
-"nmap p p=']
-"nmap P P=']
-""}}}
-"}}}
-
 " Navigation within the same buffer{{{
 " Around blocks{{{
 nnoremap J }
@@ -53,28 +37,10 @@ vnoremap K {
 "}}}
 
 " On the same line{{{
-nnoremap H ^
-vnoremap H ^
-nnoremap L $
-vnoremap L $
-"}}}
-"}}}
-
-" Buffers{{{
-" Navigation{{{
-if has('nvim')
-  nnoremap <leader>p :bprev<CR>
-  nnoremap <leader>n :bnext<CR>
-  tnoremap <leader>p <C-\><C-n>:bprev<CR>
-  tnoremap <leader>n <C-\><C-n>:bnext<CR>
-else
-  nnoremap <leader>p :bprev<CR>
-  nnoremap <leader>n :bnext<CR>
-endif
-"}}}
-
-" New buffer{{{
-nnoremap <leader>e :edit<space>
+nnoremap H g^
+vnoremap H g^
+nnoremap L g$
+vnoremap L g$
 "}}}
 "}}}
 
@@ -88,6 +54,7 @@ nnoremap <C-l> <C-w>l
 
 " Split{{{
 nnoremap <leader>s :split<space>
+nnoremap <leader>v :vsplit<space>
 "}}}
 
 " Resize{{{
@@ -116,6 +83,9 @@ nnoremap <leader>, :!
 
 " Re-execute last command
 nnoremap <leader>; :<UP><CR>
+
+" Grep with rg
+nmap <leader>g :Grep<space>
 "}}}
 
 " Emacs style keybindings for command and insert mode{{{

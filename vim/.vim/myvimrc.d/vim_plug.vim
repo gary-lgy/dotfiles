@@ -27,6 +27,9 @@ Plug 'tpope/vim-repeat'
 " Easily abbreviate, substitute variants of a words and switch among different cases.
 Plug 'tpope/vim-abolish'
 
+" Pairs of shortcuts.
+Plug 'tpope/vim-unimpaired'
+
 " Easily define new text objects. Dependency for the following plugins.
 Plug 'kana/vim-textobj-user'
 
@@ -41,6 +44,9 @@ Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
 "}}}
 "******************************** Programming **********************************{{{
 " Plugins that are helpful for programming.
+
+" A git wrapper.
+Plug 'tpope/vim-fugitive'
 
 " Comment source code.
 Plug 'tpope/vim-commentary'
@@ -66,17 +72,12 @@ Plug 'w0rp/ale'
 " IntelliSense and LSP
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
-" A git wrapper. (Not sure if it is actually required)
-Plug 'tpope/vim-fugitive'
-
 " Preview CSS colors
 Plug 'gko/vim-coloresque'
 
-" Org-mode in vim
-Plug 'jceb/vim-orgmode'
-
 " For Rails development
 Plug 'tpope/vim-rails'
+
 "}}}
 "******************************** Enhancements **********************************{{{
 " Plugins that improves vim experience in general.
@@ -94,6 +95,9 @@ endif
 " Actual fzf.vim plugin with more powerful features
 Plug 'junegunn/fzf.vim'
 
+" Unix helpers within Vim
+Plug 'tpope/vim-eunuch'
+
 " Easy alignment
 Plug 'junegunn/vim-easy-align'
 
@@ -107,15 +111,14 @@ Plug 'bfredl/nvim-miniyank'
 Plug 'yuttie/comfortable-motion.vim'
 
 " File browser and syntax highlight for it.
-Plug 'scrooloose/nerdtree' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 
 " Colorschemes
 Plug 'flazz/vim-colorschemes'
 
 " Org-mode in vim
 Plug 'jceb/vim-orgmode'
-"}}}
-"******************************* Not Actually Useful but wth ********************************{{{
 
 " A pretty and configurable status bar.
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
