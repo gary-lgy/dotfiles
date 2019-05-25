@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+
+spawn bluetoothctl
+expect "# "
+send "connect \t\r"
+expect {
+  "Connection successful" {
+    expect "ServiceResolved: yes"
+    system ~/bin/kbconfig
+    exit
+  } "Failed" {
+    exit
+  }
+}
