@@ -1,3 +1,6 @@
+# Start ssh agent
+eval "$(ssh-agent)" >/dev/null 2>&1 &
+
 # Use nvim as default text editor
 export EDITOR=/usr/bin/nvim
 

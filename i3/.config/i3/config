@@ -222,9 +222,5 @@ bindsym $mod+shift+x exec betterlockscreen -l
 exec i3-msg 'workspace $ws2; exec $browser'
 exec i3-msg 'workspace $ws4; exec $terminal -e ranger'
 exec i3-msg 'workspace $ws9; exec rambox'
-exec dunst
-exec nm-applet
-exec_always compton -f --vsync --inactive-dim 0.1
-exec_always feh --bg-scale ~/Pictures/Wallpapers/current.jpg
 exec i3-msg 'workspace $ws1'
 # }}}

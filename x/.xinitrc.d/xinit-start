@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Autostart programs
+~/bin/kbconfig &
+udiskie --no-automount --notify --tray &
+dunst &
+greenclip daemon &
+nm-applet &
+compton -f --vsync --inactive-dim 0.1 &
+feh --bg-scale --randomize --no-fehbg ~/Pictures/Wallpapers/* &
+
+# DE/WM
+exec i3

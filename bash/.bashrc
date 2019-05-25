@@ -13,8 +13,8 @@ else
 fi
 
 [ -r /usr/share/bash-completion/bash_completion ] && source /usr/share/bash-completion/bash_completion
-[ -r ~/.bash_aliases ] && source ~/.bash_aliases
-[ -r ~/.bash_functions ] && source ~/.bash_functions
+[ -r ~/.bashrc.d/.bash_aliases ] && source ~/.bashrc.d/.bash_aliases
+[ -r ~/.bashrc.d/.bash_functions ] && source ~/.bashrc.d/.bash_functions
 [ -r ~/.dircolors ] && eval "$(dircolors -b "$HOME"/.dircolors)"
 
 # Enable completions for sudo
@@ -22,7 +22,7 @@ complete -cf sudo
 
 ######################    Setup Packages    ######################
 # fzf
-command -v fzf 2>/dev/null 1>&2 && [ -r ~/.fzf.bash ] && source ~/.fzf.bash
+command -v fzf 2>/dev/null 1>&2 && [ -r ~/.bashrc.d/.fzf.bash ] && source ~/.bashrc.d/.fzf.bash
 
 # fasd
 command -v fasd 2>/dev/null 1>&2 && eval "$(fasd --init auto)"
