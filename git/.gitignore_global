@@ -6,3 +6,5 @@
 *.swp
 # exclude ~ files
 *~
+# exclude directories created by direnv
+.direnv

@@ -12,6 +12,7 @@ function __stow {
   stow --no-folding --dir="$HOME/dotfiles" "$1"
 }
 
+__stow asdf
 __stow bash
 __stow bat
 __stow buku_run
@@ -26,6 +27,8 @@ __stow gtk-3.0
 __stow i3
 __stow i3blocks
 __stow ignore
+__stow kitty
+__stow misc
 __stow nvim
 __stow ranger
 __stow rofi-pass

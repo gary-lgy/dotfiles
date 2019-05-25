@@ -1,6 +1,6 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $terminal urxvt
+set $terminal kitty
 set $browser firefox
 set $shell /usr/bin/fish
 
@@ -28,7 +28,7 @@ bindsym $mod+Shift+e exec i3-msg exit
 
 # Launching Applications{{{
 # start a terminal
-bindsym $mod+Return exec $terminal -e $shell
+bindsym $mod+Return exec $terminal
 
 # Rofi
 bindsym Control+space exec rofi -show run
@@ -37,7 +37,13 @@ bindsym $mod+p exec rofi-pass
 bindsym $mod+b exec buku_run
 
 # Open browser and go to ws2
-bindsym $mod+f exec $browser, workspace $ws2
+bindsym $mod+f workspace $ws2, exec $browser
+
+# Take screenshot
+bindsym Print exec flameshot gui
+
+# Greenclip clipboard manager
+bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 #}}}
 
 # {{{ Windows
@@ -107,7 +113,6 @@ set $ws10 "10 "
 
 # Force applications to start on specified workspaces
 assign [class="Rambox"] $ws9
-assign [class="feh"] $ws10
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -215,7 +220,7 @@ bar {
 # }}}
 
 # Lock Screen{{{
-bindsym $mod+shift+x exec betterlockscreen -l
+bindsym $mod+shift+x exec "betterlockscreen -l; sleep 5; betterlockscreen -u ~/Pictures/Wallpapers"
 #}}}
 
 # Auto Start Applications {{{

@@ -12,6 +12,7 @@ function __unstow {
   stow -D --no-folding --dir="$HOME/dotfiles" "$1"
 }
 
+__unstow asdf
 __unstow bash
 __unstow bat
 __unstow buku_run
@@ -26,6 +27,8 @@ __unstow gtk-3.0
 __unstow i3
 __unstow i3blocks
 __unstow ignore
+__unstow kitty
+__unstow misc
 __unstow nvim
 __unstow ranger
 __unstow rofi-pass

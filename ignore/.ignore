@@ -15,7 +15,6 @@ node_modules
 /.vim/plugged
 /.node-gyp
 /.yarn
-/.vscode-oss/extensions
 
 # nix related stuff
 /.nix-defexpr
@@ -43,7 +42,8 @@ Trash
 
 # Ignore app files
 /.local/share
-/.vscode/extensions
+/.vscode
+/.vscode-oss
 .idea
 /.mozilla/firefox
 /.thunderbird
