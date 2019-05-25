@@ -8,8 +8,8 @@ endif
 set signcolumn=yes
 
 " Key bindings for navigating to next/previous errors
-nmap <leader>J :ALENext<CR>
-nmap <leader>K :ALEPrevious<CR>
+nmap ]d :ALENext<CR>
+nmap [d :ALEPrevious<CR>
 
 " Define fixers
 if !exists('g:ale_fixers')

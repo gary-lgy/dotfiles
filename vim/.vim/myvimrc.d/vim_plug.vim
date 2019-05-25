@@ -70,17 +70,21 @@ Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 
 " IntelliSense and LSP
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-
-" Preview CSS colors
-Plug 'gko/vim-coloresque'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
 " For Rails development
 Plug 'tpope/vim-rails'
 
+" Auto pairs
+Plug 'jiangmiao/auto-pairs'
+
 "}}}
+
 "******************************** Enhancements **********************************{{{
 " Plugins that improves vim experience in general.
+
+" A pretty and configurable status bar.
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
 " FZF. The best shit ever.
 " Basic vim plugin that came with fzf
@@ -104,8 +108,8 @@ Plug 'junegunn/vim-easy-align'
 " (Fake) Multiple cursors.
 Plug 'terryma/vim-multiple-cursors'
 
-" Maintains a yank stack similar to Emacs' killring.
-Plug 'bfredl/nvim-miniyank'
+" A fancy startup screen.
+Plug 'mhinz/vim-startify'
 
 " Smooth scrolling.
 Plug 'yuttie/comfortable-motion.vim'
@@ -119,12 +123,6 @@ Plug 'flazz/vim-colorschemes'
 
 " Org-mode in vim
 Plug 'jceb/vim-orgmode'
-
-" A pretty and configurable status bar.
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-
-" A fancy startup screen.
-Plug 'mhinz/vim-startify'
 
 "}}}
 

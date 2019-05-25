@@ -17,3 +17,4 @@
 1. Make sure `~/.*sh_profile` sources `~/.profile`.
 2. `buku` bookmarks need to be transferred manually.
 3. The following packages need services to be enabled: greenclip, betterlockscreen
+4. `asdf` has to be cloned from GitHub.

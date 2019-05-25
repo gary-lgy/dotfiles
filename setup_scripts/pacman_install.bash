@@ -19,7 +19,7 @@ base=(networkmanager network-manager-applet git neovim stow bash-completion pkgf
 audio=(pulseaudio pulseaudio-alsa alsa-utils)
 terminal_emulator=(kitty python-pillow pygmentize)
 desktop=(xorg-server xorg-xinit xorg-xrdb xorg-xset xdg-utils perl-file-mimeinfo acpilight gtk2 gtk3 flameshot dunst feh)
-utilities=(python python-neovim fish fd the_silver_searcher ripgrep fzf ranger xclip shellcheck-static diff-so-fancy fasd bat tldr direnv unzip pass udiskie)
+utilities=(python python-neovim fish fd the_silver_searcher ripgrep fzf ranger xclip shellcheck-static diff-so-fancy fasd bat tldr direnv unzip pass udiskie expect nodejs npm yarn)
 documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core)
 # libreoffice
 i3=(i3-gaps i3blocks betterlockscreen compton)

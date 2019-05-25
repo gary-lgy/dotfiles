@@ -1,4 +1,12 @@
 {
-    "java.errors.incompleteClasspath.severity": "ignore",
-    "diagnostic.refreshOnInsertMode": true
+  "diagnostic": {
+    "refreshOnInsertMode": true,
+    "displayByAle": true
+  },
+  "suggest.noselect": false,
+  "list.insertMappings": {
+    "<C-n>": "normal:j",
+    "<C-p>": "normal:k" 
+  },
+  "tsserver,npm": "/usr/bin/npm"
 }

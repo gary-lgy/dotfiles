@@ -24,7 +24,7 @@ set -xg theme_title_use_abbreviated_path no
 set -xg theme_date_format "+%a %H:%M"
 set -xg theme_avoid_ambiguous_glyphs yes
 set -xg theme_powerline_fonts yes
-set -xg theme_nerd_fonts no
+set -xg theme_nerd_fonts yes
 set -xg theme_show_exit_status yes
 set -xg theme_color_scheme dark
 set -xg fish_prompt_pwd_dir_length 0

@@ -8,6 +8,3 @@ iab psvm public static void main(String[] args) {<CR>}<UP><END>
 " Compilation and running
 nmap <leader>cc :!javac %:h/*.java<CR>
 nmap <leader>rr :!java -classpath %:h<space>
-
-" Disable ALE to use coc.nvim
-let b:ale_enabled = 0
