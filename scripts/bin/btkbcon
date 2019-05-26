@@ -5,10 +5,12 @@ expect "# "
 send "connect \t\r"
 expect {
   "Connection successful" {
+    system notify-send 'Bluetooth keyboard' 'Successfully established connection to Bluetooth keyboard.'
     expect "ServiceResolved: yes"
     system ~/bin/kbconfig
     exit
   } "Failed" {
+    system notify-send -u critical -t 5000 'Bluetooth keyboard' 'Failed to establish connection to Bluetooth keyboard.'
     exit
   }
 }

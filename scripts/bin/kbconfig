@@ -10,3 +10,5 @@
 /usr/bin/xset r rate 250 30
 # Turn off beep
 /usr/bin/xset -b b off
+
+command -v notify-send 1>/dev/null 2>&1 && notify-send 'Keyboard Configuration' 'Successfully configured keyboard.'
