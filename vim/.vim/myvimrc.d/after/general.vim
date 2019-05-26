@@ -26,6 +26,7 @@ set foldmethod=marker " Fold with markers
 set timeoutlen=3000
 set ttimeoutlen=100
 set scrolloff=5
+set sidescrolloff=5
 set wildmenu " Enable command completion menu
 set wildmode=full " Cycle through completions
 set visualbell " Show visual bell
@@ -33,6 +34,10 @@ set belloff=all " Turn off beep for all event
 set wrap " Wrap long lines
 set splitbelow
 set splitright
+set lazyredraw
+set linebreak
+set title
+set confirm
 
 " Appearance
 set ruler

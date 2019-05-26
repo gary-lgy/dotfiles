@@ -47,6 +47,7 @@ Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
 
 " A git wrapper.
 Plug 'tpope/vim-fugitive'
+" TODO: compare with jreybert/vimagit
 
 " Comment source code.
 Plug 'tpope/vim-commentary'
@@ -78,6 +79,15 @@ Plug 'tpope/vim-rails'
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
 
+" Automatically insert complete block structure
+Plug 'tpope/vim-endwise'
+
+" Highlight matching HTML and XML tags
+Plug 'valloric/matchtagalways', { 'for': ['xml', 'html'] }
+
+" Auto close HTML and XML tags
+Plug 'alvan/vim-closetag', { 'for': ['xml', 'html'] }
+
 "}}}
 
 "******************************** Enhancements **********************************{{{
@@ -104,6 +114,9 @@ Plug 'tpope/vim-eunuch'
 
 " Easy alignment
 Plug 'junegunn/vim-easy-align'
+
+" Visual marks
+Plug 'kshenoy/vim-signature'
 
 " (Fake) Multiple cursors.
 Plug 'terryma/vim-multiple-cursors'

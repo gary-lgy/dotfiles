@@ -1,7 +1,7 @@
-" Highlight full name without vim-devicons
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName    = 1
-let g:NERDTreePatternMatchHighlightFullName  = 1
+" " Highlight full name without vim-devicons
+" let g:NERDTreeFileExtensionHighlightFullName = 1
+" let g:NERDTreeExactMatchHighlightFullName    = 1
+" let g:NERDTreePatternMatchHighlightFullName  = 1
 
 " Highlight folders using exact match
 let g:NERDTreeHighlightFolders               = 1
