@@ -23,7 +23,7 @@ utilities=(python python-neovim fish fd the_silver_searcher ripgrep fzf ranger x
 documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core)
 # libreoffice
 i3=(i3-gaps i3blocks betterlockscreen compton)
-fonts=(adobe-source-code-pro-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji otf-font-awesome)
+fonts=(adobe-source-code-pro-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji otf-font-awesome nerd-fonts-source-code-pro)
 web_browsing=(firefox buku)
 rofi=(rofi rofimoji-git rofi-pass buku_run-git rofi-greenclip)
 

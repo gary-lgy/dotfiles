@@ -124,6 +124,9 @@ Plug 'flazz/vim-colorschemes'
 " Org-mode in vim
 Plug 'jceb/vim-orgmode'
 
+" Devicons
+Plug 'ryanoasis/vim-devicons'
+
 "}}}
 
 call plug#end()
