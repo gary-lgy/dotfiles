@@ -3,7 +3,7 @@
     "refreshOnInsertMode": true,
     "displayByAle": true
   },
-  "suggest.noselect": false,
+  "suggest.noselect": true,
   "list.insertMappings": {
     "<C-n>": "normal:j",
     "<C-p>": "normal:k" 

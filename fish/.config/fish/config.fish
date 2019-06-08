@@ -31,3 +31,6 @@ test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
 # direnv
 direnv hook fish | source
 #}}}
+
+# thefuck
+thefuck --alias | source

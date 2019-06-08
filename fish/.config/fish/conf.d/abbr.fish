@@ -1,14 +1,20 @@
+# System
 abbr --global cp cp -i
 abbr --global mv mv -i
 abbr --global rm rm -i
 abbr --global view nvim -R
 abbr --global la ls -FAhx
 abbr --global ll ls -lAhF
-abbr --global gs git status
-abbr --global gd git diff
-abbr --global gl git log --pretty=oneline -5
 
-# Fasd
-abbr --global j z
-abbr --global v f -e nvim
-abbr --global o a -e xdg-open
+# Git
+abbr --global gb git branch
+abbr --global gc git checkout
+abbr --global gd git diff
+abbr --global gf git fetch
+abbr --global gl git log --pretty=oneline -5
+abbr --global gp git pull
+abbr --global gs git status
+
+# Bundle
+abbr --global be bundle exec
+abbr --global bi bundle install

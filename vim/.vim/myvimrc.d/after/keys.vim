@@ -2,10 +2,10 @@
 let mapleader = ' '
 
 " Stop highlighting search items
-nnoremap <leader>/ :noh<CR>
+nnoremap <silent> <leader>/ :noh<CR>
 
 " Indent entire buffer
-nnoremap <leader>i gg=G<C-O>
+nnoremap <leader>ii gg=G``
 
 " New buffer
 nnoremap <leader>e :edit<space>
@@ -28,19 +28,23 @@ nmap <Tab> %
 vmap <Tab> %
 "}}}
 
-" Navigation within the same buffer{{{
-" Around blocks{{{
+" Remap some text objects{{{
+" Blocks{{{
 nnoremap J }
 vnoremap J }
+onoremap J }
 nnoremap K {
 vnoremap K {
+onoremap K {
 "}}}
 
 " On the same line{{{
 nnoremap H g^
 vnoremap H g^
+onoremap H g^
 nnoremap L g$
 vnoremap L g$
+onoremap L g$
 "}}}
 "}}}
 
@@ -68,7 +72,7 @@ endif
 "}}}
 
 " Save and exit{{{
-nnoremap <leader>d :bd<CR>
+nnoremap <silent> <leader>d :bd<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :qa!<CR>
@@ -76,7 +80,7 @@ nnoremap <leader>Q :qa!<CR>
 
 " Commands{{{
 " Open terminal
-nnoremap <leader>t :terminal<CR>
+nnoremap <silent> <leader>t :terminal fish<CR>
 
 " Execute external command
 nnoremap <leader>, :!
@@ -86,25 +90,6 @@ nnoremap <leader>; :<UP><CR>
 
 " Grep with rg
 nmap <leader>g :Grep<space>
-"}}}
-
-" Emacs style keybindings for command and insert mode{{{
-" Ctrl-W, Ctlr-U, and Ctrl-h are available by default
-noremap! <C-a> <Home>
-noremap! <C-e> <End>
-noremap! <C-b> <Left>
-noremap! <C-f> <Right>
-noremap! <C-d> <Del>
-
-if has('nvim')
-  noremap! <M-b> <S-Left>
-  noremap! <M-f> <S-Right>
-else
-  noremap! <Esc>b <S-Left>
-  noremap! <Esc>f <S-Right>
-endif
-
-inoremap <C-k> <Esc>lDA
 "}}}
 
 " Disable <F1>{{{

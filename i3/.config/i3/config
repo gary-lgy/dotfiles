@@ -1,7 +1,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $terminal kitty
-set $browser firefox
+set $browser firefox-developer-edition
 set $shell /usr/bin/fish
 
 # General{{{
@@ -10,7 +10,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:sans, "Font Awesome 5 Free", "Font Awesome 5 Brands" 10
+font pango:sans 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -27,23 +27,8 @@ bindsym $mod+Shift+e exec i3-msg exit
 # }}}
 
 # Launching Applications{{{
-# start a terminal
-bindsym $mod+Return exec $terminal
-
-# Rofi
-bindsym Control+space exec rofi -show run
-bindsym $mod+space exec rofi -show window
-bindsym $mod+p exec rofi-pass
-bindsym $mod+b exec buku_run
-
 # Open browser and go to ws2
 bindsym $mod+f workspace $ws2, exec $browser
-
-# Take screenshot
-bindsym Print exec flameshot gui
-
-# Greenclip clipboard manager
-bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 #}}}
 
 # {{{ Windows
@@ -179,12 +164,10 @@ new_window none
 
 # Media Keys{{{
 # Pulse Audio controls
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym --release XF86AudioMute exec pkill -SIGRTMIN+10 i3blocks
-bindsym --release XF86AudioLowerVolume exec pkill -SIGRTMIN+10 i3blocks
-bindsym --release XF86AudioRaiseVolume exec pkill -SIGRTMIN+10 i3blocks
+# Uses the script ~/bin/i3volume
+bindsym XF86AudioRaiseVolume exec i3volume -np -i 5 -t i3blocks -u SIGRTMIN+10
+bindsym XF86AudioLowerVolume exec i3volume -np -d 5 -t i3blocks -u SIGRTMIN+10
+bindsym XF86AudioMute        exec i3volume -mn -t i3blocks -u SIGRTMIN+10
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -ctrl intel_backlight -inc 10 -fps 20
@@ -215,8 +198,8 @@ bar {
 }
 
 # Update key indicators
-# bindsym --release caps_lock exec pkill -sigrtmin+11 i3blocks
-# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 # }}}
 
 # Lock Screen{{{

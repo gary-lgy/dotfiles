@@ -183,8 +183,9 @@ handle_mime() {
             #     --style="${HIGHLIGHT_STYLE}" --force -- "${FILE_PATH}" && exit 5
             # pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}" -- "${FILE_PATH}" && exit 5
             # TODO: an update might reduce the need for this
-            env COLORTERM="$pygmentize_format" bat --tabs=4 --color=always \
-                  --paging=never --plain "${FILE_PATH}" && exit 5
+            # env COLORTERM="$pygmentize_format" bat --tabs=4 --color=always \
+            #       --paging=never --plain "${FILE_PATH}" && exit 5
+            env COLORTERM="$pygmentize_format" bat --tabs=4 --color=always --paging=never --style=changes,numbers "${FILE_PATH}" && exit 5
             exit 2;;
 
         # Image

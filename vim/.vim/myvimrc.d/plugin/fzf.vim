@@ -22,14 +22,14 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Shortcuts to invoke fzf
-nnoremap <leader>f. :Files ./<CR>
-nnoremap <leader>fa :Files ~<CR>
-nnoremap <leader>fg :GFiles?<CR>
-nnoremap <leader>fb :Buffers<CR>
-nnoremap <leader>ff :History<CR>
-nnoremap <leader>f; :History:<CR>
-nnoremap <leader>fs :History/<CR>
-nnoremap <leader>fc :Commits<CR>
+nnoremap <leader>f. <Cmd>Files ./<CR>
+nnoremap <leader>fa <Cmd>Files ~<CR>
+nnoremap <leader>fg <Cmd>GFiles?<CR>
+nnoremap <leader>fb <Cmd>Buffers<CR>
+nnoremap <leader>ff <Cmd>History<CR>
+nnoremap <leader>f; <Cmd>History:<CR>
+nnoremap <leader>fs <Cmd>History/<CR>
+nnoremap <leader>fc <Cmd>Commits<CR>
 " BCommits
 
 " Preview

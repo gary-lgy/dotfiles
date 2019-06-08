@@ -10,7 +10,7 @@ expect {
     system ~/bin/kbconfig
     exit
   } "Failed" {
-    system notify-send -u critical -t 5000 'Bluetooth keyboard' 'Failed to establish connection to Bluetooth keyboard.'
+    system notify-send -u critical -t 10000 'Bluetooth keyboard' 'Failed to establish connection to Bluetooth keyboard.'
     exit
   }
 }

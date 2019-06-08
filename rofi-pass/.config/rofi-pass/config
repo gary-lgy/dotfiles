@@ -33,7 +33,7 @@ layout_cmd () {
 
 # fields to be used
 URL_field='url'
-USERNAME_field='user'
+USERNAME_field='username'
 AUTOTYPE_field='autotype'
 
 # delay to be used for :delay keyword
@@ -47,17 +47,17 @@ xdotool_delay=12
 
 ## Programs to be used
 # Editor
-EDITOR='urxvt -e nvim'
+EDITOR='$TERMINAL -e $EDITOR'
 
 # Browser
-BROWSER='xdg-open'
+BROWSER='$BROWSER'
 
 ## Misc settings
 
 default_do='menu' # menu, autotype, copyPass, typeUser, typePass, copyUser, copyUrl, viewEntry, typeMenu, actionMenu, copyMenu, openUrl
 auto_enter='false'
 notify='false'
-default_autotype='user :tab pass'
+default_autotype='username :tab pass'
 
 # color of the help messages
 # leave empty for autodetection

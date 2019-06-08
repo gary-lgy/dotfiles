@@ -8,7 +8,7 @@ set homepages ["duckduckgo.com"]
 set incsearch true
 set modeindicatorshowkeys true
 set newtab duckduckgo.com
-set newtabfocus urlbar
+set newtabfocus page
 set scrollduration 150
 set searchengine duckduckgo
 set  tabopencontaineraware

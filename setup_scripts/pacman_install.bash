@@ -15,46 +15,54 @@ if ! command -v pacman &>/dev/null; then
 fi
 
 # List of packages to install
-base=(networkmanager network-manager-applet git neovim stow bash-completion pkgfile tree openssh htop sysstat acpi gparted curl)
+base=(git neovim python python-neovim stow bash-completion openssh curl)
+cli_utils=(pkgfile tree xclip fish fd the_silver_searcher ripgrep fzf ranger fasd bat thefuck tldr direnv expect)
+monitoring=(htop sysstat acpi net-tools)
 audio=(pulseaudio pulseaudio-alsa alsa-utils)
-terminal_emulator=(kitty python-pillow pygmentize)
-desktop=(xorg-server xorg-xinit xorg-xrdb xorg-xset xdg-utils perl-file-mimeinfo acpilight gtk2 gtk3 flameshot dunst feh)
-utilities=(python python-neovim fish fd the_silver_searcher ripgrep fzf ranger xclip shellcheck-static diff-so-fancy fasd bat tldr direnv unzip pass udiskie expect nodejs npm yarn)
-documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core)
-# libreoffice
-i3=(i3-gaps i3blocks betterlockscreen compton)
+gui=(xorg-server xorg-xinit xorg-xrdb xorg-xset xorg-xrandr gtk2 gtk3)
 fonts=(adobe-source-code-pro-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji otf-font-awesome nerd-fonts-source-code-pro)
-web_browsing=(firefox buku)
-rofi=(rofi rofimoji-git rofi-pass buku_run-git rofi-greenclip)
+# Window manager and packages that come with most DEs but do not come with WMs
+WM=(i3-gaps i3blocks betterlockscreen compton networkmanager network-manager-applet gparted acpilight dunst imv udiskie)
+terminal_emulator=(kitty python-pillow pygmentize)
+launcher=(rofi rofi-dmenu rofimoji-git rofi-pass buku_run-git rofi-greenclip)
+gui_utils=(xdg-utils perl-file-mimeinfo desktop-file-utils sxhkd flameshot feh)
+misc_utils=(pass unzip buku nextcloud-client)
+coding=(shellcheck-static diff-so-fancy nodejs npm yarn)
+documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core)
+web_browsing=(firefox-developer-edition)
 
-packages=( "${base[@]}" "${audio[@]}" "${terminal_emulator[@]}" "${desktop[@]}" "${utilities[@]}" "${documents[@]}" "${rofi[@]}" "${i3[@]}" "${fonts[@]}" "${password[@]}" "${web_browsing[@]}" )
+pending=(libreoffice-fresh joplin)
+
+packages=( "${base[@]}" "${cli_utils[@]}" "${monitoring[@]}" "${audio[@]}" "${gui[@]}" "${fonts[@]}" "${WM[@]}" "${terminal_emulator[@]}" "${launcher[@]}" "${gui_utils[@]}" "${misc_utils[@]}" \
+  "${coding[@]}" "${documents[@]}" "${web_browsing[@]}" )
 
 function install {
   local package="$1"
 
   # Do not reinstall if the package is already installed
-  pacman -Q "$package" &>/dev/null &&
-  echo -e "${GREEN}${package} is present.${RESET}" &&
-  { pacman -Qi "${package}" | grep -F "Install Reason" | grep -q "dependency for another package" &&
-    sudo pacman -D --asexplicit "$package";
-    return;
-  }
+  if pacman -Q "$package" &>/dev/null; then
+    echo -e "${GREEN}${package} is present.${RESET}"
+    if pacman -Qi "${package}" | grep -F "Install Reason" | grep -q "dependency for another package"; then
+      echo -e "${BLUE}Changing install reason of ${package} to explicit${RESET}"
+      sudo pacman -D --asexplicit "$package"
+    fi
+    return
+  fi
 
   echo -e "${YELLOW}${package} is not present.${RESET}"
 
   # System upgrade
-  if [ -z "$sys_upgraded" ]; then
-    echo -e "${YELLOW}System upgrade...${RESET}"
-    sudo pacman -Syu
-    sys_upgraded=1
-  fi
+  [ -z "$sys_upgraded" ] && { echo -e "${YELLOW}System upgrade...${RESET}"; sudo pacman -Syu && sys_upgraded=1; }
 
   # If the package is in the official repo, install it from there
   # Otherwise, install it from AUR
-  pacman -Si "$package" &>/dev/null &&
-  echo -e "${BLUE}Installing ${package} from official repo...${RESET}" &&
-  sudo pacman -S "$package" --needed ||
-  { echo -e "${BLUE}Installing ${package} from AUR...${RESET}"; pikaur -S "$package"; }
+  if pacman -Si "$package" &>/dev/null; then
+    echo -e "${BLUE}Installing ${package} from official repo...${RESET}"
+    sudo pacman -S "$package" --needed
+  else
+    echo -e "${BLUE}Installing ${package} from AUR...${RESET}"
+    pikaur -S "$package"
+  fi
 }
 
 # Install pikaur as AUR helper
@@ -76,3 +84,4 @@ for pac in "${packages[@]}"; do
 done
 
 echo -e "${GREEN}Done.${RESET}"
+echo -e "${BLUE}You may want to install ${pending[*]} yourself.${RESET}"

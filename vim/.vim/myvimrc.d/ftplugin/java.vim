@@ -1,10 +1,10 @@
 " Abbreviations
-iab sop System.out.println
-iab sof System.out.printf
-iab sep System.err.println
-iab sef System.err.printf
-iab psvm public static void main(String[] args) {<CR>}<UP><END>
+iab <buffer> sop System.out.println
+iab <buffer> sof System.out.printf
+iab <buffer> sep System.err.println
+iab <buffer> sef System.err.printf
+iab <buffer> psvm public static void main(String[] args) {}<LEFT><CR>
 
 " Compilation and running
-nmap <leader>cc :!javac %:h/*.java<CR>
-nmap <leader>rr :!java -classpath %:h<space>
+nnoremap <buffer> <leader>cc :!javac %:h/*.java<CR>
+nnoremap <buffer> <leader>rr :!java -classpath %:h<space>

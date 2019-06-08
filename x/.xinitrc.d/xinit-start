@@ -2,12 +2,15 @@
 
 # Autostart programs
 ~/bin/kbconfig &
-udiskie --no-automount --notify --tray &
-dunst &
-greenclip daemon &
-nm-applet &
-compton -f --vsync --inactive-dim 0.1 &
-feh --bg-scale --randomize --no-fehbg ~/Pictures/Wallpapers/* &
+/usr/bin/sxhkd &
+/usr/bin/udiskie --no-automount --notify --tray &
+/usr/bin/dunst &
+/usr/bin/greenclip daemon &
+/usr/bin/nm-applet &
+/usr/bin/compton -f --vsync --inactive-dim 0.1 &
+/usr/bin/feh --bg-scale --randomize --no-fehbg ~/Pictures/Wallpapers/* &
+/usr/bin/flameshot &
+/usr/bin/nextcloud &
 
 # DE/WM
 exec i3

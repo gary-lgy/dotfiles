@@ -12,8 +12,8 @@ endif" Arguments to plug#begin specifies the directory to install the plugins
 
 call plug#begin('~/.vim/plugged')
 
-"******************************** Pure Vim **********************************{{{
-" Plugins that adhere closely to the vim philosophy (text objects and composability)
+"******************************** Fundamentals **********************************{{{
+" Plugins that I think might as well be included in vanilla vim
 
 " vim-surround.
 Plug 'tpope/vim-surround'
@@ -37,11 +37,10 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire' " ie and ae
 Plug 'kana/vim-textobj-fold' " iz and az
 Plug 'kana/vim-textobj-indent' " ii, ai, iI and aI
-Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " iE and aE
-Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' } " ro, rl, rc, rd, rr
 Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
 
 "}}}
+
 "******************************** Programming **********************************{{{
 " Plugins that are helpful for programming.
 
@@ -79,19 +78,32 @@ Plug 'tpope/vim-rails'
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
 
-" Automatically insert complete block structure
+" Automatically complete block structures
 Plug 'tpope/vim-endwise'
 
 " Highlight matching HTML and XML tags
-Plug 'valloric/matchtagalways', { 'for': ['xml', 'html'] }
+Plug 'valloric/matchtagalways'
 
 " Auto close HTML and XML tags
-Plug 'alvan/vim-closetag', { 'for': ['xml', 'html'] }
+Plug 'alvan/vim-closetag'
+
+" New text objects for Ruby
+Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " iE and aE
+Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' } " ro, rl, rc, rd, rr
+
+" Testing
+Plug 'janko/vim-test'
 
 "}}}
 
 "******************************** Enhancements **********************************{{{
 " Plugins that improves vim experience in general.
+
+" Heuristically adjust indentation
+Plug 'tpope/vim-sleuth'
+
+" Readline-like keybindings in insert and command mode
+Plug 'tpope/vim-rsi'
 
 " A pretty and configurable status bar.
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
@@ -118,16 +130,13 @@ Plug 'junegunn/vim-easy-align'
 " Visual marks
 Plug 'kshenoy/vim-signature'
 
-" (Fake) Multiple cursors.
+" Increment/decrement date and time
+Plug 'tpope/vim-speeddating'
+
+" (Fake) Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 
-" A fancy startup screen.
-Plug 'mhinz/vim-startify'
-
-" Smooth scrolling.
-Plug 'yuttie/comfortable-motion.vim'
-
-" File browser and syntax highlight for it.
+" File browser
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 
@@ -136,6 +145,18 @@ Plug 'flazz/vim-colorschemes'
 
 " Org-mode in vim
 Plug 'jceb/vim-orgmode'
+
+" Synchronised markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'pandoc.markdown', 'rmd'] }
+
+"}}}
+
+"******************************** For the Sake of It **********************************{{{
+" A fancy startup screen.
+Plug 'mhinz/vim-startify'
+
+" Smooth scrolling.
+Plug 'yuttie/comfortable-motion.vim'
 
 " Devicons
 Plug 'ryanoasis/vim-devicons'

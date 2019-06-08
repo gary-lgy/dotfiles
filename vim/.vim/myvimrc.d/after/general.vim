@@ -5,8 +5,7 @@ if !has('nvim')
   set nocompatible
 endif
 
-" Use fish shell
-set shell=fish
+" Terminal settings
 if $TERM =~? '.*-256color'
   set notermguicolors
 else
@@ -22,7 +21,7 @@ set hidden
 set autoindent
 set backspace=indent,eol,start " Backspace behavior
 set clipboard=unnamed " Yank to PRIMARY selection
-set foldmethod=marker " Fold with markers
+set foldmethod=manual " Fold with markers
 set timeoutlen=3000
 set ttimeoutlen=100
 set scrolloff=5
@@ -60,12 +59,12 @@ set smartcase " Make search case-sensitive if at least one letter is uppercase
 set grepprg=rg\ --vimgrep
 command! -nargs=+ Grep execute 'silent grep!' <q-args> | cw | redraw!
 
-" Format settings
-set smarttab
+" " Format settings (taken care of by vim-sleuth)
 set tabstop=4 " Show tabs as 4-space wide.
-set expandtab " On pressing tab, insert 4 spaces
-set softtabstop=4 " BS removes 4 spaces
-set shiftwidth=4 " Indent with 4 spaces equivalent
+" set smarttab
+" set expandtab " On pressing tab, insert 4 spaces
+" set softtabstop=4 " BS removes 4 spaces
+" set shiftwidth=4 " Indent with 4 spaces equivalent
 
 " Enable persistent undo
 set undofile
@@ -73,6 +72,7 @@ set undodir=~/.cache/vim/undo
 
 " Enable persistent views
 set viewoptions-=options
+set viewoptions-=curdir
 set viewdir=~/.cache/vim/view
 au BufWinLeave ?* silent! mkview
 au BufWinEnter ?* silent! loadview

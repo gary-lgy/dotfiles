@@ -33,6 +33,7 @@ __unstow nvim
 __unstow ranger
 __unstow rofi-pass
 __unstow scripts
+__unstow sxhkd
 __unstow tridactyl
 __unstow vim
 __unstow x

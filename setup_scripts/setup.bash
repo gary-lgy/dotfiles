@@ -33,6 +33,7 @@ __stow nvim
 __stow ranger
 __stow rofi-pass
 __stow scripts
+__stow sxhkd
 __stow tridactyl
 __stow vim
 __stow x
