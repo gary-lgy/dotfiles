@@ -55,10 +55,6 @@ set incsearch " Incremental search
 set ignorecase " Make search case-insensitive
 set smartcase " Make search case-sensitive if at least one letter is uppercase
 
-" Grepping
-set grepprg=rg\ --vimgrep
-command! -nargs=+ Grep execute 'silent grep!' <q-args> | cw | redraw!
-
 " " Format settings (taken care of by vim-sleuth)
 set tabstop=4 " Show tabs as 4-space wide.
 " set smarttab

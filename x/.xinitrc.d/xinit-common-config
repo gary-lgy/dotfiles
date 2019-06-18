@@ -34,3 +34,8 @@ fi
 xset +fp /usr/share/fonts/adobe-source-code-pro/
 xset +fp /usr/share/fonts/noto/
 xset +fp /usr/share/fonts/OTF/
+
+# Initialize fcitx
+export XMODIFIERS=@im=fcitx
+export QT_IM_MODULE=fcitx
+export GTK_IM_MODULE=fcitx

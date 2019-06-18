@@ -1,6 +1,6 @@
 # Launch terminal
 super + Return
-  "$TERMCMD"
+  "$TERMINAL" -e "$INTERACTIVE_SHELL"
 
 # Rofi run
 control + space

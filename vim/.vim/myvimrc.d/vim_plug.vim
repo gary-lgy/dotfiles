@@ -48,8 +48,15 @@ Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
 Plug 'tpope/vim-fugitive'
 " TODO: compare with jreybert/vimagit
 
+" Git commit browser
+Plug 'junegunn/gv.vim'
+
 " Comment source code.
-Plug 'tpope/vim-commentary'
+" tpope/vim-commentary does not handle embedded filetypes
+Plug 'tomtom/tcomment_vim'
+
+" Grep
+Plug 'mileszs/ack.vim'
 
 " Toggle between multiline and single-line code
 Plug 'AndrewRadev/splitjoin.vim'
@@ -130,6 +137,9 @@ Plug 'junegunn/vim-easy-align'
 " Visual marks
 Plug 'kshenoy/vim-signature'
 
+" Extend f, F, t, and T key mappings
+Plug 'rhysd/clever-f.vim'
+
 " Increment/decrement date and time
 Plug 'tpope/vim-speeddating'
 
@@ -137,8 +147,15 @@ Plug 'tpope/vim-speeddating'
 Plug 'terryma/vim-multiple-cursors'
 
 " File browser
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" * or # search from a visual block
+Plug 'nelstrom/vim-visual-star-search'
+
+" Undo tree GUI
+Plug 'simnalamburt/vim-mundo'
 
 " Colorschemes
 Plug 'flazz/vim-colorschemes'

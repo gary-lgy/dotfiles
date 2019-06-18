@@ -4,6 +4,7 @@
 " TODO: use prettier
 " TODO: coc-ccls is not ready for use yet
 let g:coc_global_extensions = [
+      \ 'coc-lists',
       \ 'coc-tsserver',
       \ 'coc-html',
       \ 'coc-css',
@@ -69,6 +70,7 @@ endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
+highlight default CocHighlightText guibg=#555555  ctermbg=223
 
 "}}}
 

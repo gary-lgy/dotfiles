@@ -16,7 +16,7 @@ fi
 
 # List of packages to install
 base=(git neovim python python-neovim stow bash-completion openssh curl)
-cli_utils=(pkgfile tree xclip fish fd the_silver_searcher ripgrep fzf ranger fasd bat thefuck tldr direnv expect)
+cli_utils=(pkgfile tree xclip fish fd ripgrep fzf ranger fasd bat thefuck tldr direnv expect)
 monitoring=(htop sysstat acpi net-tools)
 audio=(pulseaudio pulseaudio-alsa alsa-utils)
 gui=(xorg-server xorg-xinit xorg-xrdb xorg-xset xorg-xrandr gtk2 gtk3)
@@ -30,11 +30,12 @@ misc_utils=(pass unzip buku nextcloud-client)
 coding=(shellcheck-static diff-so-fancy nodejs npm yarn)
 documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core)
 web_browsing=(firefox-developer-edition)
+input_methods=(fcitx-im fcitx-configtool fcitx-googlepinyin)
 
-pending=(libreoffice-fresh joplin)
+pending=(libreoffice-fresh)
 
 packages=( "${base[@]}" "${cli_utils[@]}" "${monitoring[@]}" "${audio[@]}" "${gui[@]}" "${fonts[@]}" "${WM[@]}" "${terminal_emulator[@]}" "${launcher[@]}" "${gui_utils[@]}" "${misc_utils[@]}" \
-  "${coding[@]}" "${documents[@]}" "${web_browsing[@]}" )
+  "${coding[@]}" "${documents[@]}" "${web_browsing[@]}" "${input_methods[@]}")
 
 function install {
   local package="$1"

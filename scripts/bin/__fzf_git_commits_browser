@@ -25,7 +25,7 @@ extract_commit_hash_cmd="echo -n {} | grep -o '[a-f0-9]\{7\}' | head -1"
 # Get all the git logs
 commits=$(
   git log --graph --color=always \
-    --format='%C(auto)%h%d %s %C(black)%C(bold)%cr %C(blue)%C(normal)%cN') \
+    --format='%C(auto)%h%d %s %C(green)%C(bold)%cr %C(blue)%C(normal)%cN') \
   || exit 1
 
 # Command fired when Enter is pressed. Launches git show on the selected commit.

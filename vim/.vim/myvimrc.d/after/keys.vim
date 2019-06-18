@@ -88,10 +88,6 @@ nnoremap <leader>, :!
 " Re-execute last command
 nnoremap <leader>; :<UP><CR>
 
-" Grep with rg
-nmap <leader>g :Grep<space>
-"}}}
-
 " Disable <F1>{{{
 nnoremap <F1> <Nop>
 vnoremap <F1> <Nop>

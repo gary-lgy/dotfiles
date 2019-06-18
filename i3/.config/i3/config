@@ -1,9 +1,5 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $terminal kitty
-set $browser firefox-developer-edition
-set $shell /usr/bin/fish
-
 # General{{{
 # Use super as mod key
 set $mod Mod4
@@ -28,7 +24,7 @@ bindsym $mod+Shift+e exec i3-msg exit
 
 # Launching Applications{{{
 # Open browser and go to ws2
-bindsym $mod+f workspace $ws2, exec $browser
+bindsym $mod+f workspace $ws2, exec $BROWSER
 #}}}
 
 # {{{ Windows
@@ -207,8 +203,8 @@ bindsym $mod+shift+x exec "betterlockscreen -l; sleep 5; betterlockscreen -u ~/P
 #}}}
 
 # Auto Start Applications {{{
-exec i3-msg 'workspace $ws2; exec $browser'
-exec i3-msg 'workspace $ws4; exec $terminal -e ranger'
-exec i3-msg 'workspace $ws9; exec rambox'
-exec i3-msg 'workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws2; exec $BROWSER'
+exec --no-startup-id i3-msg 'workspace $ws4; exec $TERMINAL -e ranger'
+exec --no-startup-id i3-msg 'workspace $ws9; exec rambox'
+exec --no-startup-id i3-msg 'workspace $ws1'
 # }}}

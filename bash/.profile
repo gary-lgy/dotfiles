@@ -11,6 +11,9 @@ export BROWSER=/usr/bin/firefox-developer-edition
 export TERMINAL=/usr/bin/kitty
 export TERMCMD="$TERMINAL"
 
+# Use fish as interactive shell
+export INTERACTIVE_SHELL=/usr/bin/fish
+
 # Install global node modules in home directory (applies to both npm and yarn)
 export npm_config_prefix=~/.node_modules
 [ -d ~/.node_modules/bin ] && export PATH="$PATH:$HOME/.node_modules/bin"
