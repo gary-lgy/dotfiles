@@ -1,0 +1,9 @@
+[Unit]
+Description=Update fish completions
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/fish -c fish_update_completions
+
+[Install]
+WantedBy=default.target

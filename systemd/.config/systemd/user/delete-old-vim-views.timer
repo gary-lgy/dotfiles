@@ -1,0 +1,9 @@
+[Unit]
+Description=Run delete-old-vim-views daily and on boot
+
+[Timer]
+OnBootSec=13min
+OnUnitActiveSec=1d
+
+[Install]
+WantedBy=timers.target

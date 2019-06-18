@@ -34,6 +34,7 @@ __stow ranger
 __stow rofi-pass
 __stow scripts
 __stow sxhkd
+__stow systemd
 __stow tridactyl
 __stow vim
 __stow x
