@@ -1,8 +1,10 @@
 #!/bin/sh
 
 # To permanently adjust keyboard typematic delay, pass options to xserver from xserverrc file.
-# However, changes there do not apply to LightDM.
-# This script can be executed manually to adjust keyboard autorepeat delay.
+# Alternatively, pass those options to DM conf file.
+# This file was a workaround to manually set various keyboard configurations because I didn't know
+# how to pass xserver options to LightDM.
+# Although this file is unlikely to be used anymore, it will be preserved for future reference.
 
 # Swap Caps Lock and Left Ctrl
 /usr/bin/setxkbmap -layout us -option ctrl:swapcaps

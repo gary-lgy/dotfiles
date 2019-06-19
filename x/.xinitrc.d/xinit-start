@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Autostart programs
-~/bin/kbconfig &
 /usr/bin/sxhkd &
 /usr/bin/udiskie --no-automount --notify --tray &
 /usr/bin/dunst &

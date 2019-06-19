@@ -1,5 +1,9 @@
 #!/usr/bin/expect -f
 
+# There was a bug in the Linux Kernal that made bluetooth keyboards unable to connect automatically.
+# This script was written as a workaround to manually connect bluetooth keyboard.
+# The bug has been resolved and this script will be reserved for future reference.
+
 spawn bluetoothctl
 expect "# "
 send "connect \t\r"
