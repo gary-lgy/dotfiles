@@ -1,0 +1,10 @@
+" Bind the key myself to allow vim-plug to lazily load the plugin
+let g:switch_mapping = ""
+
+nnoremap <silent> gs :Switch<CR>
+
+" Custom definitions
+let g:switch_custom_definitions =
+    \ [
+    \   ['public', 'private', 'protected']
+    \ ]

@@ -35,6 +35,9 @@ xset +fp /usr/share/fonts/adobe-source-code-pro/
 xset +fp /usr/share/fonts/noto/
 xset +fp /usr/share/fonts/OTF/
 
+# Turn off beeping
+xset -b b off
+
 # Initialize fcitx
 export XMODIFIERS=@im=fcitx
 export QT_IM_MODULE=fcitx

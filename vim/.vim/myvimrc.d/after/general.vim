@@ -13,7 +13,8 @@ else
 endif
 if has('nvim')
   autocmd TermOpen * startinsert
-  autocmd TermOpen * set nospell
+  autocmd TermOpen * setlocal nospell
+  autocmd TermOpen * setlocal nonumber norelativenumber
 endif
 
 " Behavior
@@ -46,8 +47,8 @@ set relativenumber
 set mouse=a
 set cursorline
 colorscheme gruvbox
-set background=dark
-highlight Normal ctermbg=None guibg=None
+" set background=dark
+" highlight Normal ctermbg=None guibg=None
 
 " Search
 set hlsearch " Highlight search items

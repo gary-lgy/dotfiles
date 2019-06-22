@@ -208,3 +208,5 @@ exec --no-startup-id i3-msg 'workspace $ws4; exec $TERMINAL -e ranger'
 exec --no-startup-id i3-msg 'workspace $ws9; exec rambox'
 exec --no-startup-id i3-msg 'workspace $ws1'
 # }}}
+
+# vim: ft=i3config fdm=marker

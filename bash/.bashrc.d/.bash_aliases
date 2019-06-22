@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
 
+# cd ../.. and cd ../../..
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 # Always ask for confirmation before removing or overwriting a file
-alias rm="rm -i"
-alias cp="cp -i"
-alias mv="mv -i"
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 
 # Enable color support
-alias ls='ls --color=auto -Fx'
+alias ls='ls --color=auto -F'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
 # Short-hands for ls
-alias la='ls -A'
-alias ll='ls -lAh'
+alias la='ls -FAx'
+# alias ll='ls -lAh'
+
+# Use exa in place of ls
+alias ll='exa --long --all --binary --group --header --links --extended --git --color-scale'
 
 # Use bat as less paginator
 alias less='bat'

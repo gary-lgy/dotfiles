@@ -3,7 +3,7 @@ super + Return
   "$TERMINAL" -e "$INTERACTIVE_SHELL"
 
 # Rofi run
-control + space
+alt + space
   rofi -show run
 
 # Rofi drun

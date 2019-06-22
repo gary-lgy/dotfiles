@@ -10,6 +10,7 @@
 /usr/bin/feh --bg-scale --randomize --no-fehbg ~/Pictures/Wallpapers/* &
 /usr/bin/flameshot &
 /usr/bin/nextcloud &
+/usr/bin/fcitx &
 
 # DE/WM
 exec i3

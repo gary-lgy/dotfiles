@@ -25,6 +25,7 @@ let g:fzf_colors =
 nnoremap <leader>f. <Cmd>Files ./<CR>
 nnoremap <leader>fa <Cmd>Files ~<CR>
 nnoremap <leader>fg <Cmd>GFiles?<CR>
+nnoremap <leader>ft <Cmd>Tags<CR>
 nnoremap <leader>fb <Cmd>Buffers<CR>
 nnoremap <leader>ff <Cmd>History<CR>
 nnoremap <leader>f; <Cmd>History:<CR>

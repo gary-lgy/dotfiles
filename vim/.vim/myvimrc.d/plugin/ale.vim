@@ -8,11 +8,16 @@ endif
 set signcolumn=yes
 
 " Key bindings for navigating to next/previous errors
-nnoremap ]d <Cmd>ALENext<CR>
-nnoremap [d <Cmd>:ALEPrevious<CR>
+nmap ]d <Plug>(ale_next_wrap)
+nmap [d <Plug>(ale_previous_wrap)
 
 " Define fixers
 if !exists('g:ale_fixers')
   let g:ale_fixers = {}
 endif
 let g:ale_fixers.ruby = ['rubocop']
+let g:ale_fixers.typescript = ['eslint', 'tslint', 'prettier', 'xo']
+let g:ale_fixers.javascript = ['eslint', 'importjs', 'prettier', 'xo']
+
+" Use <leader>af to run ALEFix
+nmap <leader>af <Plug>(ale_fix)

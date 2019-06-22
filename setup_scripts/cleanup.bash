@@ -16,6 +16,7 @@ __unstow asdf
 __unstow bash
 __unstow bat
 __unstow buku_run
+__unstow ctags
 __unstow dircolors
 __unstow dunst
 __unstow editorconfig

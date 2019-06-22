@@ -57,8 +57,8 @@ nnoremap <C-l> <C-w>l
 "}}}
 
 " Split{{{
-nnoremap <leader>s :split<space>
-nnoremap <leader>v :vsplit<space>
+nnoremap <leader>ss :split<space>
+nnoremap <leader>sv :vsplit<space>
 "}}}
 
 " Resize{{{
@@ -73,9 +73,9 @@ endif
 
 " Save and exit{{{
 nnoremap <silent> <leader>d :bd<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :qa!<CR>
+nnoremap <leader>j :update<CR>
+nnoremap <leader>q :quit<CR>
+nnoremap <leader>Q :quitall!<CR>
 "}}}
 
 " Commands{{{
@@ -88,8 +88,20 @@ nnoremap <leader>, :!
 " Re-execute last command
 nnoremap <leader>; :<UP><CR>
 
-" Disable <F1>{{{
+" Disable ex mode. Use Q for replaying macros
+if !empty(glob('~/.vim/plugged/vim-peekaboo'))
+  " Use peekaboo if possible
+  nmap <buffer> <expr> Q peekaboo#peek(v:count1, '@', 0)
+else
+  nnoremap Q @
+endif
+
+" Disable <F1>
 nnoremap <F1> <Nop>
 vnoremap <F1> <Nop>
 inoremap <F1> <Nop>
-"}}}
+"
+
+" Map <C-J> and <C-K> to go to next/previous line in insert mode
+inoremap <C-J> <Down>
+inoremap <C-K> <Up>

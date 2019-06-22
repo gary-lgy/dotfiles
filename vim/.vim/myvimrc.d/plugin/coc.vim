@@ -1,11 +1,12 @@
 " Extensions
 " TODO: let vim-plug manage extensions
 " TODO: consider replacing fzf with coc-list
-" TODO: use prettier
 " TODO: coc-ccls is not ready for use yet
 let g:coc_global_extensions = [
       \ 'coc-lists',
       \ 'coc-tsserver',
+      \ 'coc-eslint',
+      \ 'coc-prettier',
       \ 'coc-html',
       \ 'coc-css',
       \ 'coc-json',
@@ -30,29 +31,16 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Format
-xmap <leader>f=  <Plug>(coc-format-selected)
-nmap <leader>f=  <Plug>(coc-format-selected)
-
 " Rename
 nmap <leader>rn <Plug>(coc-rename)
 
 " Code Action
 " On a text object
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <leader>ca  <Plug>(coc-codeaction-selected)
+nmap <leader>ca  <Plug>(coc-codeaction-selected)
 
 " On current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-
-" Autofix problems on the current line
-nmap <leader>fx  <Plug>(coc-fix-current)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+nmap <leader>caa  <Plug>(coc-codeaction)
 
 "}}}
 
@@ -84,12 +72,6 @@ nnoremap <silent> <leader>cc  :CocList commands<CR>
 nnoremap <silent> <leader>co  :CocList outline<CR>
 " Search workspace symbols
 nnoremap <silent> <leader>cs  :CocList -I symbols<CR>
-" Do default action for next item.
-nnoremap <silent> <leader>cj  :CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <leader>ck  :CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <leader>cr  :CocListResume<CR>
 
 "}}}
 

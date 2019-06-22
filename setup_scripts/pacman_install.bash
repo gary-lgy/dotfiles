@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 RESET='\033[0m'     # Normal
 RED='\033[1;31m'    # Error
@@ -15,9 +15,10 @@ if ! command -v pacman &>/dev/null; then
 fi
 
 # List of packages to install
-base=(git neovim python python-neovim stow bash-completion openssh curl)
-cli_utils=(pkgfile tree xclip fish fd ripgrep fzf ranger fasd bat thefuck tldr direnv expect)
-monitoring=(htop sysstat acpi net-tools)
+base=(git neovim python python-neovim stow curl)
+maintenance=(pkgfile pacman-contrib expac pacmatic lostfiles)
+monitoring=(htop sysstat acpi net-tools lsof)
+cli_utils=(bash-completion openssh tree exa xclip fish fd ripgrep fzf ranger fasd bat thefuck tldr direnv expect tmux)
 audio=(pulseaudio pulseaudio-alsa alsa-utils)
 gui=(xorg-server xorg-xinit xorg-xrdb xorg-xset xorg-xrandr gtk2 gtk3)
 fonts=(adobe-source-code-pro-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji otf-font-awesome nerd-fonts-source-code-pro)
@@ -27,22 +28,33 @@ terminal_emulator=(kitty python-pillow pygmentize)
 launcher=(rofi rofi-dmenu rofimoji-git rofi-pass buku_run-git rofi-greenclip)
 gui_utils=(xdg-utils perl-file-mimeinfo desktop-file-utils sxhkd flameshot feh)
 misc_utils=(pass unzip buku nextcloud-client)
-coding=(shellcheck-static diff-so-fancy nodejs npm yarn)
+coding=(ctags shellcheck-static diff-so-fancy)
 documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core)
-web_browsing=(firefox-developer-edition)
+browser=(firefox-developer-edition)
 input_methods=(fcitx-im fcitx-configtool fcitx-googlepinyin)
 
 pending=(libreoffice-fresh)
 
-packages=( "${base[@]}" "${cli_utils[@]}" "${monitoring[@]}" "${audio[@]}" "${gui[@]}" "${fonts[@]}" "${WM[@]}" "${terminal_emulator[@]}" "${launcher[@]}" "${gui_utils[@]}" "${misc_utils[@]}" \
-  "${coding[@]}" "${documents[@]}" "${web_browsing[@]}" "${input_methods[@]}")
+packages=( "${base[@]}" "${maintenance[@]}" "${monitoring[@]}" "${cli_utils[@]}" "${audio[@]}" "${gui[@]}" "${fonts[@]}" "${WM[@]}" "${terminal_emulator[@]}" "${launcher[@]}" "${gui_utils[@]}" "${misc_utils[@]}" \
+  "${coding[@]}" "${documents[@]}" "${browser[@]}" "${input_methods[@]}")
 
-function install {
+function install_group {
+  pacman -Sg "$1" &>/dev/null || return 1
+  local group="$1"
+
+  echo -e "${BLUE}${group} is a group...${REEST}"
+  for package in $(pacman -Sg "$group" | awk '{print $2}'); do
+    install_package "$package"
+  done
+}
+
+function install_package {
   local package="$1"
 
   # Do not reinstall if the package is already installed
   if pacman -Q "$package" &>/dev/null; then
     echo -e "${GREEN}${package} is present.${RESET}"
+    # Change install reason to explicitly installed if it was installed as a dependency previously
     if pacman -Qi "${package}" | grep -F "Install Reason" | grep -q "dependency for another package"; then
       echo -e "${BLUE}Changing install reason of ${package} to explicit${RESET}"
       sudo pacman -D --asexplicit "$package"
@@ -66,17 +78,23 @@ function install {
   fi
 }
 
+function install {
+  # Handle the case where the argument is a group
+  # Otherwise, install it as a package
+  install_group "$1" || install_package "$1"
+}
+
 # Install pikaur as AUR helper
 echo -e "${BLUE}Checking if pikaur is present${RESET}"
 if command -v pikaur &>/dev/null; then
   echo -e "${GREEN}pikaur is present.${RESET}"
 else
   echo -e "${YELLOW}pikaur is not present. Installing from AUR...${RESET}"
-  mkdir -p ~/.tmp/pikaur &&
-  git clone https://aur.archlinux.org/pikaur.git ~/.tmp/pikaur &&
-  cd ~/.tmp/pikaur &&
-  makepkg -fsri || { echo -e >&2 "${RED}Could not install pikaur. Source in ~/.tmp/pikaur${RESET}"; exit 1; }
-  rm -rf ~/.tmp/pikaur
+  mkdir -p ~/src/pikaur &&
+  git clone https://aur.archlinux.org/pikaur.git ~/src/pikaur &&
+  cd ~/src/pikaur &&
+  makepkg -fsri || { echo -e >&2 "${RED}Could not install pikaur. Source in ~/src/pikaur${RESET}"; exit 1; }
+  rm -rf ~/src/pikaur
 fi
 
 echo -e "${BLUE}Installing packages...${RESET}"

@@ -16,6 +16,7 @@ __stow asdf
 __stow bash
 __stow bat
 __stow buku_run
+__stow ctags
 __stow dircolors
 __stow dunst
 __stow editorconfig

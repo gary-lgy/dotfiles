@@ -1,6 +1,6 @@
 " Scroll parameters
-let g:comfortable_motion_friction = 200.0
-let g:comfortable_motion_air_drag = 0.0
+let g:comfortable_motion_friction = 0.0
+let g:comfortable_motion_air_drag = 5.0
 
 " Scroll proportionally to the window height
 let g:comfortable_motion_no_default_key_mappings = 1

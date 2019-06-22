@@ -21,6 +21,9 @@ Plug 'tpope/vim-surround'
 " Additional text objects(pair, quote, separator, argument, and tag). Supports seeking.
 Plug 'wellle/targets.vim'
 
+" Exchange pieces of text
+Plug 'tommcdo/vim-exchange'
+
 " Repeat actions by some other plugins.
 Plug 'tpope/vim-repeat'
 
@@ -30,12 +33,14 @@ Plug 'tpope/vim-abolish'
 " Pairs of shortcuts.
 Plug 'tpope/vim-unimpaired'
 
+" * or # search from a visual block
+Plug 'nelstrom/vim-visual-star-search'
+
 " Easily define new text objects. Dependency for the following plugins.
 Plug 'kana/vim-textobj-user'
 
 " Collection of new text objects.
 Plug 'kana/vim-textobj-entire' " ie and ae
-Plug 'kana/vim-textobj-fold' " iz and az
 Plug 'kana/vim-textobj-indent' " ii, ai, iI and aI
 Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
 
@@ -46,20 +51,42 @@ Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
 
 " A git wrapper.
 Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
 " TODO: compare with jreybert/vimagit
 
 " Git commit browser
-Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim', { 'on': 'GV' }
 
 " Comment source code.
-" tpope/vim-commentary does not handle embedded filetypes
-Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 
-" Grep
-Plug 'mileszs/ack.vim'
+" Grep/Ack
+let b:Ack_commands = [
+      \ 'Ack', 'Ack!', 'AckAdd',
+      \ 'LAck', 'LAckAdd',
+      \ 'AckFromSearch', 'AckFile',
+      \ 'AckHelp', 'LAckHelp',
+      \ 'AckWindow', 'LAckWindow'
+      \ ]
+Plug 'mileszs/ack.vim', { 'on': b:Ack_commands }
+
+" Outline viewer using ctags
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+
+" Automatically manage ctags
+Plug 'ludovicchabant/vim-gutentags'
 
 " Toggle between multiline and single-line code
 Plug 'AndrewRadev/splitjoin.vim'
+
+" Shift argument and list items
+Plug 'AndrewRadev/sideways.vim', { 'on': ['SidewaysLeft', 'SidewaysRight', 'SidewaysJumpLeft', 'SidewaysJumpRight'] }
+
+" Delete block structure and decrease indent level
+Plug 'AndrewRadev/deleft.vim', { 'on': 'Deleft' }
+
+" Toggle between pre-defined patterns
+Plug 'AndrewRadev/switch.vim',  { 'on': 'Switch' }
 
 " Standardize source code formatting.
 Plug 'editorconfig/editorconfig-vim'
@@ -70,14 +97,14 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Display git status in sign column.
 Plug 'airblade/vim-gitgutter'
 
-" Extra filetypes
+" Consolidated ftplugins
 Plug 'sheerun/vim-polyglot'
 
 " Lint while typing
 Plug 'w0rp/ale'
 
 " IntelliSense and LSP
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " For Rails development
 Plug 'tpope/vim-rails'
@@ -88,18 +115,23 @@ Plug 'jiangmiao/auto-pairs'
 " Automatically complete block structures
 Plug 'tpope/vim-endwise'
 
+" Testing
+Plug 'janko/vim-test', { 'for': 'ruby' }
+
+let b:filetypes_with_tags = ['html', 'xhtml', 'phtml', 'xml', 'jinja', 'eruby', 'htmldjango', 'django', 'javascript.jsx', 'typescript.tsx', 'javascript', 'typescript']
+
 " Highlight matching HTML and XML tags
-Plug 'valloric/matchtagalways'
+Plug 'valloric/matchtagalways', { 'for': b:filetypes_with_tags }
 
 " Auto close HTML and XML tags
-Plug 'alvan/vim-closetag'
+Plug 'alvan/vim-closetag', { 'for': b:filetypes_with_tags }
 
-" New text objects for Ruby
-Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " iE and aE
-Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' } " ro, rl, rc, rd, rr
-
-" Testing
-Plug 'janko/vim-test'
+" New text objects for coding
+Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " erb: iE and aE
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " ruby: ir and ar
+Plug 'glts/vim-textobj-comment', { 'on': ['<Plug>(textobj-comment-a)', '<Plug>(textobj-comment-i)', '<Plug>(textobj-comment-big-a)'] } " comment: ix, ax, aX
+Plug 'adriaanzon/vim-textobj-matchit' " matchit pairs: im and am
+Plug 'Julian/vim-textobj-variable-segment' " segments of variable names: iv and av
 
 "}}}
 
@@ -113,7 +145,8 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-rsi'
 
 " A pretty and configurable status bar.
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " FZF. The best shit ever.
 " Basic vim plugin that came with fzf
@@ -129,42 +162,44 @@ endif
 Plug 'junegunn/fzf.vim'
 
 " Unix helpers within Vim
-Plug 'tpope/vim-eunuch'
+let b:eunuch_commands = ['Delete', 'Unlink', 'Remove', 'Move', 'Rename', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Llocate', 'Wall', 'SudoWrite', 'SudoEdit']
+Plug 'tpope/vim-eunuch', { 'on': b:eunuch_commands }
 
 " Easy alignment
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 
 " Visual marks
 Plug 'kshenoy/vim-signature'
+
+" Peek registers
+Plug 'junegunn/vim-peekaboo'
 
 " Extend f, F, t, and T key mappings
 Plug 'rhysd/clever-f.vim'
 
 " Increment/decrement date and time
-Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-speeddating', { 'on': ['<Plug>SpeedDatingUp', '<Plug>SpeedDatingDown', '<Plug>SpeedDatingNowUTC', '<Plug>SpeedDatingNowLocal', 'SpeedDatingFormat'] }
 
 " (Fake) Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 
 " File browser
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-" * or # search from a visual block
-Plug 'nelstrom/vim-visual-star-search'
+let b:NERDTree_commands = ['NERDTreeToggle', 'NERDTreeFind']
+Plug 'scrooloose/nerdtree', { 'on': b:NERDTree_commands }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': b:NERDTree_commands }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': b:NERDTree_commands }
 
 " Undo tree GUI
-Plug 'simnalamburt/vim-mundo'
+Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
 
 " Colorschemes
 Plug 'flazz/vim-colorschemes'
 
-" Org-mode in vim
-Plug 'jceb/vim-orgmode'
+" Vimwiki
+Plug 'vimwiki/vimwiki', { 'for': 'markdown', 'on': ['VimwikiIndex', '<Plug>VimwikiIndex'] }
 
 " Synchronised markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'pandoc.markdown', 'rmd'] }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'pandoc.markdown', 'rmd', 'vimwiki'], 'on': 'MarkdownPreview' }
 
 "}}}
 
@@ -177,6 +212,13 @@ Plug 'yuttie/comfortable-motion.vim'
 
 " Devicons
 Plug 'ryanoasis/vim-devicons'
+
+" Calendar
+Plug 'itchyny/calendar.vim', { 'on': 'Calendar' }
+
+" Distraction-free writing
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
 "}}}
 

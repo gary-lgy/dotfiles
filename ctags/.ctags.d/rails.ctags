@@ -1,0 +1,3 @@
+--exclude=.bundle
+--exclude=coverage
+--exclude=vendor

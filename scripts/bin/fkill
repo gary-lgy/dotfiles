@@ -12,7 +12,7 @@ else
 fi  
 
 if [ -n "$pid" ]; then
-  echo "Send ${1:-SIGTERM} to:"
+  echo "Send ${1:-SIGINT} to:"
   ps -o pid,command -p $pid
-  echo $pid | xargs kill -"${1:-SIGTERM}"
+  echo $pid | xargs kill -"${1:-SIGINT}"
 fi  

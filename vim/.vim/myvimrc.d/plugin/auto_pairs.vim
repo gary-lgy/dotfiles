@@ -11,5 +11,5 @@ let g:AutoPairsShortcutFastWrap = ''
 " Disable back insert
 let g:AutoPairsShortcutBackInsert = ''
 
-" Remap jump
-let g:AutoPairsShortcutJump = '<M-j>'
+" Disable jump
+let g:AutoPairsShortcutJump = ''
