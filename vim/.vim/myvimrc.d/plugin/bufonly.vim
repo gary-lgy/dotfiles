@@ -1,0 +1,1 @@
+cabbrev BO BufOnly

@@ -36,22 +36,36 @@ Plug 'tpope/vim-unimpaired'
 " * or # search from a visual block
 Plug 'nelstrom/vim-visual-star-search'
 
-" Easily define new text objects. Dependency for the following plugins.
+"}}}
+
+"******************************** Text Objects **********************************{{{
+" Some user-defined text objects
+
+" Easily define new text objects. Dependency for the many of the following plugins.
 Plug 'kana/vim-textobj-user'
 
-" Collection of new text objects.
+" General
 Plug 'kana/vim-textobj-entire' " ie and ae
 Plug 'kana/vim-textobj-indent' " ii, ai, iI and aI
 Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
+
+" For coding
+Plug 'glts/vim-textobj-comment', { 'on': ['<Plug>(textobj-comment-a)', '<Plug>(textobj-comment-i)', '<Plug>(textobj-comment-big-a)'] } " comment: ix, ax, aX
+Plug 'adriaanzon/vim-textobj-matchit' " matchit pairs: im and am
+Plug 'Julian/vim-textobj-variable-segment' " segments of variable names: iv and av
+Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " erb: iE and aE
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " ruby: ir and ar
+Plug 'bkad/CamelCaseMotion'
 
 "}}}
 
 "******************************** Programming **********************************{{{
 " Plugins that are helpful for programming.
 
-" A git wrapper.
+" The git wrapper.
 Plug 'tpope/vim-fugitive'
-Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tpope/vim-rhubarb' " Github
+Plug 'shumphrey/fugitive-gitlab.vim' " GitLab
 " TODO: compare with jreybert/vimagit
 
 " Git commit browser
@@ -59,6 +73,15 @@ Plug 'junegunn/gv.vim', { 'on': 'GV' }
 
 " Comment source code.
 Plug 'tpope/vim-commentary'
+
+" Consolidated ftplugins
+Plug 'sheerun/vim-polyglot'
+
+" Lint while typing
+Plug 'w0rp/ale'
+
+" IntelliSense and LSP
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " Grep/Ack
 let b:Ack_commands = [
@@ -83,7 +106,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'AndrewRadev/splitjoin.vim'
 
 " Shift argument and list items
-Plug 'AndrewRadev/sideways.vim', { 'on': ['SidewaysLeft', 'SidewaysRight', 'SidewaysJumpLeft', 'SidewaysJumpRight'] }
+Plug 'AndrewRadev/sideways.vim', { 'on': ['SidewaysLeft', 'SidewaysRight', 'SidewaysJumpLeft', 'SidewaysJumpRight', '<Plug>SidewaysArgumentTextobjA', '<Plug>SidewaysArgumentTextobjI'] }
 
 " Delete block structure and decrease indent level
 Plug 'AndrewRadev/deleft.vim', { 'on': 'Deleft' }
@@ -99,15 +122,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 " Display git status in sign column.
 Plug 'airblade/vim-gitgutter'
-
-" Consolidated ftplugins
-Plug 'sheerun/vim-polyglot'
-
-" Lint while typing
-Plug 'w0rp/ale'
-
-" IntelliSense and LSP
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " For Rails development
 Plug 'tpope/vim-rails'
@@ -128,13 +142,6 @@ Plug 'valloric/matchtagalways', { 'for': b:filetypes_with_tags }
 
 " Auto close HTML and XML tags
 Plug 'alvan/vim-closetag', { 'for': b:filetypes_with_tags }
-
-" New text objects for coding
-Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " erb: iE and aE
-Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " ruby: ir and ar
-Plug 'glts/vim-textobj-comment', { 'on': ['<Plug>(textobj-comment-a)', '<Plug>(textobj-comment-i)', '<Plug>(textobj-comment-big-a)'] } " comment: ix, ax, aX
-Plug 'adriaanzon/vim-textobj-matchit' " matchit pairs: im and am
-Plug 'Julian/vim-textobj-variable-segment' " segments of variable names: iv and av
 
 "}}}
 
@@ -163,6 +170,15 @@ endif
 
 " Actual fzf.vim plugin with more powerful features
 Plug 'junegunn/fzf.vim'
+
+" Emacs-like yank ring
+Plug 'maxbrunsfeld/vim-yankstack'
+
+" Highlight yanked region
+Plug 'machakann/vim-highlightedyank'
+
+" Close all buffers but this one
+Plug 'schickling/vim-bufonly'
 
 " Unix helpers within Vim
 let b:eunuch_commands = ['Delete', 'Unlink', 'Remove', 'Move', 'Rename', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Llocate', 'Wall', 'SudoWrite', 'SudoEdit']

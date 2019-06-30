@@ -1,9 +1,13 @@
+" Use global node executable
+let g:coc_node_path = '/usr/bin/node'
+
 " Extensions
 " TODO: let vim-plug manage extensions
 " TODO: consider replacing fzf with coc-list
 " TODO: coc-ccls is not ready for use yet
 let g:coc_global_extensions = [
       \ 'coc-lists',
+      \ 'coc-marketplace',
       \ 'coc-tsserver',
       \ 'coc-eslint',
       \ 'coc-prettier',
@@ -13,11 +17,12 @@ let g:coc_global_extensions = [
       \ 'coc-python',
       \ 'coc-solargraph',
       \ 'coc-vimlsp',
-      \ 'coc-highlight',
-      \ 'coc-diagnostic',
-      \ 'coc-word',
+      \ 'coc-sh',
       \ 'coc-import-cost',
-      \ 'coc-yank'
+      \ 'coc-highlight',
+      \ 'coc-word',
+      \ 'coc-syntax',
+      \ 'coc-tag'
       \]
 
 " Core functionalities{{{
@@ -32,7 +37,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Rename
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>cr <Plug>(coc-rename)
 
 " Code Action
 " On a text object
@@ -41,6 +46,19 @@ nmap <leader>ca  <Plug>(coc-codeaction-selected)
 
 " On current line
 nmap <leader>caa  <Plug>(coc-codeaction)
+
+" Format
+command! -nargs=0 Format :call CocAction('format')
+cabbrev F Format
+
+" Organise imports
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" codeLens
+nmap <leader>cl <Plug>(coc-codelens-action)
+
+" Signature hint
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 "}}}
 
@@ -72,12 +90,5 @@ nnoremap <silent> <leader>cc  :CocList commands<CR>
 nnoremap <silent> <leader>co  :CocList outline<CR>
 " Search workspace symbols
 nnoremap <silent> <leader>cs  :CocList -I symbols<CR>
-
-"}}}
-
-" coc-yank{{{
-
-" Open yank list
-nnoremap <silent> <leader>cy  :<C-u>CocList --normal yank<CR>
 
 "}}}

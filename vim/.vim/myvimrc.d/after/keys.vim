@@ -15,7 +15,13 @@ tnoremap <Esc> <C-\><C-n>
 
 " Remappings to retain sanity{{{
 " Make Y's behavior consistent with other commands.
-noremap Y y$
+" Use yankstack if possible
+if !empty(glob('~/.vim/plugged/vim-yankstack'))
+  call yankstack#setup()
+  nmap Y y$
+else
+  nnoremap Y y$
+endif
 
 " Swap j and gj, k and gk
 nnoremap j gj

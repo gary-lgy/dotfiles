@@ -53,3 +53,14 @@ command! -bang -nargs=* Rg
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files
 			\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+" Insert mode mappings
+command! -nargs=0 IMaps call fzf#vim#maps('i', 0)
+cabbrev IMap IMaps
+cabbrev Imap IMaps
+command! -nargs=0 VMaps call fzf#vim#maps('v', 0)
+cabbrev VMap VMaps
+cabbrev Vmap VMaps
+command! -nargs=0 OMaps call fzf#vim#maps('o', 0)
+cabbrev OMap OMaps
+cabbrev Omap OMaps

@@ -7,17 +7,25 @@ endif
 " Always show sign column
 set signcolumn=yes
 
-" Key bindings for navigating to next/previous errors
-nmap ]d <Plug>(ale_next_wrap)
-nmap [d <Plug>(ale_previous_wrap)
+" Key bindings
+nmap ]d         <Plug>(ale_next_wrap)
+nmap [d         <Plug>(ale_previous_wrap)
+nmap <leader>af <Plug>(ale_fix)
+nmap <leader>ad <Plug>(ale_detail)
 
 " Define fixers
 if !exists('g:ale_fixers')
   let g:ale_fixers = {}
 endif
 let g:ale_fixers.ruby = ['rubocop']
-let g:ale_fixers.typescript = ['eslint', 'tslint', 'prettier', 'xo']
-let g:ale_fixers.javascript = ['eslint', 'importjs', 'prettier', 'xo']
+let g:ale_fixers.typescript = ['eslint', 'prettier']
+let g:ale_fixers.javascript = ['eslint', 'prettier']
+let g:ale_fixers.json = ['prettier']
 
-" Use <leader>af to run ALEFix
-nmap <leader>af <Plug>(ale_fix)
+" Use virtual text to display diagnostics
+let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_prefix = '▶ '
+
+" Syntax highlight
+highlight ALEVirtualTextError   cterm=bold,italic gui=bold,italic ctermfg=Red guifg=#fb4934
+highlight ALEVirtualTextWarning cterm=italic      gui=italic      ctermfg=224 guifg=Orange
