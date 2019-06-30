@@ -32,6 +32,7 @@ __unstow kitty
 __unstow misc
 __unstow nvim
 __unstow ranger
+__unstow ripgrep
 __unstow rofi-pass
 __unstow scripts
 __unstow sxhkd

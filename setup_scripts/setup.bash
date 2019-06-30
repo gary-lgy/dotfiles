@@ -32,6 +32,7 @@ __stow kitty
 __stow misc
 __stow nvim
 __stow ranger
+__stow ripgrep
 __stow rofi-pass
 __stow scripts
 __stow sxhkd

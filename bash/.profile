@@ -23,5 +23,8 @@ export npm_config_prefix=~/.node_modules
 [ -d ~/bin ]        && export PATH="$PATH:$HOME/bin"
 [ -d ~/.local/bin ] && export PATH="$PATH:$HOME/.local/bin"
 
+# ripgrep configuration file path
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
+
 # Add nix into PATH
 [ -e /home/gary/.nix-profile/etc/profile.d/nix.sh ] && . /home/gary/.nix-profile/etc/profile.d/nix.sh
