@@ -10,7 +10,7 @@ trap "echo -e '${RED}Cancelled.${RESET}'; exit 255" SIGINT
 
 # Exit if pacman is not found
 if ! command -v pacman &>/dev/null; then
-  echo -e >&2 "${RED}cannot find pacman.${RESET}"
+  echo -e "${RED}cannot find pacman.${RESET}" 1>&2
   exit 1
 fi
 
@@ -93,7 +93,7 @@ else
   mkdir -p ~/src/pikaur &&
   git clone https://aur.archlinux.org/pikaur.git ~/src/pikaur &&
   cd ~/src/pikaur &&
-  makepkg -fsri || { echo -e >&2 "${RED}Could not install pikaur. Source in ~/src/pikaur${RESET}"; exit 1; }
+  makepkg -fsri || { echo -e "${RED}Could not install pikaur. Source in ~/src/pikaur${RESET}" 1>&2; exit 1; }
   rm -rf ~/src/pikaur
 fi
 
