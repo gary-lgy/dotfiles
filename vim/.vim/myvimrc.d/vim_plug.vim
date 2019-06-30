@@ -70,6 +70,9 @@ let b:Ack_commands = [
       \ ]
 Plug 'mileszs/ack.vim', { 'on': b:Ack_commands }
 
+" Granular project configuration
+Plug 'tpope/vim-projectionist'
+
 " Outline viewer using ctags
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 

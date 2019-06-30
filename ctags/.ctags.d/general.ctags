@@ -6,3 +6,4 @@
 --exclude=cache
 --exclude=.vscode
 --exclude=.idea
+--exclude=.projections.json
