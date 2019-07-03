@@ -37,6 +37,7 @@ __stow rofi-pass
 __stow scripts
 __stow sxhkd
 __stow systemd
+__stow tmux
 __stow tridactyl
 __stow vim
 __stow x

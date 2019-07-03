@@ -5,12 +5,14 @@ if !has('nvim')
   set nocompatible
 endif
 
-" Terminal settings
-if $TERM =~? '.*-256color'
-  set notermguicolors
-else
+" Terminal color capabilities
+if $TERM =~? '\(.*tmux.*\)\|\(.*xterm.*\)'
   set termguicolors
+else
+  set notermguicolors
 endif
+
+" Terminal settings
 if has('nvim')
   autocmd TermOpen * startinsert
   autocmd TermOpen * setlocal nospell
@@ -47,8 +49,6 @@ set relativenumber
 set mouse=a
 set cursorline
 colorscheme gruvbox
-" set background=dark
-" highlight Normal ctermbg=None guibg=None
 
 " Search
 set hlsearch " Highlight search items

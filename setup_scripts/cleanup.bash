@@ -37,6 +37,7 @@ __unstow rofi-pass
 __unstow scripts
 __unstow sxhkd
 __unstow systemd
+__unstow tmux
 __unstow tridactyl
 __unstow vim
 __unstow x

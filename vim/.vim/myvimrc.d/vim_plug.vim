@@ -220,6 +220,12 @@ Plug 'vimwiki/vimwiki', { 'for': 'markdown', 'on': ['VimwikiIndex', '<Plug>Vimwi
 " Synchronised markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'pandoc.markdown', 'rmd', 'vimwiki'], 'on': 'MarkdownPreview' }
 
+" Navigation between vim splits and tmux panes
+Plug 'christoomey/vim-tmux-navigator'
+
+" Auto-completion source for words in tmux panes
+Plug 'wellle/tmux-complete.vim'
+"
 "}}}
 
 "******************************** For the Sake of It **********************************{{{
