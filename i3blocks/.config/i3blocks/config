@@ -70,13 +70,6 @@ label=📈
 interval=5
 
 # Network interface monitoring
-# If the instance is not specified, use the interface used for default route.
-# The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
-[iface]
-label=
-interval=10
-separator=false
-
 [bandwidth]
 label=📶
 #instance=eth0
