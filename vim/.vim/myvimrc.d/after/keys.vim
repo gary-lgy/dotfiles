@@ -15,7 +15,7 @@ tnoremap <Esc> <C-\><C-n>
 
 " Remappings to retain sanity{{{
 " Make Y's behavior consistent with other commands.
-" Use yankstack if possible
+" Use yankstack if it exists
 if !empty(glob('~/.vim/plugged/vim-yankstack'))
   call yankstack#setup()
   nmap Y y$
@@ -25,31 +25,40 @@ endif
 
 " Swap j and gj, k and gk
 nnoremap j gj
+xnoremap j gj
+onoremap j gj
 nnoremap k gk
+xnoremap k gk
+onoremap k gk
 nnoremap gj j
+xnoremap gj j
+onoremap gj j
 nnoremap gk k
+xnoremap gk k
+onoremap gk k
 
 " Remap %
-nmap <Tab> %
-vmap <Tab> %
+nmap <M-m> %
+xmap <M-m> %
+omap <M-m> %
 "}}}
 
 " Remap some text objects{{{
 " Blocks{{{
 nnoremap J }
-vnoremap J }
+xnoremap J }
 onoremap J }
 nnoremap K {
-vnoremap K {
+xnoremap K {
 onoremap K {
 "}}}
 
 " On the same line{{{
 nnoremap H g^
-vnoremap H g^
+xnoremap H g^
 onoremap H g^
 nnoremap L g$
-vnoremap L g$
+xnoremap L g$
 onoremap L g$
 "}}}
 "}}}

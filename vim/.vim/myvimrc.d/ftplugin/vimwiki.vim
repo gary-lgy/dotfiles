@@ -8,3 +8,6 @@ highlight VimwikiHeader6 cterm=bold      gui=bold      ctermfg=LightYellow guifg
 
 highlight VimwikiLink    cterm=underline gui=underline ctermfg=Cyan        guifg=#00a9ee
 highlight VimwikiTodo    cterm=bold      gui=bold      ctermfg=Yellow      guifg=#ffff00
+
+" Use C-h to go back
+nmap <C-h> <BS>
