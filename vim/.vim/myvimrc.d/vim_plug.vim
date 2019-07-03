@@ -129,6 +129,9 @@ Plug 'tpope/vim-rails'
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
 
+" Rainbox parentheses
+Plug 'junegunn/rainbow_parentheses.vim', { 'on': ['RainbowParentheses', 'RainbowParenthesesColors'] }
+
 " Automatically complete block structures
 Plug 'tpope/vim-endwise'
 
