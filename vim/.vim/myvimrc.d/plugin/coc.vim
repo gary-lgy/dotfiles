@@ -60,6 +60,10 @@ nmap <leader>cl <Plug>(coc-codelens-action)
 " Signature hint
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
 "}}}
 
 " Miscellaneous functionalities{{{

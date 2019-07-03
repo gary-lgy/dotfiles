@@ -29,3 +29,6 @@ let g:ale_virtualtext_prefix = '▶ '
 " Syntax highlight
 highlight ALEVirtualTextError   cterm=bold,italic gui=bold,italic ctermfg=Red guifg=#fb4934
 highlight ALEVirtualTextWarning cterm=italic      gui=italic      ctermfg=224 guifg=Orange
+
+" Disable lsp integration to avoid conflict with Coc
+let g:ale_disable_lsp = 1

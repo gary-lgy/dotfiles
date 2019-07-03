@@ -1,7 +1,5 @@
 {
   "diagnostic.refreshOnInsertMode": true,
-  "diagnostic.displayByAle": true,
-  "diagnostic.virtualText": true,
 
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
