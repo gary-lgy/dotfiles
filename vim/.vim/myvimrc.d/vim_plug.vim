@@ -157,6 +157,9 @@ Plug 'tpope/vim-sleuth'
 " Readline-like keybindings in insert and command mode
 Plug 'tpope/vim-rsi'
 
+" Dispatch
+Plug 'tpope/vim-dispatch'
+
 " A pretty and configurable status bar.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -228,7 +231,10 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " Auto-completion source for words in tmux panes
 Plug 'wellle/tmux-complete.vim'
-"
+
+" Interact with tmux within vim
+Plug 'benmills/vimux'
+
 "}}}
 
 "******************************** For the Sake of It **********************************{{{

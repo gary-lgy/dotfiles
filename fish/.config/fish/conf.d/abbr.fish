@@ -19,3 +19,8 @@ abbr --global gs git status
 # Bundle
 abbr --global be bundle exec
 abbr --global bi bundle install
+
+# Tmux
+abbr --global tl tmux ls
+abbr --global ta tmux a -t
+abbr --global tn tmux new -s
