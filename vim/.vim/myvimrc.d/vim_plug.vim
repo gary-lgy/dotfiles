@@ -51,7 +51,6 @@ Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
 
 " For coding
 Plug 'glts/vim-textobj-comment', { 'on': ['<Plug>(textobj-comment-a)', '<Plug>(textobj-comment-i)', '<Plug>(textobj-comment-big-a)'] } " comment: ix, ax, aX
-Plug 'adriaanzon/vim-textobj-matchit' " matchit pairs: im and am
 Plug 'Julian/vim-textobj-variable-segment' " segments of variable names: iv and av
 Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " erb: iE and aE
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " ruby: ir and ar
@@ -192,9 +191,6 @@ Plug 'tpope/vim-eunuch', { 'on': b:eunuch_commands }
 
 " Easy alignment
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
-
-" Visual marks
-Plug 'kshenoy/vim-signature'
 
 " Peek registers
 Plug 'junegunn/vim-peekaboo'
