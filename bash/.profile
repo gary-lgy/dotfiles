@@ -7,7 +7,7 @@ export EDITOR=/usr/bin/nvim
 # Use firefox-developer-edition as default web browser
 export BROWSER=/usr/bin/firefox-developer-edition
 
-# User kitty as terminal emulator
+# Terminal emulator
 export TERMINAL=/usr/bin/kitty
 export TERMCMD="$TERMINAL"
 
@@ -27,4 +27,7 @@ export npm_config_prefix=~/.node_modules
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
 # Add nix into PATH
-[ -e /home/gary/.nix-profile/etc/profile.d/nix.sh ] && . /home/gary/.nix-profile/etc/profile.d/nix.sh
+[ -e ~/.nix-profile/etc/profile.d/nix.sh ] && . ~/.nix-profile/etc/profile.d/nix.sh
+
+# Source machine-specific profile
+[ -f ~/.profile_local ] && source ~/.profile_local
