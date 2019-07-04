@@ -17,7 +17,7 @@ fi
 # List of packages to install
 base=(git neovim python python-neovim stow curl)
 maintenance=(pkgfile pacman-contrib expac pacmatic lostfiles)
-monitoring=(htop sysstat acpi net-tools lsof)
+monitoring=(htop sysstat acpi net-tools lsof ncdu)
 cli_utils=(bash-completion openssh tree exa xclip fish fd ripgrep fzf ranger fasd bat thefuck tldr direnv expect tmux)
 audio=(pulseaudio pulseaudio-alsa alsa-utils)
 gui=(xorg-server xorg-xinit xorg-xrdb xorg-xset xorg-xrandr gtk2 gtk3)
