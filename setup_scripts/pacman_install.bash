@@ -33,7 +33,7 @@ documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core)
 browser=(firefox-developer-edition)
 input_methods=(fcitx-im fcitx-configtool fcitx-googlepinyin)
 
-pending=(libreoffice-fresh)
+pending=(libreoffice-fresh browserpass-firefox)
 
 packages=( "${base[@]}" "${maintenance[@]}" "${monitoring[@]}" "${cli_utils[@]}" "${audio[@]}" "${gui[@]}" "${fonts[@]}" "${WM[@]}" "${terminal_emulator[@]}" "${launcher[@]}" "${gui_utils[@]}" "${misc_utils[@]}" \
   "${coding[@]}" "${documents[@]}" "${browser[@]}" "${input_methods[@]}")
