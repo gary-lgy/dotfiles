@@ -12,34 +12,8 @@ function __unstow {
   stow -D --no-folding --dir="$HOME/dotfiles" "$1"
 }
 
-__unstow asdf
-__unstow bash
-__unstow bat
-__unstow buku_run
-__unstow ctags
-__unstow dircolors
-__unstow dunst
-__unstow editorconfig
-__unstow fish
-__unstow fontconfig
-__unstow fzf
-__unstow git
-__unstow gtk-3.0
-__unstow i3
-__unstow i3blocks
-__unstow ignore
-__unstow kitty
-__unstow misc
-__unstow nvim
-__unstow ranger
-__unstow ripgrep
-__unstow rofi-pass
-__unstow scripts
-__unstow sxhkd
-__unstow systemd
-__unstow tmux
-__unstow tridactyl
-__unstow vim
-__unstow x
+while read -r package; do
+  __unstow "$package"
+done < ~/dotfiles/setup_scripts/stow_list.text
 
 echo -e "${GREEN}Done${RESET}"
