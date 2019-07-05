@@ -39,9 +39,9 @@ export FZF_DEFAULT_COMMAND="fd --follow --hidden"
 export FZF_DEFAULT_OPTS="--height=40% --reverse \
   --history=$HOME/.fzf_history \
   --bind=ctrl-alt-n:next-history,ctrl-alt-p:previous-history \
+  --bind=alt-j:down,alt-k:up \
   --bind=ctrl-k:kill-line \
-  --bind=ctrl-v:page-down,alt-v:page-up \
-  --bind=alt-n:preview-down,alt-p:preview-up \
+  --bind=ctrl-n:page-down,ctrl-p:page-up \
   --bind=alt-a:select-all"
 export FZF_CTRL_T_COMMAND="fd -HL"
 export FZF_ALT_C_COMMAND="fd -HL -t d"

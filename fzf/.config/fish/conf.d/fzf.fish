@@ -6,11 +6,10 @@ set -x FZF_CTRL_T_COMMAND "command fd -HL . \$dir"
 set -x FZF_ALT_C_COMMAND fd -HL -t d
 set -x FZF_DEFAULT_OPTS --height=40% --reverse \
   --history=$HOME/.fzf_history \
-  --bind=ctrl-n:down,ctrl-p:up \
   --bind=ctrl-alt-n:next-history,ctrl-alt-p:previous-history \
+  --bind=alt-j:down,alt-k:up \
   --bind=ctrl-k:kill-line \
-  --bind=ctrl-v:page-down,alt-v:page-up \
-  --bind=alt-n:preview-down,alt-p:preview-up \
+  --bind=ctrl-n:page-down,ctrl-p:page-up \
   --bind=alt-a:select-all
 
 # Keybindings
