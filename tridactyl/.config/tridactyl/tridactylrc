@@ -67,9 +67,6 @@ bind --mode=ex <C-[> ex.hide_and_clear
 bind --mode=ex <C-p> ex.prev_history
 " bind --mode=ex <C-n> ex.next_history
 
-" Containers
-set autocontain { "youtube.com": "Youtube", "google.com": "Google", "facebook.com": "Facebook", "nus.edu.sg": "School", "lazada.sg": "Shopping", "shopee.sg": "Shopping" }
-
 " Search urls
 set searchurls.gg  https://www.google.com/search?q=
 set searchurls.ddg https://duckduckgo.com/?q=
