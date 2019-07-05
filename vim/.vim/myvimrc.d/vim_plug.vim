@@ -231,6 +231,9 @@ Plug 'wellle/tmux-complete.vim'
 " Interact with tmux within vim
 Plug 'benmills/vimux'
 
+" Diff lines
+Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffReset'] }
+
 "}}}
 
 "******************************** For the Sake of It **********************************{{{
