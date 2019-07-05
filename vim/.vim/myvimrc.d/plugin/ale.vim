@@ -1,3 +1,7 @@
+if !HasPlugin('ale')
+  finish
+endif
+
 " Disable ALE if on battery (depends on acpi and cut)
 let s:ac_status = trim(system("acpi -a | awk '{print $3}'"))
 if s:ac_status == "off-line"

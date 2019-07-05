@@ -1,3 +1,7 @@
+if !HasPlugin('rainbow_parentheses.vim')
+  finish
+endif
+
 " Automatically activate raianbox parentheses for certain filetypes
 augroup rainbow_parentheses
   autocmd!

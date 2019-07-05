@@ -1,3 +1,7 @@
+if !HasPlugin('fzf.vim')
+  finish
+endif
+
 " FZF is be the best shit I've ever seen!
 
 " Do not show statusline for fzf pane

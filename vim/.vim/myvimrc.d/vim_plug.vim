@@ -1,4 +1,10 @@
 "*************************** VIM PLUG ******************************{{{
+let g:plugins_path = '~/.vim/plugged'
+" Check if a plugin is installed
+function! HasPlugin(plugin) abort
+  return !empty(glob(g:plugins_path . '/' . a:plugin))
+endfunction
+
 " Check if vim-plug is installed in the autoload directory.
 " If not, install it.
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -10,7 +16,7 @@ endif" Arguments to plug#begin specifies the directory to install the plugins
 
 "******************************** Plugins **********************************
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(g:plugins_path)
 
 "******************************** Fundamentals **********************************{{{
 " Plugins that I think might as well be included in vanilla vim

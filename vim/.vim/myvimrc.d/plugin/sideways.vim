@@ -1,3 +1,7 @@
+if !HasPlugin('sideways.vim')
+  finish
+endif
+
 " Mappings
 " Jump and exchange
 nnoremap <silent> cxh :SidewaysLeft<CR>

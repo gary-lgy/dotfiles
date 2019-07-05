@@ -1,3 +1,7 @@
+if !HasPlugin('CamelCaseMotion')
+  finish
+endif
+
 " In normal and visual mode, w, b, e will have camel case motions
 " Operator-pending mode is not affected
 nmap <silent> w  <Plug>CamelCaseMotion_w

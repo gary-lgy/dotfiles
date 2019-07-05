@@ -1,3 +1,7 @@
+if !HasPlugin('vim-startify')
+  finish
+endif
+
 " Do not cd into the file's directory when opening a file
 let g:startify_change_to_dir = 0
 

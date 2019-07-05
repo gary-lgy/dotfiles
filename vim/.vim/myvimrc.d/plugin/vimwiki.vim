@@ -1,3 +1,7 @@
+if !HasPlugin('vimwiki')
+  finish
+endif
+
 let g:vimwiki_list = [
       \ {
       \   'path': '~/Notes/',

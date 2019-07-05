@@ -1,3 +1,7 @@
+if !HasPlugin('limelight.vim')
+  finish
+endif
+
 " Default: 0.5
 let g:limelight_default_coefficient = 0.7
 

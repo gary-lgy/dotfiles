@@ -1,3 +1,7 @@
+if !HasPlugin('vim-test')
+  finish
+endif
+
 " Key bindings to run tests
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>

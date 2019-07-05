@@ -1,3 +1,7 @@
+if !HasPlugin('coc.nvim')
+  finish
+endif
+
 " Use global node executable
 let g:coc_node_path = '/usr/bin/node'
 

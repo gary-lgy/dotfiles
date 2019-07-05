@@ -1,3 +1,7 @@
+if !HasPlugin('auto-pairs')
+  finish
+endif
+
 " Disable toggle shortcut
 let g:AutoPairsShortcutToggle = ''
 

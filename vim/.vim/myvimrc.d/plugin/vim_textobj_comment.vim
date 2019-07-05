@@ -1,3 +1,7 @@
+if !HasPlugin('vim-textobj-comment')
+  finish
+endif
+
 " Use custom mappings to avoid conflict with textobj-word-column
 let g:textobj_comment_no_default_key_mappings = 1
 

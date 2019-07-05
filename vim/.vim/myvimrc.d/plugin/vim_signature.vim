@@ -1,3 +1,7 @@
+if !HasPlugin('vim-signature')
+  finish
+endif
+
 " Highlight signs of marks dynamically based upon state indicated by
 " vim-gitgutter. Setting this to `1` prior to plugin initialization overwrites
 " g:SignatureMarkTextHL.
