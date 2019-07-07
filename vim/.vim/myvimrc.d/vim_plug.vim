@@ -240,6 +240,9 @@ Plug 'benmills/vimux'
 " Diff lines
 Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffReset'] }
 
+" Toggle between relative and absolute line numbers
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
 "}}}
 
 "******************************** For the Sake of It **********************************{{{
