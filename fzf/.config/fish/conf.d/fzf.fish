@@ -42,7 +42,7 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
     # get fzf output
     set fzf_output ( \
       fd -HL0 --color=always . $loc | \
-      fzf-tmux -m -1 -0 --ansi --read0 --print0 -q $query \
+      fzf-tmux -m -0 --ansi --read0 --print0 -q $query \
       --header=$header \
       --expect=$cd_key,$edit_key,$open_key \
       --bind="alt-r:replace-query" \

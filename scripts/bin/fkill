@@ -6,9 +6,9 @@
 
 # list only the ones you can kill.
 if [ "$UID" != "0" ]; then
-  pid=$(ps -f -u $UID | fzf-tmux -m --header-lines=1 | awk '{print $2}')
+  pid=$(ps -f -u $UID | fzf-tmux -m --header-lines=1 --no-hscroll | awk '{print $2}')
 else
-  pid=$(ps -ef | fzf-tmux -m --header-lines= 1 | awk '{print $2}')
+  pid=$(ps -ef | fzf-tmux -m --header-lines=1 --no-hscroll | awk '{print $2}')
 fi  
 
 if [ -n "$pid" ]; then

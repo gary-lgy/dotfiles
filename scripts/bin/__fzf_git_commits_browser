@@ -1,61 +1,60 @@
 #!/usr/bin/env bash
 
 # Browse commits.
-# CTRL-s:         toggle sort
-# ALT-y:          copy commit hash
-# ALT-c:          checkout commit
-# Enter (ALT-s):  git show commit
+# CTRL-s: toggle sort
+# ALT-y:  copy commit hash
+# Enter:  git show commit
 
 # Exit if not in git repo
-git rev-parse HEAD 1>/dev/null || exit 1
-
-# Important for git pager to work with fzf
-# For some reason, the default F flag used by git causes diffs shorter than a screenful not to be shown
-export LESS=R
-
-# Copying is achieved with xclip.
-# Give warning if xclip is not found.
-if ! command -v xclip &>/dev/null; then
-  echo >&2 "Warning: xclip not found. Will not be able to copy commit hash."
-fi
+git rev-parse --is-inside-work-tree 1>/dev/null || exit 1
 
 # Command used to extract commit hash from git log
-extract_commit_hash_cmd="echo -n {} | grep -o '[a-f0-9]\{7\}' | head -1"
-
-# Get all the git logs
-commits=$(
-  git log --graph --color=always \
-    --format='%C(auto)%h%d %s %C(green)%C(bold)%cr %C(blue)%C(normal)%cN') \
-  || exit 1
+extract_commit_hash_cmd="echo -n {} | grep -o '[a-f0-9]\{7\}' | head -1 | tr -d '\n'"
 
 # Command fired when Enter is pressed. Launches git show on the selected commit.
-enter_command="$extract_commit_hash_cmd | xargs -I % bash -c 'git show --color=always %' >/dev/tty"
+enter_cmd="$extract_commit_hash_cmd | LESS=R xargs -I% git show --color=always %"
 
 # Command used for preview
-preview_command="$extract_commit_hash_cmd | \
-                 xargs -I @ git show --color=always --pretty=fuller --name-status @"
+preview_cmd="$extract_commit_hash_cmd | \
+                 xargs -I{} git show --color=always --pretty=fuller --name-status {}"
+
+# Command to yank commit hash
+yank_hash_cmd="$extract_commit_hash_cmd | xclip -selection clipboard"
 
 # Header message
 key_color="\033[4;35m"
 normal_color="\033[0m"
-header=$(echo -e ":: ${key_color}ctlr-s${normal_color} to toggle sort, ${key_color}alt-y${normal_color} to yank commit hash, \
-${key_color}alt-c${normal_color} to checkout commit, ${key_color}alt-s${normal_color} to show commit")
+warning_color="\033[1;33m"
+header=":: \
+${key_color}ctlr-s${normal_color} to toggle sort, \
+${key_color}alt-y${normal_color} to yank commit hash, \
+${key_color}Enter${normal_color} to show commit"
+
+# Copying is achieved with xclip.
+# Give warning if xclip is not found.
+if ! command -v xclip &>/dev/null; then
+  header="${header}
+${warning_color}Warning: xclip not found. Will not be able to copy commit hash.${normal_color}"
+fi
+
+header=$(printf "$header")
 
 # fzf widget to browse commits
-commit_to_checkout=$(
-  echo "$commits" | fzf-tmux --ansi --no-multi --no-sort --reverse --tiebreak=index \
-    --no-height \
-    --preview-window=top:40%:wrap \
-    --preview="$preview_command" \
-    --header="$header" \
-    --bind "ctrl-s:toggle-sort" \
-    --bind "alt-y:execute:
-      $extract_commit_hash_cmd | xclip -selection clipboard" \
-    --bind "enter:execute:$enter_command" \
-    --bind "ctrl-m:execute:$enter_command" \
-    --bind "alt-s:execute:$enter_command" \
-    --bind "alt-c:accept") ||
-exit 2
-
-# Checkout the selected commit, if any
-echo -n "$extract_commit_hash_cmd" | sed "s/{}/$commit_to_checkout/" | bash | xargs -I % git checkout %
+git log \
+  --graph \
+  --color=always \
+  --format='%C(auto)%h%d %s %C(green)%C(bold)%cr %C(blue)%C(normal)%cN' | \
+fzf \
+  --ansi \
+  --no-multi \
+  --no-sort \
+  --reverse \
+  --tiebreak=index \
+  --no-height \
+  --preview-window=top:40%:wrap \
+  --preview="$preview_cmd" \
+  --header="$header" \
+  --bind "ctrl-s:toggle-sort" \
+  --bind "alt-y:execute:$yank_hash_cmd" \
+  --bind "enter:execute:$enter_cmd" \
+  --bind "ctrl-m:execute:$enter_cmd"
