@@ -45,11 +45,10 @@ ${level1}${left_segment1}${separator1}"
 right_segment=" #{session_attached} "
 
 # Prefix highlight
-tmux set -g @prefix_highlight_show_copy_mode    'on'
-tmux set -g @prefix_highlight_empty_has_affixes 'off'
-tmux set -g @prefix_highlight_empty_prompt      ""
+tmux set -g @prefix_highlight_show_copy_mode    on
+tmux set -g @prefix_highlight_empty_has_affixes off
 tmux set -g @prefix_highlight_prefix_prompt     " Prefix "
-tmux set -g @prefix_highlight_copy_prompt       ' Copy   '
+tmux set -g @prefix_highlight_copy_prompt       " Copy "
 tmux set -g @prefix_highlight_output_prefix     "#[fg=$TC]#[bg=$GR0]#[bg=$TC]#[fg=$BG]"
 tmux set -g @prefix_highlight_output_suffix     "#[fg=$TC]#[bg=$BG]"
 
