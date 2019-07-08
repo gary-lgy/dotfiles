@@ -21,6 +21,7 @@ let g:coc_global_extensions = [
       \ 'coc-python',
       \ 'coc-solargraph',
       \ 'coc-vimlsp',
+      \ 'coc-yaml',
       \ 'coc-sh',
       \ 'coc-import-cost',
       \ 'coc-highlight',
