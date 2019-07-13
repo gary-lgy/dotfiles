@@ -17,7 +17,7 @@ TC=colour214
 
 # GR: different shades of gray
 GR0=colour239
-GR1=colour241
+GR1=colour243
 GR2=colour251
 
 BG=colour236
