@@ -24,3 +24,20 @@ abbr --global bi bundle install
 abbr --global tl tmux ls
 abbr --global ta tmux a -t
 abbr --global tn tmux new -s
+
+# Docker
+abbr --global db docker build
+abbr --global dc docker-compose
+abbr --global de docker exec
+abbr --global di docker images
+abbr --global dl docker logs
+abbr --global dn docker network
+abbr --global dp docker ps
+abbr --global dr docker run
+abbr --global ds docker stop
+abbr --global dv docker volume
+abbr --global dcb docker-compose build
+abbr --global dcd docker-compose down
+abbr --global dcp docker-compose ps
+abbr --global dcr docker-compose run
+abbr --global dcu docker-compose up
