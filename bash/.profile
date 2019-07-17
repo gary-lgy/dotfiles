@@ -26,6 +26,9 @@ export npm_config_prefix=~/.node_modules
 # ripgrep configuration file path
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
+# Initialize rbenv
+export PATH="$HOME/.rbenv/shims:$PATH"
+
 # Add nix into PATH
 [ -e ~/.nix-profile/etc/profile.d/nix.sh ] && . ~/.nix-profile/etc/profile.d/nix.sh
 
