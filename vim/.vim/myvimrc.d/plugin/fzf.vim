@@ -35,6 +35,7 @@ nnoremap <leader>ff <Cmd>History<CR>
 nnoremap <leader>f; <Cmd>History:<CR>
 nnoremap <leader>fs <Cmd>History/<CR>
 nnoremap <leader>fc <Cmd>Commits<CR>
+nnoremap <M-/>      <Cmd>BLines<CR>
 " BCommits
 
 " Preview
@@ -58,7 +59,7 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=? -complete=dir Files
 			\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-" Insert mode mappings
+" Commands to enquere mappings
 command! -nargs=0 IMaps call fzf#vim#maps('i', 0)
 cabbrev IMap IMaps
 cabbrev Imap IMaps

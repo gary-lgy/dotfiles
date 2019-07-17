@@ -11,11 +11,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif" Arguments to plug#begin specifies the directory to install the plugins
+endif
 "}}}
 
 "******************************** Plugins **********************************
 
+" Arguments to plug#begin specifies the directory to install the plugins
 call plug#begin(g:plugins_path)
 
 "******************************** Fundamentals **********************************{{{
@@ -56,7 +57,7 @@ Plug 'kana/vim-textobj-indent' " ii, ai, iI and aI
 Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
 
 " For coding
-Plug 'glts/vim-textobj-comment', { 'on': ['<Plug>(textobj-comment-a)', '<Plug>(textobj-comment-i)', '<Plug>(textobj-comment-big-a)'] } " comment: ix, ax, aX
+Plug 'glts/vim-textobj-comment', { 'on': ['<Plug>(textobj-comment-a)', '<Plug>(textobj-comment-i)', '<Plug>(textobj-comment-big-a)'] } " comment: i/, a/, a/
 Plug 'Julian/vim-textobj-variable-segment' " segments of variable names: iv and av
 Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " erb: iE and aE
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " ruby: ir and ar
@@ -194,6 +195,9 @@ Plug 'schickling/vim-bufonly'
 " Unix helpers within Vim
 let b:eunuch_commands = ['Delete', 'Unlink', 'Remove', 'Move', 'Rename', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Llocate', 'Wall', 'SudoWrite', 'SudoEdit']
 Plug 'tpope/vim-eunuch', { 'on': b:eunuch_commands }
+
+" sudo for Neovim
+Plug 'lambdalisue/suda.vim'
 
 " Easy alignment
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }

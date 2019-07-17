@@ -4,9 +4,6 @@ let mapleader = ' '
 " Stop highlighting search items
 nnoremap <silent> <leader>/ :noh<CR>
 
-" Indent entire buffer
-nnoremap <leader>ii gg=G``
-
 " New buffer
 nnoremap <leader>e :edit<space>
 
@@ -16,7 +13,7 @@ tnoremap <Esc> <C-\><C-n>
 " Remappings to retain sanity{{{
 " Make Y's behavior consistent with other commands.
 " Use yankstack if it exists
-if !empty(glob('~/.vim/plugged/vim-yankstack'))
+if HasPlugin('vim-yankstack')
   call yankstack#setup()
   nmap Y y$
 else
@@ -96,7 +93,7 @@ nnoremap <leader>, :!
 nnoremap <leader>; :<UP><CR>
 
 " Disable ex mode. Use Q for replaying macros
-if !empty(glob('~/.vim/plugged/vim-peekaboo'))
+if HasPlugin('vim-peekaboo')
   " Use peekaboo if possible
   nmap <buffer> <expr> Q peekaboo#peek(v:count1, '@', 0)
 else
