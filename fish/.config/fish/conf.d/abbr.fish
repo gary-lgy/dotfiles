@@ -14,11 +14,18 @@ abbr --global gda git diff --cached
 abbr --global gf git fetch
 abbr --global gl git log --pretty=oneline -5
 abbr --global gp git pull
+abbr --global gpb git push --set-upstream origin
 abbr --global gs git status
 
 # Bundle
 abbr --global be bundle exec
 abbr --global bi bundle install
+
+# Rails
+abbr --global rc bundle exec rails c
+abbr --global rs bundle exec rails s
+abbr --global rk bundle exec rake
+abbr --global rd bundle exec db:
 
 # Tmux
 abbr --global tl tmux ls
@@ -27,7 +34,6 @@ abbr --global tn tmux new -s
 
 # Docker
 abbr --global db docker build
-abbr --global dc docker-compose
 abbr --global de docker exec
 abbr --global di docker images
 abbr --global dl docker logs
@@ -36,6 +42,7 @@ abbr --global dp docker ps
 abbr --global dr docker run
 abbr --global ds docker stop
 abbr --global dv docker volume
+abbr --global dc docker-compose
 abbr --global dcb docker-compose build
 abbr --global dcd docker-compose down
 abbr --global dcp docker-compose ps

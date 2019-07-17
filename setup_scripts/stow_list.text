@@ -24,6 +24,5 @@ scripts
 sxhkd
 systemd
 tmux
-tridactyl
 vim
 x

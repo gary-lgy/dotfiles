@@ -1,17 +1,11 @@
 # Start ssh agent
 eval "$(ssh-agent)" >/dev/null 2>&1 &
 
-# Use nvim as default text editor
+# +nvironment Variables
 export EDITOR=/usr/bin/nvim
-
-# Use firefox-developer-edition as default web browser
 export BROWSER=/usr/bin/firefox-developer-edition
-
-# Terminal emulator
 export TERMINAL=/usr/bin/kitty
 export TERMCMD="$TERMINAL"
-
-# Use fish as interactive shell
 export INTERACTIVE_SHELL=/usr/bin/fish
 
 # Install global node modules in home directory (applies to both npm and yarn)
