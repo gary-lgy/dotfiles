@@ -38,7 +38,7 @@
   },
   "list.extendedSearchMode": true,
   "list.nextKeymap": "<C-j>",
-  "list.previousKeymap":"<C-k>",
+  "list.previousKeymap": "<C-k>",
 
   "tsserver.npm": "/usr/bin/npm"
 }

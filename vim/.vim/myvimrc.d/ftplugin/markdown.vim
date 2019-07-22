@@ -1,5 +1,5 @@
 " Enable spell check
-set spell
+setlocal spell
 
 " Map shortcut for compiling document with pandoc
 nmap <buffer> <leader>cc :!pandoc -s % -o %:r.

@@ -105,7 +105,7 @@ font:
     family: Source Code Pro
     style: Semibold
 
-  size: 8.0
+  size: 7.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -283,7 +283,7 @@ live_config_reload: true
 #   - (Linux) user login shell
 #   - (Windows) powershell
 shell:
-  program: /usr/bin/tmux
+  program: /usr/bin/fish
   # args:
 
 # Startup directory

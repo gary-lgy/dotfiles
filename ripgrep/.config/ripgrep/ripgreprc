@@ -1,4 +1,5 @@
 --smart-case
 --follow
+--pcre2
 --ignore-file
 /home/gary/.ignore

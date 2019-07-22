@@ -11,7 +11,7 @@ set -xg theme_display_docker_machine yes
 set -xg theme_display_k8s_context yes
 set -xg theme_display_hg yes
 set -xg theme_display_virtualenv yes
-set -xg theme_display_ruby no
+set -xg theme_display_ruby yes
 set -xg theme_display_user ssh
 set -xg theme_display_hostname ssh
 set -xg theme_display_vi yes

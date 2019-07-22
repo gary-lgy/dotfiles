@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Open vimwiki
+vim +VimwikiIndex
