@@ -42,15 +42,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Rename
-nmap <leader>cr <Plug>(coc-rename)
-
-" Code Action
-" On a text object
-xmap <leader>ca  <Plug>(coc-codeaction-selected)
-nmap <leader>ca  <Plug>(coc-codeaction-selected)
-
-" On current line
-nmap <leader>caa  <Plug>(coc-codeaction)
+nmap <leader>rn <Plug>(coc-rename)
 
 " Format
 command! -nargs=0 Format :call CocAction('format')

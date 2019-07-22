@@ -26,17 +26,19 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Shortcuts to invoke fzf
-nnoremap <leader>f. <Cmd>Files ./<CR>
-nnoremap <leader>fa <Cmd>Files ~<CR>
+nnoremap <leader>.  <Cmd>Files ./<CR>
+nnoremap <leader>`  <Cmd>Files ~<CR>
 nnoremap <leader>fg <Cmd>GFiles?<CR>
-nnoremap <leader>ft <Cmd>Tags<CR>
-nnoremap <leader>fb <Cmd>Buffers<CR>
-nnoremap <leader>ff <Cmd>History<CR>
-nnoremap <leader>f; <Cmd>History:<CR>
-nnoremap <leader>fs <Cmd>History/<CR>
+nnoremap <leader>ft <Cmd>BTags<CR>
+nnoremap <leader>fT <Cmd>Tags<CR>
+nnoremap <leader>b  <Cmd>Buffers<CR>
+nnoremap <leader>f  <Cmd>History<CR>
+nnoremap <leader>;  <Cmd>History:<CR>
+nnoremap <leader>?  <Cmd>History/<CR>
 nnoremap <leader>fc <Cmd>Commits<CR>
-nnoremap <M-/>      <Cmd>BLines<CR>
-" BCommits
+nnoremap <leader>fb <Cmd>BCommits<CR>
+nnoremap <leader>l  <Cmd>BLines<CR>
+nnoremap <leader>L  <Cmd>Lines<CR>
 
 " Preview
 " :Ag  - Start fzf with hidden preview window that can be enabled with "?" key

@@ -67,10 +67,10 @@ nnoremap <leader>sv :vsplit<space>
 
 " Resize{{{
 if has('nvim')
-  nnoremap <M-=> <C-w>+
-  nnoremap <M--> <C-w>-
-  nnoremap <M-,> <C-w><
-  nnoremap <M-.> <C-w>>
+  nnoremap <M-+> <C-w>+
+  nnoremap <M-_> <C-w>-
+  nnoremap <M-<> <C-w><
+  nnoremap <M->> <C-w>>
 endif
 "}}}
 "}}}
@@ -85,12 +85,6 @@ nnoremap <leader>Q :quitall!<CR>
 " Commands{{{
 " Open terminal
 nnoremap <silent> <leader>t :terminal fish<CR>
-
-" Execute external command
-nnoremap <leader>, :!
-
-" Re-execute last command
-nnoremap <leader>; :<UP><CR>
 
 " Disable ex mode. Use Q for replaying macros
 if HasPlugin('vim-peekaboo')
