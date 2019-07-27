@@ -19,7 +19,7 @@ alias la='ls -FAx'
 # alias ll='ls -lAh'
 
 # Use exa in place of ls
-alias ll='exa --long --all --binary --group --header --links --extended --git --color-scale'
+alias ll='exa --long --all --binary --group --header --links --extended --git --color-scale --icons'
 
 # Use bat as less paginator
 alias less='bat'
