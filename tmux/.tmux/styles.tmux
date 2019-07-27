@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Tmux status bar
-# +odified from https://github.com/wfxr/tmux-power/blob/master/tmux-power.tmux
+# Modified from https://github.com/wfxr/tmux-power/blob/master/tmux-power.tmux
 # ------------------------------------------------------------------------------
 
 set -e

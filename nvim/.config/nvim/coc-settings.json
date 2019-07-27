@@ -40,5 +40,7 @@
   "list.nextKeymap": "<C-j>",
   "list.previousKeymap": "<C-k>",
 
-  "tsserver.npm": "/usr/bin/npm"
+  "tsserver.npm": "/usr/bin/npm",
+
+  "python.jediEnabled": false
 }

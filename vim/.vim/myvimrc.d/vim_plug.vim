@@ -103,7 +103,7 @@ Plug 'mileszs/ack.vim', { 'on': b:Ack_commands }
 Plug 'tpope/vim-projectionist'
 
 " Outline viewer using ctags
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
 
 " Automatically manage ctags
 Plug 'ludovicchabant/vim-gutentags'
