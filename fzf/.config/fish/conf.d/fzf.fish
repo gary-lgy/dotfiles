@@ -12,7 +12,6 @@ set -x FZF_DEFAULT_OPTS --height=40% --reverse \
   --bind=alt-n:page-down,alt-p:page-up \
   --bind=home:top \
   --bind=alt-j:preview-down,alt-k:preview-up \
-  --bind=ctrl-k:kill-line \
   --bind=alt-a:select-all
 
 # Keybindings

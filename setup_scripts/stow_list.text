@@ -6,6 +6,7 @@ ctags
 dircolors
 dunst
 editorconfig
+fcitx
 fish
 fontconfig
 fzf
@@ -26,3 +27,4 @@ systemd
 tmux
 vim
 x
+zathura

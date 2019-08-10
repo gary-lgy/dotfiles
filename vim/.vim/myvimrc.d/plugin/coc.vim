@@ -27,7 +27,8 @@ let g:coc_global_extensions = [
       \ 'coc-highlight',
       \ 'coc-word',
       \ 'coc-syntax',
-      \ 'coc-tag'
+      \ 'coc-tag',
+      \ 'coc-java'
       \]
 
 " Core functionalities{{{
@@ -50,6 +51,9 @@ cabbrev F Format
 
 " Organise imports
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" CodeActions
+nmap <leader>ca :CocList actions<CR>
 
 " codeLens
 nmap <leader>cl <Plug>(coc-codelens-action)

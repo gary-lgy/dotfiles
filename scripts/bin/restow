@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Refresh (restow) dotfiles
+bash ~/dotfiles/setup_scripts/dotfiles.bash restow

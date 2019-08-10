@@ -13,5 +13,5 @@ let g:limelight_paragraph_span = 1
 let g:limelight_priority = -1
 
 " Goyo.vim integration
-autocmd! User GoyoEnter silent! Limelight
-autocmd! User GoyoLeave silent! Limelight!
+autocmd User GoyoEnter silent! Limelight
+autocmd User GoyoLeave silent! Limelight!

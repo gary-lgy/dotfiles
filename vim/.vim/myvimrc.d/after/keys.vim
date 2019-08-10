@@ -35,9 +35,9 @@ xnoremap gk k
 onoremap gk k
 
 " Remap %
-nmap <M-m> %
-xmap <M-m> %
-omap <M-m> %
+nmap gm %
+xmap gm %
+omap gm %
 "}}}
 
 " Remap some text objects{{{
@@ -61,8 +61,8 @@ onoremap L g$
 "}}}
 
 " Split{{{
-nnoremap <leader>ss :split<space>
-nnoremap <leader>sv :vsplit<space>
+nnoremap <leader>ws :split<space>
+nnoremap <leader>wv :vsplit<space>
 "}}}
 
 " Resize{{{
@@ -76,8 +76,8 @@ endif
 "}}}
 
 " Save and exit{{{
-nnoremap <silent> <leader>d :bd<CR>
 nnoremap <leader>j :update<CR>
+nnoremap <silent> <leader>k :bd<CR>
 nnoremap <leader>q :quit<CR>
 nnoremap <leader>Q :quitall!<CR>
 "}}}
@@ -103,3 +103,7 @@ inoremap <F1> <Nop>
 " Map <C-J> and <C-K> to go to next/previous line in insert mode
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
+
+" Type jk or kj in insert mode to enter normal mode
+inoremap jk <ESC>
+inoremap kj <ESC>

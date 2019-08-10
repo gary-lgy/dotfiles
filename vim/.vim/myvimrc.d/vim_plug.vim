@@ -202,9 +202,6 @@ Plug 'lambdalisue/suda.vim'
 " Easy alignment
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 
-" Peek registers
-Plug 'junegunn/vim-peekaboo'
-
 " Extend f, F, t, and T key mappings
 Plug 'rhysd/clever-f.vim'
 
@@ -226,11 +223,8 @@ Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
 " Colorschemes
 Plug 'flazz/vim-colorschemes'
 
-" Vimwiki
-Plug 'vimwiki/vimwiki', { 'for': 'markdown', 'on': ['VimwikiIndex', '<Plug>VimwikiIndex'] }
-
 " Synchronised markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'pandoc.markdown', 'rmd', 'vimwiki'], 'on': 'MarkdownPreview' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'pandoc.markdown', 'rmd'], 'on': 'MarkdownPreview' }
 
 " Navigation between vim splits and tmux panes
 Plug 'christoomey/vim-tmux-navigator'

@@ -1,7 +1,7 @@
 # Start ssh agent
 eval "$(ssh-agent)" >/dev/null 2>&1 &
 
-# +nvironment Variables
+# Environment Variables
 export EDITOR=/usr/bin/nvim
 export BROWSER=/usr/bin/firefox-developer-edition
 export TERMINAL=/usr/bin/kitty
@@ -22,9 +22,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
 # Initialize rbenv
 export PATH="$HOME/.rbenv/shims:$PATH"
-
-# Add nix into PATH
-[ -e ~/.nix-profile/etc/profile.d/nix.sh ] && . ~/.nix-profile/etc/profile.d/nix.sh
 
 # Source machine-specific profile
 [ -f ~/.profile_local ] && source ~/.profile_local

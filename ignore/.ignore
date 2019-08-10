@@ -4,6 +4,7 @@
 tmp
 docs
 .thumbnails
+tags
 
 # modules
 /.npm

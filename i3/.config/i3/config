@@ -204,7 +204,7 @@ bindsym $mod+shift+x exec "betterlockscreen -l; sleep 5; betterlockscreen -u ~/P
 
 # Auto Start Applications {{{
 exec --no-startup-id i3-msg 'workspace $ws1; exec $BROWSER'
-exec --no-startup-id i3-msg 'workspace $ws5; exec $TERMINAL -e wiki'
+exec --no-startup-id i3-msg 'workspace $ws5; exec emacs'
 exec --no-startup-id i3-msg 'workspace $ws9; exec rambox'
 exec --no-startup-id i3-msg 'workspace $ws2'
 # }}}
