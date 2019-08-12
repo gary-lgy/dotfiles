@@ -1,17 +1,11 @@
 # Start ssh agent
 eval "$(ssh-agent)" >/dev/null 2>&1 &
 
-# Use nvim as default text editor
+# Environment Variables
 export EDITOR=/usr/bin/nvim
-
-# Use firefox-developer-edition as default web browser
 export BROWSER=/usr/bin/firefox-developer-edition
-
-# User kitty as terminal emulator
 export TERMINAL=/usr/bin/kitty
 export TERMCMD="$TERMINAL"
-
-# Use fish as interactive shell
 export INTERACTIVE_SHELL=/usr/bin/fish
 
 # Install global node modules in home directory (applies to both npm and yarn)
@@ -26,5 +20,8 @@ export npm_config_prefix=~/.node_modules
 # ripgrep configuration file path
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
-# Add nix into PATH
-[ -e /home/gary/.nix-profile/etc/profile.d/nix.sh ] && . /home/gary/.nix-profile/etc/profile.d/nix.sh
+# Initialize rbenv
+export PATH="$HOME/.rbenv/shims:$PATH"
+
+# Source machine-specific profile
+[ -f ~/.profile_local ] && source ~/.profile_local

@@ -1,3 +1,7 @@
+if !HasPlugin('vim-gitgutter')
+  finish
+endif
+
 " Set gitgutter refresh rate
 set updatetime=100
 

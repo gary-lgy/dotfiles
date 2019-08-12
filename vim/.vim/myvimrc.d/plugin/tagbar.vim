@@ -1,3 +1,7 @@
+if !HasPlugin('tagbar')
+  finish
+endif
+
 " Key-binding
 nmap <silent> <F8> :TagbarToggle<CR>
 

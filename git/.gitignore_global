@@ -1,11 +1,12 @@
-.idea
-.vscode
+**/.idea
+**/.vscode
 
-*.swp
-*~
+**/*.swp
+**/*~
+**/#*#
 
-.direnv
+**/.direnv
 
-tags
+**/tags
 
-.projections.json
+**/.projections.json

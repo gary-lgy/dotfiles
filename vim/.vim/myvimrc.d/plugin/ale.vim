@@ -1,3 +1,7 @@
+if !HasPlugin('ale')
+  finish
+endif
+
 " Disable ALE if on battery (depends on acpi and cut)
 let s:ac_status = trim(system("acpi -a | awk '{print $3}'"))
 if s:ac_status == "off-line"
@@ -21,6 +25,7 @@ let g:ale_fixers.ruby = ['rubocop']
 let g:ale_fixers.typescript = ['eslint', 'prettier']
 let g:ale_fixers.javascript = ['eslint', 'prettier']
 let g:ale_fixers.json = ['prettier']
+let g:ale_fixers.python = ['autopep8']
 
 " Use virtual text to display diagnostics
 let g:ale_virtualtext_cursor = 1

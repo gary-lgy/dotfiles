@@ -1,20 +1,6 @@
-" Enable tabline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-
-" Fast buffer nagivation
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>+ <Plug>AirlineSelectNextTab
+if !HasPlugin('vim-airline')
+  finish
+endif
 
 " Use powerline font
 let g:airline_powerline_fonts = 1
@@ -31,8 +17,8 @@ if !exists("g:airline_symbols")
 endif
 let g:airline_symbols.branch               = ''
 let g:airline_symbols.readonly             = ''
-let g:airline_symbols.linenr               = '☰'
-let g:airline_symbols.maxlinenr            = ''
+let g:airline_symbols.linenr               = '' " '☰'
+let g:airline_symbols.maxlinenr            = '' " ''
 let g:airline_symbols.dirty                = '⚡'
 let g:airline_symbols.crypt                = '🔒'
 let g:airline_symbols.paste                = 'ρ'
@@ -42,15 +28,6 @@ let g:airline_symbols.whitespace           = 'Ξ'
 
 " Theme
 let g:airline_theme='deus'
-
-" Configure tabline filename formatter
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-" Disable whitespace checking for certain filetypes
-let g:airline#extensions#whitespace#skip_indent_check_ft = {
-      \ 'go':       ['mixed-indent-file'],
-      \ 'markdown': ['trailing']
-      \}
 
 " Use shortform for mode names
 let g:airline_mode_map = {
@@ -66,10 +43,60 @@ let g:airline_mode_map = {
       \ 'R'      : 'R',
       \ 'Rv'     : 'R',
       \ 's'      : 'S',
-      \ 'S'      : 'S',
-      \ ''     : 'S',
+      \ 'S'      : 'SL',
+      \ ''     : 'SB',
       \ 't'      : 'T',
       \ 'v'      : 'V',
-      \ 'V'      : 'V',
-      \ ''     : 'V',
+      \ 'V'      : 'VL',
+      \ ''     : 'VB',
       \ }
+
+" Branch plugin
+let g:airline#extensions#branch#displayed_head_limit = 15
+
+" Tabline plugin
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+" Fast buffer nagivation
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+" Configure tabline filename formatter
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+" Disable whitespace checking for certain filetypes
+let g:airline#extensions#whitespace#skip_indent_check_ft = {
+      \ 'go':       ['mixed-indent-file'],
+      \ 'markdown': ['trailing']
+      \}
+
+" Override what to display for sections A and B for certain filetypes
+if !exists("g:airline_filetype_overrides")
+  let g:airline_filetype_overrides = {}
+endif
+let g:airline_filetype_overrides.Mundo = [ 'Mundo', '' ]
+let g:airline_filetype_overrides.MundoDiff = [ 'MundoDiff', '' ]
+let g:airline_filetype_overrides.vista = [ 'Vista', '' ]
+let g:airline_filetype_overrides.vista_kind = g:airline_filetype_overrides.vista
+
+" Do not display encoding if file is utf-8 encoded with unix line breaks
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+
+" Display filename with path name if possible
+let g:airline_section_c = '%{AirlineFilename()}'
+function! AirlineFilename()
+  let l:filename = substitute(expand('%'), $HOME, '~', '')
+  if winwidth(0) < 90 || len(l:filename) > 50
+    let l:filename = pathshorten(l:filename)
+  endif
+  return l:filename
+endfunction

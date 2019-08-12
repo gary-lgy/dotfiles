@@ -1,3 +1,7 @@
+if !HasPlugin('comfortable-motion.vim')
+  finish
+endif
+
 " Scroll parameters
 let g:comfortable_motion_friction = 0.0
 let g:comfortable_motion_air_drag = 5.0

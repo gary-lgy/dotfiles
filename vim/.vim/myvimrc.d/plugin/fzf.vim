@@ -1,3 +1,7 @@
+if !HasPlugin('fzf.vim')
+  finish
+endif
+
 " FZF is be the best shit I've ever seen!
 
 " Do not show statusline for fzf pane
@@ -22,39 +26,42 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Shortcuts to invoke fzf
-nnoremap <leader>f. <Cmd>Files ./<CR>
-nnoremap <leader>fa <Cmd>Files ~<CR>
+nnoremap <leader>.  <Cmd>Files ./<CR>
+nnoremap <leader>`  <Cmd>Files ~<CR>
 nnoremap <leader>fg <Cmd>GFiles?<CR>
-nnoremap <leader>ft <Cmd>Tags<CR>
-nnoremap <leader>fb <Cmd>Buffers<CR>
-nnoremap <leader>ff <Cmd>History<CR>
-nnoremap <leader>f; <Cmd>History:<CR>
-nnoremap <leader>fs <Cmd>History/<CR>
+nnoremap <leader>ft <Cmd>BTags<CR>
+nnoremap <leader>fT <Cmd>Tags<CR>
+nnoremap <leader>b  <Cmd>Buffers<CR>
+nnoremap <leader>r  <Cmd>History<CR>
+nnoremap <leader>;  <Cmd>History:<CR>
+nnoremap <leader>?  <Cmd>History/<CR>
 nnoremap <leader>fc <Cmd>Commits<CR>
-" BCommits
+nnoremap <leader>fb <Cmd>BCommits<CR>
+nnoremap <leader>l  <Cmd>BLines<CR>
+nnoremap <leader>L  <Cmd>Lines<CR>
 
 " Preview
 " :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
 " :Ag! - Start fzf in fullscreen and display the preview window above
 command! -bang -nargs=* Ag
-			\ call fzf#vim#ag(<q-args>,
-			\                 <bang>0 ? fzf#vim#with_preview('up:60%')
-			\                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-			\                 <bang>0)
+      \ call fzf#vim#ag(<q-args>,
+      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+      \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \                 <bang>0)
 
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 command! -bang -nargs=* Rg
-			\ call fzf#vim#grep(
-			\   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-			\   <bang>0 ? fzf#vim#with_preview('up:60%')
-			\           : fzf#vim#with_preview('right:50%:hidden', '?'),
-			\   <bang>0)
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
 
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files
-			\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-" Insert mode mappings
+" Commands to enquere mappings
 command! -nargs=0 IMaps call fzf#vim#maps('i', 0)
 cabbrev IMap IMaps
 cabbrev Imap IMaps

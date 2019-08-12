@@ -1,3 +1,7 @@
+if !HasPlugin('clever-f.vim')
+  finish
+endif
+
 " Continue to use ' and , 
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)

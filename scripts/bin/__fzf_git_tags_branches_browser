@@ -2,53 +2,67 @@
 
 # Tag and branch browser
 # ALT-c: git checkout {branch,tag}
-# Enter (Alt-s): git show {branch,tag}
+# Enter: git show {branch,tag}
 
 # Exit if not in git repo
-git rev-parse HEAD 1>/dev/null || exit 1
+git rev-parse --is-inside-work-tree 1>/dev/null || exit 1
 
-# Important for git pager to work with fzf
-# For some reason, the default F flag used by git causes diffs shorter than a screenful not to be shown
-export LESS=R
+# Colours
+tag_color='\033[31;1m'
+branch_color='\033[34;1m'
+key_color="\033[4;35m"
+normal_color='\033[0m'
 
 # Get all tags
 tags=$(
-  git tag |
-  awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') ||
+git tag |
+  xargs -I% printf "${tag_color}tag\t${normal_color}%\n") ||
   exit 1
 
 # Get all branches
 branches=$(
-  git branch --all | grep -v "HEAD\|no branch" |
-  sed "s/.* //" | sed "s#remotes/##" |
-  sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') ||
+git branch --all | grep -v "HEAD\|no branch" |
+  sed "s/.* //" | sed "s#remotes/##" | sort -u |
+  xargs -I% printf "${branch_color}branch\t${normal_color}%\n") ||
   exit 1
 
 # Combine the results
-[ -n "$tags" ] && candidates=$(echo "$tags"; echo "$branches") || candidates="$branches"
+if [ -n "$tags" ]; then
+  candidates=$(echo "$tags"; echo "$branches")
+else
+  candidates="$branches"
+fi
 
 # Command fired when Enter is pressed. Launches git show on the selected tag/branch.
-enter_command="git log {2..} >/dev/tty"
+enter_cmd="LESS=R git log {2..} >/dev/tty"
+
+# Command to checkout target
+checkout_cmd="git checkout {2..}"
+
+# Command to preview target
+preview_cmd="\
+  git log --color=always \
+  --format='%C(yellow)%h %C(auto)%s (%C(blue)%cr by %C(green)%cN)' \
+  HEAD...{2..}"
 
 # Header message
-key_color="\033[4;35m"
-normal_color="\033[0m"
-header=$(echo -e ":: ${key_color}alt-c${normal_color} to checkout, ${key_color}alt-s${normal_color} to show")
+header=":: \
+${key_color}alt-c${normal_color} to checkout, \
+${key_color}Enter${normal_color} to show"
+
+header=$(printf "%b" "${header}")
 
 # Select a target to checkout with fzf
-target=$(
-  echo "$candidates" |
-  fzf-tmux --no-hscroll --no-multi --ansi --height=70% \
-    --preview-window=right:70%:wrap \
-    --preview="git log -200 --color=always \
-      --format='%C(yellow)%h %C(auto)%s (%C(blue)%cr by %C(green)%cN)' \
-      HEAD..{2..}" \
-    --header="$header" \
-    --bind "alt-s:execute:$enter_command" \
-    --bind "enter:execute:$enter_command" \
-    --bind "ctrl-m:execute:$enter_command" \
-    --bind "alt-c:accept") ||
-exit
-
-# Checkout the selected tag/branch, if any
-git checkout "$(echo "$target" | cut -f2-)"
+echo "$candidates" |
+  fzf \
+  --no-hscroll \
+  --no-multi \
+  --ansi \
+  --height=70% \
+  --preview-window=right:70%:wrap \
+  --preview="$preview_cmd" \
+  --header="$header" \
+  --bind "enter:execute:$enter_cmd" \
+  --bind "ctrl-m:execute:$enter_cmd" \
+  --bind "alt-c:execute($checkout_cmd)+abort" ||
+  exit

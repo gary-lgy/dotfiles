@@ -1,16 +1,23 @@
 "*************************** VIM PLUG ******************************{{{
+let g:plugins_path = '~/.vim/plugged'
+" Check if a plugin is installed
+function! HasPlugin(plugin) abort
+  return !empty(glob(g:plugins_path . '/' . a:plugin))
+endfunction
+
 " Check if vim-plug is installed in the autoload directory.
 " If not, install it.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif" Arguments to plug#begin specifies the directory to install the plugins
+endif
 "}}}
 
 "******************************** Plugins **********************************
 
-call plug#begin('~/.vim/plugged')
+" Arguments to plug#begin specifies the directory to install the plugins
+call plug#begin(g:plugins_path)
 
 "******************************** Fundamentals **********************************{{{
 " Plugins that I think might as well be included in vanilla vim
@@ -50,8 +57,7 @@ Plug 'kana/vim-textobj-indent' " ii, ai, iI and aI
 Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
 
 " For coding
-Plug 'glts/vim-textobj-comment', { 'on': ['<Plug>(textobj-comment-a)', '<Plug>(textobj-comment-i)', '<Plug>(textobj-comment-big-a)'] } " comment: ix, ax, aX
-Plug 'adriaanzon/vim-textobj-matchit' " matchit pairs: im and am
+Plug 'glts/vim-textobj-comment', { 'on': ['<Plug>(textobj-comment-a)', '<Plug>(textobj-comment-i)', '<Plug>(textobj-comment-big-a)'] } " comment: i/, a/, a/
 Plug 'Julian/vim-textobj-variable-segment' " segments of variable names: iv and av
 Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " erb: iE and aE
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " ruby: ir and ar
@@ -97,7 +103,7 @@ Plug 'mileszs/ack.vim', { 'on': b:Ack_commands }
 Plug 'tpope/vim-projectionist'
 
 " Outline viewer using ctags
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
 
 " Automatically manage ctags
 Plug 'ludovicchabant/vim-gutentags'
@@ -157,6 +163,9 @@ Plug 'tpope/vim-sleuth'
 " Readline-like keybindings in insert and command mode
 Plug 'tpope/vim-rsi'
 
+" Dispatch
+Plug 'tpope/vim-dispatch'
+
 " A pretty and configurable status bar.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -187,14 +196,11 @@ Plug 'schickling/vim-bufonly'
 let b:eunuch_commands = ['Delete', 'Unlink', 'Remove', 'Move', 'Rename', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Llocate', 'Wall', 'SudoWrite', 'SudoEdit']
 Plug 'tpope/vim-eunuch', { 'on': b:eunuch_commands }
 
+" sudo for Neovim
+Plug 'lambdalisue/suda.vim'
+
 " Easy alignment
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
-
-" Visual marks
-Plug 'kshenoy/vim-signature'
-
-" Peek registers
-Plug 'junegunn/vim-peekaboo'
 
 " Extend f, F, t, and T key mappings
 Plug 'rhysd/clever-f.vim'
@@ -217,18 +223,24 @@ Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
 " Colorschemes
 Plug 'flazz/vim-colorschemes'
 
-" Vimwiki
-Plug 'vimwiki/vimwiki', { 'for': 'markdown', 'on': ['VimwikiIndex', '<Plug>VimwikiIndex'] }
-
 " Synchronised markdown preview
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'pandoc.markdown', 'rmd', 'vimwiki'], 'on': 'MarkdownPreview' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'pandoc.markdown', 'rmd'], 'on': 'MarkdownPreview' }
 
 " Navigation between vim splits and tmux panes
 Plug 'christoomey/vim-tmux-navigator'
 
 " Auto-completion source for words in tmux panes
 Plug 'wellle/tmux-complete.vim'
-"
+
+" Interact with tmux within vim
+Plug 'benmills/vimux'
+
+" Diff lines
+Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffReset'] }
+
+" Toggle between relative and absolute line numbers
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
 "}}}
 
 "******************************** For the Sake of It **********************************{{{

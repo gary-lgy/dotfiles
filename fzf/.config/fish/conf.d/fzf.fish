@@ -6,11 +6,12 @@ set -x FZF_CTRL_T_COMMAND "command fd -HL . \$dir"
 set -x FZF_ALT_C_COMMAND fd -HL -t d
 set -x FZF_DEFAULT_OPTS --height=40% --reverse \
   --history=$HOME/.fzf_history \
-  --bind=ctrl-n:down,ctrl-p:up \
+  --bind=change:top \
   --bind=ctrl-alt-n:next-history,ctrl-alt-p:previous-history \
-  --bind=ctrl-k:kill-line \
-  --bind=ctrl-v:page-down,alt-v:page-up \
-  --bind=alt-n:preview-down,alt-p:preview-up \
+  --bind=ctrl-n:down,ctrl-p:up \
+  --bind=alt-n:page-down,alt-p:page-up \
+  --bind=home:top \
+  --bind=alt-j:preview-down,alt-k:preview-up \
   --bind=alt-a:select-all
 
 # Keybindings
@@ -43,7 +44,7 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
     # get fzf output
     set fzf_output ( \
       fd -HL0 --color=always . $loc | \
-      fzf-tmux -m -1 -0 --ansi --read0 --print0 -q $query \
+      fzf-tmux -m -0 --ansi --read0 --print0 -q $query \
       --header=$header \
       --expect=$cd_key,$edit_key,$open_key \
       --bind="alt-r:replace-query" \

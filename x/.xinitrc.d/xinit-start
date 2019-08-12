@@ -11,6 +11,7 @@
 /usr/bin/flameshot &
 /usr/bin/nextcloud &
 /usr/bin/fcitx &
+/usr/bin/dropbox &
 
 # DE/WM
 exec i3

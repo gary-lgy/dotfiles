@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# Refreshes the dotfiles by unstowing and stowing again
-bash ~/dotfiles/setup_scripts/cleanup.bash &&
-bash ~/dotfiles/setup_scripts/setup.bash

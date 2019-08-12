@@ -12,7 +12,7 @@ font pango:sans 10
 floating_modifier $mod
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -24,7 +24,7 @@ bindsym $mod+Shift+e exec i3-msg exit
 
 # Launching Applications{{{
 # Open browser and go to ws2
-bindsym $mod+f workspace $ws2, exec $BROWSER
+bindsym $mod+f workspace $ws1, exec $BROWSER
 #}}}
 
 # {{{ Windows
@@ -71,20 +71,20 @@ bindsym $mod+a focus parent
 
 # Workspaces{{{
 # Assign names
-# 1: CLI
-# 2: Browser
-# 3. IDE
-# 4. Ranger
-# 5. Org
+# 1: Browser
+# 2: CLI
+# 3. Code
+# 4. Code
+# 5. Notes
 # 6. Scratch
 # 7. Server
 # 8. Documents
 # 9. Chat
 # 10. Media
-set $ws1 "1 "
-set $ws2 "2 "
+set $ws1 "1 "
+set $ws2 "2 "
 set $ws3 "3 "
-set $ws4 "4 "
+set $ws4 "4 "
 set $ws5 "5 "
 set $ws6 "6 "
 set $ws7 "7 "
@@ -203,10 +203,10 @@ bindsym $mod+shift+x exec "betterlockscreen -l; sleep 5; betterlockscreen -u ~/P
 #}}}
 
 # Auto Start Applications {{{
-exec --no-startup-id i3-msg 'workspace $ws2; exec $BROWSER'
-exec --no-startup-id i3-msg 'workspace $ws4; exec $TERMINAL -e ranger'
+exec --no-startup-id i3-msg 'workspace $ws1; exec $BROWSER'
+exec --no-startup-id i3-msg 'workspace $ws5; exec emacs'
 exec --no-startup-id i3-msg 'workspace $ws9; exec rambox'
-exec --no-startup-id i3-msg 'workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws2'
 # }}}
 
 # vim: ft=i3config fdm=marker

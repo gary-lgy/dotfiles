@@ -1,3 +1,7 @@
+if !HasPlugin('coc.nvim')
+  finish
+endif
+
 " Use global node executable
 let g:coc_node_path = '/usr/bin/node'
 
@@ -17,12 +21,14 @@ let g:coc_global_extensions = [
       \ 'coc-python',
       \ 'coc-solargraph',
       \ 'coc-vimlsp',
+      \ 'coc-yaml',
       \ 'coc-sh',
       \ 'coc-import-cost',
       \ 'coc-highlight',
       \ 'coc-word',
       \ 'coc-syntax',
-      \ 'coc-tag'
+      \ 'coc-tag',
+      \ 'coc-java'
       \]
 
 " Core functionalities{{{
@@ -39,20 +45,15 @@ nmap <silent> gr <Plug>(coc-references)
 " Rename
 nmap <leader>cr <Plug>(coc-rename)
 
-" Code Action
-" On a text object
-xmap <leader>ca  <Plug>(coc-codeaction-selected)
-nmap <leader>ca  <Plug>(coc-codeaction-selected)
-
-" On current line
-nmap <leader>caa  <Plug>(coc-codeaction)
-
 " Format
 command! -nargs=0 Format :call CocAction('format')
 cabbrev F Format
 
 " Organise imports
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" CodeActions
+nmap <leader>ca :CocList actions<CR>
 
 " codeLens
 nmap <leader>cl <Plug>(coc-codelens-action)

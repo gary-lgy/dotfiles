@@ -15,21 +15,21 @@ if ! command -v pacman &>/dev/null; then
 fi
 
 # List of packages to install
-base=(git neovim python python-neovim stow curl)
+base=(git neovim python python-neovim neovim-symlinks emacs stow curl)
 maintenance=(pkgfile pacman-contrib expac pacmatic lostfiles)
-monitoring=(htop sysstat acpi net-tools lsof)
-cli_utils=(bash-completion openssh tree exa xclip fish fd ripgrep fzf ranger fasd bat thefuck tldr direnv expect tmux)
-audio=(pulseaudio pulseaudio-alsa alsa-utils)
+monitoring=(htop sysstat acpi net-tools lsof ncdu)
+cli_utils=(bash-completion openssh tree exa xclip fish fd ripgrep fzf ranger w3m fasd bat thefuck tldr direnv expect tmux)
+# audio=(pulseaudio pulseaudio-alsa alsa-utils)
 gui=(xorg-server xorg-xinit xorg-xrdb xorg-xset xorg-xrandr gtk2 gtk3)
-fonts=(adobe-source-code-pro-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji otf-font-awesome nerd-fonts-source-code-pro)
+fonts=(adobe-source-code-pro-fonts ttf-iosevka otf-fira-code noto-fonts noto-fonts-cjk noto-fonts-emoji otf-font-awesome nerd-fonts-source-code-pro)
 # Window manager and packages that come with most DEs but do not come with WMs
-WM=(i3-gaps i3blocks betterlockscreen compton networkmanager network-manager-applet gparted acpilight dunst imv udiskie)
-terminal_emulator=(kitty python-pillow pygmentize)
+WM=(i3-gaps i3blocks betterlockscreen compton networkmanager network-manager-applet gparted acpilight dunst eom feh udiskie)
+terminal_emulator=(kitty alacritty)
 launcher=(rofi rofi-dmenu rofimoji-git rofi-pass buku_run-git rofi-greenclip)
-gui_utils=(xdg-utils perl-file-mimeinfo desktop-file-utils sxhkd flameshot feh)
-misc_utils=(pass unzip buku nextcloud-client)
-coding=(ctags shellcheck-static diff-so-fancy)
-documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core)
+gui_utils=(xdg-utils perl-file-mimeinfo desktop-file-utils sxhkd flameshot)
+misc_utils=(pass unzip buku nextcloud-client dropbox bitwarden-bin)
+coding=(ctags shellcheck-static diff-so-fancy zeal)
+documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core texlive-latexextra words hunspell hunspell-en_GB)
 browser=(firefox-developer-edition)
 input_methods=(fcitx-im fcitx-configtool fcitx-googlepinyin)
 

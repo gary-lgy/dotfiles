@@ -4,9 +4,6 @@ let mapleader = ' '
 " Stop highlighting search items
 nnoremap <silent> <leader>/ :noh<CR>
 
-" Indent entire buffer
-nnoremap <leader>ii gg=G``
-
 " New buffer
 nnoremap <leader>e :edit<space>
 
@@ -16,7 +13,7 @@ tnoremap <Esc> <C-\><C-n>
 " Remappings to retain sanity{{{
 " Make Y's behavior consistent with other commands.
 " Use yankstack if it exists
-if !empty(glob('~/.vim/plugged/vim-yankstack'))
+if HasPlugin('vim-yankstack')
   call yankstack#setup()
   nmap Y y$
 else
@@ -38,9 +35,9 @@ xnoremap gk k
 onoremap gk k
 
 " Remap %
-nmap <M-m> %
-xmap <M-m> %
-omap <M-m> %
+nmap gm %
+xmap gm %
+omap gm %
 "}}}
 
 " Remap some text objects{{{
@@ -64,23 +61,23 @@ onoremap L g$
 "}}}
 
 " Split{{{
-nnoremap <leader>ss :split<space>
-nnoremap <leader>sv :vsplit<space>
+nnoremap <leader>ws :split<space>
+nnoremap <leader>wv :vsplit<space>
 "}}}
 
 " Resize{{{
 if has('nvim')
-  nnoremap <M-=> <C-w>+
-  nnoremap <M--> <C-w>-
-  nnoremap <M-,> <C-w><
-  nnoremap <M-.> <C-w>>
+  nnoremap <M-+> <C-w>+
+  nnoremap <M-_> <C-w>-
+  nnoremap <M-<> <C-w><
+  nnoremap <M->> <C-w>>
 endif
 "}}}
 "}}}
 
 " Save and exit{{{
-nnoremap <silent> <leader>d :bd<CR>
 nnoremap <leader>j :update<CR>
+nnoremap <silent> <leader>k :bd<CR>
 nnoremap <leader>q :quit<CR>
 nnoremap <leader>Q :quitall!<CR>
 "}}}
@@ -89,14 +86,8 @@ nnoremap <leader>Q :quitall!<CR>
 " Open terminal
 nnoremap <silent> <leader>t :terminal fish<CR>
 
-" Execute external command
-nnoremap <leader>, :!
-
-" Re-execute last command
-nnoremap <leader>; :<UP><CR>
-
 " Disable ex mode. Use Q for replaying macros
-if !empty(glob('~/.vim/plugged/vim-peekaboo'))
+if HasPlugin('vim-peekaboo')
   " Use peekaboo if possible
   nmap <buffer> <expr> Q peekaboo#peek(v:count1, '@', 0)
 else
@@ -112,3 +103,7 @@ inoremap <F1> <Nop>
 " Map <C-J> and <C-K> to go to next/previous line in insert mode
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
+
+" Type jk or kj in insert mode to enter normal mode
+inoremap jk <ESC>
+inoremap kj <ESC>

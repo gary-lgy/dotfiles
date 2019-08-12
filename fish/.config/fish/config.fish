@@ -25,8 +25,6 @@ eval (dircolors -c ~/.dircolors)
 #}}}
 
 #######################    Package Specific Config    #######################{{{
-# asdf version manager
-test -f ~/.asdf/asdf.fish; and source ~/.asdf/asdf.fish
 
 # direnv
 direnv hook fish | source

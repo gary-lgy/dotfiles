@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Git add selector
+
+# Exit if not in git repo
+git rev-parse --is-inside-work-tree 1>/dev/null || exit 1
+
+# Command for preview
+preview_cmd="LESS=R git diff --color=always -- {2..}"
+
+git -c color.status=always status --short |
+  fzf \
+  --header="Git add" \
+  --ansi --multi -0 \
+  --preview="$preview_cmd" |
+  awk '{ $1=""; print $0 }' |
+  sed 's/.* -> //' |
+  xargs -I{} git add {} && git status
