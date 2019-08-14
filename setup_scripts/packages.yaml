@@ -83,12 +83,15 @@ packages:
 - name: unzip
 - name: buku
 - name: nextcloud-client
-- name: dropbox
+- name: syncthing-gtk
+  optional: true
 - name: bitwarden-bin
 - name: ctags
 - name: shellcheck-static
 - name: diff-so-fancy
 - name: zeal
+- name: libreoffice-fresh
+  optional: true
 - name: zathura
 - name: zathura-pdf-poppler
 - name: pandoc-bin
