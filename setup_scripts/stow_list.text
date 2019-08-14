@@ -18,6 +18,7 @@ ignore
 kitty
 misc
 nvim
+polybar
 ranger
 ripgrep
 rofi-pass
