@@ -24,7 +24,7 @@ gui=(xorg-server xorg-xinit xorg-xrdb xorg-xset xorg-xrandr gtk2 gtk3)
 fonts=(adobe-source-code-pro-fonts ttf-iosevka otf-fira-code noto-fonts noto-fonts-cjk noto-fonts-emoji otf-font-awesome nerd-fonts-source-code-pro)
 # Window manager and packages that come with most DEs but do not come with WMs
 WM=(i3-gaps i3blocks betterlockscreen compton networkmanager network-manager-applet gparted acpilight dunst eom feh udiskie)
-terminal_emulator=(kitty alacritty)
+terminal_emulator=(kitty termite)
 launcher=(rofi rofi-dmenu rofimoji-git rofi-pass buku_run-git rofi-greenclip)
 gui_utils=(xdg-utils perl-file-mimeinfo desktop-file-utils sxhkd flameshot)
 misc_utils=(pass unzip buku nextcloud-client dropbox bitwarden-bin)

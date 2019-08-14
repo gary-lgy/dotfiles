@@ -1,4 +1,3 @@
-alacritty
 bash
 bat
 buku_run
@@ -24,6 +23,7 @@ rofi-pass
 scripts
 sxhkd
 systemd
+termite
 tmux
 vim
 x

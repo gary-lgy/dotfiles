@@ -67,7 +67,7 @@ packages:
 - name: feh
 - name: udiskie
 - name: kitty
-- name: alacritty
+- name: termite
 - name: rofi
 - name: rofi-dmenu
 - name: rofimoji
