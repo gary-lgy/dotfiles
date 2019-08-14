@@ -56,6 +56,7 @@ packages:
 - name: nerd-fonts-source-code-pro
 - name: i3-gaps
 - name: i3blocks
+- name: polybar
 - name: betterlockscreen
 - name: compton
 - name: networkmanager
