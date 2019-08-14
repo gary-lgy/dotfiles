@@ -88,6 +88,8 @@ packages:
 - name: syncthing-gtk
   optional: true
 - name: bitwarden-bin
+- name: rambox
+  optional: true
 - name: ctags
 - name: shellcheck-static
 - name: diff-so-fancy
