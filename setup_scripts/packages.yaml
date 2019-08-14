@@ -81,6 +81,7 @@ packages:
 - name: sxhkd
 - name: flameshot
 - name: pass
+- name: gnome-keyring
 - name: unzip
 - name: buku
 - name: nextcloud-client

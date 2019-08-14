@@ -1,6 +1,8 @@
 #!/bin/sh
 
 # Autostart programs
+eval $(/usr/bin/gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
 /usr/bin/sxhkd &
 /usr/bin/udiskie --no-automount --notify --tray &
 /usr/bin/dunst &

@@ -1,6 +1,3 @@
-# Start ssh agent
-eval "$(ssh-agent)" >/dev/null 2>&1 &
-
 # Environment Variables
 export EDITOR=/usr/bin/nvim
 export BROWSER=/usr/bin/firefox-developer-edition
