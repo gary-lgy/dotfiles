@@ -81,16 +81,16 @@ bindsym $mod+a focus parent
 # 8. Documents
 # 9. Chat
 # 10. Media
-set $ws1 "1 "
-set $ws2 "2 "
-set $ws3 "3 "
-set $ws4 "4 "
-set $ws5 "5 "
-set $ws6 "6 "
-set $ws7 "7 "
-set $ws8 "8 "
-set $ws9 "9 "
-set $ws10 "10 "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # Force applications to start on specified workspaces
 assign [class="Rambox"] $ws9
@@ -161,15 +161,18 @@ new_window none
 # Media Keys{{{
 # Pulse Audio controls
 # Uses the script ~/bin/i3volume
-bindsym XF86AudioRaiseVolume exec i3volume -np -i 5 -t i3blocks -u SIGRTMIN+10
-bindsym XF86AudioLowerVolume exec i3volume -np -d 5 -t i3blocks -u SIGRTMIN+10
-bindsym XF86AudioMute        exec i3volume -mn -t i3blocks -u SIGRTMIN+10
+# bindsym XF86AudioRaiseVolume exec i3volume -np -i 5 -t i3blocks -u SIGRTMIN+10
+# bindsym XF86AudioLowerVolume exec i3volume -np -d 5 -t i3blocks -u SIGRTMIN+10
+# bindsym XF86AudioMute        exec i3volume -mn -t i3blocks -u SIGRTMIN+10
+bindsym XF86AudioRaiseVolume exec i3volume -np -i 5
+bindsym XF86AudioLowerVolume exec i3volume -np -d 5
+bindsym XF86AudioMute        exec i3volume -mn
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -ctrl intel_backlight -inc 10 -fps 20
 bindsym XF86MonBrightnessDown exec xbacklight -ctrl intel_backlight -dec 10 -fps 20
-bindsym --release XF86MonBrightnessUp exec pkill -SIGRTMIN+9 i3blocks
-bindsym --release XF86MonBrightnessDown exec pkill -SIGRTMIN+9 i3blocks
+# bindsym --release XF86MonBrightnessUp exec pkill -SIGRTMIN+9 i3blocks
+# bindsym --release XF86MonBrightnessDown exec pkill -SIGRTMIN+9 i3blocks
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -179,24 +182,22 @@ bindsym XF86AudioPrev exec playerctl previous
 #}}}
 
 # Bar{{{
-bar {
-  status_command i3blocks
-  position top
-  font pango:monospace 10
-  colors {
-    background $bg-color
-    separator #757575
-    #                  border             background         text
-    focused_workspace  $bg-color          $bg-color          $text-color
-    inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-    urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-  }
-}
+# bar {
+#   status_command i3blocks
+#   position top
+#   font pango:monospace 10
+#   colors {
+#     background $bg-color
+#     separator #757575
+#     #                  border             background         text
+#     focused_workspace  $bg-color          $bg-color          $text-color
+#     inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#     urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#   }
+# }
 
-# Update key indicators
-bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-# }}}
+# polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Lock Screen{{{
 bindsym $mod+shift+x exec "betterlockscreen -l; sleep 5; betterlockscreen -u ~/Pictures/Wallpapers"

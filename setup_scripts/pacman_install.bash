@@ -24,16 +24,16 @@ gui=(xorg-server xorg-xinit xorg-xrdb xorg-xset xorg-xrandr gtk2 gtk3)
 fonts=(adobe-source-code-pro-fonts ttf-iosevka otf-fira-code noto-fonts noto-fonts-cjk noto-fonts-emoji otf-font-awesome nerd-fonts-source-code-pro)
 # Window manager and packages that come with most DEs but do not come with WMs
 WM=(i3-gaps i3blocks betterlockscreen compton networkmanager network-manager-applet gparted acpilight dunst eom feh udiskie)
-terminal_emulator=(kitty alacritty)
-launcher=(rofi rofi-dmenu rofimoji-git rofi-pass buku_run-git rofi-greenclip)
+terminal_emulator=(kitty termite)
+launcher=(rofi rofi-dmenu rofimoji rofi-pass buku_run-git rofi-greenclip)
 gui_utils=(xdg-utils perl-file-mimeinfo desktop-file-utils sxhkd flameshot)
-misc_utils=(pass unzip buku nextcloud-client dropbox bitwarden-bin)
+misc_utils=(pass unzip buku nextcloud-client bitwarden-bin)
 coding=(ctags shellcheck-static diff-so-fancy zeal)
 documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core texlive-latexextra words hunspell hunspell-en_GB)
 browser=(firefox-developer-edition)
 input_methods=(fcitx-im fcitx-configtool fcitx-googlepinyin)
 
-pending=(libreoffice-fresh)
+optional=(libreoffice-fresh syncthing-gtk)
 
 packages=( "${base[@]}" "${maintenance[@]}" "${monitoring[@]}" "${cli_utils[@]}" "${audio[@]}" "${gui[@]}" "${fonts[@]}" "${WM[@]}" "${terminal_emulator[@]}" "${launcher[@]}" "${gui_utils[@]}" "${misc_utils[@]}" \
   "${coding[@]}" "${documents[@]}" "${browser[@]}" "${input_methods[@]}")
@@ -103,4 +103,4 @@ for pac in "${packages[@]}"; do
 done
 
 echo -e "${GREEN}Done.${RESET}"
-echo -e "${BLUE}You may want to install ${pending[*]} yourself.${RESET}"
+echo -e "${BLUE}You may also want to install ${optional[*]}.${RESET}"

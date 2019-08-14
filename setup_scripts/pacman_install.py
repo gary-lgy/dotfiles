@@ -135,11 +135,19 @@ def main():
     """Entry point."""
     packages = yaml.safe_load(open('packages.yaml'))['packages']
     pacman = Pacman()
+    optional = []
     for package in packages:
-        if package.get('group'):
-            pacman.install_group(package['name'])
+        name = package['name']
+        if package.get('optional'):
+            optional.append(name)
+        elif package.get('group'):
+            pacman.install_group(name)
         else:
-            pacman.install_package(package['name'])
+            pacman.install_package(name)
+
+    print()
+    for package in optional:
+        warning(f'You may also want to install {package}')
 
 
 if __name__ == '__main__':
