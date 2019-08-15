@@ -6,8 +6,6 @@ endif
 let g:coc_node_path = '/usr/bin/node'
 
 " Extensions
-" TODO: let vim-plug manage extensions
-" TODO: consider replacing fzf with coc-list
 " TODO: coc-ccls is not ready for use yet
 let g:coc_global_extensions = [
       \ 'coc-lists',

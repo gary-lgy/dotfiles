@@ -15,25 +15,24 @@ endif
 " Terminal settings
 if has('nvim')
   autocmd TermOpen * startinsert
-  autocmd TermOpen * setlocal nospell
-  autocmd TermOpen * setlocal nonumber norelativenumber
+  autocmd TermOpen * setlocal nospell nonumber norelativenumber
 endif
 
 " Behavior
 set hidden
 set autoindent
-set backspace=indent,eol,start " Backspace behavior
-set clipboard=unnamed " Yank to PRIMARY selection
-set foldmethod=manual " Fold with markers
+set backspace=indent,eol,start
+set clipboard=unnamedplus
+set foldmethod=manual
 set timeoutlen=3000
 set ttimeoutlen=100
 set scrolloff=5
 set sidescrolloff=5
-set wildmenu " Enable command completion menu
-set wildmode=full " Cycle through completions
-set visualbell " Show visual bell
-set belloff=all " Turn off beep for all event
-set wrap " Wrap long lines
+set wildmenu
+set wildmode=full
+set visualbell
+set belloff=all
+set wrap
 set splitbelow
 set splitright
 set lazyredraw
@@ -51,10 +50,13 @@ set cursorline
 colorscheme gruvbox
 
 " Search
-set hlsearch " Highlight search items
-set incsearch " Incremental search
-set ignorecase " Make search case-insensitive
-set smartcase " Make search case-sensitive if at least one letter is uppercase
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+if has('nvim')
+  set inccommand=nosplit
+endif
 
 " " Format settings (taken care of by vim-sleuth)
 set tabstop=4 " Show tabs as 4-space wide.
