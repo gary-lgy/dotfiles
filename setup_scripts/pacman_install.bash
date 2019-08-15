@@ -33,7 +33,7 @@ documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core texlive-latexextr
 browser=(firefox-developer-edition)
 input_methods=(fcitx-im fcitx-configtool fcitx-googlepinyin)
 
-optional=(libreoffice-fresh syncthing-gtk rambox)
+optional=(libreoffice-fresh syncthing-gtk rambox evince)
 
 packages=( "${base[@]}" "${maintenance[@]}" "${monitoring[@]}" "${cli_utils[@]}" "${audio[@]}" "${gui[@]}" "${fonts[@]}" "${WM[@]}" "${terminal_emulator[@]}" "${launcher[@]}" "${gui_utils[@]}" "${misc_utils[@]}" \
   "${coding[@]}" "${documents[@]}" "${browser[@]}" "${input_methods[@]}")
