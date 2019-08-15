@@ -1,15 +1,24 @@
 [colors]
-background = #101510
+background     = #101510
 background-alt = #2f343f
-foreground = #f3f4f5
+foreground     = #f3f4f5
 foreground-alt = #676E7D
-primary = #ffb52a
-secondary = #e60053
-alert = #E53935
 
-[progress]
-indicator = │
-fill = ─
+ws-primary     = #ffb52a
+ws-alert       = #E53935
+
+module-good    = #aaff77
+module-normal  = #557755
+module-warning = #fba922
+module-alert   = #ff5555
+
+volume-bar     = #EE11EE
+
+[bar-symbols]
+thin-v = │
+thin-h = ─
+medium-v = ▐
+thick-v = █
 
 [ramp]
 0 = ▁
@@ -20,11 +29,8 @@ fill = ─
 5 = ▆
 6 = ▇
 7 = █
-normal-foreground = #aaff77
-warning-foreground = #fba922
-alert-foreground = #ff5555
 
-[bar/default]
+[bar/base]
 height = 27
 width = 100%
 fixed-center = false
@@ -49,16 +55,16 @@ tray-position = right
 tray-padding = 2
 
 [bar/bar1]
-inherit = bar/default
+inherit = bar/base
 
 modules-left = i3
-modules-right = cpu memory filesystem pulseaudio wlan backlight-acpi battery temperature date time
+modules-right = cpu memory filesystem wlan-1 pulseaudio backlight-acpi battery temperature date time
 
 [bar/bar2]
-inherit = bar/default
+inherit = bar/base
 
 modules-left = i3
-modules-right = cpu memory filesystem pulseaudio wlan-alt battery date time
+modules-right = cpu memory-alt filesystem wlan-2 pulseaudio-alt battery-alt date time
 
 [module/filesystem]
 type = internal/fs
@@ -73,37 +79,33 @@ label-unmounted =
 type = internal/i3
 
 ; DRY
-workspace-padding = 2
+ws-padding = 2
 
 label-mode-padding = 2
 label-mode-foreground = ${colors.foreground}
-label-mode-background = ${colors.primary}
+label-mode-background = ${colors.ws-primary}
 
 ; focused = Active workspace on focused monitor
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = ${self.workspace-padding}
+label-focused-underline  = ${colors.ws-primary}
+label-focused-padding    = ${self.ws-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused-padding = ${self.workspace-padding}
+label-unfocused-padding = ${self.ws-padding}
 
 ; visible = Active workspace on unfocused monitor
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.workspace-padding}
+label-visible-underline  = ${self.label-focused-underline}
+label-visible-padding    = ${self.ws-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent-underline = ${colors.alert}
-label-urgent-padding = ${self.workspace-padding}
-
-; label-separator = |
+label-urgent-underline = ${colors.ws-alert}
+label-urgent-padding   = ${self.ws-padding}
 
 [module/xbacklight]
 type = internal/xbacklight
-
 format = <label>
 label =  %percentage%%
-label-underline = #234567
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -112,54 +114,72 @@ card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
-format = <label> <ramp-load>
-interval = 2
+format = <label> <ramp-coreload>
+interval = 1
 label =  %percentage:2%%
 
-ramp-load-0 = ${ramp.0}
-ramp-load-0-foreground = ${ramp.normal-foreground}
-ramp-load-1 = ${ramp.1}
-ramp-load-1-foreground = ${ramp.normal-foreground}
-ramp-load-2 = ${ramp.2}
-ramp-load-2-foreground = ${ramp.normal-foreground}
-ramp-load-3 = ${ramp.3}
-ramp-load-3-foreground = ${ramp.normal-foreground}
-ramp-load-4 = ${ramp.4}
-ramp-load-4-foreground = ${ramp.warning-foreground}
-ramp-load-5 = ${ramp.5}
-ramp-load-5-foreground = ${ramp.warning-foreground}
-ramp-load-6 = ${ramp.6}
-ramp-load-6-foreground = ${ramp.alert-foreground}
-ramp-load-7 = ${ramp.7}
-ramp-load-7-foreground = ${ramp.alert-foreground}
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ${ramp.0}
+ramp-coreload-1 = ${ramp.1}
+ramp-coreload-2 = ${ramp.2}
+ramp-coreload-3 = ${ramp.3}
+ramp-coreload-4 = ${ramp.4}
+ramp-coreload-5 = ${ramp.5}
+ramp-coreload-6 = ${ramp.6}
+ramp-coreload-7 = ${ramp.7}
+ramp-coreload-0-foreground = ${colors.module-good}
+ramp-coreload-1-foreground = ${colors.module-good}
+ramp-coreload-2-foreground = ${colors.module-normal}
+ramp-coreload-3-foreground = ${colors.module-normal}
+ramp-coreload-4-foreground = ${colors.module-warning}
+ramp-coreload-5-foreground = ${colors.module-warning}
+ramp-coreload-6-foreground = ${colors.module-alert}
+ramp-coreload-7-foreground = ${colors.module-alert}
 
-[module/memory]
+[module/memory-base]
 type = internal/memory
 interval = 2
-format = <label> <ramp-used>
 label =  %gb_free%
 
-ramp-used-0 = ${ramp.0}
-ramp-used-0-foreground = ${ramp.normal-foreground}
-ramp-used-1 = ${ramp.1}
-ramp-used-1-foreground = ${ramp.normal-foreground}
-ramp-used-2 = ${ramp.2}
-ramp-used-2-foreground = ${ramp.normal-foreground}
-ramp-used-3 = ${ramp.3}
-ramp-used-3-foreground = ${ramp.normal-foreground}
-ramp-used-4 = ${ramp.4}
-ramp-used-4-foreground = ${ramp.warning-foreground}
-ramp-used-5 = ${ramp.5}
-ramp-used-5-foreground = ${ramp.warning-foreground}
-ramp-used-6 = ${ramp.6}
-ramp-used-6-foreground = ${ramp.alert-foreground}
-ramp-used-7 = ${ramp.7}
-ramp-used-7-foreground = ${ramp.alert-foreground}
+bar-used-gradient = true
+bar-used-width = 9
+bar-used-indicator =
+bar-used-fill      = ${bar-symbols.medium-v}
+bar-used-empty     = ${bar-symbols.medium-v}
+bar-used-foreground-0 = ${colors.module-good}
+bar-used-foreground-1 = ${colors.module-normal}
+bar-used-foreground-2 = ${colors.module-warning}
+bar-used-foreground-3 = ${colors.module-alert}
+bar-used-empty-foreground = ${colors.foreground-alt}
 
-[module/wlan]
+ramp-used-0 = ${ramp.0}
+ramp-used-1 = ${ramp.1}
+ramp-used-2 = ${ramp.2}
+ramp-used-3 = ${ramp.3}
+ramp-used-4 = ${ramp.4}
+ramp-used-5 = ${ramp.5}
+ramp-used-6 = ${ramp.6}
+ramp-used-7 = ${ramp.7}
+ramp-used-0-foreground = ${colors.module-good}
+ramp-used-1-foreground = ${colors.module-good}
+ramp-used-2-foreground = ${colors.module-normal}
+ramp-used-3-foreground = ${colors.module-normal}
+ramp-used-4-foreground = ${colors.module-warning}
+ramp-used-5-foreground = ${colors.module-warning}
+ramp-used-6-foreground = ${colors.module-alert}
+ramp-used-7-foreground = ${colors.module-alert}
+
+[module/memory]
+inherit = module/memory-base
+format = <label> <bar-used>
+
+[module/memory-alt]
+inherit = module/memory-base
+format = <label> <ramp-used>
+
+[module/wlan-base]
 type = internal/network
-interface = wlp60s0
-interval = 3.0
+interval = 1
 
 format-connected = <label-connected>
 label-connected =  %upspeed%  %downspeed%
@@ -168,32 +188,32 @@ format-disconnected = <label-disconnected>
 label-disconnected = disconnected
 label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/wlan-alt]
-inherit = module/wlan
+[module/wlan-1]
+inherit = module/wlan-base
+interface = wlp60s0
+
+[module/wlan-2]
+inherit = module/wlan-base
 interface = wls1
 
 [module/date]
 type = internal/date
 interval = 5
-
 date = %a %b %d
-
 label =  %date%
 
 [module/time]
 type = internal/date
 interval = 1
-
 time = %H:%M:%S
-
 label =  %time%
 
-[module/pulseaudio]
+[module/pulseaudio-base]
 type = internal/pulseaudio
 
-format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 
+format-muted = <label-muted>
 label-muted = 
 label-muted-foreground = ${colors.foreground-alt}
 
@@ -201,12 +221,32 @@ ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
-[module/battery]
+bar-volume-width = 10
+bar-volume-gradient = true
+bar-volume-indicator = ${bar-symbols.thin-v}
+bar-volume-fill      = ${bar-symbols.thin-h}
+bar-volume-empty     = ${bar-symbols.thin-h}
+bar-volume-indicator-foreground = ${colors.foreground}
+bar-volume-fill-foreground      = ${colors.volume-bar}
+bar-volume-empty-foreground     = ${colors.foreground-alt}
+
+[module/pulseaudio]
+inherit = module/pulseaudio-base
+format-volume = <ramp-volume> <bar-volume> <label-volume>
+
+[module/pulseaudio-alt]
+inherit = module/pulseaudio-base
+format-volume = <ramp-volume> <label-volume>
+
+[module/battery-base]
 type = internal/battery
 battery = BAT0
 adapter = AC
 full-at = 95
 time-format = %H:%M
+
+format-full = <label-full>
+label-full =  AC
 
 format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%% (%time%)
@@ -214,27 +254,40 @@ label-charging = %percentage%% (%time%)
 format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage%% (%time%)
 
-format-full = <label-full>
-label-full =  AC
+bar-capacity-gradient = true
+bar-capacity-width = 11
+bar-capacity-indicator =
+bar-capacity-fill  = ${bar-symbols.thick-v}
+bar-capacity-empty = ${bar-symbols.thick-v}
+bar-capacity-fill-foreground = ${colors.module-good}
+bar-capacity-empty-foreground = ${colors.foreground-alt}
 
 ramp-capacity-0 = 
-ramp-capacity-0-foreground = ${ramp.alert-foreground}
 ramp-capacity-1 = 
-ramp-capacity-1-foreground = ${ramp.alert-foreground}
 ramp-capacity-2 = 
-ramp-capacity-2-foreground = ${ramp.warning-foreground}
 ramp-capacity-3 = 
-ramp-capacity-3-foreground = ${ramp.normal-foreground}
 ramp-capacity-4 = 
-ramp-capacity-4-foreground = ${ramp.normal-foreground}
+ramp-capacity-0-foreground = ${colors.module-alert}
+ramp-capacity-1-foreground = ${colors.module-warning}
+ramp-capacity-2-foreground = ${colors.module-normal}
+ramp-capacity-3-foreground = ${colors.module-good}
+ramp-capacity-4-foreground = ${colors.module-good}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-foreground = #11AA44
+animation-charging-foreground = ${colors.module-good}
 animation-charging-framerate = 750
+
+[module/battery]
+inherit = module/battery-base
+format-discharging =  <bar-capacity>◘ <label-discharging>
+
+[module/battery-alt]
+inherit = module/battery-base
+format-discharging = <ramp-capacity> <label-discharging>
 
 [module/temperature]
 type = internal/temperature
@@ -245,10 +298,11 @@ format-warn = <ramp> <label-warn>
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.alert}
+label-warn-foreground = ${colors.module-alert}
 
 ramp-0 = 
 ramp-1 = 
+ramp-1-foreground = ${colors.module-alert}
 
 [settings]
 screenchange-reload = true
