@@ -106,10 +106,10 @@
   "p" #'helm-projectile-switch-project
   "f" #'helm-projectile-find-file
   "d" #'projectile-dired
-  "r" #'projectile-recentf
-  "t" #'projectile-run-term
-  "s" #'projectile-run-shell
-  "K" #'projectile-kill-buffers)
+  "r" #'helm-projectile-recentf
+  "s" #'projectile-run-eshell
+  "K" #'projectile-kill-buffers
+  "g" #'projectile-ripgrep)
 
 ;; Search leader
 (general-create-definer my-search-leader
@@ -119,7 +119,7 @@
   :states '(normal visual motion)
   :keymaps 'override)
 (my-search-leader
-  "d" #'deadgrep
+  "r" #'ripgrep-regexp
   "n" #'evil-ex-nohighlight
   "o" #'helm-occur)
 
@@ -173,11 +173,11 @@
   "]b"  #'next-buffer)
 
 (nmap
-  "gJ"          #'evil-join
-  "] SPC"       #'my-insert-line-below
-  "[ SPC"       #'my-insert-line-above
-  "[e"          #'my-evil-exchange-line-above
-  "]e"          #'my-evil-exchange-line-below)
+  "gJ"    #'evil-join
+  "] SPC" #'my-insert-line-below
+  "[ SPC" #'my-insert-line-above
+  "[e"    #'my-evil-exchange-line-above
+  "]e"    #'my-evil-exchange-line-below)
 
 (iemap
   "C-a" #'evil-first-non-blank

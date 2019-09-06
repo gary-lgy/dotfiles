@@ -40,9 +40,7 @@
   :config
   (helm-flx-mode +1))
 
-(use-package helm-projectile
-  :config
-  (helm-projectile-on))
+(use-package helm-projectile)
 
 (provide 'my-helm)
 ;;; my-helm.el ends here

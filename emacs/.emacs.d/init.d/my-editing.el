@@ -14,7 +14,9 @@
 													 "undo"
 													 user-emacs-directory)))))
 
-(use-package deadgrep)
+(use-package ripgrep
+  :custom
+  (ripgrep-arguments '("--hidden" "--follow")))
 
 (use-package fic-mode
   :custom
