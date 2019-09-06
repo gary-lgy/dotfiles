@@ -15,7 +15,7 @@ if ! command -v pacman &>/dev/null; then
 fi
 
 # List of packages to install
-base=(git neovim python python-neovim neovim-symlinks emacs stow curl)
+base=(git neovim python python-pynvim neovim-symlinks emacs stow curl)
 maintenance=(pkgfile pacman-contrib expac pacmatic lostfiles)
 monitoring=(htop sysstat acpi net-tools lsof ncdu)
 cli_utils=(bash-completion openssh tree exa xclip fish fd ripgrep fzf ranger w3m fasd bat thefuck tldr direnv expect tmux)
@@ -29,11 +29,11 @@ launcher=(rofi rofi-dmenu rofimoji rofi-pass buku_run-git rofi-greenclip)
 gui_utils=(xdg-utils perl-file-mimeinfo desktop-file-utils sxhkd flameshot)
 misc_utils=(pass gnoma-keyring unzip buku nextcloud-client bitwarden-bin)
 coding=(ctags shellcheck-static diff-so-fancy zeal)
-documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core texlive-latexextra words hunspell hunspell-en_GB)
+documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core texlive-latexextra texlive-scicnce words hunspell hunspell-en_GB)
 browser=(firefox-developer-edition)
 input_methods=(fcitx-im fcitx-configtool fcitx-googlepinyin)
 
-optional=(libreoffice-fresh syncthing-gtk rambox evince)
+optional=(libreoffice-fresh syncthing-gtk rambox telegram-desktop electronic-wechat evince)
 
 packages=( "${base[@]}" "${maintenance[@]}" "${monitoring[@]}" "${cli_utils[@]}" "${audio[@]}" "${gui[@]}" "${fonts[@]}" "${WM[@]}" "${terminal_emulator[@]}" "${launcher[@]}" "${gui_utils[@]}" "${misc_utils[@]}" \
   "${coding[@]}" "${documents[@]}" "${browser[@]}" "${input_methods[@]}")

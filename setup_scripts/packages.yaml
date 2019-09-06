@@ -2,7 +2,7 @@ packages:
 - name: git
 - name: neovim
 - name: python
-- name: python-neovim
+- name: python-pynvim
 - name: neovim-symlinks
 - name: emacs
 - name: stow
@@ -90,6 +90,10 @@ packages:
 - name: bitwarden-bin
 - name: rambox
   optional: true
+- name: telegram-desktop
+  optional: true
+- name: electronic-wechat
+  optional: true
 - name: ctags
 - name: shellcheck-static
 - name: diff-so-fancy
@@ -103,6 +107,7 @@ packages:
 - name: pandoc-bin
 - name: texlive-core
 - name: texlive-latexextra
+- name: texlive-science
 - name: words
 - name: hunspell
 - name: hunspell-en_GB
