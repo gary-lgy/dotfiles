@@ -26,6 +26,7 @@ let g:ale_fixers.typescript = ['eslint', 'prettier']
 let g:ale_fixers.javascript = ['eslint', 'prettier']
 let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.python = ['autopep8']
+let g:ale_fixers.tex = ['latexindent']
 
 " Use virtual text to display diagnostics
 let g:ale_virtualtext_cursor = 1

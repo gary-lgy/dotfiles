@@ -152,6 +152,9 @@ Plug 'valloric/matchtagalways', { 'for': b:filetypes_with_tags }
 " Auto close HTML and XML tags
 Plug 'alvan/vim-closetag', { 'for': b:filetypes_with_tags }
 
+" LaTex support
+Plug 'lervag/vimtex', { 'for': 'tex' }
+
 "}}}
 
 "******************************** Enhancements **********************************{{{
@@ -240,6 +243,10 @@ Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffReset'] }
 
 " Toggle between relative and absolute line numbers
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 "}}}
 

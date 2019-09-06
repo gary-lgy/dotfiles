@@ -21,12 +21,13 @@ let g:coc_global_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-yaml',
       \ 'coc-sh',
+      \ 'coc-vimtex',
       \ 'coc-import-cost',
       \ 'coc-highlight',
       \ 'coc-word',
       \ 'coc-syntax',
       \ 'coc-tag',
-      \ 'coc-java'
+      \ 'coc-ultisnips'
       \]
 
 " Core functionalities{{{
