@@ -1,7 +1,120 @@
-source ~/.vimrc
-
+" IdeaVim emulated plugins
 set surround
 set multiple-cursors
+set commentary
 
-set noerrorbells
+" Options
 set visualbell
+set clipboard=unnamedplus
+set scrolloff=5 sidescrolloff=5
+set number relativenumber
+set hlsearch incsearch
+set ignorecase smartcase
+set timeoutlen=500
+set ideajoin
+
+" Keys
+let mapleader = ' '
+
+" Operators
+nnoremap gm %
+vnoremap gm %
+onoremap gm %
+
+nnoremap J }
+vnoremap J }
+onoremap J }
+nnoremap K {
+vnoremap K {
+onoremap K {
+
+nnoremap H g^
+vnoremap H g^
+onoremap H g^
+nnoremap L g$
+vnoremap L g$
+onoremap L g$
+
+" Convenience
+nnoremap <silent> <leader>/ :noh<cr>
+nnoremap Y y$
+nnoremap <A-k> :action QuickJavaDoc<cr>
+
+nnoremap <F1> <nop>
+vnoremap <F1> <nop>
+inoremap <F1> <nop>
+
+nnoremap <C-6> :e#<cr>
+
+inoremap <C-J> <Down>
+inoremap <C-K> <Up>
+
+inoremap jk <esc>
+inoremap kj <esc>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap [[ :action MethodUp<cr>
+nnoremap ]] :action MethodDown<cr>
+nnoremap [b :action PreviousTab<cr>
+nnoremap ]b :action NextTab<cr>
+nnoremap [h :action VcsShowPrevChangeMarker<cr>
+nnoremap ]h :action VcsShowNextChangeMarker<cr>
+nnoremap [c :action PreviousDiff<cr>
+nnoremap ]c :action NextDiff<cr>
+nnoremap [d :action GotoPreviousError<cr>
+nnoremap ]d :action GotoNextError<cr>
+nnoremap [e :action MoveLineUp<cr>
+nnoremap ]e :action MoveLineDown<cr>
+nnoremap [<space> :action EditorStartNewLineBefore<cr>:action EditorDown<cr>
+nnoremap ]<space> :action EditorStartNewLine<cr>:action EditorUp<cr>
+
+nnoremap <leader><leader> :action SearchEverywhere<cr>
+nnoremap ga :action GotoAction<cr>
+nnoremap gf :action GotoFile<cr>
+nnoremap gC :action GotoClass<cr>
+nnoremap gs :action GotoSymbol<cr>
+
+nnoremap g; :action JumpToLastChange<cr>
+nnoremap g, :action JumpToNextChange<cr>
+nnoremap gy :action GotoTypeDeclaration<cr>
+nnoremap gS :action GotoSuperMethod<cr>
+nnoremap gt :action GotoTest<cr>
+nnoremap gi :action GotoImplementation<cr>
+nnoremap gu :action ShowUsages<cr>
+
+nnoremap <leader>an  :action Annotate<cr>
+nnoremap <leader>bb  :action ToggleLineBreakpoint<cr>
+nnoremap <leader>bk  :action CloseEditor<cr>
+nnoremap <leader>br  :action ViewBreakpoints<cr>
+nnoremap <leader>cv  :action ChangeView<cr>
+nnoremap <leader>cs  :action ChangeSignature<cr>
+nnoremap <leader>ct  :action ChangeTypeSignature<cr>
+nnoremap <leader>dc  :action ChooseDebugConfiguration<cr>
+nnoremap <leader>dd  :action Debug<cr>
+nnoremap <leader>eq  :action Exit<cr>
+nnoremap <leader>ff  :action FindInPath<cr>
+nnoremap <leader>fu  :action FindUsages<cr>
+nnoremap <leader>ge  :action Gradle.ExecuteTask<cr>
+nnoremap <leader>gq  :action ReformatCode<cr>
+nnoremap <leader>gr  :action GotoRelated<cr>
+nnoremap <leader>gs  :action GotoSuperMethod<cr>
+nnoremap <leader>ic  :action InspectCode<cr>
+nnoremap <leader>im  :action ImplementMethods<cr>
+nnoremap <leader>j   :write<cr>
+nnoremap <leader>mv  :action ActivateMavenProjectsToolWindow<cr>
+nnoremap <leader>nc  :action NewClass<cr>
+nnoremap <leader>oi  :action OptimizeImports<cr>
+nnoremap <leader>om  :action OverrideMethods<cr>
+nnoremap <leader>q   :action CloseActiveTab<cr>
+nnoremap <leader>rc  :action ChooseRunConfiguration<cr>
+nnoremap <leader>rf  :action RenameFile<cr>
+nnoremap <leader>rn  :action RenameElement<cr>
+nnoremap <leader>rr  :action Run<cr>
+nnoremap <leader>t   :action ActivateTerminalToolWindow<cr>
+nnoremap <leader>hr   :action Vcs.RollbackChangedLines<cr>
+
+
