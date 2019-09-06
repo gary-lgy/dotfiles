@@ -163,11 +163,11 @@ rofi.kb-remove-char-forward:         Delete,Control+d
 ! "Delete previous char" Set from: Default
 rofi.kb-remove-char-back:            BackSpace,Control+h
 ! "Delete till the end of line" Set from: Default
-rofi.kb-remove-to-eol:               Control+k
+rofi.kb-remove-to-eol:
 ! "Delete till the start of line" Set from: Default
 rofi.kb-remove-to-sol:               Control+u
 ! "Accept entry" Set from: Default
-rofi.kb-accept-entry:                Control+j,Control+m,Return
+rofi.kb-accept-entry:                Control+m,Return
 ! "Use entered text as command (in ssh/run modi)" Set from: Default
 rofi.kb-accept-custom:               Control+Return
 ! "Use alternate accept command." (launch in terminal) Set from: Default
@@ -183,9 +183,9 @@ rofi.kb-row-left:                    Control+Page_Up
 ! "Go to the next column" Set from: Default
 rofi.kb-row-right:                   Control+Page_Down
 ! "Select previous entry" Set from: Default
-rofi.kb-row-up:                      Up,Control+p,ISO_Left_Tab
+rofi.kb-row-up:                      Up,Control+p,Control+k,ISO_Left_Tab
 ! "Select next entry" Set from: Default
-rofi.kb-row-down:                    Down,Control+n
+rofi.kb-row-down:                    Down,Control+n,Control+j
 ! "Go to next row, if one left, accept it, if no left next mode." Set from: Default
 ! rofi.kb-row-tab:                     Tab
 ! "Go to the previous page" Set from: Default
@@ -197,7 +197,7 @@ rofi.kb-row-first:                   Home,KP_Home
 ! "Go to the last entry" Set from: Default
 rofi.kb-row-last:                    End,KP_End
 ! "Set selected item as input text" Set from: Default
-rofi.kb-row-select:                  Alt-r
+! rofi.kb-row-select:                  Alt-r
 ! "Take a screenshot of the rofi window" Set from: Default
 ! rofi.kb-screenshot:                  Alt+S
 ! "Toggle case sensitivity" Set from: Default
