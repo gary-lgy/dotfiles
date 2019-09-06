@@ -13,7 +13,7 @@ export SSH_AUTH_SOCK
 /usr/bin/flameshot &
 /usr/bin/nextcloud &
 /usr/bin/fcitx &
-/usr/bin/dropbox &
+/usr/bin/syncthing-gtk --minimized &
 
 # DE/WM
 exec i3
