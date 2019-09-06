@@ -2,6 +2,10 @@
 super + Return
   "$TERMINAL" -e "$INTERACTIVE_SHELL"
 
+# Launch browser
+super + f
+  $BROWSER
+
 # Rofi run
 alt + space
   rofi -show run
@@ -14,9 +18,9 @@ super + d
 super + space
   rofi -show window
 
-# Rofi pass
+# Password manager
 super + p
-  rofi-pass
+  bwmenu
 
 # Rofi buku_run
 super + b

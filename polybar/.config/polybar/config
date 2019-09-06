@@ -8,7 +8,7 @@ ws-primary     = #ffb52a
 ws-alert       = #E53935
 
 module-good    = #aaff77
-module-normal  = #557755
+module-normal  = #cbbb66
 module-warning = #fba922
 module-alert   = #ff5555
 

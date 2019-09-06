@@ -22,11 +22,6 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
 # }}}
 
-# Launching Applications{{{
-# Open browser and go to ws2
-bindsym $mod+f workspace $ws1, exec $BROWSER
-#}}}
-
 # {{{ Windows
 # change focus
 bindsym $mod+h focus left
@@ -41,10 +36,10 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
-bindsym $mod+u split h
+bindsym $mod+backslash split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+minus split v
 
 # enter fullscreen mode for the focused container
 bindsym F11 fullscreen toggle
@@ -70,17 +65,6 @@ bindsym $mod+a focus parent
 # }}}
 
 # Workspaces{{{
-# Assign names
-# 1: Browser
-# 2: CLI
-# 3. Code
-# 4. Code
-# 5. Notes
-# 6. Scratch
-# 7. Server
-# 8. Documents
-# 9. Chat
-# 10. Media
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -91,9 +75,16 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
-# Force applications to start on specified workspaces
-assign [class="Rambox"] $ws9
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -106,6 +97,16 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+Mod1+1 workspace $ws11
+bindsym $mod+Mod1+2 workspace $ws12
+bindsym $mod+Mod1+3 workspace $ws13
+bindsym $mod+Mod1+4 workspace $ws14
+bindsym $mod+Mod1+5 workspace $ws15
+bindsym $mod+Mod1+6 workspace $ws16
+bindsym $mod+Mod1+7 workspace $ws17
+bindsym $mod+Mod1+8 workspace $ws18
+bindsym $mod+Mod1+9 workspace $ws19
+bindsym $mod+Mod1+0 workspace $ws20
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -118,27 +119,66 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+Mod1+1 move container to workspace $ws11
+bindsym $mod+Shift+Mod1+2 move container to workspace $ws12
+bindsym $mod+Shift+Mod1+3 move container to workspace $ws13
+bindsym $mod+Shift+Mod1+4 move container to workspace $ws14
+bindsym $mod+Shift+Mod1+5 move container to workspace $ws15
+bindsym $mod+Shift+Mod1+6 move container to workspace $ws16
+bindsym $mod+Shift+Mod1+7 move container to workspace $ws17
+bindsym $mod+Shift+Mod1+8 move container to workspace $ws18
+bindsym $mod+Shift+Mod1+9 move container to workspace $ws19
+bindsym $mod+Shift+Mod1+0 move container to workspace $ws20
+
+# Move mode
+bindsym $mod+m mode "move"
+mode "move" {
+        bindsym 1 move container to workspace $ws1;  workspace $ws1
+        bindsym 2 move container to workspace $ws2;  workspace $ws2
+        bindsym 3 move container to workspace $ws3;  workspace $ws3
+        bindsym 4 move container to workspace $ws4;  workspace $ws4
+        bindsym 5 move container to workspace $ws5;  workspace $ws5
+        bindsym 6 move container to workspace $ws6;  workspace $ws6
+        bindsym 7 move container to workspace $ws7;  workspace $ws7
+        bindsym 8 move container to workspace $ws8;  workspace $ws8
+        bindsym 9 move container to workspace $ws9;  workspace $ws9
+        bindsym 0 move container to workspace $ws10; workspace $ws10
+        bindsym Mod1+1 move container to workspace $ws11; workspace $ws11
+        bindsym Mod1+2 move container to workspace $ws12; workspace $ws12
+        bindsym Mod1+3 move container to workspace $ws13; workspace $ws13
+        bindsym Mod1+4 move container to workspace $ws14; workspace $ws14
+        bindsym Mod1+5 move container to workspace $ws15; workspace $ws15
+        bindsym Mod1+6 move container to workspace $ws16; workspace $ws16
+        bindsym Mod1+7 move container to workspace $ws17; workspace $ws17
+        bindsym Mod1+8 move container to workspace $ws18; workspace $ws18
+        bindsym Mod1+9 move container to workspace $ws19; workspace $ws19
+        bindsym Mod1+0 move container to workspace $ws20; workspace $ws20
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+m mode "default"
+}
+
+# Move container/workspaces to other monitors
+bindsym $mod+Right move container to output right
+bindsym $mod+Left  move container to output left
+bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+Left  move workspace to output left
 # }}}
 
 # Resize{{{
-# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
 mode "resize" {
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
 # }}}
 
 # Window Appearances{{{
@@ -167,6 +207,18 @@ new_window none
 bindsym XF86AudioRaiseVolume exec i3volume -np -i 5
 bindsym XF86AudioLowerVolume exec i3volume -np -d 5
 bindsym XF86AudioMute        exec i3volume -mn
+
+# Volume mode
+bindsym $mod+v mode "volume"
+mode "volume" {
+        bindsym h exec i3volume -np -d 5
+        bindsym l exec i3volume -np -i 5
+        bindsym m exec i3volume -mn
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+v mode "default"
+}
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -ctrl intel_backlight -inc 10 -fps 20
@@ -200,14 +252,19 @@ bindsym XF86AudioPrev exec playerctl previous
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Lock Screen{{{
-bindsym $mod+shift+x exec "betterlockscreen -l; sleep 5; betterlockscreen -u ~/Pictures/Wallpapers"
+exec --no-startup-id xautolock -time 10 -locker "betterlockscreen -l; sleep 5; betterlockscreen -u ~/Pictures/Wallpapers"
+bindsym $mod+shift+x exec xautolock -locknow
 #}}}
 
 # Auto Start Applications {{{
 exec --no-startup-id i3-msg 'workspace $ws1; exec $BROWSER'
 exec --no-startup-id i3-msg 'workspace $ws5; exec emacs'
 exec --no-startup-id i3-msg 'workspace $ws9; exec rambox'
+exec --no-startup-id i3-msg 'workspace $ws9; exec telegram-desktop'
+exec --no-startup-id i3-msg 'workspace $ws9; exec electronic-wechat'
 exec --no-startup-id i3-msg 'workspace $ws2'
 # }}}
+
+for_window [class="duke.gui.DukeGui"] floating enable
 
 # vim: ft=i3config fdm=marker
