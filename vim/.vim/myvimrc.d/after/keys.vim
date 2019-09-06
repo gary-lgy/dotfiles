@@ -5,6 +5,9 @@ let maplocalleader = '  '
 " Stop highlighting search items
 nnoremap <silent> <leader>/ :noh<CR>
 
+" Jump to previous file
+nnoremap <BS> <C-^>
+
 " New buffer
 nnoremap <leader>e :edit<space>
 
@@ -61,6 +64,9 @@ onoremap L g$
 "}}}
 "}}}
 
+" Use gG to join lines instead of J
+nnoremap gG J
+
 " Split{{{
 nnoremap <leader>ws :split<space>
 nnoremap <leader>wv :vsplit<space>
@@ -78,7 +84,7 @@ endif
 
 " Save and exit{{{
 nnoremap <leader>j :update<CR>
-nnoremap <silent> <leader>k :bd<CR>
+nnoremap <silent> <leader>bk :bd<CR>
 nnoremap <leader>q :quit<CR>
 nnoremap <leader>Q :quitall!<CR>
 "}}}

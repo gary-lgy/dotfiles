@@ -2,18 +2,17 @@ if !HasPlugin('auto-pairs')
   finish
 endif
 
-" Disable toggle shortcut
-let g:AutoPairsShortcutToggle = ''
-
-" Disable fastwrap
-let g:AutoPairsShortcutFastWrap = ''
-
-" " Disable auto delete pairs
-" let g:AutoPairsMapBS = 0
-" let g:AutoPairsMapCh = 0
-
-" Disable back insert
+" Disable unused shortcuts
+let g:AutoPairsShortcutToggle     = ''
 let g:AutoPairsShortcutBackInsert = ''
+let g:AutoPairsShortcutJump       = ''
+let g:AutoPairsShortcutFastWrap   = ''
 
-" Disable jump
-let g:AutoPairsShortcutJump = ''
+" Disable multi-line auto-close
+let g:AutoPairsMultilineClose = 0
+
+autocmd Filetype tex let b:AutoPairs = AutoPairsDefine({
+      \ "$$": "$$",
+      \ "$": "$"
+      \ })
+autocmd Filetype vim let b:AutoPairs = AutoPairsDefine({}, ["\""])

@@ -6,8 +6,8 @@ endif
 " Jump and exchange
 nnoremap <silent> cxh :SidewaysLeft<CR>
 nnoremap <silent> cxl :SidewaysRight<CR>
-nnoremap <silent> [s  :SidewaysJumpLeft<CR>
-nnoremap <silent> ]s  :SidewaysJumpRight<CR>
+nnoremap <silent> [r  :SidewaysJumpLeft<CR>
+nnoremap <silent> ]r  :SidewaysJumpRight<CR>
 
 " Argument text objects
 omap aa <Plug>SidewaysArgumentTextobjA
