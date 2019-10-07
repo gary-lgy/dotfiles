@@ -1,6 +1,6 @@
 "*************************** VIM PLUG ******************************{{{
 let g:plugins_path = '~/.vim/plugged'
-" Check if a plugin is installed
+" Checks if a plugin is installed
 function! HasPlugin(plugin) abort
   return !empty(glob(g:plugins_path . '/' . a:plugin))
 endfunction
@@ -9,101 +9,189 @@ endfunction
 " If not, install it.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 "}}}
 
-"******************************** Plugins **********************************
-
 " Arguments to plug#begin specifies the directory to install the plugins
 call plug#begin(g:plugins_path)
 
-"******************************** Fundamentals **********************************{{{
-" Plugins that I think might as well be included in vanilla vim
+"******************************** Editing **********************************{{{
+" Generic text editing extensions
 
-" vim-surround.
+" vim-surround
 Plug 'tpope/vim-surround'
 
-" Additional text objects(pair, quote, separator, argument, and tag). Supports seeking.
+" Additional text objects(pair, quote, separator, argument, and tag) with support for seeking
 Plug 'wellle/targets.vim'
 
 " Exchange pieces of text
 Plug 'tommcdo/vim-exchange'
 
-" Repeat actions by some other plugins.
+" Repeat actions by plugins
 Plug 'tpope/vim-repeat'
 
-" Easily abbreviate, substitute variants of a words and switch among different cases.
+" Easily abbreviate, substitute variants of a words and switch among different cases
 Plug 'tpope/vim-abolish'
 
-" Pairs of shortcuts.
-Plug 'tpope/vim-unimpaired'
+" Easy alignment
+Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 
-" * or # search from a visual block
-Plug 'nelstrom/vim-visual-star-search'
-
-"}}}
-
-"******************************** Text Objects **********************************{{{
-" Some user-defined text objects
-
-" Easily define new text objects. Dependency for the many of the following plugins.
+" Text objects
 Plug 'kana/vim-textobj-user'
-
-" General
 Plug 'kana/vim-textobj-entire' " ie and ae
 Plug 'kana/vim-textobj-indent' " ii, ai, iI and aI
 Plug 'coderifous/textobj-word-column.vim' "ic, ac, iC, aC
-
-" For coding
-Plug 'glts/vim-textobj-comment', { 'on': ['<Plug>(textobj-comment-a)', '<Plug>(textobj-comment-i)', '<Plug>(textobj-comment-big-a)'] } " comment: i/, a/, a/
+Plug 'glts/vim-textobj-comment' " comment: ix, ax, ax
 Plug 'Julian/vim-textobj-variable-segment' " segments of variable names: iv and av
 Plug 'whatyouhide/vim-textobj-erb', { 'for': 'eruby' } " erb: iE and aE
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " ruby: ir and ar
 Plug 'bkad/CamelCaseMotion'
 
+" Heuristically adjust indentation
+Plug 'tpope/vim-sleuth'
+
+" Increment/decrement date and time
+Plug 'tpope/vim-speeddating', { 'on': ['<Plug>SpeedDatingUp', '<Plug>SpeedDatingDown', '<Plug>SpeedDatingNowUTC', '<Plug>SpeedDatingNowLocal', 'SpeedDatingFormat'] }
+
+"}}}
+
+"******************************** Enhancements **********************************{{{
+" Plugins that improves vim experience in general
+
+" FZF. The best shit ever.
+" Basic vim support
+if !empty(glob('/usr/share/vim/vimfiles'))
+  " if installed system-wide
+  Plug '/usr/share/vim/vimfiles'
+elseif !empty(glob('~/.fzf'))
+  " if installed for user
+  Plug '~/.fzf'
+endif
+
+" Collection of fzf commands
+Plug 'junegunn/fzf.vim'
+
+" Pairs of shortcuts.
+Plug 'tpope/vim-unimpaired'
+
+" Emacs-like yank ring
+Plug 'maxbrunsfeld/vim-yankstack'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" * or # search from a visual block
+Plug 'nelstrom/vim-visual-star-search'
+
+" Readline-like keybindings in insert and command mode
+Plug 'tpope/vim-rsi'
+
+" Dispatch
+Plug 'tpope/vim-dispatch'
+
+" Automatically toggle between relative and absolute line numbers
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
+" Close all buffers but this one
+Plug 'schickling/vim-bufonly'
+
+" Unix helpers within Vim
+let b:eunuch_commands = ['Delete', 'Unlink', 'Remove', 'Move', 'Rename', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Llocate', 'Wall', 'SudoWrite', 'SudoEdit']
+Plug 'tpope/vim-eunuch', { 'on': b:eunuch_commands }
+
+" sudo for Neovim
+Plug 'lambdalisue/suda.vim'
+
+" Diff lines
+Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffReset'] }
+
+"}}}
+
+"******************************** UI **********************************{{{
+" Better UI
+
+" Outline viewer using ctags/LSP
+Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
+
+" Grep/Ack
+Plug 'mileszs/ack.vim'
+
+" Display indentation levels
+Plug 'nathanaelkane/vim-indent-guides'
+
+" Undo tree GUI
+Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
+
+" Colorscheme collection
+Plug 'flazz/vim-colorschemes'
+
+" Rainbox parentheses
+Plug 'junegunn/rainbow_parentheses.vim', { 'on': ['RainbowParentheses', 'RainbowParenthesesColors'] }
+
+" Status bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Highlight yanked region
+Plug 'machakann/vim-highlightedyank'
+
+" File browser
+let b:NERDTree_commands = ['NERDTreeToggle', 'NERDTreeFind']
+Plug 'scrooloose/nerdtree', { 'on': b:NERDTree_commands }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': b:NERDTree_commands }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': b:NERDTree_commands }
+
+" Fancy startup screen
+Plug 'mhinz/vim-startify'
+
+" Smooth scrolling
+Plug 'yuttie/comfortable-motion.vim'
+
+" Devicons
+Plug 'ryanoasis/vim-devicons'
+
+"}}}
+
+"******************************** Tmux **********************************{{{
+
+" Navigation between vim splits and tmux panes
+Plug 'christoomey/vim-tmux-navigator'
+
+" Auto-completion source for words in tmux panes
+Plug 'wellle/tmux-complete.vim'
+
+" Interact with tmux within vim
+Plug 'benmills/vimux'
+
 "}}}
 
 "******************************** Programming **********************************{{{
-" Plugins that are helpful for programming.
+" Plugins for programming
 
-" The git wrapper.
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb' " Github
-Plug 'shumphrey/fugitive-gitlab.vim' " GitLab
-" TODO: compare with jreybert/vimagit
-
-" Git commit browser
-Plug 'junegunn/gv.vim', { 'on': 'GV' }
-
-" Comment source code.
+" Add/remove comments
 Plug 'tpope/vim-commentary'
 
-" Consolidated ftplugins
+" All-in-one filetype plugins
 Plug 'sheerun/vim-polyglot'
 
-" Lint while typing
+" Lint while you type
 Plug 'w0rp/ale'
 
-" IntelliSense and LSP
+" Autocompletion and LSP
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-" Grep/Ack
-let b:Ack_commands = [
-      \ 'Ack', 'Ack!', 'AckAdd',
-      \ 'LAck', 'LAckAdd',
-      \ 'AckFromSearch', 'AckFile',
-      \ 'AckHelp', 'LAckHelp',
-      \ 'AckWindow', 'LAckWindow'
-      \ ]
-Plug 'mileszs/ack.vim', { 'on': b:Ack_commands }
+" Git
+Plug 'tpope/vim-fugitive' " TODO: compare with jreybert/vimagit
+Plug 'tpope/vim-rhubarb' " Github
+Plug 'shumphrey/fugitive-gitlab.vim' " GitLab
+Plug 'junegunn/gv.vim', { 'on': 'GV' }
+Plug 'airblade/vim-gitgutter'
 
 " Granular project configuration
 Plug 'tpope/vim-projectionist'
-
-" Outline viewer using ctags
-Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
 
 " Automatically manage ctags
 Plug 'ludovicchabant/vim-gutentags'
@@ -123,20 +211,11 @@ Plug 'AndrewRadev/switch.vim',  { 'on': 'Switch' }
 " Standardize source code formatting.
 Plug 'editorconfig/editorconfig-vim'
 
-" Provide indentation guides.
-Plug 'nathanaelkane/vim-indent-guides'
-
-" Display git status in sign column.
-Plug 'airblade/vim-gitgutter'
-
 " For Rails development
 Plug 'tpope/vim-rails'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
-
-" Rainbox parentheses
-Plug 'junegunn/rainbow_parentheses.vim', { 'on': ['RainbowParentheses', 'RainbowParenthesesColors'] }
 
 " Automatically complete block structures
 Plug 'tpope/vim-endwise'
@@ -152,116 +231,16 @@ Plug 'valloric/matchtagalways', { 'for': b:filetypes_with_tags }
 " Auto close HTML and XML tags
 Plug 'alvan/vim-closetag', { 'for': b:filetypes_with_tags }
 
-" LaTex support
-Plug 'lervag/vimtex', { 'for': 'tex' }
-
 "}}}
 
-"******************************** Enhancements **********************************{{{
-" Plugins that improves vim experience in general.
+"******************************** Documents **********************************{{{
+" Plugins for typing documents
 
-" Heuristically adjust indentation
-Plug 'tpope/vim-sleuth'
-
-" Readline-like keybindings in insert and command mode
-Plug 'tpope/vim-rsi'
-
-" Dispatch
-Plug 'tpope/vim-dispatch'
-
-" A pretty and configurable status bar.
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" FZF. The best shit ever.
-" Basic vim plugin that came with fzf
-if !empty(glob('/usr/share/vim/vimfiles'))
-  " if installed system-wide
-  Plug '/usr/share/vim/vimfiles'
-elseif !empty(glob('~/.fzf'))
-  " if installed for user
-  Plug '~/.fzf'
-endif
-
-" Actual fzf.vim plugin with more powerful features
-Plug 'junegunn/fzf.vim'
-
-" Emacs-like yank ring
-Plug 'maxbrunsfeld/vim-yankstack'
-
-" Highlight yanked region
-Plug 'machakann/vim-highlightedyank'
-
-" Close all buffers but this one
-Plug 'schickling/vim-bufonly'
-
-" Unix helpers within Vim
-let b:eunuch_commands = ['Delete', 'Unlink', 'Remove', 'Move', 'Rename', 'Chmod', 'Mkdir', 'Cfind', 'Clocate', 'Lfind', 'Llocate', 'Wall', 'SudoWrite', 'SudoEdit']
-Plug 'tpope/vim-eunuch', { 'on': b:eunuch_commands }
-
-" sudo for Neovim
-Plug 'lambdalisue/suda.vim'
-
-" Easy alignment
-Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
-
-" Extend f, F, t, and T key mappings
-Plug 'rhysd/clever-f.vim'
-
-" Increment/decrement date and time
-Plug 'tpope/vim-speeddating', { 'on': ['<Plug>SpeedDatingUp', '<Plug>SpeedDatingDown', '<Plug>SpeedDatingNowUTC', '<Plug>SpeedDatingNowLocal', 'SpeedDatingFormat'] }
-
-" (Fake) Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
-
-" File browser
-let b:NERDTree_commands = ['NERDTreeToggle', 'NERDTreeFind']
-Plug 'scrooloose/nerdtree', { 'on': b:NERDTree_commands }
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': b:NERDTree_commands }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': b:NERDTree_commands }
-
-" Undo tree GUI
-Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle' }
-
-" Colorschemes
-Plug 'flazz/vim-colorschemes'
+" LaTex
+Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " Synchronised markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'pandoc.markdown', 'rmd'], 'on': 'MarkdownPreview' }
-
-" Navigation between vim splits and tmux panes
-Plug 'christoomey/vim-tmux-navigator'
-
-" Auto-completion source for words in tmux panes
-Plug 'wellle/tmux-complete.vim'
-
-" Interact with tmux within vim
-Plug 'benmills/vimux'
-
-" Diff lines
-Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffReset'] }
-
-" Toggle between relative and absolute line numbers
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-
-" Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-"}}}
-
-"******************************** For the Sake of It **********************************{{{
-" A fancy startup screen.
-Plug 'mhinz/vim-startify'
-
-" Smooth scrolling.
-Plug 'yuttie/comfortable-motion.vim'
-
-" Devicons
-Plug 'ryanoasis/vim-devicons'
-
-" Calendar
-Plug 'itchyny/calendar.vim', { 'on': 'Calendar' }
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
