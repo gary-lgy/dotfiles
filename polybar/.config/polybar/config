@@ -58,7 +58,7 @@ tray-padding = 2
 inherit = bar/base
 
 modules-left = i3
-modules-right = cpu memory filesystem wlan-1 pulseaudio backlight-acpi battery temperature date time
+modules-right = cpu memory filesystem wlan-1 pulseaudio backlight-acpi battery temperature nordvpn date time
 
 [bar/bar2]
 inherit = bar/base
@@ -307,6 +307,11 @@ label-warn-foreground = ${colors.module-alert}
 ramp-0 = 
 ramp-1 = 
 ramp-1-foreground = ${colors.module-alert}
+
+[module/nordvpn]
+type = custom/script
+exec = ~/.config/polybar/scripts/vpn-nordvpn-status.sh
+interval = 5
 
 [settings]
 screenchange-reload = true

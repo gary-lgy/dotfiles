@@ -80,6 +80,12 @@ packages:
 - name: desktop-file-utils
 - name: sxhkd
 - name: flameshot
+- name: nordvpn-bin
+  optional: true
+- name: wireguard-tools
+  optional: true
+- name: wireguard-arch
+  optional: true
 - name: pass
 - name: gnome-keyring
 - name: unzip
