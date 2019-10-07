@@ -61,7 +61,7 @@ bindsym $mod+shift+f focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+shift+a focus child
 # }}}
 
 # Workspaces{{{
@@ -87,72 +87,72 @@ set $ws19 "19"
 set $ws20 "20"
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-bindsym $mod+Mod1+1 workspace $ws11
-bindsym $mod+Mod1+2 workspace $ws12
-bindsym $mod+Mod1+3 workspace $ws13
-bindsym $mod+Mod1+4 workspace $ws14
-bindsym $mod+Mod1+5 workspace $ws15
-bindsym $mod+Mod1+6 workspace $ws16
-bindsym $mod+Mod1+7 workspace $ws17
-bindsym $mod+Mod1+8 workspace $ws18
-bindsym $mod+Mod1+9 workspace $ws19
-bindsym $mod+Mod1+0 workspace $ws20
+bindsym $mod+1   workspace $ws1
+bindsym $mod+2   workspace $ws2
+bindsym $mod+3   workspace $ws3
+bindsym $mod+4   workspace $ws4
+bindsym $mod+5   workspace $ws5
+bindsym $mod+6   workspace $ws6
+bindsym $mod+7   workspace $ws7
+bindsym $mod+8   workspace $ws8
+bindsym $mod+9   workspace $ws9
+bindsym $mod+0   workspace $ws10
+bindsym $mod+F1  workspace $ws11
+bindsym $mod+F2  workspace $ws12
+bindsym $mod+F3  workspace $ws13
+bindsym $mod+F4  workspace $ws14
+bindsym $mod+F5  workspace $ws15
+bindsym $mod+F6  workspace $ws16
+bindsym $mod+F7  workspace $ws17
+bindsym $mod+F8  workspace $ws18
+bindsym $mod+F9  workspace $ws19
+bindsym $mod+F10 workspace $ws20
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-bindsym $mod+Shift+Mod1+1 move container to workspace $ws11
-bindsym $mod+Shift+Mod1+2 move container to workspace $ws12
-bindsym $mod+Shift+Mod1+3 move container to workspace $ws13
-bindsym $mod+Shift+Mod1+4 move container to workspace $ws14
-bindsym $mod+Shift+Mod1+5 move container to workspace $ws15
-bindsym $mod+Shift+Mod1+6 move container to workspace $ws16
-bindsym $mod+Shift+Mod1+7 move container to workspace $ws17
-bindsym $mod+Shift+Mod1+8 move container to workspace $ws18
-bindsym $mod+Shift+Mod1+9 move container to workspace $ws19
-bindsym $mod+Shift+Mod1+0 move container to workspace $ws20
+bindsym $mod+Shift+1   move container to workspace $ws1
+bindsym $mod+Shift+2   move container to workspace $ws2
+bindsym $mod+Shift+3   move container to workspace $ws3
+bindsym $mod+Shift+4   move container to workspace $ws4
+bindsym $mod+Shift+5   move container to workspace $ws5
+bindsym $mod+Shift+6   move container to workspace $ws6
+bindsym $mod+Shift+7   move container to workspace $ws7
+bindsym $mod+Shift+8   move container to workspace $ws8
+bindsym $mod+Shift+9   move container to workspace $ws9
+bindsym $mod+Shift+0   move container to workspace $ws10
+bindsym $mod+Shift+F1  move container to workspace $ws11
+bindsym $mod+Shift+F2  move container to workspace $ws12
+bindsym $mod+Shift+F3  move container to workspace $ws13
+bindsym $mod+Shift+F4  move container to workspace $ws14
+bindsym $mod+Shift+F5  move container to workspace $ws15
+bindsym $mod+Shift+F6  move container to workspace $ws16
+bindsym $mod+Shift+F7  move container to workspace $ws17
+bindsym $mod+Shift+F8  move container to workspace $ws18
+bindsym $mod+Shift+F9  move container to workspace $ws19
+bindsym $mod+Shift+F10 move container to workspace $ws20
 
 # Move mode
 bindsym $mod+m mode "move"
 mode "move" {
-        bindsym 1 move container to workspace $ws1;  workspace $ws1
-        bindsym 2 move container to workspace $ws2;  workspace $ws2
-        bindsym 3 move container to workspace $ws3;  workspace $ws3
-        bindsym 4 move container to workspace $ws4;  workspace $ws4
-        bindsym 5 move container to workspace $ws5;  workspace $ws5
-        bindsym 6 move container to workspace $ws6;  workspace $ws6
-        bindsym 7 move container to workspace $ws7;  workspace $ws7
-        bindsym 8 move container to workspace $ws8;  workspace $ws8
-        bindsym 9 move container to workspace $ws9;  workspace $ws9
-        bindsym 0 move container to workspace $ws10; workspace $ws10
-        bindsym Mod1+1 move container to workspace $ws11; workspace $ws11
-        bindsym Mod1+2 move container to workspace $ws12; workspace $ws12
-        bindsym Mod1+3 move container to workspace $ws13; workspace $ws13
-        bindsym Mod1+4 move container to workspace $ws14; workspace $ws14
-        bindsym Mod1+5 move container to workspace $ws15; workspace $ws15
-        bindsym Mod1+6 move container to workspace $ws16; workspace $ws16
-        bindsym Mod1+7 move container to workspace $ws17; workspace $ws17
-        bindsym Mod1+8 move container to workspace $ws18; workspace $ws18
-        bindsym Mod1+9 move container to workspace $ws19; workspace $ws19
-        bindsym Mod1+0 move container to workspace $ws20; workspace $ws20
+        bindsym 1   move container to workspace $ws1;  workspace $ws1
+        bindsym 2   move container to workspace $ws2;  workspace $ws2
+        bindsym 3   move container to workspace $ws3;  workspace $ws3
+        bindsym 4   move container to workspace $ws4;  workspace $ws4
+        bindsym 5   move container to workspace $ws5;  workspace $ws5
+        bindsym 6   move container to workspace $ws6;  workspace $ws6
+        bindsym 7   move container to workspace $ws7;  workspace $ws7
+        bindsym 8   move container to workspace $ws8;  workspace $ws8
+        bindsym 9   move container to workspace $ws9;  workspace $ws9
+        bindsym 0   move container to workspace $ws10; workspace $ws10
+        bindsym F1  move container to workspace $ws11; workspace $ws11
+        bindsym F2  move container to workspace $ws12; workspace $ws12
+        bindsym F3  move container to workspace $ws13; workspace $ws13
+        bindsym F4  move container to workspace $ws14; workspace $ws14
+        bindsym F5  move container to workspace $ws15; workspace $ws15
+        bindsym F6  move container to workspace $ws16; workspace $ws16
+        bindsym F7  move container to workspace $ws17; workspace $ws17
+        bindsym F8  move container to workspace $ws18; workspace $ws18
+        bindsym F9  move container to workspace $ws19; workspace $ws19
+        bindsym F10 move container to workspace $ws20; workspace $ws20
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -195,7 +195,7 @@ client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          #00ff00
 
 hide_edge_borders both
-new_window none
+# new_window none
 # }}}
 
 # Media Keys{{{
