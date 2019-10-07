@@ -291,6 +291,10 @@ format-discharging = <ramp-capacity> <label-discharging>
 
 [module/temperature]
 type = internal/temperature
+interval = 5
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input
+
+base-temperature = 30
 warn-temperature = 60
 
 format = <ramp> <label>

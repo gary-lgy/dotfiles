@@ -27,9 +27,9 @@ WM=(i3-gaps i3blocks betterlockscreen compton networkmanager network-manager-app
 terminal_emulator=(kitty termite)
 launcher=(rofi rofi-dmenu rofimoji rofi-pass buku_run-git rofi-greenclip)
 gui_utils=(xdg-utils perl-file-mimeinfo desktop-file-utils sxhkd flameshot)
-misc_utils=(pass gnoma-keyring unzip buku nextcloud-client bitwarden-bin)
+misc_utils=(pass gnome-keyring unzip buku nextcloud-client bitwarden-bin)
 coding=(ctags shellcheck-static diff-so-fancy zeal)
-documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core texlive-latexextra texlive-scicnce words hunspell hunspell-en_GB)
+documents=(zathura zathura-pdf-poppler pandoc-bin texlive-core texlive-latexextra texlive-science words hunspell hunspell-en_GB)
 browser=(firefox-developer-edition)
 input_methods=(fcitx-im fcitx-configtool fcitx-googlepinyin)
 

@@ -11,6 +11,12 @@
 (require 'table)
 (add-hook 'text-mode-hook 'table-recognize)
 
+;; Indentation
+(add-hook 'org-mode-hook
+		  (lambda ()
+			(org-indent-mode t))
+		  t)
+
 ;; Use RET to follow links
 (setq org-return-follows-link t)
 (add-hook 'evil-after-load-hook
