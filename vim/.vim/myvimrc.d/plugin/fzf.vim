@@ -31,7 +31,7 @@ nnoremap <leader>`  <Cmd>Files ~<CR>
 nnoremap <leader>fg <Cmd>GFiles?<CR>
 nnoremap <leader>ft <Cmd>BTags<CR>
 nnoremap <leader>fT <Cmd>Tags<CR>
-nnoremap <leader>b  <Cmd>Buffers<CR>
+nnoremap <leader>,  <Cmd>Buffers<CR>
 nnoremap <leader>r  <Cmd>History<CR>
 nnoremap <leader>;  <Cmd>History:<CR>
 nnoremap <leader>?  <Cmd>History/<CR>

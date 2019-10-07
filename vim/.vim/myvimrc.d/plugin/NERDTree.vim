@@ -2,9 +2,9 @@ if !HasPlugin('nerdtree')
   finish
 endif
 
-" Use <leader>nn to toggle NERDTree
-nmap <Leader>nn <Cmd>NERDTreeToggle<CR>
-nmap <leader>nf <Cmd>NERDTreeFind<CR>
+" Use <F7> to toggle NERDTree
+nmap <F7> <Cmd>NERDTreeToggle<CR>
+nmap <leader><F7> <Cmd>NERDTreeFind<CR>
 
-" Use M to open menu to avoid conflict with vim-signature
-let g:NERDTreeMapMenu = 'm'
+" Use M to open menu
+let g:NERDTreeMapMenu = 'M'

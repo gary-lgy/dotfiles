@@ -15,12 +15,12 @@ highlight link GitGutterDelete DiffDelete
 let g:gitgutter_map_keys = 0
 
 " Define custom key mappings
-nmap ]h         <Plug>GitGutterNextHunk
-nmap [h         <Plug>GitGutterPrevHunk
-nmap <Leader>ha <Plug>GitGutterStageHunk
-nmap <Leader>hr <Plug>GitGutterUndoHunk
-nmap <Leader>hv <Plug>GitGutterPreviewHunk
-omap ih         <Plug>GitGutterTextObjectInnerPending
-omap ah         <Plug>GitGutterTextObjectOuterPending
-xmap ih         <Plug>GitGutterTextObjectInnerVisual
-xmap ah         <Plug>GitGutterTextObjectOuterVisual
+nmap ]h         <Plug>(GitGutterNextHunk)
+nmap [h         <Plug>(GitGutterPrevHunk)
+nmap <Leader>ha <Plug>(GitGutterStageHunk)
+nmap <Leader>hr <Plug>(GitGutterUndoHunk)
+nmap <Leader>hv <Plug>(GitGutterPreviewHunk)
+omap ih         <Plug>(GitGutterTextObjectInnerPending)
+omap ah         <Plug>(GitGutterTextObjectOuterPending)
+xmap ih         <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah         <Plug>(GitGutterTextObjectOuterVisual)
