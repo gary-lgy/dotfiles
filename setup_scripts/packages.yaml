@@ -7,6 +7,10 @@ packages:
 - name: emacs
 - name: stow
 - name: curl
+- name: diffutils
+- name: man-db
+- name: man-pages
+- name: less
 - name: pkgfile
 - name: pacman-contrib
 - name: expac

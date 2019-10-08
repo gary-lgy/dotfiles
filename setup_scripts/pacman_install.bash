@@ -15,7 +15,7 @@ if ! command -v pacman &>/dev/null; then
 fi
 
 # List of packages to install
-base=(git neovim python python-pynvim neovim-symlinks emacs stow curl)
+base=(git neovim python python-pynvim neovim-symlinks emacs stow curl diffutils man-db man-pages less)
 maintenance=(pkgfile pacman-contrib expac pacmatic lostfiles)
 monitoring=(htop sysstat acpi net-tools lsof ncdu)
 cli_utils=(bash-completion openssh tree exa xclip fish fd ripgrep fzf ranger w3m fasd bat thefuck tldr direnv expect tmux)
