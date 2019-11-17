@@ -3,7 +3,7 @@ super + Return
   "$TERMINAL" -e "$INTERACTIVE_SHELL"
 
 # Launch browser
-super + f
+super + shift + f
   $BROWSER
 
 # Rofi run

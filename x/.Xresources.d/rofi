@@ -105,7 +105,7 @@ rofi.click-to-exit:                  true
 ! "Indicate how it match by underlining it." Set from: Default
 rofi.show-match:                     true
 ! "New style theme file" Set from: Default
-rofi.theme:                          /usr/share/rofi/themes/Monokai.rasi
+rofi.theme:                          /usr/share/rofi/themes/android_notification.rasi
 ! "Color scheme for normal row" Set from: Default
 ! rofi.color-normal:                   
 ! "Color scheme for urgent row" Set from: Default

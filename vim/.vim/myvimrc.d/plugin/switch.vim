@@ -12,6 +12,12 @@ let g:switch_custom_definitions =
     \ [
     \   ['public', 'private', 'protected'],
     \   ['if', 'unless'],
+    \   ['true', 'false'],
     \   ['>=', '<'],
     \   ['<=', '>']
     \ ]
+
+autocmd FileType tex let b:switch_custom_definitions =
+      \ [
+      \   ['\\land', '\\lor']
+      \ ]

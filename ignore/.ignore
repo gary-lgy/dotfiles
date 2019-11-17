@@ -16,6 +16,7 @@ node_modules
 /.vim/plugged
 /.node-gyp
 /.yarn
+.gradle
 
 # nix related stuff
 /.nix-defexpr

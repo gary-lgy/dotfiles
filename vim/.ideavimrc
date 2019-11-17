@@ -5,7 +5,7 @@ set commentary
 
 " Options
 set visualbell
-set clipboard=unnamedplus
+set clipboard=unnamedplus,ideaput
 set scrolloff=5 sidescrolloff=5
 set number relativenumber
 set hlsearch incsearch
@@ -44,10 +44,14 @@ nnoremap <F1> <nop>
 vnoremap <F1> <nop>
 inoremap <F1> <nop>
 
-nnoremap <C-6> :e#<cr>
+nnoremap <C-6> :action VimFilePrevious<cr>
 
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
+inoremap <C-A> <Esc>I
+inoremap <C-E> <Esc>A
+inoremap <C-F> <Right>
+inoremap <C-B> <Left>
 
 inoremap jk <esc>
 inoremap kj <esc>
@@ -56,6 +60,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" The built-in C-O and C-I bindings are broken
+nnoremap <C-O> :action Back<cr>
+nnoremap <C-I> :action Forward<cr>
 
 nnoremap [[ :action MethodUp<cr>
 nnoremap ]] :action MethodDown<cr>
@@ -69,39 +77,47 @@ nnoremap [d :action GotoPreviousError<cr>
 nnoremap ]d :action GotoNextError<cr>
 nnoremap [e :action MoveLineUp<cr>
 nnoremap ]e :action MoveLineDown<cr>
+nnoremap [E :action MoveStatementUp<cr>
+nnoremap ]E :action MoveStatementDown<cr>
 nnoremap [<space> :action EditorStartNewLineBefore<cr>:action EditorDown<cr>
 nnoremap ]<space> :action EditorStartNewLine<cr>:action EditorUp<cr>
 
 nnoremap <leader><leader> :action SearchEverywhere<cr>
 nnoremap ga :action GotoAction<cr>
 nnoremap gf :action GotoFile<cr>
-nnoremap gC :action GotoClass<cr>
+nnoremap gh :action GotoClass<cr>
 nnoremap gs :action GotoSymbol<cr>
 
 nnoremap g; :action JumpToLastChange<cr>
 nnoremap g, :action JumpToNextChange<cr>
-nnoremap gy :action GotoTypeDeclaration<cr>
+nnoremap gi :action GotoImplementation<cr>
+nnoremap gr :action RecentFiles<cr>
 nnoremap gS :action GotoSuperMethod<cr>
 nnoremap gt :action GotoTest<cr>
-nnoremap gi :action GotoImplementation<cr>
 nnoremap gu :action ShowUsages<cr>
+nnoremap gy :action GotoTypeDeclaration<cr>
 
 nnoremap <leader>an  :action Annotate<cr>
 nnoremap <leader>bb  :action ToggleLineBreakpoint<cr>
 nnoremap <leader>bk  :action CloseEditor<cr>
 nnoremap <leader>br  :action ViewBreakpoints<cr>
-nnoremap <leader>cv  :action ChangeView<cr>
+nnoremap <leader>ch  :action CallHierarchy<cr>
+nnoremap <leader>cp  :action CopyPaths<cr>
 nnoremap <leader>cs  :action ChangeSignature<cr>
 nnoremap <leader>ct  :action ChangeTypeSignature<cr>
+nnoremap <leader>cv  :action ChangeView<cr>
 nnoremap <leader>dc  :action ChooseDebugConfiguration<cr>
 nnoremap <leader>dd  :action Debug<cr>
 nnoremap <leader>eq  :action Exit<cr>
 nnoremap <leader>ff  :action FindInPath<cr>
+nnoremap <leader>fm  :action ReformatCode<cr>
+nnoremap <leader>fp  :action ReformatWithPrettierAction<cr>
 nnoremap <leader>fu  :action FindUsages<cr>
 nnoremap <leader>ge  :action Gradle.ExecuteTask<cr>
 nnoremap <leader>gq  :action ReformatCode<cr>
 nnoremap <leader>gr  :action GotoRelated<cr>
 nnoremap <leader>gs  :action GotoSuperMethod<cr>
+nnoremap <leader>hr  :action Vcs.RollbackChangedLines<cr>
 nnoremap <leader>ic  :action InspectCode<cr>
 nnoremap <leader>im  :action ImplementMethods<cr>
 nnoremap <leader>j   :write<cr>
@@ -110,11 +126,10 @@ nnoremap <leader>nc  :action NewClass<cr>
 nnoremap <leader>oi  :action OptimizeImports<cr>
 nnoremap <leader>om  :action OverrideMethods<cr>
 nnoremap <leader>q   :action CloseActiveTab<cr>
-nnoremap <leader>rc  :action ChooseRunConfiguration<cr>
 nnoremap <leader>rf  :action RenameFile<cr>
 nnoremap <leader>rn  :action RenameElement<cr>
 nnoremap <leader>rr  :action Run<cr>
+nnoremap <leader>sd  :action SafeDelete<cr>
+nnoremap <leader>sh  :action SplitHorizontally<cr>
+nnoremap <leader>ss  :action SplitVertically<cr>
 nnoremap <leader>t   :action ActivateTerminalToolWindow<cr>
-nnoremap <leader>hr   :action Vcs.RollbackChangedLines<cr>
-
-
