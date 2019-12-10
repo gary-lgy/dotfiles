@@ -6,19 +6,63 @@
 
 (require 'my-package-config)
 
+;; Display tabs as 4 spaces
+(setq-default tab-width 4)
+
+;; Use visual lines
+(global-visual-line-mode 1)
+(delight 'visual-line-mode nil "simple")
+
+;; display “lambda” as “λ”
+(global-prettify-symbols-mode 1)
+
+(use-package electric
+  :config
+  (electric-indent-mode 1))
+
+;; Visualize white space
+(use-package whitespace
+  :delight global-whitespace-mode
+  :custom
+  (whitespace-style '(face tabs tab-mark empty trailing))
+  (whitespace-display-mappings
+		'((tab-mark 9 [124 9] [92 9]))) ; 124 is the ascii ID for '\|'
+  :init
+  (custom-set-faces
+   '(whitespace-tab ((t (:foreground "#636363")))))
+  :config
+  (global-whitespace-mode 1))
+
+(use-package display-line-numbers
+  :custom
+  (display-line-numbers-type 'relative)
+  :config
+  (define-globalized-minor-mode my-globalized-display-line-numbers-mode display-line-numbers-mode
+	(lambda ()
+	  (unless (derived-mode-p 'doc-view-mode 'pdf-view-mode)
+		(display-line-numbers--turn-on))))
+  (my-globalized-display-line-numbers-mode 1))
+
 (use-package undo-tree
   :delight
   :init
   (setq undo-tree-auto-save-history t
-		undo-tree-history-directory-alist `(("." . ,(expand-file-name
-													 "undo"
-													 user-emacs-directory)))))
+		undo-tree-history-directory-alist
+		`(("." . ,(expand-file-name "undo" user-emacs-directory)))))
+
+(use-package flyspell
+  :delight
+  :hook (text-mode . flyspell-mode)
+  :custom
+  (ispell-program-name "hunspell")
+  (ispell-complete-word-dict (file-truename "/usr/share/dict/british")))
 
 (use-package ripgrep
   :custom
   (ripgrep-arguments '("--hidden" "--follow")))
 
 (use-package fic-mode
+  :delight
   :custom
   (fic-foreground-color "Dark Orange")
   (fic-background-color nil)
@@ -28,12 +72,13 @@
 (use-package smartparens
   :delight
   :custom
-  (sp-highlight-wrap-overlay nil)
   (sp-highlight-pair-overlay nil)
-  (sp-autodelete-pair nil)
-  :hook (prog-mode . smartparens-mode)
   :config
-  (require 'smartparens-config))
+  (require 'smartparens-config)
+  (sp-local-pair '(c-mode c++-mode java-mode go-mode js-mode jsx-mode)
+   "{" nil
+   :post-handlers '(:add ("||\n[i]" "RET")))
+  (smartparens-global-mode 1))
 
 (use-package highlight-parentheses
   :delight
@@ -41,14 +86,17 @@
 
 (use-package editorconfig
   :config
-  (editorconfig-mode t))
+  (editorconfig-mode 1))
 
 (use-package dtrt-indent
   :config
-  (dtrt-indent-mode t))
+  (dtrt-indent-mode 1))
 
-(use-package markdown-mode
-  :mode "\\.\(md\|markdown\)\\'")
+(use-package yasnippet
+  :delight yas-minor-mode
+  :config
+  (yas-global-mode 1)
+  (use-package yasnippet-snippets))
 
 (provide 'my-editing)
 ;;; my-editing.el ends here

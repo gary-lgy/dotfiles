@@ -7,19 +7,23 @@
 ;;; Code:
 
 (require 'my-package-config)
+(require 'my-misc-packages)
+(require 'winner)
 (require 'my-evil)
+(require 'my-helm)
 (require 'my-utils)
 (require 'my-flycheck)
-(require 'org)
-
-(use-package general
-  :config
-  (general-evil-setup t))
+(require 'my-project)
+(require 'my-org)
+(require 'my-editing)
+(require 'my-documents)
+(require 'my-company)
+(require 'my-lsp)
 
 (use-package which-key
   :delight
   :config
-  (which-key-mode))
+  (which-key-mode 1))
 
 ;;; Leader bindings
 
@@ -27,25 +31,42 @@
 (general-create-definer my-leader
   :prefix "SPC"
   :prefix-command 'my-leader-prefix-command
-  :prefix-map 'my-leader-prefix-map
-  :states '(normal visual motion)
-  :keymaps 'override)
+  :prefix-map     'my-leader-prefix-map
+  :states         '(normal visual motion)
+  :keymaps        'override)
 (my-leader
   "SPC" #'helm-M-x
   "j"   #'save-buffer
   "k"   #'delete-window
   "TAB" #'evil-switch-to-windows-last-buffer)
 
-;; Emacs leader
-(general-create-definer my-emacs-leader
+;; Emacs/eyebrowse leader
+(general-create-definer my-emacs-eyebrowse-leader
   :prefix "SPC e"
-  :prefix-command 'my-emacs-leader-prefix-command
-  :prefix-map 'my-emacs-leader-prefix-map
+  :prefix-command 'my-emacs-eyebrowse-leader-prefix-command
+  :prefix-map 'my-emacs-eyebrowse-leader-prefix-map
   :states '(normal visual motion)
   :keymaps 'override)
-(my-emacs-leader
+(my-emacs-eyebrowse-leader
   "r"   #'restart-emacs
-  "q"   #'save-buffers-kill-terminal)
+  "q"   #'save-buffers-kill-terminal
+  "R"   #'my-reload-emacs-config-file
+  "h"   #'eyebrowse-prev-window-config
+  "l"   #'eyebrowse-next-window-config
+  "e"   #'eyebrowse-last-window-config
+  "d"   #'eyebrowse-close-window-config
+  "t"   #'eyebrowse-rename-window-config
+  "SPC" #'eyebrowse-switch-to-window-config
+  "0"   #'eyebrowse-switch-to-window-config-0
+  "1"   #'eyebrowse-switch-to-window-config-1
+  "2"   #'eyebrowse-switch-to-window-config-2
+  "3"   #'eyebrowse-switch-to-window-config-3
+  "4"   #'eyebrowse-switch-to-window-config-4
+  "5"   #'eyebrowse-switch-to-window-config-5
+  "6"   #'eyebrowse-switch-to-window-config-6
+  "7"   #'eyebrowse-switch-to-window-config-7
+  "8"   #'eyebrowse-switch-to-window-config-8
+  "9"   #'eyebrowse-switch-to-window-config-9)
 
 ;; Buffer leader
 (general-create-definer my-buffer-leader
@@ -56,9 +77,11 @@
   :keymaps 'override)
 (my-buffer-leader
   "b" #'helm-mini
+  "d" #'kill-this-buffer
   "k" #'kill-buffer-and-window
   "s" (lambda () (interactive) (switch-to-buffer "*scratch*"))
-  "m" (lambda () (interactive) (switch-to-buffer "*Messages*")))
+  "m" (lambda () (interactive) (switch-to-buffer "*Messages*"))
+  "O" #'my-kill-other-buffers)
 
 ;; Window leader
 (general-create-definer my-window-leader
@@ -68,15 +91,26 @@
   :states '(normal visual motion)
   :keymaps 'override)
 (my-window-leader
-  "j"       #'evil-window-down
-  "k"       #'evil-window-up
-  "h"       #'evil-window-left
-  "l"       #'evil-window-right
-  "s"       #'split-window-right
-  "v"       #'split-window-below
-  "w"       #'other-window
-  "k"       #'delete-window
-  "o"       #'delete-other-windows)
+  "j"   #'evil-window-down
+  "k"   #'evil-window-up
+  "h"   #'evil-window-left
+  "l"   #'evil-window-right
+  "s"   #'split-window-right
+  "v"   #'split-window-below
+  "w"   #'other-window
+  "d"   #'delete-window
+  "o"   #'delete-other-windows
+  "r"   #'evil-window-rotate-downwards
+  "R"   #'evil-window-rotate-upwards
+  "="   #'evil-window-increase-height
+  "-"   #'evil-window-decrease-height
+  "."   #'evil-window-increase-width
+  ","   #'evil-window-decrease-width
+  "+"   #'balance-windows
+  "W"   #'window-configuration-to-register
+  "g"   #'jump-to-register
+  "u"   #'winner-undo
+  "C-r" #'winner-redo)
 
 ;; File leader
 (general-create-definer my-file-leader
@@ -90,10 +124,7 @@
   "s" #'save-buffer
   "r" #'helm-recentf
   "f" #'helm-find-files
-  "F" #'helm-find
-  "e" #'my-open-emacs-config-files
-  "o" #'my-open-org-files
-  "R" #'my-reload-emacs-config-file)
+  "F" #'helm-find)
 
 ;; Project leader
 (general-create-definer my-project-leader
@@ -103,13 +134,15 @@
   :states '(normal visual motion)
   :keymaps 'override)
 (my-project-leader
-  "p" #'helm-projectile-switch-project
-  "f" #'helm-projectile-find-file
-  "d" #'projectile-dired
-  "r" #'helm-projectile-recentf
-  "s" #'projectile-run-eshell
-  "K" #'projectile-kill-buffers
-  "g" #'projectile-ripgrep)
+  "p"   #'helm-projectile-switch-project
+  "f"   #'helm-projectile-find-file
+  "d"   #'projectile-dired
+  "r"   #'helm-projectile-recentf
+  "s"   #'projectile-run-eshell
+  "K"   #'projectile-kill-buffers
+  "g"   #'projectile-ripgrep
+  "SPC" #'projectile-commander
+  "t"   #'projectile-toggle-between-implementation-and-test)
 
 ;; Search leader
 (general-create-definer my-search-leader
@@ -123,6 +156,20 @@
   "n" #'evil-ex-nohighlight
   "o" #'helm-occur)
 
+;; vc leader
+(general-create-definer my-vc-leader
+  :prefix "SPC g"
+  :prefix-command 'my-vc-leader-prefix-command
+  :prefic-map 'my-vc-leader-prefix-map
+  :states '(normal visual motion)
+  :keymaps 'override)
+(my-vc-leader
+ "t" #'git-gutter
+ "v" #'git-gutter:popup-hunk
+ "s" #'git-gutter:stage-hunk
+ "r" #'git-gutter:revert-hunk
+ "g" #'magit)
+
 ;; Help leader
 (general-create-definer my-help-leader
   :prefix "SPC h"
@@ -135,7 +182,38 @@
   "f" #'describe-function
   "v" #'describe-variable
   "b" #'describe-bindings
-  "p" #'describe-package)
+  "p" #'describe-package
+  "c" #'customize-group)
+
+;; Org leader
+(general-create-definer my-org-leader
+  :prefix "SPC o"
+  :prefix-command 'my-org-leader-prefix-command
+  :prefix-map 'my-org-leader-prefix-map
+  :states '(normal visual motion)
+  :keymaps 'override)
+(my-org-leader
+  "a" #'org-agenda
+  "p" #'org-pomodoro
+  "o" #'my-open-org-files
+  "c" #'org-capture
+  "l" #'org-store-link)
+
+;; Miscellaneous leader
+(general-create-definer my-misc-leader
+  :prefix "SPC ,"
+  :prefix-command 'my-misc-leader-prefix-command
+  :prefix-map 'my-misc-leader-prefix-map
+  :states '(normal visual motion)
+  :keymaps 'override)
+(my-misc-leader
+  "s" #'shell-command
+  "f" #'my-select-font
+  "," #'evil-avy-goto-line
+  "." #'evil-avy-goto-word-1
+  "e" #'my-open-emacs-config-files
+  "d" #'my-open-dotfiles
+  "t" #'my-open-tmp-dir)
 
 ;;; Other bindings
 
@@ -146,13 +224,6 @@
   "S-C-j" #'shrink-window
   "S-C-k" #'enlarge-window)
 
-;; Use visual line operators
-(general-swap-key nil 'motion
-  "j" "gj"
-  "k" "gk"
-  "$" "g$"
-  "^" "g^")
-
 (general-unbind 'normal
   "J"
   "K")
@@ -160,32 +231,33 @@
 (mmap
   "J"   #'evil-forward-paragraph
   "K"   #'evil-backward-paragraph
-  "H"   #'evil-first-non-blank-of-visual-line
-  "L"   #'evil-end-of-visual-line
+  "H"   #'evil-first-non-blank
+  "L"   #'evil-end-of-line
   "gm"  #'evilmi-jump-items
   "[d"  #'flycheck-previous-error
   "]d"  #'flycheck-next-error
-  "M-k" #'evil-lookup
   "g:"  #'eval-expression
   "]a"  #'evil-forward-arg
   "[a"  #'evil-backward-arg
   "[b"  #'previous-buffer
-  "]b"  #'next-buffer)
+  "]b"  #'next-buffer
+  "]h"  #'git-gutter:next-hunk
+  "[h"  #'git-gutter:previous-hunk)
 
 (nmap
   "gJ"    #'evil-join
   "] SPC" #'my-insert-line-below
   "[ SPC" #'my-insert-line-above
   "[e"    #'my-evil-exchange-line-above
-  "]e"    #'my-evil-exchange-line-below)
+  "]e"    #'my-evil-exchange-line-below
+  "M-u"   #'universal-argument)
 
 (iemap
   "C-a" #'evil-first-non-blank
   "C-e" #'end-of-line
-  "C-n" #'next-line
   "C-j" #'next-line
-  "C-p" #'previous-line
-  "C-k" #'previous-line)
+  "C-k" #'previous-line
+  "M-u" #'universal-argument)
 
 ;; press `jk' in insert mode to simulate `ESC'
 (imap
@@ -195,55 +267,6 @@
   "k" (general-key-dispatch 'self-insert-command
 		:timeout 0.25
 		"j" 'evil-normal-state))
-
-(itomap
-  "c" #'evil-textobj-column-word
-  "C" #'evil-textobj-column-WORD
-  "a" #'evil-inner-arg
-  evil-textobj-entire-key #'evil-entire-entire-buffer)
-
-(otomap
-  "a"  #'evil-outer-arg
-  evil-textobj-entire-key #'evil-entire-entire-buffer)
-
-;;; Bindings to specific maps
-
-;; ELisp
-(mmap emacs-lisp-mode-map
-  "<RET>" #'eval-last-sexp
-  "[]"    #'sp-beginning-of-sexp
-  "]["    #'sp-end-of-sexp
-  "]]"    #'sp-next-sexp
-  "[["    #'sp-previous-sexp
-  "]}"    #'sp-forward-slurp-sexp
-  "]{"    #'sp-forward-barf-sexp
-  "[}"    #'sp-backward-slurp-sexp
-  "[{"    #'sp-backward-barf-sexp
-  "))"    #'sp-down-sexp
-  ")("    #'sp-up-sexp
-  "()"    #'sp-backward-down-sexp
-  "(("    #'sp-backward-up-sexp)
-
-(iemap
-  :keymaps '(emacs-lisp-mode-map lisp-interaction-mode-map)
-  "#" #'my-insert-sharp-quote)
-
-;; Org mode
-(nmap org-mode-map
-  "gm" #'org-ctrl-c-ctrl-c)
-
-;; Helm
-(general-def helm-map
-  "C-h C-h" #'helm-execute-persistent-action
-  "C-j"   #'helm-next-line
-  "C-k"   #'helm-previous-line)
-
-;; Company
-(general-def
-  "M-c" #'company-complete)
-
-(general-def company-active-map
-  "RET" #'company-complete-selection)
 
 (provide 'my-keys)
 ;;; my-keys.el ends here

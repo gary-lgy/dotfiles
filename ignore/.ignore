@@ -20,6 +20,13 @@ node_modules
 /.m2
 /.local/lib
 
+# Emacs
+/.emacs.d/*
+!/.emacs.d/external
+!/.emacs.d/init.d
+!/.emacs.d/snippets
+!/.emacs.d/*.el
+
 # nix related stuff
 /.nix-defexpr
 /.nix-profile/share

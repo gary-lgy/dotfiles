@@ -6,17 +6,28 @@
 
 (require 'my-package-config)
 
+(set-face-font 'default "Fira Code-12")
+;; (set-face-font 'default "Iosevka-13")
+;; (set-face-font 'default "Source Code Pro-12")
+
+(use-package page-break-lines
+  :delight
+  :config
+  (global-page-break-lines-mode 1))
+
 (use-package delight
   :config
-  (delight '((eldoc-mode nil "eldoc")
-			 (visual-line-mode nil "simple")
-			 (markdown-mode "Md" :major)
-			 (global-whitespace-mode nil "whitespace")
-			 (emacs-lisp-mode ("Elisp" (lexical-binding ":Lex" ":Dyn")) :major))
-		   (defadvice powerline-major-mode (around delight-powerline-major-mode activate)
-			 "Ensure that powerline's major mode names are delighted."
-			 (let ((inhibit-mode-name-delight nil))
-			   ad-do-it))))
+  (defadvice powerline-major-mode (around delight-powerline-major-mode activate)
+	"Ensure that powerline's major mode names are delighted."
+	(let ((inhibit-mode-name-delight nil))
+	  ad-do-it)))
+
+(use-package all-the-icons
+  :config
+  ;; Install fonts if they are not installed already
+  (when (and (not (file-exists-p "~/.local/share/fonts/all-the-icons.ttf"))
+			 (eq system-type 'gnu/linux))
+	(all-the-icons-install-fonts)))
 
 (use-package doom-themes
   :init
@@ -26,17 +37,23 @@
   (doom-themes-org-config)
   (load-theme 'doom-one t))
 
-;; TODO: consider doom-modeline
-(use-package telephone-line
-  :init
-  (setq telephone-line-primary-left-separator    'telephone-line-cubed-right
-		telephone-line-secondary-left-separator  'telephone-line-cubed-hollow-right
-		telephone-line-primary-right-separator   'telephone-line-cubed-left
-		telephone-line-secondary-right-separator 'telephone-line-cubed-left
-		telephone-line-height 24
-		telephone-line-evil-use-short-tag t)
+(use-package minions
   :config
-  (telephone-line-mode t))
+  (minions-mode 1))
+
+(use-package doom-modeline
+  :custom
+  (doom-modeline-project-detection 'projectile)
+  (doom-modeline-buffer-file-name-style 'truncate-with-project)
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-indent-info nil)
+  (doom-modeline-checker-simple-format nil)
+  (doom-modeline-persp-name nil)
+  (doom-modeline-mu4e nil)
+  (doom-modeline-irc nil)
+  (column-number-indicator-zero-based nil)
+  :hook (after-init . doom-modeline-mode)
+  :hook (doom-modeline-mode . column-number-mode))
 
 (provide 'my-appearance)
 ;;; my-appearance.el ends here

@@ -5,38 +5,48 @@
 ;;; Code:
 
 (require 'my-package-config)
-
-(defun company-ispell-setup ()
-  "Setup company-ispell in text modes"
-  (make-local-variable 'company-backends)
-  (add-to-list 'company-backends 'company-ispell)
-  (setq company-ispell-dictionary (file-truename "/usr/share/dict/british")))
+(require 'my-editing)
 
 (use-package company
-  :defines
-  company-dabbrev-downcase
-  company-dabbrev-code-everywhere
-  company-dabbrev-other-buffers
-  company-dabbrev-code-other-buffers
   :delight
-  :init
-  (setq
-   company-idle-delay 0.1
-   company-show-numbers t
-   company-minimum-prefix-length 2
-   company-selection-wrap-around t
-   company-dabbrev-downcase nil
-   company-dabbrev-code-everywhere t
-   company-dabbrev-other-buffers 'all
-   company-dabbrev-code-other-buffers 'all)
-  (add-hook 'text-mode-hook #'company-ispell-setup)
+  :functions
+  my-company-add-backends
+  :custom
+  (company-idle-delay 0.1)
+  (company-show-numbers t)
+  (company-minimum-prefix-length 2)
+  (company-selection-wrap-around t)
+  (company-dabbrev-downcase nil)
+  (company-dabbrev-code-everywhere t)
+  (company-backends
+   '((company-capf company-yasnippet company-files company-keywords company-gtags company-etags company-dabbrev)))
+  :demand t
+  :general
+  ('(insert emacs)
+   "M-c" #'company-complete)
+  (company-active-map
+	"M-y" #'company-complete-selection
+	"RET" nil
+	"<return>" nil)
   :config
-  (global-company-mode t))
+  (defun my-company-add-backends (&rest backends)
+	"Add BACKENDS into `company-backends'."
+	(make-local-variable 'company-backends)
+	(setq company-backends (copy-tree company-backends))
+	(setf (car company-backends)
+		  (append backends (car company-backends))))
+  (add-hook 'text-mode-hook
+			(lambda ()
+			  (my-company-add-backends #'company-ispell)))
+  (add-hook 'prog-mode-hook
+			(lambda ()
+			  (my-company-add-backends #'company-dabbrev-code)))
+  (global-company-mode 1))
 
 (use-package company-statistics
   :after company
   :config
-  (company-statistics-mode))
+  (company-statistics-mode 1))
 
 (provide 'my-company)
 ;;; my-company.el ends here

@@ -19,10 +19,16 @@
 (require 'my-appearance)
 (require 'my-helm)
 (require 'my-company)
-(require 'my-org)
 (require 'my-flycheck)
 (require 'my-evil)
+(require 'my-lsp)
+(require 'my-project)
 (require 'my-keys)
+
+(require 'my-elisp)
+(require 'my-org)
+(require 'my-documents)
+(require 'my-go)
 
 (provide 'init)
 ;;; init.el ends here

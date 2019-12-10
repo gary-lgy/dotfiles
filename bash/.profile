@@ -1,9 +1,13 @@
-# Environment Variables
+# Tools I use
 export EDITOR=/usr/bin/nvim
 export BROWSER=/usr/bin/firefox-developer-edition
 export TERMINAL=/usr/bin/kitty
 export TERMCMD="$TERMINAL"
 export INTERACTIVE_SHELL=/usr/bin/fish
+
+# Golang
+export GOPATH="$HOME/dev/go"
+[ -d "$GOPATH/bin" ] && export PATH="$PATH:$GOPATH/bin"
 
 # Install global node modules in home directory (applies to both npm and yarn)
 export npm_config_prefix=~/.node_modules

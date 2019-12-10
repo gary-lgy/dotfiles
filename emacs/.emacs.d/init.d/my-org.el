@@ -3,35 +3,102 @@
 ;;; Commentary:
 
 ;;; Code:
-
 (require 'my-package-config)
-(require 'ox-md)
 
-;; Use table.el
-(require 'table)
-(add-hook 'text-mode-hook 'table-recognize)
-
-;; Indentation
-(add-hook 'org-mode-hook
-		  (lambda ()
-			(org-indent-mode t))
-		  t)
-
-;; Use RET to follow links
-(setq org-return-follows-link t)
-(add-hook 'evil-after-load-hook
-		  (lambda ()
-			(evil-define-key 'normal org-mode-map (kbd "RET") #'org-return)))
-
-;; Hide markers
-(setq org-hide-emphasis-markers t
-	  org-hide-leading-stars t
-	  org-export-with-toc nil)
-
+;; For export to HTML
 (use-package htmlize)
 
+(use-package org
+  :ensure org-plus-contrib
+  :pin org
+  :custom
+  (org-export-backends '(ascii beamer html icalendar latex md odt))
+  (org-modules '(org-tempo))
+  ;; Hide markers
+  (org-hide-emphasis-markers nil)
+  (org-hide-leading-stars t)
+  (org-export-with-toc nil)
+  ;; Sub and superscripts
+  (org-use-sub-superscripts '{})
+  (org-pretty-entities-include-sub-superscripts t)
+  (org-export-with-sub-superscripts t)
+  ;; Nice options
+  (org-startup-align-all-tables t)
+  (org-startup-indented t)
+  (org-startup-with-inline-images t)
+  (org-startup-with-latex-preview t)
+  (org-pretty-entities t)
+  (org-image-actual-width nil)
+  ;; Org-babel
+  (org-confirm-babel-evaluate nil)
+  (org-src-fontify-natively t)
+  (org-src-tab-acts-natively t)
+  (org-babel-load-languages '((emacs-lisp . t)
+							  (lisp       . t)
+							  (shell      . t)
+							  (python     . t)
+							  (ruby       . t)
+							  (java       . t)
+							  (C          . t)
+							  (js         . t)
+							  (latex      . t)
+							  (css        . t)
+							  (org        . t)
+							  (calc       . t)
+							  (dot        . t)
+							  (plantuml   . t)))
+  ;; Editing
+  (org-special-ctrl-a/e t)
+  :general
+  ('normal org-mode-map
+  "RET"     #'org-open-at-point
+  "SPC m m" #'org-ctrl-c-ctrl-c
+  "SPC m 8" #'org-ctrl-c-star
+  "SPC m -" #'org-ctrl-c-minus
+  "SPC m s" #'org-schedule
+  "SPC m t" #'org-todo
+  "SPC m e" #'org-export-dispatch
+  "SPC m i" #'org-toggle-inline-images
+  "SPC m l" #'org-latex-preview
+  "SPC m S" #'org-download-screenshot
+  "SPC m I" #'org-download-image
+  "SPC m T" #'org-table-create-or-convert-from-region
+  "SPC m p" #'org-set-property
+  "SPC m f" #'org-refile)
+  :config
+  (delight 'org-indent-mode nil "org-indent")
+  (require 'ox-extra)
+  (ox-extras-activate '(latex-header-blocks ignore-headlines)))
+
+(use-package evil-org
+  :delight
+  :after (evil org)
+  :hook (org-mode . evil-org-mode)
+  :custom
+  (evil-org-use-additional-insert t)
+  (evil-org-retain-visual-state-on-shift t)
+  :config
+  (evil-org-set-key-theme '(navigation insert return textobjects additional))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
 (use-package org-bullets
-  :hook (org-mode . (lambda () (org-bullets-mode 1))))
+  :after org
+  :hook (org-mode . org-bullets-mode))
+
+(use-package org-download
+  :after org
+  :custom
+  (org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")
+  (org-download-method 'attach)
+  :hook
+  (org-mode . org-download-enable))
+
+(use-package org-pomodoro
+  :after org
+  :custom
+  (org-pomodoro-clock-break nil)
+  (org-pomodoro-manual-break t))
 
 (provide 'my-org)
 ;;; my-org.el ends here

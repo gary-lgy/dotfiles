@@ -242,7 +242,7 @@ bindsym $mod+shift+x exec xautolock -locknow
 
 # Auto Start Applications {{{
 exec --no-startup-id i3-msg 'workspace $ws1; exec $BROWSER'
-exec --no-startup-id i3-msg 'workspace $ws5; exec emacs'
+exec --no-startup-id i3-msg 'workspace $ws2; exec emacs'
 exec --no-startup-id i3-msg 'workspace $ws9; exec ferdi'
 exec --no-startup-id i3-msg 'workspace $ws9; exec telegram-desktop'
 exec --no-startup-id i3-msg 'workspace $ws2'

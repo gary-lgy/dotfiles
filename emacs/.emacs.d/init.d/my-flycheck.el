@@ -10,7 +10,11 @@
   :delight
   :custom
   (flycheck-emacs-lisp-load-path 'inherit)
-  :config (global-flycheck-mode))
+  :config
+  (global-flycheck-mode 1)
+  (add-hook 'go-mode-hook
+			(lambda ()
+			  (flycheck-add-next-checker 'lsp-ui 'go-gofmt))))
 
 (provide 'my-flycheck)
 ;;; my-flycheck.el ends here

@@ -11,6 +11,7 @@
   :bind (("M-x"     . helm-M-x)
 		 ("M-y"     . helm-show-kill-ring)
 		 ("C-x C-f" . helm-find-files)
+		 ("C-x C-b" . helm-mini)
 		 ("C-x b"   . helm-mini))
   :demand t
   :custom
@@ -28,19 +29,20 @@
   (helm-completion-in-region-fuzzy-match t)
   (helm-ff-DEL-up-one-level-maybe t)
   :config
-  (helm-mode t))
-
-;; TODO: refer to these for helm-projectile
-;; https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bcompletion/helm/packages.el
+  (helm-mode 1))
 
 (use-package helm-flx
+  :after helm
   :custom
   (helm-flx-for-helm-find-files t)
   (helm-flx-for-helm-locate t)
   :config
-  (helm-flx-mode +1))
+  (helm-flx-mode 1))
 
-(use-package helm-projectile)
+(use-package ido
+  :custom
+  (ido-case-fold t)
+  (ido-enable-flex-matching t))
 
 (provide 'my-helm)
 ;;; my-helm.el ends here

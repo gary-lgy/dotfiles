@@ -20,32 +20,31 @@
     (end-of-line)
     (newline)))
 
-(defun my-insert-sharp-quote ()
-  "Insert #' unless in a string or comment."
-  (interactive)
-  (call-interactively #'self-insert-command)
-  (let ((ppss (syntax-ppss)))
-    (unless (or (elt ppss 3)
-              (elt ppss 4)
-              (eq (char-after) ?'))
-      (insert "'"))))
-
 (defun my-open-emacs-config-files ()
-  "Choose and open Emacs config files with helm-find-files."
+  "Choose and open Emacs config files."
   (interactive)
   (helm-find-files-1 (expand-file-name "init.d/" user-emacs-directory)))
 
 (defun my-open-org-files ()
-  "Choose and open my Org-mode notes with helm-find-files."
+  "Choose and open my Org-mode notes."
   (interactive)
-  (helm-find-files-1 "~/Notes/"))
+  (projectile-switch-project-by-name "~/Notes/"))
+
+(defun my-open-dotfiles ()
+  "Choose and open one of my config files."
+  (interactive)
+  (projectile-switch-project-by-name "~/dotfiles"))
+
+(defun my-open-tmp-dir ()
+  "Choose and open a file in ~/tmp."
+  (interactive)
+  (helm-find-files-1 "~/tmp/"))
 
 (defun my-reload-emacs-config-file ()
   "Reload my Emacs config file."
   (interactive)
   (load-file (expand-file-name "init.el" user-emacs-directory)))
 
-;; TODO: Handle edge cases
 (defun my-evil-exchange-line-above ()
   "Exchange current line with the line above."
   (interactive)
@@ -53,16 +52,35 @@
     (save-excursion
       (forward-line -1)
       (call-interactively #'evil-delete-whole-line)
-      (call-interactively #'evil-paste-after))))
+      (call-interactively #'evil-paste-after)
+	  (setq kill-ring (cdr kill-ring)))))
 
+;; TODO: Handle edge cases
 (defun my-evil-exchange-line-below ()
   "Exchange current line with the line below."
   (interactive)
   (save-excursion
-    (forward-line 1)
-    (call-interactively #'evil-delete-whole-line)
-    (forward-line -1)
-    (call-interactively #'evil-paste-before)))
+	(if (= 0 (forward-line 1))
+		(progn
+		  (call-interactively #'evil-delete-whole-line)
+		  (forward-line -1)
+		  (call-interactively #'evil-paste-before)
+		  (setq kill-ring (cdr kill-ring))))))
+
+(defun my-kill-other-buffers ()
+  "Kill all buffers except the current one."
+  (interactive)
+  (if (y-or-n-p-with-timeout "Kill other buffers? " 3 nil)
+	  (let ((buffers-to-kill (delq (current-buffer) (buffer-list))))
+		(mapc #'kill-buffer buffers-to-kill)
+		(message "Killed %d other buffers" (seq-length buffers-to-kill)))))
+
+(defvar my-fonts '("Fira Code-12" "Iosevka-13" "Source Code Pro-12"))
+(defun my-select-font ()
+  "Select the font to use."
+  (interactive)
+  (set-face-font 'default
+   (ido-completing-read "Change font to: " my-fonts nil t)))
 
 (provide 'my-utils)
 ;;; my-utils.el ends here
