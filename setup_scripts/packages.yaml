@@ -24,6 +24,7 @@ packages:
 - name: ncdu
 - name: bash-completion
 - name: openssh
+- name: mosh
 - name: tree
 - name: exa
 - name: xclip

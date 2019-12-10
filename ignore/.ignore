@@ -17,6 +17,8 @@ node_modules
 /.node-gyp
 /.yarn
 .gradle
+/.m2
+/.local/lib
 
 # nix related stuff
 /.nix-defexpr
@@ -42,10 +44,11 @@ Trash
 # password store
 /.password-store
 
-# Ignore app files
+# Ignore app data
 /.local/share
-/.vscode
-/.vscode-oss
+.vscode
+.vscode-oss
+.pylint.d
 .idea
 /.mozilla/firefox
 /.thunderbird
@@ -57,8 +60,10 @@ Trash
 /Zotero
 /.zotero
 /.matlab
-*RubyMine*
-*JetBrains*
+*RubyMine*/
+*JetBrains*/
+*IntelliJIdea*/
+*WebStorm*/
 *TelegramDesktop*
 
 # Ignore some config files
