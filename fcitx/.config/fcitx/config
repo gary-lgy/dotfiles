@@ -1,6 +1,6 @@
 [Hotkey]
 # Trigger Input Method
-TriggerKey=ALT_SHIFT_SPACE
+TriggerKey=SHIFT_SPACE
 # Use extra trigger key only after using it to inactivate
 # Available Value:
 # True False
