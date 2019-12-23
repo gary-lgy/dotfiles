@@ -1,18 +1,7 @@
 #!/bin/sh
 
 # Autostart programs
-eval "$(/usr/bin/gnome-keyring-daemon --start)"
-export SSH_AUTH_SOCK
-/usr/bin/sxhkd &
-/usr/bin/udiskie --no-automount --notify --tray &
-/usr/bin/dunst &
-/usr/bin/greenclip daemon &
-/usr/bin/nm-applet &
-/usr/bin/compton -f --vsync --inactive-dim 0.1 &
-/usr/bin/feh --bg-scale --randomize --no-fehbg ~/Pictures/Wallpapers/* &
-/usr/bin/flameshot &
-/usr/bin/nextcloud &
-/usr/bin/fcitx &
+/usr/bin/dex -ae i3
 
 # DE/WM
 exec i3

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=0.9.4
+Type=Application
+Name=Nitrogen
+Comment=Switch desktop background
+Exec=/usr/bin/nitrogen --set-scaled --random
+OnlyShowIn=XFCE;i3
+StartupNotify=false
+Terminal=false
+Hidden=false
+

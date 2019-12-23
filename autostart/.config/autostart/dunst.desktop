@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/usr/bin/dunst
+Name=dunst
+Comment=A customizable and lightweight notification-daemon
+Type=Application
+OnlyShowIn=i3

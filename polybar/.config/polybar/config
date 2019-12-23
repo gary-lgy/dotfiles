@@ -310,7 +310,7 @@ ramp-1-foreground = ${colors.module-alert}
 
 [module/nordvpn]
 type = custom/script
-exec = ~/.config/polybar/scripts/vpn-nordvpn-status.sh
+exec = ~/bin/nordvpn-status
 interval = 5
 
 [settings]

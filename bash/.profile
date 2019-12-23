@@ -21,6 +21,11 @@ export npm_config_prefix=~/.node_modules
 # ripgrep configuration file path
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
+# fcitx
+export XMODIFIERS=@im=fcitx
+export QT_IM_MODULE=fcitx
+export GTK_IM_MODULE=fcitx
+
 # Initialize rbenv
 export PATH="$HOME/.rbenv/shims:$PATH"
 

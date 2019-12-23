@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=sxhkd
+GenericName=Simple X Hotkey Daemon (with i3-specific key-bindings)
+Exec=sxhkd /home/gary/.config/sxhkd/i3_sxhkdrc
+Icon=archlinux
+Terminal=false
+Type=Application
+StartupNotify=false
+NoDisplay=true
+OnlyShowIn=i3

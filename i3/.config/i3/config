@@ -18,8 +18,6 @@ bindsym $mod+q kill
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec i3-msg exit
 # }}}
 
 # {{{ Windows
@@ -157,6 +155,10 @@ mode "resize" {
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
+        bindsym H resize shrink width 20 px or 20 ppt
+        bindsym J resize grow height 20 px or 20 ppt
+        bindsym K resize shrink height 20 px or 20 ppt
+        bindsym L resize grow width 20 px or 20 ppt
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -179,76 +181,15 @@ client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          #00ff00
 
 hide_edge_borders both
-# new_window none
 # }}}
 
-# Media Keys{{{
-# Pulse Audio controls
-# Uses the script ~/bin/i3volume
-# bindsym XF86AudioRaiseVolume exec i3volume -np -i 5 -t i3blocks -u SIGRTMIN+10
-# bindsym XF86AudioLowerVolume exec i3volume -np -d 5 -t i3blocks -u SIGRTMIN+10
-# bindsym XF86AudioMute        exec i3volume -mn -t i3blocks -u SIGRTMIN+10
-bindsym XF86AudioRaiseVolume exec i3volume -np -i 5
-bindsym XF86AudioLowerVolume exec i3volume -np -d 5
-bindsym XF86AudioMute        exec i3volume -mn
+# Autostart applications {{{
+exec --no-startup-id /usr/bin/picom -f --vsync --inactive-dim 0.1
 
-# Volume mode
-bindsym $mod+v mode "volume"
-mode "volume" {
-        bindsym h exec i3volume -np -d 5
-        bindsym l exec i3volume -np -i 5
-        bindsym m exec i3volume -mn
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+v mode "default"
-}
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -ctrl intel_backlight -inc 10 -fps 20
-bindsym XF86MonBrightnessDown exec xbacklight -ctrl intel_backlight -dec 10 -fps 20
-# bindsym --release XF86MonBrightnessUp exec pkill -SIGRTMIN+9 i3blocks
-# bindsym --release XF86MonBrightnessDown exec pkill -SIGRTMIN+9 i3blocks
-
-# Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-#}}}
-
-# Bar{{{
-# bar {
-#   status_command i3blocks
-#   position top
-#   font pango:monospace 10
-#   colors {
-#     background $bg-color
-#     separator #757575
-#     #                  border             background         text
-#     focused_workspace  $bg-color          $bg-color          $text-color
-#     inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-#     urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-#   }
-# }
-
-# polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-# Lock Screen{{{
-exec --no-startup-id xautolock -time 10 -locker "betterlockscreen -l; sleep 5; betterlockscreen -u ~/Pictures/Wallpapers"
-bindsym $mod+shift+x exec xautolock -locknow
-#}}}
-
-# Auto Start Applications {{{
 exec --no-startup-id i3-msg 'workspace $ws1; exec $BROWSER'
-exec --no-startup-id i3-msg 'workspace $ws2; exec emacs'
-exec --no-startup-id i3-msg 'workspace $ws9; exec ferdi'
+exec --no-startup-id i3-msg 'workspace $ws9; exec rambox'
 exec --no-startup-id i3-msg 'workspace $ws9; exec telegram-desktop'
-exec --no-startup-id i3-msg 'workspace $ws2'
+exec --no-startup-id i3-msg 'workspace $ws2; exec emacs'
 # }}}
-
-for_window [class="duke.gui.DukeGui"] floating enable
-for_window [class="seedu.weme.MainApp"] floating enable
 
 # vim: ft=i3config fdm=marker

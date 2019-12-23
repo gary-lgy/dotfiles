@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=sxhkd
+GenericName=Simple X Hotkey Daemon
+Exec=sxhkd
+Icon=archlinux
+Terminal=false
+Type=Application
+StartupNotify=false
+NoDisplay=true
+NotShowIn=i3

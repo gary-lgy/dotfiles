@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/home/gary/.config/polybar/launch.sh
+Name=Launch Polybar
+Type=Application
+OnlyShowIn=i3

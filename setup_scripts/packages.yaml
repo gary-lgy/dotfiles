@@ -49,6 +49,7 @@ packages:
 - name: xorg-xrdb
 - name: xorg-xset
 - name: xorg-xrandr
+- name: xorg-xprop
 - name: gtk2
 - name: gtk3
 - name: adobe-source-code-pro-fonts
@@ -59,19 +60,30 @@ packages:
 - name: noto-fonts-emoji
 - name: otf-font-awesome
 - name: nerd-fonts-source-code-pro
+- name: exo
+- name: garcon
+- name: thunar
+- name: thunar-volman
+- name: tumbler
+- name: xfce4-panel
+- name: xfce4-power-manager
+- name: xfce4-session
+- name: xfce4-settings
+- name: xfconf
+- name: xfce4-goodies
+  group: true
 - name: i3-gaps
-- name: i3blocks
 - name: polybar
-- name: betterlockscreen
-- name: compton
+- name: picom
 - name: networkmanager
 - name: network-manager-applet
 - name: gparted
 - name: acpilight
 - name: dunst
 - name: eom
-- name: feh
+- name: nitrogen
 - name: udiskie
+- name: gvfs
 - name: kitty
 - name: termite
 - name: rofi
@@ -83,6 +95,7 @@ packages:
 - name: xdg-utils
 - name: perl-file-mimeinfo
 - name: desktop-file-utils
+- name: dex
 - name: sxhkd
 - name: flameshot
 - name: nordvpn-bin
@@ -102,7 +115,6 @@ packages:
 - name: rambox
   optional: true
 - name: telegram-desktop
-  optional: true
 - name: electronic-wechat
   optional: true
 - name: ctags
@@ -112,7 +124,6 @@ packages:
 - name: libreoffice-fresh
   optional: true
 - name: evince
-  optional: true
 - name: zathura
 - name: zathura-pdf-poppler
 - name: pandoc-bin
@@ -127,4 +138,5 @@ packages:
   group: true
 - name: fcitx-configtool
 - name: fcitx-googlepinyin
+- name: fcitx-cloudpinyin
 
