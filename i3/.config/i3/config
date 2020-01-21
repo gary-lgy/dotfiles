@@ -155,10 +155,10 @@ mode "resize" {
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
-        bindsym H resize shrink width 20 px or 20 ppt
-        bindsym J resize grow height 20 px or 20 ppt
-        bindsym K resize shrink height 20 px or 20 ppt
-        bindsym L resize grow width 20 px or 20 ppt
+        bindsym Shift+h resize shrink width 80 px or 80 ppt
+        bindsym Shift+j resize grow height 80 px or 80 ppt
+        bindsym Shift+k resize shrink height 80 px or 80 ppt
+        bindsym Shift+l resize grow width 80 px or 80 ppt
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
