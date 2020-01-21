@@ -31,5 +31,13 @@
   :config
   (general-evil-setup t))
 
+;; For hiding minor modes in the mode-line
+(use-package delight
+  :config
+  (defadvice powerline-major-mode (around delight-powerline-major-mode activate)
+	"Ensure that powerline's major mode names are delighted."
+	(let ((inhibit-mode-name-delight nil))
+	  ad-do-it)))
+
 (provide 'my-package-config)
 ;;; my-package-config.el ends here

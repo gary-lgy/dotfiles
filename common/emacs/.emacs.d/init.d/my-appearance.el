@@ -15,13 +15,6 @@
   :config
   (global-page-break-lines-mode 1))
 
-(use-package delight
-  :config
-  (defadvice powerline-major-mode (around delight-powerline-major-mode activate)
-	"Ensure that powerline's major mode names are delighted."
-	(let ((inhibit-mode-name-delight nil))
-	  ad-do-it)))
-
 (use-package all-the-icons
   :config
   ;; Install fonts if they are not installed already

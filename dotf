@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+
+# Stow, unstow, or restow dotfiles
+
+set -eu
+
+normal='\033[0m'     # Reset
+success='\033[1;32m' # Green
+info='\033[1;34m'    # Blue
+header='\033[1;35m'  # Purple
+error='\033[1;31m'   # Red
+
+print_header() {
+  echo -e "${header}${1}${normal}"
+}
+
+print_info() {
+  echo -e "${info}${1}${normal}"
+}
+
+print_success() {
+  echo -e "${success}${1}${normal}"
+}
+
+print_error() {
+  echo -e "${error}${1}${normal}"
+}
+
+# Determine os-specific stow source
+DESTINATION="$HOME"
+COMMON_SOURCE="$HOME/dotfiles/common"
+case "$(uname)" in
+  "Linux")
+    OS_SPECIFIC_SOURCE="$HOME/dotfiles/linux"
+    STOW_LIST="$HOME/dotfiles/linux_stow_list.txt"
+    ;;
+  "Darwin")
+    OS_SPECIFIC_SOURCE="$HOME/dotfiles/macos"
+    STOW_LIST="$HOME/dotfiles/macos_stow_list.txt"
+    ;;
+  *)
+    echo "This OS is not supported" 1>&2
+    exit 1
+    ;;
+esac
+
+usage() {
+  echo "Usage: $0 -a {stow,delete,restow}" 1>&2
+  exit 1
+}
+
+# Entrypoint
+while getopts "a:" o; do
+  case "${o}" in
+    a)
+      ACTION="${OPTARG}"
+      if [[ $ACTION == "stow" || $ACTION == "delete" || $ACTION == "restow" ]]; then
+        print_header "Starting to $ACTION"
+      else
+        usage
+      fi
+      ;;
+    *)
+      usage
+      ;;
+  esac
+done
+
+if [ -z "$ACTION" ]; then
+  usage
+fi
+
+stow_handler() {
+  package="${1}"
+
+  case "$ACTION" in
+    "stow")
+      print_info "Stowing ${package}"
+      ;;
+    "delete")
+      print_info "Unstowing ${package}"
+      ;;
+    "restow")
+      print_info "Restowing ${package}"
+      ;;
+    *)
+      print_error "Invalid action: $action"
+      exit 2
+      ;;
+  esac
+
+  if test -d "$COMMON_SOURCE/$package"; then
+    stow --no-folding --dir="$COMMON_SOURCE" --target="$DESTINATION" --"$ACTION" "$package"
+  fi
+  if test -d "$OS_SPECIFIC_SOURCE/$package"; then
+    stow --no-folding --dir="$OS_SPECIFIC_SOURCE" --target="$DESTINATION" --"$ACTION" "$package"
+  fi
+}
+
+while read -r package; do
+  stow_handler "$package"
+done < "$STOW_LIST"
+
+print_success "Done"

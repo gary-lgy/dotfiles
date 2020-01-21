@@ -1,0 +1,13 @@
+bat
+ctags
+editorconfig
+emacs
+fish
+fzf
+git
+ignore
+nvim
+scripts
+tmux
+vim
+

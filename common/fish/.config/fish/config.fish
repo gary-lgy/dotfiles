@@ -21,14 +21,20 @@ end
 
 #######################    General Config    #######################{{{
 # Set LS_COLORS environment variable
-eval (dircolors -c ~/.dircolors)
+if test -f ~/.dircolor
+    eval (dircolors -c ~/.dircolors)
+end
 #}}}
 
 #######################    Package Specific Config    #######################{{{
 
 # direnv
-direnv hook fish | source
+if command -v direnv >/dev/null 2>&1
+    direnv hook fish | source
+end
 #}}}
 
 # thefuck
-thefuck --alias | source
+if command -v thefuck >/dev/null 2>&1
+    thefuck --alias | source
+end
