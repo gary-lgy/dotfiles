@@ -26,7 +26,7 @@
   :custom
   (whitespace-style '(face tabs tab-mark empty trailing))
   (whitespace-display-mappings
-		'((tab-mark 9 [124 9] [92 9]))) ; 124 is the ascii ID for '\|'
+   '((tab-mark 9 [124 9] [92 9]))) ; 124 is the ascii ID for '\|'
   :init
   (custom-set-faces
    '(whitespace-tab ((t (:foreground "#636363")))))
@@ -53,6 +53,23 @@
 (use-package flyspell
   :delight
   :hook (text-mode . flyspell-mode)
+  :init
+  (defun my-save-word ()
+	"Saves the word at point to the personal dictionary."
+  (interactive)
+  (let ((current-location (point))
+         (word (flyspell-get-word)))
+    (when (and (consp word)
+			   (y-or-n-p (concat "Add \"" (car word) "\" to personal dictionary? ")))
+      (flyspell-do-correct 'save nil
+						   (car word)
+						   current-location
+						   (cadr word)
+						   (caddr word)
+						   current-location))))
+  :general
+  ('(normal motion)
+   "z g" #'my-save-word)
   :custom
   (ispell-program-name "hunspell")
   (ispell-complete-word-dict (file-truename "/usr/share/dict/british")))
@@ -75,9 +92,14 @@
   (sp-highlight-pair-overlay nil)
   :config
   (require 'smartparens-config)
-  (sp-local-pair '(c-mode c++-mode java-mode go-mode js-mode jsx-mode)
-   "{" nil
-   :post-handlers '(:add ("||\n[i]" "RET")))
+  (sp-local-pair '(c-mode c++-mode java-mode go-mode js-mode jsx-mode swift-mode)
+				 "{" nil
+				 :post-handlers '(:add ("||\n[i]" "RET")))
+  (sp-local-pair '(js-mode jsx-mode python-mode swift-mode)
+				 "[" nil
+				 :post-handlers '(:add ("||\n[i]" "RET")))
+  (sp-local-pair 'swift-mode
+				 "\\(" ")")
   (smartparens-global-mode 1))
 
 (use-package highlight-parentheses

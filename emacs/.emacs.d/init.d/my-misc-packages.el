@@ -56,6 +56,8 @@
 (use-package autorevert
   :demand t
   :hook (dired-mode . auto-revert-mode)
+  :custom
+  (auto-revert-verbose nil)
   :config
   (global-auto-revert-mode 1))
 

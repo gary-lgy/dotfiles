@@ -22,13 +22,20 @@
   (org-use-sub-superscripts '{})
   (org-pretty-entities-include-sub-superscripts t)
   (org-export-with-sub-superscripts t)
-  ;; Nice options
+  ;; Nice options for working with notes
   (org-startup-align-all-tables t)
   (org-startup-indented t)
   (org-startup-with-inline-images t)
   (org-startup-with-latex-preview t)
   (org-pretty-entities t)
   (org-image-actual-width nil)
+  ;; Org attach
+  (org-attach-use-inheritance t)
+  ;; Todo
+  (org-todo-keywords '((sequence "TODO" "LATER" "|" "DONE")))
+  (org-todo-keyword-faces '(("TODO" . org-todo) ("LATER" . org-warning)))
+  (org-enforce-todo-dependencies t)
+  (org-clock-persist 'history)
   ;; Org-babel
   (org-confirm-babel-evaluate nil)
   (org-src-fontify-natively t)
@@ -50,23 +57,24 @@
   ;; Editing
   (org-special-ctrl-a/e t)
   :general
-  ('normal org-mode-map
+  ('(normal visual motion) org-mode-map
   "RET"     #'org-open-at-point
   "SPC m m" #'org-ctrl-c-ctrl-c
   "SPC m 8" #'org-ctrl-c-star
   "SPC m -" #'org-ctrl-c-minus
+  "SPC m ," #'org-edit-special
   "SPC m s" #'org-schedule
   "SPC m t" #'org-todo
+  "SPC m a" #'org-archive-subtree-default
   "SPC m e" #'org-export-dispatch
   "SPC m i" #'org-toggle-inline-images
   "SPC m l" #'org-latex-preview
-  "SPC m S" #'org-download-screenshot
-  "SPC m I" #'org-download-image
   "SPC m T" #'org-table-create-or-convert-from-region
   "SPC m p" #'org-set-property
   "SPC m f" #'org-refile)
   :config
   (delight 'org-indent-mode nil "org-indent")
+  (org-clock-persistence-insinuate)
   (require 'ox-extra)
   (ox-extras-activate '(latex-header-blocks ignore-headlines)))
 
@@ -84,6 +92,8 @@
 
 (use-package org-bullets
   :after org
+  :custom
+  (org-bullets-bullet-list '("✿" "✸" "◉" "○"))
   :hook (org-mode . org-bullets-mode))
 
 (use-package org-download
@@ -91,6 +101,10 @@
   :custom
   (org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")
   (org-download-method 'attach)
+  :general
+  ('(normal visual motion) org-mode-map
+   "SPC m S" #'org-download-screenshot
+   "SPC m I" #'org-download-image)
   :hook
   (org-mode . org-download-enable))
 

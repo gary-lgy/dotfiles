@@ -82,5 +82,15 @@
   (set-face-font 'default
    (ido-completing-read "Change font to: " my-fonts nil t)))
 
+;; TODO: Change hunspell dict
+(defvar my-dictionaries '("/usr/share/dict/american-english" "/usr/share/dict/british-english"))
+(defun my-select-dictionary ()
+  "Select the dictionary to use for spelling help."
+  (interactive)
+  (let* ((prev-dict ispell-complete-word-dict)
+		 (dict (ido-completing-read "Change dictionary to: " my-dictionaries nil t prev-dict)))
+	(customize-set-variable 'ispell-complete-word-dict dict)
+	(customize-set-variable 'ispell-alternate-dictionary dict)))
+
 (provide 'my-utils)
 ;;; my-utils.el ends here

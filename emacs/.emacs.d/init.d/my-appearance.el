@@ -34,8 +34,10 @@
   (setq doom-themes-enable-bold t
 		doom-themes-enable-italic t)
   :config
-  (doom-themes-org-config)
-  (load-theme 'doom-one t))
+  (load-theme 'doom-vibrant t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-treemacs-config)
+  (doom-themes-org-config))
 
 (use-package minions
   :config

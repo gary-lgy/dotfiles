@@ -17,9 +17,11 @@
   (company-minimum-prefix-length 2)
   (company-selection-wrap-around t)
   (company-dabbrev-downcase nil)
+  (company-dabbrev-ignore-case nil)
+  (company-dabbrev-code-ignore-case nil)
   (company-dabbrev-code-everywhere t)
   (company-backends
-   '((company-capf company-yasnippet company-files company-keywords company-gtags company-etags company-dabbrev)))
+   '((company-capf company-yasnippet company-files company-keywords company-gtags company-etags)))
   :demand t
   :general
   ('(insert emacs)
@@ -37,7 +39,7 @@
 		  (append backends (car company-backends))))
   (add-hook 'text-mode-hook
 			(lambda ()
-			  (my-company-add-backends #'company-ispell)))
+			  (my-company-add-backends #'company-dabbrev #'company-ispell)))
   (add-hook 'prog-mode-hook
 			(lambda ()
 			  (my-company-add-backends #'company-dabbrev-code)))

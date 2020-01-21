@@ -209,6 +209,7 @@
 (my-misc-leader
   "s" #'shell-command
   "f" #'my-select-font
+  "D" #'my-select-dictionary
   "," #'evil-avy-goto-line
   "." #'evil-avy-goto-word-1
   "e" #'my-open-emacs-config-files
@@ -242,7 +243,9 @@
   "[b"  #'previous-buffer
   "]b"  #'next-buffer
   "]h"  #'git-gutter:next-hunk
-  "[h"  #'git-gutter:previous-hunk)
+  "[h"  #'git-gutter:previous-hunk
+  "C-j" #'evil-scroll-line-down
+  "C-k" #'evil-scroll-line-up)
 
 (nmap
   "gJ"    #'evil-join

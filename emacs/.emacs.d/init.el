@@ -29,6 +29,7 @@
 (require 'my-org)
 (require 'my-documents)
 (require 'my-go)
+(require 'my-swift)
 
 (provide 'init)
 ;;; init.el ends here
