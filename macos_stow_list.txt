@@ -8,5 +8,6 @@ git
 ignore
 nvim
 scripts
+starship
 tmux
 vim

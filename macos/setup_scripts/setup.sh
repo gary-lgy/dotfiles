@@ -10,40 +10,41 @@ brew analytics off
 brew tap homebrew/cask-versions
 brew tap homebrew/cask-fonts
 
-brew install brew-cask-completion
-brew install neovim
-brew install tmux
-brew install fish
-brew install stow
+brew upgrade brew-cask-completion
+brew upgrade neovim
+brew upgrade tmux
+brew upgrade fish
+brew upgrade stow
 
-brew install shellcheck
-brew install diff-so-fancy
-brew install mosh
-brew install htop
-brew install fd
-brew install exa
-brew install fasd
-brew install ripgrep
-brew install fzf
-brew install ranger
-brew install bat
-brew install tldr
-brew install direnv
+brew upgrade starship
+brew upgrade shellcheck
+brew upgrade diff-so-fancy
+brew upgrade mosh
+brew upgrade htop
+brew upgrade fd
+brew upgrade exa
+brew upgrade fasd
+brew upgrade ripgrep
+brew upgrade fzf
+brew upgrade ranger
+brew upgrade bat
+brew upgrade tldr
+brew upgrade direnv
 
-brew cask install rectangle
-brew cask install haptickey
-brew cask install emacs
-brew cask install iterm2
-brew cask install clipy
-brew cask install iglance
-brew cask install firefox-developer-edition
-brew cask install google-chrome
-brew cask install telegram-desktop
-brew cask install wechat
-brew cask install ferdi
-brew cask install bitwarden
-brew cask install nordvpn
-brew cask install nextcloud
+brew cask upgrade rectangle
+brew cask upgrade haptickey
+brew cask upgrade emacs
+brew cask upgrade iterm2
+brew cask upgrade clipy
+brew cask upgrade iglance
+brew cask upgrade firefox-developer-edition
+brew cask upgrade google-chrome
+brew cask upgrade telegram-desktop
+brew cask upgrade wechat
+brew cask upgrade ferdi
+brew cask upgrade bitwarden
+brew cask upgrade nordvpn
+brew cask upgrade nextcloud
 
-brew cask install font-fira-code
-brew cask install font-sourcecodepro-nerd-font
+brew cask upgrade font-firacode-nerd-font
+brew cask upgrade font-sourcecodepro-nerd-font

@@ -6,6 +6,8 @@
 	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
+	<key>ApplePressAndHoldEnabled</key>
+	<false/>
 	<key>AppleScrollAnimationEnabled</key>
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
@@ -48,7 +50,7 @@
 	dWxs0g0ODxJaTlMub2JqZWN0c1YkY2xhc3OiEBGAAoAKgA3TFA0OFRkdV05TLmtleXOj
 	FhcYgAOABIAFoxobHIAGgAeACIAJWklkZW50aWZpZXJVV2lkdGhWSGlkZGVuUTAjQGjA
 	AAAAAAAI0iUmJyhaJGNsYXNzbmFtZVgkY2xhc3Nlc1xOU0RpY3Rpb25hcnmiJylYTlNP
-	YmplY3TTFA0OKy8doxYXGIADgASABaMwMRyAC4AMgAiACVExI0B0oZ2yLQ5W0iUmNzhe
+	YmplY3TTFA0OKy8doxYXGIADgASABaMwMRyAC4AMgAiACVExI0BzsZ2yLQ5W0iUmNzhe
 	TlNNdXRhYmxlQXJyYXmjNzkpV05TQXJyYXkACAARABoAJAApADIANwBJAEwAUgBUAGMA
 	aQBuAHkAgACDAIUAhwCJAJAAmACcAJ4AoACiAKYAqACqAKwArgC5AL8AxgDIANEA0gDX
 	AOIA6wD4APsBBAELAQ8BEQETARUBGQEbAR0BHwEhASMBLAExAUABRAAAAAAAAAIBAAAA
@@ -657,7 +659,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SauceCodeProNerdFontComplete-Medium 11</string>
+			<string>FiraCode-Retina 11</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -1323,7 +1325,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SauceCodeProNerdFontComplete-Medium 11</string>
+			<string>FiraCode-Retina 11</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1394,25 +1396,26 @@
 	<array>
 		<string>3.3.7</string>
 		<string>3.3.8</string>
+		<string>3.3.9</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>Menlo</string>
 		<string>SauceCodePro Nerd Font</string>
+		<string>Fira Code</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-		<string>{208, 645}</string>
+		<string>{278, 654}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>B6DE5524-C4C1-4D86-A49A-34582D405B77</string>
 	<key>NoSyncLastTipTime</key>
-	<real>603794425.521505</real>
+	<real>605188939.60569298</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>15</integer>
+	<integer>18</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2181,26 +2184,40 @@
 	<real>601268398.25045395</real>
 	<key>NoSyncTipsToNotShow</key>
 	<array>
-		<string>0004</string>
-		<string>0000</string>
-		<string>0010</string>
-		<string>0008</string>
 		<string>0017</string>
-		<string>0007</string>
-		<string>0003</string>
+		<string>0029</string>
+		<string>0001</string>
 		<string>0013</string>
-		<string>0016</string>
+		<string>0025</string>
+		<string>0021</string>
 		<string>0006</string>
+		<string>0018</string>
 		<string>0002</string>
+		<string>0014</string>
+		<string>0026</string>
+		<string>0010</string>
+		<string>0022</string>
 		<string>000</string>
+		<string>0030</string>
+		<string>0007</string>
+		<string>0019</string>
+		<string>0003</string>
+		<string>0015</string>
+		<string>0027</string>
+		<string>0011</string>
+		<string>0023</string>
+		<string>0031</string>
+		<string>0008</string>
+		<string>0004</string>
+		<string>0016</string>
+		<string>0028</string>
+		<string>0000</string>
 		<string>0012</string>
+		<string>0024</string>
+		<string>0020</string>
 		<string>0009</string>
 		<string>0005</string>
-		<string>0001</string>
-		<string>0011</string>
-		<string>0015</string>
-		<string>0014</string>
-		<string>0018</string>
+		<string>0032</string>
 	</array>
 	<key>OpenFileInNewWindows</key>
 	<true/>
@@ -2255,19 +2272,21 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-02-19T14:58:42Z</date>
+	<date>2020-03-06T11:04:32Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
 	<integer>660359643</integer>
 	<key>SUUpdateRelaunchingMarker</key>
-	<true/>
+	<false/>
 	<key>SmartPlacement</key>
 	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.23484319592198585</real>
+	<key>SuppressRestartAnnouncement</key>
+	<true/>
 	<key>SwitchPaneModifier</key>
 	<integer>4</integer>
 	<key>SwitchTabModifier</key>
@@ -2281,7 +2300,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.8</string>
+	<string>3.3.9</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

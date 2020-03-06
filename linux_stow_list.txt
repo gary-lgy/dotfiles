@@ -25,6 +25,7 @@ ranger
 ripgrep
 rofi-pass
 scripts
+starship
 sxhkd
 systemd
 termite

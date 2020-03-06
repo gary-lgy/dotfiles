@@ -21,6 +21,10 @@ end
 
 #######################    General Config    #######################{{{
 set -gx EDITOR nvim
+set -gx INTERACTIVE_SHELL "/usr/local/bin/fish"
+
+# starship - prompt
+starship init fish | source
 
 # Set LS_COLORS environment variable
 if test -f ~/.dircolor
@@ -40,3 +44,4 @@ end
 if command -v thefuck >/dev/null 2>&1
     thefuck --alias | source
 end
+
