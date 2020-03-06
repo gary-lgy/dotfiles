@@ -1,4 +1,4 @@
-"*************************** VIM PLUG ******************************{{{
+"************************* Bootstrapping ****************************{{{
 let g:plugins_path = '~/.vim/plugged'
 " Checks if a plugin is installed
 function! HasPlugin(plugin) abort
@@ -13,6 +13,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 "}}}
+
+if has("win64") || has("win32") || has("win16")
+  let g:os = "Windows"
+else
+  let g:os = substitute(system('uname'), '\n', '', '')
+endif
 
 " Arguments to plug#begin specifies the directory to install the plugins
 call plug#begin(g:plugins_path)
@@ -62,12 +68,16 @@ Plug 'tpope/vim-speeddating', { 'on': ['<Plug>SpeedDatingUp', '<Plug>SpeedDating
 
 " FZF. The best shit ever.
 " Basic vim support
-if !empty(glob('/usr/share/vim/vimfiles'))
-  " if installed system-wide
-  Plug '/usr/share/vim/vimfiles'
-elseif !empty(glob('~/.fzf'))
-  " if installed for user
-  Plug '~/.fzf'
+if g:os == 'Darwin'
+  Plug '/usr/local/opt/fzf'
+elseif g:os == 'Linux'
+  if !empty(glob('/usr/share/vim/vimfiles'))
+    " if installed system-wide
+    Plug '/usr/share/vim/vimfiles'
+  elseif !empty(glob('~/.fzf'))
+    " if installed for user
+    Plug '~/.fzf'
+  endif
 endif
 
 " Collection of fzf commands
@@ -112,9 +122,6 @@ Plug 'AndrewRadev/linediff.vim', { 'on': ['Linediff', 'LinediffReset'] }
 
 "******************************** UI **********************************{{{
 " Better UI
-
-" Outline viewer using ctags/LSP
-Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
 
 " Grep/Ack
 Plug 'mileszs/ack.vim'

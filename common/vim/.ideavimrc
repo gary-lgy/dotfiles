@@ -45,12 +45,16 @@ nnoremap <A-k> :action QuickJavaDoc<cr>
 noremap <F1> <nop>
 inoremap <F1> <nop>
 
-inoremap <C-J> <Down>
-inoremap <C-K> <Up>
-inoremap <C-A> <Esc>I
-inoremap <C-E> <Esc>A
-inoremap <C-F> <Right>
-inoremap <C-B> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
+
+inoremap <C-a> <Esc>I
+inoremap <C-e> <Esc>A
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
 
 inoremap jk <esc>
 inoremap kj <esc>
@@ -61,11 +65,13 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " The built-in C-O and C-I bindings are broken
-nnoremap <C-O> :action Back<cr>
-nnoremap <C-I> :action Forward<cr>
+nnoremap <C-o> :action Back<cr>
+nnoremap <C-i> :action Forward<cr>
 
 noremap [[ :action GotoPrevElementUnderCaretUsage<cr>
 noremap ]] :action GotoNextElementUnderCaretUsage<cr>
+noremap ][ :action MethodDown<cr>
+noremap [] :action MethodUp<cr>
 noremap [b :action PreviousTab<cr>
 noremap ]b :action NextTab<cr>
 noremap [h :action VcsShowPrevChangeMarker<cr>

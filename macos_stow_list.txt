@@ -10,4 +10,3 @@ nvim
 scripts
 tmux
 vim
-

@@ -164,11 +164,11 @@
   :states '(normal visual motion)
   :keymaps 'override)
 (my-vc-leader
- "t" #'git-gutter
- "v" #'git-gutter:popup-hunk
- "s" #'git-gutter:stage-hunk
- "r" #'git-gutter:revert-hunk
- "g" #'magit)
+  "t" #'git-gutter
+  "v" #'git-gutter:popup-hunk
+  "s" #'git-gutter:stage-hunk
+  "r" #'git-gutter:revert-hunk
+  "g" #'magit)
 
 ;; Help leader
 (general-create-definer my-help-leader

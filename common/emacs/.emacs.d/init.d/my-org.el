@@ -58,20 +58,20 @@
   (org-special-ctrl-a/e t)
   :general
   ('(normal visual motion) org-mode-map
-  "RET"     #'org-open-at-point
-  "SPC m m" #'org-ctrl-c-ctrl-c
-  "SPC m 8" #'org-ctrl-c-star
-  "SPC m -" #'org-ctrl-c-minus
-  "SPC m ," #'org-edit-special
-  "SPC m s" #'org-schedule
-  "SPC m t" #'org-todo
-  "SPC m a" #'org-archive-subtree-default
-  "SPC m e" #'org-export-dispatch
-  "SPC m i" #'org-toggle-inline-images
-  "SPC m l" #'org-latex-preview
-  "SPC m T" #'org-table-create-or-convert-from-region
-  "SPC m p" #'org-set-property
-  "SPC m f" #'org-refile)
+   "RET"     #'org-open-at-point
+   "SPC m m" #'org-ctrl-c-ctrl-c
+   "SPC m 8" #'org-ctrl-c-star
+   "SPC m -" #'org-ctrl-c-minus
+   "SPC m ," #'org-edit-special
+   "SPC m s" #'org-schedule
+   "SPC m t" #'org-todo
+   "SPC m a" #'org-archive-subtree-default
+   "SPC m e" #'org-export-dispatch
+   "SPC m i" #'org-toggle-inline-images
+   "SPC m l" #'org-latex-preview
+   "SPC m T" #'org-table-create-or-convert-from-region
+   "SPC m p" #'org-set-property
+   "SPC m f" #'org-refile)
   :config
   (delight 'org-indent-mode nil "org-indent")
   (org-clock-persistence-insinuate)
@@ -99,14 +99,17 @@
 (use-package org-download
   :after org
   :custom
-  (org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")
   (org-download-method 'attach)
   :general
   ('(normal visual motion) org-mode-map
    "SPC m S" #'org-download-screenshot
    "SPC m I" #'org-download-image)
   :hook
-  (org-mode . org-download-enable))
+  (org-mode . org-download-enable)
+  :config
+  (if (eq system-type 'darwin)
+	  (customize-set-value 'org-download-screenshot-method "screencapture -i %s")
+	(customize-set-value 'org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")))
 
 (use-package org-pomodoro
   :after org

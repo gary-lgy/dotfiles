@@ -3,7 +3,11 @@ if !HasPlugin('coc.nvim')
 endif
 
 " Use global node executable
-let g:coc_node_path = '/usr/bin/node'
+if g:os == "Darwin"
+  let g:coc_node_path = '/usr/local/bin/node'
+else
+  let g:coc_node_path = '/usr/bin/node'
+endif
 
 " Extensions
 " TODO: coc-ccls is not ready for use yet

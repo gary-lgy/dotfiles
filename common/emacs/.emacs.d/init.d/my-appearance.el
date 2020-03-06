@@ -18,8 +18,11 @@
 (use-package all-the-icons
   :config
   ;; Install fonts if they are not installed already
-  (when (and (not (file-exists-p "~/.local/share/fonts/all-the-icons.ttf"))
-			 (eq system-type 'gnu/linux))
+  (when (or
+		 (and (eq system-type 'gnu/linux)
+			 (not (file-exists-p "~/.local/share/fonts/all-the-icons.ttf")))
+		 (and (eq system-type 'darwin)
+			  (not (file-exists-p "~/Library/Fonts/all-the-icons.ttf"))))
 	(all-the-icons-install-fonts)))
 
 (use-package doom-themes

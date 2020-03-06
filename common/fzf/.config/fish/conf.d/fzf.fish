@@ -29,10 +29,8 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
 
     # command used for preview
     set preview_cmd "echo -e \"\033[1;33m{}\033[0m\"; \
-                     file -biL {} | grep -q \".*text\|directory.*\" || \
-                     (echo -e \"\nUnable to preview binary file\"; exit); \
-                     bat --color=always --paging=never -p {} --line-range=:30 2>/dev/null || \
-                     tree -C {}"
+                     file -bL {} | grep -q \".*directory.*\" && (exa --all --tree --level=1 --color=always {}; exit); \
+                     bat --color=always --paging=never -p {} --line-range=:30 2>/dev/null"
 
     # header message for fzf widget
     set header (echo -n ":: "; \
@@ -60,7 +58,11 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
     end
 
     # choose command to use based on the desired action
-    set editor (set -q EDITOR; and string replace -r "/.*/(.*)" "\$1" $EDITOR; or echo vim)
+    if set -q EDITOR
+      set editor (basename $EDITOR)
+    else
+      set editor vim
+    end
 
     switch "$fzf_output[1]"
     case $cd_key
@@ -69,11 +71,11 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
       set cmd open
     case $edit_key
       set cmd $editor
-    case '*' # Enter or anything else
+    case '*' # DWIM
       set -l file $fzf_output[2]
       if test -d "$fzf_output[2]"
         set cmd cd
-      else if string match -q "*text*" (file -biL $file)
+      else if string match -q "*text*" (file -bL $file)
         set cmd $editor
       else
         set cmd open

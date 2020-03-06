@@ -20,6 +20,8 @@ end
 #}}}
 
 #######################    General Config    #######################{{{
+set -gx EDITOR nvim
+
 # Set LS_COLORS environment variable
 if test -f ~/.dircolor
     eval (dircolors -c ~/.dircolors)
