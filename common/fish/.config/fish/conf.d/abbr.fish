@@ -9,12 +9,13 @@ abbr --global la ls -FAx
 # Git
 abbr --global gb git branch
 abbr --global gc git checkout
+abbr --global gm git commit -m
 abbr --global gd git diff
 abbr --global gda git diff --cached
 abbr --global gf git fetch
 abbr --global gl git log --pretty=oneline -5
 abbr --global gp git pull
-abbr --global gpb git push --set-upstream origin
+abbr --global gpu git push -u origin HEAD
 abbr --global gs git status
 
 # Bundle
