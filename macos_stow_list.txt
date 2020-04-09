@@ -11,3 +11,4 @@ scripts
 starship
 tmux
 vim
+xcode

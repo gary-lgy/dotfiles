@@ -1,0 +1,47 @@
+nmap Y y$
+
+nmap gm %
+vmap gm %
+omap gm %
+
+inoremap <C-a> <C-o>^
+inoremap <C-e> <C-o>$
+
+nnoremap J }
+vnoremap J }
+onoremap J }
+nnoremap K {
+vnoremap K {
+onoremap K {
+
+" On the same line
+nnoremap H ^
+vnoremap H ^
+onoremap H ^
+nnoremap L $
+vnoremap L $
+onoremap L $
+
+" Use gG to join lines instead of J
+nnoremap gG J
+
+nnoremap <C-J> <Down>
+inoremap <C-J> <Down>
+nnoremap <C-K> <Up>
+inoremap <C-K> <Up>
+
+" Type jk or kj in insert mode to enter normal mode
+inoremap jk <ESC>
+inoremap kj <ESC>
+
+nnoremap [<Space> O<esc>j
+nnoremap ]<Space> o<esc>k
+nnoremap [e ddkP==
+nnoremap ]e ddp==
+
+" Behavior
+set smartcase
+set hlsearch
+set clipboard=unnamed
+set number
+set relativenumber
