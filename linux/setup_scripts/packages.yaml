@@ -29,6 +29,7 @@ packages:
 - name: exa
 - name: xclip
 - name: fish
+- name: starship-bin
 - name: fd
 - name: ripgrep
 - name: fzf
