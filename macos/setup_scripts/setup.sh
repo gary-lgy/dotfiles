@@ -47,4 +47,5 @@ brew cask upgrade nordvpn
 brew cask upgrade nextcloud
 
 brew cask upgrade font-firacode-nerd-font
-brew cask upgrade font-sourcecodepro-nerd-font
+brew cask upgrade font-saucecodepro-nerd-font
+brew cask upgrade font-iosevka-nerd-font
