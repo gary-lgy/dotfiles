@@ -18,7 +18,7 @@ brew upgrade stow
 
 brew upgrade starship
 brew upgrade shellcheck
-brew upgrade diff-so-fancy
+brew upgrade git-delta
 brew upgrade mosh
 brew upgrade htop
 brew upgrade fd
