@@ -48,10 +48,9 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
       --bind="alt-r:replace-query" \
       --preview=$preview_cmd \
       --preview-window=right:50%:wrap | \
-      string split0 | \
-      string escape)
+      string split0)
 
-    # exit if nothing is selected (fzf interupted or no match)
+    # exit if nothing is selected (fzf interrupted or no match)
     if not set -q fzf_output[2]
       commandline -f repaint
       return 1
@@ -64,7 +63,10 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
       set editor vim
     end
 
-    switch "$fzf_output[1]"
+    set -l key $fzf_output[1]
+    set -l file $fzf_output[2]
+
+    switch $key
     case $cd_key
       set cmd cd
     case $open_key
@@ -72,8 +74,7 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
     case $edit_key
       set cmd $editor
     case '*' # DWIM
-      set -l file $fzf_output[2]
-      if test -d "$fzf_output[2]"
+      if test -d $file
         set cmd cd
       else if string match -q "*text*" (file -bL $file)
         set cmd $editor
@@ -83,13 +84,14 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
     end
 
     # if the action is cd but target is a file, cd into its parent directory
-    if begin test $fzf_output[1] = $cd_key; and test (count $fzf_output[2..-1]) -eq 1; and test -f $fzf_output[2..-1]; end
-      set targets (dirname $fzf_output[2..-1])
+    if begin test $fzf_output[1] = $cd_key; and test (count $fzf_output[2..-1]) -eq 1; and test -f $fzf_output[2]; end
+      set targets (dirname $fzf_output[2])
     else
       set targets $fzf_output[2..-1]
     end
 
     # put the fullly constructed command on the commandline buffer and execute it
+    set targets (string escape $targets) # Escape the targets first
     commandline -- "$cmd $targets"
     commandline -f repaint
     commandline -f execute
@@ -137,7 +139,7 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
 
   end
 
-  # Three keybindings are set up by default
+  # Three keybindings are set up by fzf by default
   # ALT-C = cd into subdirectory (overwritten)
   # CTRL-R = command history
   # CTRL-T = paste fzf output to current command
