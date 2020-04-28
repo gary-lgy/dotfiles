@@ -3,6 +3,9 @@ set surround
 set multiple-cursors
 set commentary
 set ideajoin
+set textobj-entire
+set argtextobj
+let g:argtextobj_pairs = "(:),{:},<:>"
 " set idearefactormode=select
 
 " Options
