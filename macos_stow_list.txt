@@ -1,4 +1,3 @@
-bat
 ctags
 editorconfig
 emacs
