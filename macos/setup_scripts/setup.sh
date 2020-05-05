@@ -32,6 +32,7 @@ brew upgrade tldr
 brew upgrade direnv
 
 brew cask upgrade rectangle
+brew cask upgrade karabiner-elements
 brew cask upgrade haptickey
 brew cask upgrade emacs
 brew cask upgrade iterm2
