@@ -28,21 +28,11 @@ print_error() {
 
 # Determine os-specific stow source
 DESTINATION="$HOME"
-COMMON_SOURCE="$HOME/dotfiles/common"
-case "$(uname)" in
-  "Linux")
-    OS_SPECIFIC_SOURCE="$HOME/dotfiles/linux"
-    STOW_LIST="$HOME/dotfiles/linux_stow_list.txt"
-    ;;
-  "Darwin")
-    OS_SPECIFIC_SOURCE="$HOME/dotfiles/macos"
-    STOW_LIST="$HOME/dotfiles/macos_stow_list.txt"
-    ;;
-  *)
-    echo "This OS is not supported" 1>&2
-    exit 1
-    ;;
-esac
+DOTFILES_PATH="$HOME/dotfiles"
+OS="$(uname | tr '[:upper:]' '[:lower:]')"
+COMMON_SOURCE="$DOTFILES_PATH/common"
+OS_SPECIFIC_SOURCE="$DOTFILES_PATH/$OS"
+STOW_LIST="$DOTFILES_PATH/stow_lists/${OS}.txt"
 
 usage() {
   echo "Usage: $0 -a {stow,delete,restow}" 1>&2
