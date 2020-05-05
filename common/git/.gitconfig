@@ -6,7 +6,7 @@
 	helper = cache
 [core]
 	excludesfile = /home/gary/.gitignore_global
-	pager = delta
+	pager = delta | less -R
 [interactive]
 	diffFilter = delta --color-only
 [push]
