@@ -20,17 +20,15 @@ end
 #}}}
 
 #######################    General Config    #######################{{{
+
+# Environment variables
 set -gx EDITOR (which nvim)
 set -gx INTERACTIVE_SHELL (which fish)
 
-# starship - prompt
-if command -v starship >/dev/null 2>&1
-  starship init fish | source
-end
-
-# Set LS_COLORS environment variable
-if test -f ~/.dircolor
-  eval (dircolors -c ~/.dircolors)
+# Machine local config
+set -l fish_local_config $HOME/.config/fish/config.local.fish
+if test -f $fish_local_config
+  source $fish_local_config
 end
 #}}}
 
@@ -40,10 +38,22 @@ end
 if command -v direnv >/dev/null 2>&1
     direnv hook fish | source
 end
-#}}}
 
 # thefuck
 if command -v thefuck >/dev/null 2>&1
     thefuck --alias | source
 end
 
+# starship - prompt
+if command -v starship >/dev/null 2>&1
+  starship init fish | source
+end
+
+# ls colors
+if test -f ~/.dircolor
+  eval (dircolors -c ~/.dircolors)
+end
+
+#}}}
+
+# vim: fdm=marker
