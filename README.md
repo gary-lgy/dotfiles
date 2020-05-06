@@ -41,7 +41,7 @@ For macOS, run `./macos/setup_scripts/setup.sh`
 | buku                    | bookmark manager         | ✅    |       |
 | polybar                 | status bar               | ✅    |       |
 | i3-gaps                 | window manager           | ✅    |       |
-| xcfe                    | desktop environment      | ✅    |       |
+| xfce                    | desktop environment      | ✅    |       |
 | rofi                    | launcher                 | ✅    |       |
 | kitty                   | terminal emulator        | ✅    |       |
 | iTerm2                  | terminal emulator        |       | ✅    |
