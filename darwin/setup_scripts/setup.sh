@@ -30,6 +30,7 @@ brew upgrade ranger
 brew upgrade bat
 brew upgrade tldr
 brew upgrade direnv
+brew upgrade gpg
 
 brew cask upgrade rectangle
 brew cask upgrade karabiner-elements
@@ -46,6 +47,7 @@ brew cask upgrade ferdi
 brew cask upgrade bitwarden
 brew cask upgrade nordvpn
 brew cask upgrade nextcloud
+brew cask upgrade gpg-suite-no-mail
 
 brew cask upgrade font-firacode-nerd-font
 brew cask upgrade font-saucecodepro-nerd-font

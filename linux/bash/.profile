@@ -29,5 +29,8 @@ export GTK_IM_MODULE=fcitx
 # Initialize rbenv
 export PATH="$HOME/.rbenv/shims:$PATH"
 
+# GPG
+export GPG_TTY="$(tty)"
+
 # Source machine-specific profile
-[ -f ~/.profile_local ] && source ~/.profile_local
+[ -f ~/.profile_local ] && . ~/.profile_local

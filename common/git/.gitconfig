@@ -1,6 +1,7 @@
 [user]
 	name = Liu Guangyuan (Gary)
 	email = garyliu2122@gmail.com
+	signingkey = C48F4770FDB9CB22
 [credential]
 	username = gary-lgy
 	helper = cache
@@ -12,3 +13,5 @@
 [push]
 	default = simple
 	followTags = true
+[commit]
+	gpgsign = true
