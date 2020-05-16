@@ -14,3 +14,67 @@ staged_count.enabled = true
 renamed_count.enabled = true
 deleted_count.enabled = true
 show_sync_count.enabled = true
+ 
+# Nerd Font Icons
+[aws]
+symbol = " " 
+
+[battery]
+full_symbol = " "
+charging_symbol = " "
+discharging_symbol = " "
+
+[conda]
+symbol = " " 
+
+[docker]
+symbol = " " 
+
+[elixir]
+symbol = " " 
+
+[elm]
+symbol = " " 
+
+[git_branch]
+symbol = " " 
+
+[golang]
+symbol = " " 
+
+[haskell]
+symbol = " " 
+
+[hg_branch]
+symbol = " " 
+
+[java]
+symbol = " " 
+
+[julia]
+symbol = " " 
+
+[memory_usage]
+symbol = " " 
+
+[nix_shell]
+symbol = " " 
+
+[nodejs]
+symbol = " " 
+
+[package]
+symbol = " " 
+
+[php]
+symbol = " " 
+
+[python]
+symbol = " " 
+
+[ruby]
+symbol = " " 
+
+[rust]
+symbol = " " 
+
