@@ -6,10 +6,10 @@ endif
 set updatetime=100
 
 " Set sign appearance
-highlight link GitGutterAdd DiffAdd
-highlight link GitGutterChange DiffChange
-highlight link GitGutterChangeDelete DiffChange
-highlight link GitGutterDelete DiffDelete
+highlight! link GitGutterAdd DiffAdd
+highlight! link GitGutterChange DiffChange
+highlight! link GitGutterChangeDelete DiffChange
+highlight! link GitGutterDelete DiffDelete
 
 " Turn off default key mappings
 let g:gitgutter_map_keys = 0
