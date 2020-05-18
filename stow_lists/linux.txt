@@ -32,3 +32,4 @@ tmux
 vim
 x
 zathura
+vscodium

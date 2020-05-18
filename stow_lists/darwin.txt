@@ -12,3 +12,4 @@ tmux
 vim
 xcode
 karabiner-elements
+vscodium

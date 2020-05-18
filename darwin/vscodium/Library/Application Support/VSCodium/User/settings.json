@@ -1,0 +1,151 @@
+{
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": ["--enable-all"],
+  "go.lintOnSave": "file",
+  "go.autocompleteUnimportedPackages": true,
+  "go.testEnvFile": "",
+  "go.useCodeSnippetsOnFunctionSuggest": true,
+  "go.inferGopath": true,
+  "go.formatTool": "goimports",
+  "terminal.integrated.allowChords": false,
+  "terminal.integrated.confirmOnExit": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.macOptionIsMeta": true,
+  "terminal.integrated.scrollback": 100000,
+  "terminal.integrated.shell.osx": "/usr/local/bin/fish",
+  "terminal.integrated.shellArgs.osx": [],
+  "vim.camelCaseMotion.enable": true,
+  "vim.highlightedyank.enable": true,
+  "vim.hlsearch": true,
+  "vim.leader": "<space>",
+  "vim.neovimPath": "/usr/local/bin/nvim",
+  "vim.useSystemClipboard": true,
+  "vim.visualstar": true,
+  "vim.enableNeovim": true,
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["g", "m"],
+      "after": ["%"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["g", "m"],
+      "after": ["%"]
+    }
+  ],
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["<C-J>"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["<C-K>"],
+      "after": ["g", "k"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "/"],
+      "commands": [":noh"]
+    },
+    {
+      "before": ["Y"],
+      "after": ["y", "$"]
+    },
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["g", "j"],
+      "after": ["j"]
+    },
+    {
+      "before": ["g", "k"],
+      "after": ["k"]
+    },
+    {
+      "before": ["J"],
+      "after": ["}"]
+    },
+    {
+      "before": ["K"],
+      "after": ["{"]
+    },
+    {
+      "before": ["H"],
+      "after": ["g", "^"]
+    },
+    {
+      "before": ["L"],
+      "after": ["g", "$"]
+    },
+    {
+      "before": ["g", "G"],
+      "after": ["J"]
+    },
+    {
+      "before": ["<leader>", "j"],
+      "commands": [":write"]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": [":quit"]
+    },
+    {
+      "before": ["]", "b"],
+      "commands": ["workbench.action.nextEditorInGroup"]
+    },
+    {
+      "before": ["[", "b"],
+      "commands": ["workbench.action.previousEditorInGroup"]
+    },
+    {
+      "before": ["]", "c"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "c"],
+      "commands": ["editor.action.marker.prev"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["g", "j"],
+      "after": ["j"]
+    },
+    {
+      "before": ["g", "k"],
+      "after": ["k"]
+    },
+    {
+      "before": ["J"],
+      "after": ["}"]
+    },
+    {
+      "before": ["K"],
+      "after": ["{"]
+    },
+    {
+      "before": ["H"],
+      "after": ["g", "^"]
+    },
+    {
+      "before": ["L"],
+      "after": ["g", "$"]
+    }
+  ]
+}
