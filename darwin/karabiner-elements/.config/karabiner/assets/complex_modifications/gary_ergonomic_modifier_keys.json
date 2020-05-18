@@ -27,7 +27,7 @@
             }
           ],
           "parameters": {
-            "basic.simultaneous_threshold_milliseconds": 25
+            "basic.simultaneous_threshold_milliseconds": 50
           }
         },
         {
@@ -53,7 +53,7 @@
             }
           ],
           "parameters": {
-            "basic.simultaneous_threshold_milliseconds": 25
+            "basic.simultaneous_threshold_milliseconds": 50
           }
         },
         {
@@ -79,7 +79,7 @@
             }
           ],
           "parameters": {
-            "basic.simultaneous_threshold_milliseconds": 25
+            "basic.simultaneous_threshold_milliseconds": 50
           }
         },
         {
@@ -105,7 +105,7 @@
             }
           ],
           "parameters": {
-            "basic.simultaneous_threshold_milliseconds": 25
+            "basic.simultaneous_threshold_milliseconds": 50
           }
         },
         {
@@ -131,7 +131,7 @@
             }
           ],
           "parameters": {
-            "basic.simultaneous_threshold_milliseconds": 25
+            "basic.simultaneous_threshold_milliseconds": 50
           }
         },
         {
@@ -157,7 +157,7 @@
             }
           ],
           "parameters": {
-            "basic.simultaneous_threshold_milliseconds": 25
+            "basic.simultaneous_threshold_milliseconds": 50
           }
         }
       ]

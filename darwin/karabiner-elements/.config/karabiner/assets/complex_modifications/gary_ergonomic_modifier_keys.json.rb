@@ -38,7 +38,7 @@ def map_modifier_keys_to_key_combinations(mappings)
         },
         'to': ['key_code': modifier],
         'parameters': {
-          'basic.simultaneous_threshold_milliseconds': 25
+          'basic.simultaneous_threshold_milliseconds': 50
         }
       }
     end
