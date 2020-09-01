@@ -11,5 +11,3 @@ starship
 tmux
 vim
 xcode
-karabiner-elements
-vscodium
