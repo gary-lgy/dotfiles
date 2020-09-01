@@ -30,7 +30,6 @@ brew upgrade ranger
 brew upgrade bat
 brew upgrade tldr
 brew upgrade direnv
-brew upgrade gpg
 
 brew cask upgrade rectangle
 brew cask upgrade karabiner-elements
