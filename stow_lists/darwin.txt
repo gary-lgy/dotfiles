@@ -1,6 +1,5 @@
 ctags
 editorconfig
-emacs
 fish
 fzf
 git

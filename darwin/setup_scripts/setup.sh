@@ -34,7 +34,6 @@ brew upgrade direnv
 brew cask upgrade rectangle
 brew cask upgrade karabiner-elements
 brew cask upgrade haptickey
-brew cask upgrade emacs
 brew cask upgrade iterm2
 brew cask upgrade clipy
 brew cask upgrade iglance
