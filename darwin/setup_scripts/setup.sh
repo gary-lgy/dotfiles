@@ -49,6 +49,7 @@ brew cask upgrade nordvpn
 brew cask upgrade nextcloud
 brew cask upgrade gpg-suite-no-mail
 
-brew cask upgrade font-firacode-nerd-font
-brew cask upgrade font-saucecodepro-nerd-font
+brew cask upgrade font-fira-code-nerd-font
+brew cask upgrade font-sauce-code-pro-nerd-font
+brew cask upgrade font-jetbrains-mono-nerd-font
 brew cask upgrade font-iosevka-nerd-font
