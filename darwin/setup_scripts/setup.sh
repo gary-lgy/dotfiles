@@ -30,6 +30,7 @@ brew upgrade ranger
 brew upgrade bat
 brew upgrade tldr
 brew upgrade direnv
+brew install federico-terzi/espanso/espanso
 
 brew cask upgrade rectangle
 brew cask upgrade karabiner-elements
