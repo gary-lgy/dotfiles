@@ -14,4 +14,4 @@
 	default = simple
 	followTags = true
 [commit]
-	gpgsign = true
+	gpgsign = false
