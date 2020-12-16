@@ -1,0 +1,52 @@
+{
+  "title": "Disable Cmd+H",
+  "rules": [
+    {
+      "description": "Disable Cmd+H (in both ABC and Dvorak layout)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en",
+                  "input_source_id": "com.apple.keylayout.ABC"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["command"],
+              "optional": ["caps_lock"]
+            }
+          }
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en",
+                  "input_source_id": "com.apple.keylayout.Dvorak"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["command"],
+              "optional": ["caps_lock"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

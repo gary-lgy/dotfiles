@@ -1,0 +1,55 @@
+{
+  "title": "Mouse modifications",
+  "rules": [
+    {
+      "description": "use button4 as control + option + command",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button4"
+          },
+          "to": [
+            {
+              "key_code": "right_control",
+              "modifiers": ["right_option", "right_command"]
+            }
+          ],
+          "to_if_alone": [
+            {
+              "pointing_button": "button4"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 250
+          }
+        }
+      ]
+    },
+    {
+      "description": "use button5 as control + option + command + fn",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button5"
+          },
+          "to": [
+            {
+              "key_code": "right_control",
+              "modifiers": ["right_option", "right_command", "fn"]
+            }
+          ],
+          "to_if_alone": [
+            {
+              "pointing_button": "button5"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 250
+          }
+        }
+      ]
+    }
+  ]
+}

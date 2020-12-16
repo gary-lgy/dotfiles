@@ -5,6 +5,7 @@ fish
 fzf
 git
 ignore
+karabiner-elements
 nvim
 scripts
 starship
