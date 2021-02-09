@@ -17,7 +17,8 @@
           ],
           "to_if_alone": [
             {
-              "pointing_button": "button4"
+              "key_code": "tab",
+              "modifiers": ["right_command"]
             }
           ],
           "parameters": {
@@ -42,7 +43,8 @@
           ],
           "to_if_alone": [
             {
-              "pointing_button": "button5"
+              "key_code": "spacebar",
+              "modifiers": ["left_control"]
             }
           ],
           "parameters": {
