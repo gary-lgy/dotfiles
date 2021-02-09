@@ -5,8 +5,9 @@ tmp
 docs
 .thumbnails
 tags
+.DS_Store
 
-# modules
+# lib
 /Library
 /.npm
 /.node_modules
@@ -20,6 +21,7 @@ node_modules
 .gradle
 /.m2
 /.local/lib
+.cocoapods
 
 # Emacs
 /.emacs.d/*
@@ -52,7 +54,7 @@ Trash
 # password store
 /.password-store
 
-# Ignore app data
+# App specific
 /.tldrc
 /.local/share
 .vscode
@@ -74,6 +76,8 @@ Trash
 *IntelliJIdea*/
 *WebStorm*/
 *TelegramDesktop*
+qmk_firmware
+.asdf
 
 # Ignore some config files
 /.config/google-chrome
