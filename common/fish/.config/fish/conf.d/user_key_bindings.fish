@@ -8,5 +8,5 @@ function fish_user_key_bindings
   bind \eg\ea "~/bin/__fzf_git_add_selector; commandline -f repaint"
   bind \er "ranger; commandline -f repaint"
   bind \et "tmux; commandline -f repaint"
-  bind \co "fzf-complete"
+  bind \co "fzf_complete"
 end

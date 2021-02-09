@@ -1,4 +1,4 @@
-function fzf-complete -d 'fzf completion and print selection back to commandline'
+function fzf_complete -d 'fzf completion and print selection back to commandline'
 	# As of 2.6, fish's "complete" function does not understand
 	# subcommands. Instead, we use the same hack as __fish_complete_subcommand and
 	# extract the subcommand manually.

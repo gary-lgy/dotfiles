@@ -63,10 +63,10 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
       set editor vim
     end
 
-    set -l key $fzf_output[1]
+    set -l key_pressed $fzf_output[1]
     set -l file $fzf_output[2]
 
-    switch $key
+    switch $key_pressed
     case $cd_key
       set cmd cd
     case $open_key
