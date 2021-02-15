@@ -2,7 +2,7 @@
   "title": "Mouse modifications",
   "rules": [
     {
-      "description": "use button4 as control + option + command",
+      "description": "hold button4 for control + option + command; press it for command + tab",
       "manipulators": [
         {
           "type": "basic",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "description": "use button5 as control + option + command + fn",
+      "description": "hold button5 for control + option + command + fn; press it for option + tab",
       "manipulators": [
         {
           "type": "basic",
@@ -43,8 +43,8 @@
           ],
           "to_if_alone": [
             {
-              "key_code": "spacebar",
-              "modifiers": ["left_control"]
+              "key_code": "tab",
+              "modifiers": ["right_option"]
             }
           ],
           "parameters": {
