@@ -1,7 +1,3 @@
-if !HasPlugin('auto-pairs')
-  finish
-endif
-
 " Disable unused shortcuts
 let g:AutoPairsShortcutToggle     = ''
 let g:AutoPairsShortcutBackInsert = ''

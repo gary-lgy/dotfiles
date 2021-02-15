@@ -58,12 +58,12 @@ if has('nvim')
   set inccommand=nosplit
 endif
 
-" " Format settings (taken care of by vim-sleuth)
+" Format settings
 set tabstop=4 " Show tabs as 4-space wide.
-" set smarttab
-" set expandtab " On pressing tab, insert 4 spaces
-" set softtabstop=4 " BS removes 4 spaces
-" set shiftwidth=4 " Indent with 4 spaces equivalent
+set smarttab
+set expandtab " On pressing tab, insert 4 spaces
+set softtabstop=4 " BS removes 4 spaces
+set shiftwidth=4 " Indent with 4 spaces equivalent
 
 " Enable persistent undo
 set undofile

@@ -1,9 +1,3 @@
-if !HasPlugin('fzf.vim')
-  finish
-endif
-
-" FZF is be the best shit I've ever seen!
-
 " Do not show statusline for fzf pane
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
