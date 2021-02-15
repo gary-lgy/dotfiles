@@ -68,8 +68,8 @@ onoremap L g$
 nnoremap gG J
 
 " Split{{{
-nnoremap <leader>ws :split<space>
-nnoremap <leader>wv :vsplit<space>
+" nnoremap <leader>ws :split<space>
+" nnoremap <leader>wv :vsplit<space>
 "}}}
 
 " Resize{{{
@@ -83,7 +83,7 @@ endif
 "}}}
 
 " Save and exit{{{
-nnoremap <leader>j :update<CR>
+nnoremap <leader>w :update<CR>
 nnoremap <silent> <leader>bk :bd<CR>
 nnoremap <leader>q :quit<CR>
 nnoremap <leader>Q :quitall!<CR>
