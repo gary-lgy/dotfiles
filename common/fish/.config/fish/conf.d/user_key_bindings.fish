@@ -1,12 +1,12 @@
 function fish_user_key_bindings
-  fzf_key_bindings # Default key-bindings
-  fzf_custom_key_bindings # Custom key-bindings
+  # Enable default key bindings in insert mode
+  fish_default_key_bindings -M insert
+  # Enable vi mode without erasing existing bindings
+  fish_vi_key_bindings --no-erase
 
-  bind \eg\ec "~/bin/__fzf_git_commits_browser; commandline -f repaint"
-  bind \eg\eb "~/bin/__fzf_git_tags_branches_browser; commandline -f repaint"
-  bind \eg\ed "~/bin/__fzf_git_diff_browser; commandline -f repaint"
-  bind \eg\ea "~/bin/__fzf_git_add_selector; commandline -f repaint"
-  bind \er "ranger; commandline -f repaint"
-  bind \et "tmux; commandline -f repaint"
-  bind \co "fzf_complete"
+  # Fzf
+  fzf_custom_key_bindings
+
+  # Git
+  git_fzf_key_bindings
 end
