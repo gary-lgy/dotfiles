@@ -1,7 +1,3 @@
-" Leader keys
-let mapleader = ' '
-let maplocalleader = '  '
-
 " Stop highlighting search items
 nnoremap <silent> <leader>/ :noh<CR>
 
