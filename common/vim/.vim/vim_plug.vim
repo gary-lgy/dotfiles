@@ -44,6 +44,24 @@ let g:polyglot_disabled = ['latex']
 Plug 'jiangmiao/auto-pairs'
 source ~/.vim/plugin_config/auto_pairs.vim
 
+" Easy-motion
+Plug 'easymotion/vim-easymotion'
+ " Disable default mappings
+let g:EasyMotion_do_mapping = 0
+" Use uppercase target labels and type as a lower case
+let g:EasyMotion_use_upper = 1
+ " type `l` and match `l`&`L`
+let g:EasyMotion_smartcase = 1
+" Smartsign (type `3` and match `3`&`#`)
+let g:EasyMotion_use_smartsign_us = 1
+" Custom keys
+let g:EasyMotion_keys = 'dtnfgcrlbmw,.pyjkxaoeishu'
+
+map s <Plug>(easymotion-s)
+map t <Plug>(easymotion-bd-t)
+map <leader>j <Plug>(easymotion-bd-jk)
+map <leader>b <Plug>(easymotion-bd-w)
+
 " Text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire' " ie and ae

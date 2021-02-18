@@ -56,7 +56,7 @@ nnoremap gG J
 
 " Save and exit
 nnoremap <leader>w :update<CR>
-nnoremap <silent> <leader>bk :bd<CR>
+nnoremap <silent> <leader>k :bd<CR>
 nnoremap <leader>q :quit<CR>
 nnoremap <leader>Q :quitall!<CR>
 
