@@ -1,5 +1,10 @@
 function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
 
+  function __is_binary
+    # Inspired by https://stackoverflow.com/questions/29465612/how-to-detect-invalid-utf8-unicode-binary-in-a-text-file
+    grep --quiet --text --invert-match --line-regexp --max-count=1 '.*' $argv
+  end
+
   function fzf-smart-file-widget -d 'Choose files and directories with fzf and cd, edit, or open them'
     # where and what to search
     set loc "$argv[1]"
@@ -12,8 +17,9 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
 
     # command used for preview
     set preview_cmd "echo -e \"\033[1;33m{}\033[0m\"; \
-                     file -bL {} | grep -q \".*directory.*\" && (exa --all --tree --level=1 --color=always {}; exit); \
-                     bat --color=always --paging=never -p {} --line-range=:30 2>/dev/null"
+                     if [ -d {} ]; then exa --all --tree --level=1 --color=always {}/; \
+                     else bat --color=always --paging=never -p {} --line-range=:30 2>/dev/null; \
+                     fi"
 
     # header message for fzf widget
     set header (echo -n ":: "; \
@@ -59,10 +65,10 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
     case '*' # DWIM
       if test -d $file
         set cmd cd
-      else if string match -q "*text*" (file -bL $file)
-        set cmd $editor
-      else
+      else if __is_binary $file
         set cmd open
+      else
+        set cmd $editor
       end
     end
 
