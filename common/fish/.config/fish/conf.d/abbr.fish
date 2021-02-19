@@ -1,10 +1,16 @@
-# System
+# Frequently used
 abbr --global cp cp -i
 abbr --global mv mv -i
 abbr --global rm rm -i
 abbr --global view nvim -R
 abbr --global la ls -FAx
 # abbr --global ll ls -lAhF
+
+# cd
+abbr --global -- - "cd - && ll"
+abbr --global -- .. "cd .. && ll"
+abbr --global -- ... "cd ../.. && ll"
+abbr --global -- .... "cd ../../.. && ll"
 
 # Git
 abbr --global gb git branch
