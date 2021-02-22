@@ -179,7 +179,6 @@ function! s:EasyMotionConfigPreLoad()
     let g:EasyMotion_keys = 'dtnfgcrlbmw,.pyjkxaoeishu'
 
     map s <Plug>(easymotion-s)
-    map t <Plug>(easymotion-bd-t)
     map <Leader>j <Plug>(easymotion-bd-jk)
     map <Leader>b <Plug>(easymotion-bd-w)
 endfunction
@@ -187,18 +186,30 @@ endfunction
 function! s:CamelCaseMotionConfigPreLoad()
     " In normal and visual mode, w, b, e will have camel case motions
     " Operator-pending mode is not affected
-    nmap <silent> w  <Plug>CamelCaseMotion_w
-    xmap <silent> w  <Plug>CamelCaseMotion_w
-    nmap <silent> b  <Plug>CamelCaseMotion_b
-    xmap <silent> b  <Plug>CamelCaseMotion_b
-    nmap <silent> e  <Plug>CamelCaseMotion_e
-    xmap <silent> e  <Plug>CamelCaseMotion_e
-    nmap <silent> ge <Plug>CamelCaseMotion_ge
-    xmap <silent> ge <Plug>CamelCaseMotion_ge
+    " nmap <silent> w  <Plug>CamelCaseMotion_w
+    " xmap <silent> w  <Plug>CamelCaseMotion_w
+    " nmap <silent> b  <Plug>CamelCaseMotion_b
+    " xmap <silent> b  <Plug>CamelCaseMotion_b
+    " nmap <silent> e  <Plug>CamelCaseMotion_e
+    " xmap <silent> e  <Plug>CamelCaseMotion_e
+    " nmap <silent> ge <Plug>CamelCaseMotion_ge
+    " xmap <silent> ge <Plug>CamelCaseMotion_ge
 
-    " Insert mode mappings
-    imap <silent> <S-Left>  <C-o><Plug>CamelCaseMotion_b
-    imap <silent> <S-Right> <C-o><Plug>CamelCaseMotion_w
+    " " Insert mode mappings
+    " imap <silent> <S-Left>  <C-o><Plug>CamelCaseMotion_b
+    " imap <silent> <S-Right> <C-o><Plug>CamelCaseMotion_w
+
+    map <silent> w <Plug>CamelCaseMotion_w
+    map <silent> b <Plug>CamelCaseMotion_b
+    map <silent> e <Plug>CamelCaseMotion_e
+    map <silent> ge <Plug>CamelCaseMotion_ge
+
+    omap <silent> iw <Plug>CamelCaseMotion_iw
+    xmap <silent> iw <Plug>CamelCaseMotion_iw
+    omap <silent> ib <Plug>CamelCaseMotion_ib
+    xmap <silent> ib <Plug>CamelCaseMotion_ib
+    omap <silent> ie <Plug>CamelCaseMotion_ie
+    xmap <silent> ie <Plug>CamelCaseMotion_ie
 endfunction
 
 function! s:FzfConfigPreLoad()
@@ -425,6 +436,7 @@ endfunction
 function! s:GitGutterConfigPostLoad()
     " Set sign appearance
     " Has to be called after the current colourscheme has been set
+    " Make sure `syntax on` is not called after this; it will undo these changes
     highlight! link GitGutterAdd DiffAdd
     highlight! link GitGutterChange DiffChange
     highlight! link GitGutterChangeDelete DiffChange
@@ -521,40 +533,19 @@ function! s:BindKeys()
     nnoremap Y y$
 
     " Swap j and gj, k and gk
-    nnoremap j gj
-    xnoremap j gj
-    onoremap j gj
-    nnoremap k gk
-    xnoremap k gk
-    onoremap k gk
-    nnoremap gj j
-    xnoremap gj j
-    onoremap gj j
-    nnoremap gk k
-    xnoremap gk k
-    onoremap gk k
+    noremap j gj
+    noremap k gk
+    noremap gj j
+    noremap gk k
 
-    " Remap %
-    nmap gm %
-    xmap gm %
-    omap gm %
+    " Remap % to gm
+    map gm %
 
     " Remap some text objects
-    " Blocks
-    nnoremap J }
-    xnoremap J }
-    onoremap J }
-    nnoremap K {
-    xnoremap K {
-    onoremap K {
-
-    " On the same line
-    nnoremap H g^
-    xnoremap H g^
-    onoremap H g^
-    nnoremap L g$
-    xnoremap L g$
-    onoremap L g$
+    noremap J }
+    noremap K {
+    noremap H g^
+    noremap L g$
 
     " Use gG to join lines instead of J
     nnoremap gG J
