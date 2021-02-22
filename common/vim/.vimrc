@@ -101,7 +101,7 @@ function! s:LoadPlugins()
     call s:FzfConfigPreLoad()
 
     " Easy alignment
-    Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
+    Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
     " Start interactive EasyAlign in visual mode (e.g. vipga)
     xmap ga <Plug>(EasyAlign)
     " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -418,6 +418,7 @@ function! s:PluginsDidLoad()
     call s:PluginConfigsPostLoad()
     call s:SetOptions()
     call s:BindKeys()
+    call s:MiscConfig()
 endfunction
 
 " Config for plugins after all plugins have loaded
@@ -574,6 +575,28 @@ function! s:BindKeys()
     " Type jk or kj in insert mode to enter normal mode
     inoremap jk <ESC>
     inoremap kj <ESC>
+endfunction
+
+function! s:MiscConfig()
+    call s:QMKConfig()
+endfunction
+
+function! s:QMKConfig()
+	au BufRead,BufNewFile */qmk_firmware/*/keymap.c	call <SID>SetupQMK()
+endfunction
+
+function! s:SetupQMK()
+    " Keybinding to align key definitions for QMK
+    " Relies on vim-easy-align
+    " <C-i>: use the shallowest indentation
+    " <C-l>3<CR>: use 3+1 spaces margin between entries
+    " * : Use all spaces as delimiters
+    nmap <Tab> gaip<C-i><C-l>3<CR>* <CR>=ap
+
+    " Placeholder for better alignment
+    iabbrev /n /*none*/
+    " Alias for KC_TRANSPARENT
+    iabbrev __ _______
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
