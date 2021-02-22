@@ -45,6 +45,16 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
       return 1
     end
 
+    set -l key_pressed $fzf_output[1]
+    set -l first_file $fzf_output[2]
+
+    # if the action is cd but target is a file, cd into its parent directory
+    if begin test $key_pressed = $cd_key; and test (count $fzf_output[2..-1]) -eq 1; and test -f $first_file; end
+      set targets (dirname $fzf_output[2])
+    else
+      set targets $fzf_output[2..-1]
+    end
+
     # choose command to use based on the desired action
     if set -q EDITOR
       set editor (basename $EDITOR)
@@ -52,36 +62,30 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
       set editor vim
     end
 
-    set -l key_pressed $fzf_output[1]
-    set -l file $fzf_output[2]
+    set cd_command "cd $targets && ll"
+    set open_command "open $targets"
+    set edit_command "$editor $targets"
 
     switch $key_pressed
     case $cd_key
-      set cmd cd
+      set cmd $cd_command
     case $open_key
-      set cmd open
+      set cmd $open_command
     case $edit_key
-      set cmd $editor
-    case '*' # DWIM
-      if test -d $file
-        set cmd cd
-      else if __is_binary $file
-        set cmd open
+      set cmd $edit_command
+    case '*' # For any other key pressed, DWIM
+      if test -d $first_file
+        set cmd $cd_command
+      else if __is_binary $first_file
+        set cmd $open_command
       else
-        set cmd $editor
+        set cmd $edit_command
       end
-    end
-
-    # if the action is cd but target is a file, cd into its parent directory
-    if begin test $fzf_output[1] = $cd_key; and test (count $fzf_output[2..-1]) -eq 1; and test -f $fzf_output[2]; end
-      set targets (dirname $fzf_output[2])
-    else
-      set targets $fzf_output[2..-1]
     end
 
     # put the fullly constructed command on the commandline buffer and execute it
     set targets (string escape $targets) # Escape the targets first
-    commandline -- "$cmd $targets"
+    commandline -- $cmd
     commandline -f repaint-mode
     commandline -f execute
   end
