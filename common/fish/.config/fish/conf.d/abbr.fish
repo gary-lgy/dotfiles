@@ -12,7 +12,17 @@ abbr --global -- .. "cd .. && ll"
 abbr --global -- ... "cd ../.. && ll"
 abbr --global -- .... "cd ../../.. && ll"
 
+# Brew
+abbr --global bi "brew install"
+abbr --global bic "brew install --cask"
+abbr --global bu "brew uninstall"
+abbr --global bp "brew update"
+abbr --global bg "brew upgrade"
+abbr --global bf "brew info"
+abbr --global bs "brew search"
+
 # Git
+abbr --global ga git add
 abbr --global gb git branch
 abbr --global gc git checkout
 abbr --global gm git commit -m
@@ -23,16 +33,6 @@ abbr --global gl git log --pretty=oneline -5
 abbr --global gp git pull
 abbr --global gpu git push -u origin HEAD
 abbr --global gs git status
-
-# Bundle
-abbr --global be bundle exec
-abbr --global bi bundle install
-
-# Rails
-abbr --global rc bundle exec rails c
-abbr --global rs bundle exec rails s
-abbr --global rk bundle exec rake
-abbr --global rd bundle exec db:
 
 # Tmux
 abbr --global tl tmux ls
@@ -55,3 +55,7 @@ abbr --global dcd docker-compose down
 abbr --global dcp docker-compose ps
 abbr --global dcr docker-compose run
 abbr --global dcu docker-compose up
+
+# QMK
+abbr --global qc qmk compile
+abbr --global qf qmk flash
