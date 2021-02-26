@@ -82,7 +82,9 @@ function! s:LoadPlugins()
     call s:CamelCaseMotionConfigPreLoad()
 
     " Colorscheme collection
-    Plug 'flazz/vim-colorschemes'
+    Plug 'morhetz/gruvbox'
+    let g:gruvbox_invert_signs = 1
+    let g:gruvbox_contrast_dark = 'hard'
 
     " FZF
     if g:os == 'Darwin'
@@ -184,21 +186,6 @@ function! s:EasyMotionConfigPreLoad()
 endfunction
 
 function! s:CamelCaseMotionConfigPreLoad()
-    " In normal and visual mode, w, b, e will have camel case motions
-    " Operator-pending mode is not affected
-    " nmap <silent> w  <Plug>CamelCaseMotion_w
-    " xmap <silent> w  <Plug>CamelCaseMotion_w
-    " nmap <silent> b  <Plug>CamelCaseMotion_b
-    " xmap <silent> b  <Plug>CamelCaseMotion_b
-    " nmap <silent> e  <Plug>CamelCaseMotion_e
-    " xmap <silent> e  <Plug>CamelCaseMotion_e
-    " nmap <silent> ge <Plug>CamelCaseMotion_ge
-    " xmap <silent> ge <Plug>CamelCaseMotion_ge
-
-    " " Insert mode mappings
-    " imap <silent> <S-Left>  <C-o><Plug>CamelCaseMotion_b
-    " imap <silent> <S-Right> <C-o><Plug>CamelCaseMotion_w
-
     map <silent> w <Plug>CamelCaseMotion_w
     map <silent> b <Plug>CamelCaseMotion_b
     map <silent> e <Plug>CamelCaseMotion_e
@@ -423,35 +410,10 @@ endfunction
 
 " Config for plugins after all plugins have loaded
 function! s:PluginConfigsPostLoad()
-    call s:ColorSchemePostLoad()
-    " GitGutter highlight colours depend on the colourscheme
-    " Therefore, we configure the gutter colours after loading the current
-    " colorscheme
-    call s:GitGutterConfigPostLoad()
-endfunction
-
-function! s:ColorSchemePostLoad()
     colorscheme gruvbox
 endfunction
 
-function! s:GitGutterConfigPostLoad()
-    " Set sign appearance
-    " Has to be called after the current colourscheme has been set
-    " Make sure `syntax on` is not called after this; it will undo these changes
-    highlight! link GitGutterAdd DiffAdd
-    highlight! link GitGutterChange DiffChange
-    highlight! link GitGutterChangeDelete DiffChange
-    highlight! link GitGutterDelete DiffDelete
-endfunction
-
 function! s:SetOptions()
-    " Terminal color capabilities
-    if $TERM =~? '\(.*tmux.*\)\|\(.*xterm.*\)'
-        set termguicolors
-    else
-        set notermguicolors
-    endif
-
     " Terminal settings
     if has('nvim')
         autocmd TermOpen * startinsert
@@ -481,6 +443,7 @@ function! s:SetOptions()
     set confirm
 
     " Appearance
+    set termguicolors
     set ruler
     set showcmd
     set number
