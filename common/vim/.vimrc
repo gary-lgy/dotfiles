@@ -81,7 +81,7 @@ function! s:LoadPlugins()
     Plug 'bkad/CamelCaseMotion'
     call s:CamelCaseMotionConfigPreLoad()
 
-    " Colorscheme collection
+    " Colorscheme
     Plug 'morhetz/gruvbox'
     let g:gruvbox_invert_signs = 1
     let g:gruvbox_contrast_dark = 'hard'
@@ -115,7 +115,6 @@ function! s:LoadPlugins()
 
     " Status bar
     Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     call s:AirlineConfigPreLoad()
 
     " Highlight yanked region
@@ -273,29 +272,8 @@ function! s:AirlineConfigPreLoad()
     " Use powerline font
     let g:airline_powerline_fonts = 1
 
-    " Use powerline and unicode symbols
-    let g:airline_left_sep                     = ''
-    let g:airline_left_alt_sep                 = ''
-    let g:airline_right_sep                    = ''
-    let g:airline_right_alt_sep                = ''
-    let g:airline#extensions#tabline#left_sep  = ''
-    let g:airline#extensions#tabline#right_sep = ''
-    if !exists("g:airline_symbols")
-        let g:airline_symbols = {}
-    endif
-    let g:airline_symbols.branch               = ''
-    let g:airline_symbols.readonly             = ''
-    let g:airline_symbols.linenr               = '' " '☰'
-    let g:airline_symbols.maxlinenr            = '' " ''
-    let g:airline_symbols.dirty                = '⚡'
-    let g:airline_symbols.crypt                = '🔒'
-    let g:airline_symbols.paste                = 'ρ'
-    let g:airline_symbols.spell                = 'Ꞩ'
-    let g:airline_symbols.notexists            = 'Ɇ'
-    let g:airline_symbols.whitespace           = 'Ξ'
-
     " Theme
-    let g:airline_theme='deus'
+    let g:airline_theme='dark'
 
     " Use shortform for mode names
     let g:airline_mode_map = {
@@ -545,7 +523,7 @@ function! s:MiscConfig()
 endfunction
 
 function! s:QMKConfig()
-	au BufRead,BufNewFile */qmk_firmware/*/keymap.c	call <SID>SetupQMK()
+    au BufRead,BufNewFile */qmk_firmware/*/keymap.c	call <SID>SetupQMK()
 endfunction
 
 function! s:SetupQMK()
