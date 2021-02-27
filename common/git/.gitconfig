@@ -1,17 +1,30 @@
 [user]
-	name = Liu Guangyuan (Gary)
-	email = garyliu2122@gmail.com
-	signingkey = C48F4770FDB9CB22
+    name = Liu Guangyuan (Gary)
+    email = garyliu2122@gmail.com
+    signingkey = C48F4770FDB9CB22
 [credential]
-	username = gary-lgy
-	helper = cache
+    username = gary-lgy
+    helper = cache
 [core]
-	excludesfile = /home/gary/.gitignore_global
-	pager = delta | less -R
+    pager = delta
 [interactive]
-	diffFilter = delta --color-only
+    diffFilter = delta --color-only
 [push]
-	default = simple
-	followTags = true
+    default = simple
+    followTags = true
 [commit]
-	gpgsign = false
+    gpgsign = false
+[diff]
+    ; https://git-scm.com/docs/git-diff#Documentation/git-diff.txt---color-movedltmodegt
+    colorMoved = default
+    colorMovedWS = ignore-space-change
+
+; https://github.com/dandavison/delta#--color-moved-support
+[delta]
+    features = line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
