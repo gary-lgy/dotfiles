@@ -3,15 +3,17 @@
 not status --is-interactive; and exit
 
 ######################    Fisher    #######################{{{
-# Install fisher packages in ~/.config/fish/fisher
+# Fisher installs packages into ~/.config/fish by default
+# Install fisher packages in ~/.config/fish/fisher instead
 set -g fisher_path ~/.config/fish/fisher
 
+# https://github.com/jorgebucaran/fisher/issues/640
 set fish_function_path $fish_function_path[1] $fisher_path/functions $fish_function_path[2..-1]
 set fish_complete_path $fish_complete_path[1] $fisher_path/completions $fish_complete_path[2..-1]
 
 if not functions -q fisher
-  curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-  fish -c fisher
+  echo "Fisher not installed, installing Fisher first"
+  curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 end
 
 for file in $fisher_path/conf.d/*.fish
