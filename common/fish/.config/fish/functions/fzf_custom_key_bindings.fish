@@ -55,6 +55,9 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
       set targets $fzf_output[2..-1]
     end
 
+    # Escape the targets
+    set targets (string escape $targets)
+
     # choose command to use based on the desired action
     if set -q EDITOR
       set editor (basename $EDITOR)
