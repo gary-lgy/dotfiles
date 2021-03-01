@@ -1,12 +1,20 @@
+let mapleader = ' '
+
 " IdeaVim emulated plugins
+set easymotion
 set surround
 set multiple-cursors
 set commentary
-set ideajoin
 set textobj-entire
 set argtextobj
+set ReplaceWithRegister
+set highlightedyank
 let g:argtextobj_pairs = "(:),{:},<:>"
-" set idearefactormode=select
+
+" Idea specific settings
+set ideajoin
+set idearefactormode=keep
+set ideavimsupport=
 
 " Options
 set clipboard=unnamedplus,ideaput
@@ -19,31 +27,20 @@ set timeoutlen=500
 set visualbell
 
 " Keys
-let mapleader = ' '
 
 " Operators
-nnoremap gm %
-vnoremap gm %
-onoremap gm %
+noremap gm %
 
-nnoremap J }
-vnoremap J }
-onoremap J }
-nnoremap K {
-vnoremap K {
-onoremap K {
+noremap J }
+noremap K {
 
-nnoremap H g^
-vnoremap H g^
-onoremap H g^
-nnoremap L g$
-vnoremap L g$
-onoremap L g$
+noremap H g^
+noremap L g$
 
 " Convenience
 nnoremap <silent> <leader>/ :noh<cr>
 nnoremap Y y$
-nnoremap <A-k> :action QuickJavaDoc<cr>
+nmap gh <Action>(QuickJavaDoc)
 
 noremap <F1> <nop>
 inoremap <F1> <nop>
@@ -68,83 +65,85 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " The built-in C-O and C-I bindings are broken
-nnoremap <C-o> :action Back<cr>
-nnoremap <C-i> :action Forward<cr>
+map <C-o> <Action>(Back)
+map <C-i> <Action>(Forward)
 
-noremap [[ :action GotoPrevElementUnderCaretUsage<cr>
-noremap ]] :action GotoNextElementUnderCaretUsage<cr>
-noremap ][ :action MethodDown<cr>
-noremap [] :action MethodUp<cr>
-noremap [b :action PreviousTab<cr>
-noremap ]b :action NextTab<cr>
-noremap [h :action VcsShowPrevChangeMarker<cr>
-noremap ]h :action VcsShowNextChangeMarker<cr>
-noremap [c :action PreviousDiff<cr>
-noremap ]c :action NextDiff<cr>
-noremap [d :action GotoPreviousError<cr>
-noremap ]d :action GotoNextError<cr>
-noremap [e :action MoveLineUp<cr>
-noremap ]e :action MoveLineDown<cr>
-noremap [E :action MoveStatementUp<cr>
-noremap ]E :action MoveStatementDown<cr>
+map [[ <Action>(GotoPrevElementUnderCaretUsage)
+map ]] <Action>(GotoNextElementUnderCaretUsage)
+map ][ <Action>(MethodDown)
+map [] <Action>(MethodUp)
+map [b <Action>(PreviousTab)
+map ]b <Action>(NextTab)
+map [h <Action>(VcsShowPrevChangeMarker)
+map ]h <Action>(VcsShowNextChangeMarker)
+map [c <Action>(PreviousDiff)
+map ]c <Action>(NextDiff)
+map [d <Action>(GotoPreviousError)
+map ]d <Action>(GotoNextError)
+map [e <Action>(MoveLineUp)
+map ]e <Action>(MoveLineDown)
+map [E <Action>(MoveStatementUp)
+map ]E <Action>(MoveStatementDown)
 noremap [<space> :action EditorStartNewLineBefore<cr>:action EditorDown<cr>
 noremap ]<space> :action EditorStartNewLine<cr>:action EditorUp<cr>
 
-noremap <leader><leader> :action SearchEverywhere<cr>
 noremap <leader><Tab> <C-S-6>
-noremap ga :action GotoAction<cr>
-noremap gf :action GotoFile<cr>
-noremap gh :action GotoClass<cr>
-noremap gs :action GotoSymbol<cr>
+nmap ga <Action>(GotoAction)
+nmap gf <Action>(GotoFile)
+nmap gl <Action>(GotoClass)
+nmap gs <Action>(GotoSymbol)
 
-noremap g; :action JumpToLastChange<cr>
-noremap g, :action JumpToNextChange<cr>
-noremap gi :action GotoImplementation<cr>
-noremap gr :action ShowUsages<cr>
-noremap gt :action GotoTypeDeclaration<cr>
+map g; <Action>(JumpToLastChange)
+map g, <Action>(JumpToNextChange)
+map gi <Action>(GotoImplementation)
+map gu <Action>(ShowUsages)
+map gT <Action>(GotoTypeDeclaration)
 
-noremap <leader>an  :action Annotate<cr>
-noremap <leader>bb  :action ToggleLineBreakpoint<cr>
-noremap <leader>bk  :action CloseEditor<cr>
-noremap <leader>br  :action ViewBreakpoints<cr>
-noremap <leader>ch  :action CallHierarchy<cr>
-noremap <leader>cp  :action CopyPaths<cr>
-noremap <leader>cs  :action ChangeSignature<cr>
-noremap <leader>ct  :action ChangeTypeSignature<cr>
-noremap <leader>cv  :action ChangeView<cr>
-noremap <leader>dc  :action ChooseDebugConfiguration<cr>
-noremap <leader>dd  :action Debug<cr>
-noremap <leader>eq  :action Exit<cr>
-noremap <leader>ff  :action FindInPath<cr>
-noremap <leader>fg  :action GoImportsFileAction<cr>
-noremap <leader>fm  :action ReformatCode<cr>
-noremap <leader>fp  :action ReformatWithPrettierAction<cr>
-noremap <leader>fr  :action RecentFiles<cr>
-noremap <leader>fu  :action FindUsages<cr>
-noremap <leader>ge  :action Gradle.ExecuteTask<cr>
-noremap <leader>gr  :action GotoRelated<cr>
-noremap <leader>gs  :action GotoSuperMethod<cr>
-noremap <leader>gt  :action GotoTest<cr>
-noremap <leader>hr  :action Vcs.RollbackChangedLines<cr>
-noremap <leader>ic  :action IntroduceConstant<cr>
-noremap <leader>if  :action IntroduceField<cr>
-noremap <leader>ii  :action Inline<cr>
-noremap <leader>im  :action ImplementMethods<cr>
-noremap <leader>ip  :action IntroduceParameter<cr>
-noremap <leader>is  :action InspectCode<cr>
-noremap <leader>iv  :action IntroduceVariable<cr>
-noremap <leader>j   :write<cr>
-noremap <leader>mv  :action ActivateMavenProjectsToolWindow<cr>
-noremap <leader>nc  :action NewClass<cr>
-noremap <leader>oi  :action OptimizeImports<cr>
-noremap <leader>om  :action OverrideMethods<cr>
-noremap <leader>q   :action CloseActiveTab<cr>
-noremap <leader>rf  :action RenameFile<cr>
-noremap <leader>rn  :action RenameElement<cr>
-noremap <leader>rr  :action Run<cr>
-noremap <leader>sd  :action SafeDelete<cr>
-noremap <leader>sh  :action SplitHorizontally<cr>
-noremap <leader>sn  :noh<cr>
-noremap <leader>ss  :action SplitVertically<cr>
-noremap <leader>t   :action ActivateTerminalToolWindow<cr>
-noremap <leader>xm  :action ExtractMethod<cr>
+map <leader><leader>b <Plug>(easymotion-bd-w)
+map <leader><leader>j <Plug>(easymotion-bd-jk)
+map <leader><leader><leader> <Plug>(easymotion-jumptoanywhere)
+
+nmap <leader>=  <Action>(ReformatCode)
+map <leader>an  <Action>(Annotate)
+map <leader>bb  <Action>(ToggleLineBreakpoint)
+map <leader>bk  <Action>(CloseEditor)
+map <leader>br  <Action>(ViewBreakpoints)
+map <leader>ch  <Action>(CallHierarchy)
+map <leader>cp  <Action>(CopyPaths)
+map <leader>cs  <Action>(ChangeSignature)
+map <leader>ct  <Action>(ChangeTypeSignature)
+map <leader>cv  <Action>(ChangeView)
+map <leader>dc  <Action>(ChooseDebugConfiguration)
+map <leader>dd  <Action>(Debug)
+map <leader>eq  <Action>(Exit)
+map <leader>ff  <Action>(FindInPath)
+map <leader>fg  <Action>(GoImportsFileAction)
+map <leader>fp  <Action>(ReformatWithPrettierAction)
+map <leader>fr  <Action>(RecentFiles)
+map <leader>fu  <Action>(FindUsages)
+map <leader>ge  <Action>(Gradle.ExecuteTask)
+map <leader>gr  <Action>(GotoRelated)
+map <leader>gs  <Action>(GotoSuperMethod)
+map <leader>gt  <Action>(GotoTest)
+map <leader>ic  <Action>(IntroduceConstant)
+map <leader>if  <Action>(IntroduceField)
+map <leader>ii  <Action>(Inline)
+map <leader>im  <Action>(ImplementMethods)
+map <leader>ip  <Action>(IntroduceParameter)
+map <leader>is  <Action>(InspectCode)
+map <leader>iv  <Action>(IntroduceVariable)
+map <leader>mv  <Action>(ActivateMavenProjectsToolWindow)
+map <leader>nc  <Action>(NewClass)
+map <leader>oi  <Action>(OptimizeImports)
+map <leader>om  <Action>(OverrideMethods)
+map <leader>q   <Action>(CloseActiveTab)
+map <leader>rf  <Action>(RenameFile)
+map <leader>rn  <Action>(RenameElement)
+map <leader>rr  <Action>(Run)
+map <leader>sd  <Action>(SafeDelete)
+map <leader>sh  <Action>(SplitHorizontally)
+map <leader>sn  :noh<cr>
+map <leader>ss  <Action>(SplitVertically)
+map <leader>t   <Action>(ActivateTerminalToolWindow)
+map <leader>w   :write<cr>
+map <leader>xm  <Action>(ExtractMethod)
