@@ -34,10 +34,12 @@ if status --is-interactive
     thefuck --alias | source
   end
 
-  # starship - prompt
-  if command -v starship >/dev/null 2>&1
-    starship init fish | source
-  end
+  # # starship - prompt
+  # Starship is slow in a large git repo
+  # https://github.com/starship/starship/issues/301
+  # if command -v starship >/dev/null 2>&1
+  #   starship init fish | source
+  # end
 
   # asdf
   if command -v asdf 2>/dev/null 1>&2
