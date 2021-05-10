@@ -6,12 +6,15 @@
     username = gary-lgy
     helper = cache
 [core]
-    pager = delta
+    ; pager = delta
+ 	pager = delta | less -R
 [interactive]
     diffFilter = delta --color-only
 [push]
     default = simple
     followTags = true
+[pull]
+	ff = only
 [commit]
     gpgsign = false
 [diff]

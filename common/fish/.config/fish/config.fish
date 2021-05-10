@@ -12,6 +12,7 @@ end
 # Environment variables
 set -gx EDITOR (which nvim)
 set -gx INTERACTIVE_SHELL (which fish)
+set -gx LESS '-+X'
 
 # Machine local config
 set -l fish_local_config $HOME/.config/fish/config.local.fish
