@@ -18,7 +18,7 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
     # command used for preview
     set preview_cmd "echo -e \"\033[1;33m{}\033[0m\"; \
                      if [ -d {} ]; then exa --all --tree --level=1 --color=always {}/; \
-                     else bat --color=always --paging=never -p {} --line-range=:30 2>/dev/null; \
+                     else bat --color=always --paging=never -p {} --line-range=:100 2>/dev/null; \
                      fi"
 
     # header message for fzf widget
