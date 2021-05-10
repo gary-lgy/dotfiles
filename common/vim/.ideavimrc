@@ -10,6 +10,7 @@ set argtextobj
 set ReplaceWithRegister
 set highlightedyank
 let g:argtextobj_pairs = "(:),{:},<:>"
+let g:EasyMotion_do_mapping = 0
 
 " Idea specific settings
 set ideajoin
@@ -99,15 +100,12 @@ map gi <Action>(GotoImplementation)
 map gu <Action>(ShowUsages)
 map gT <Action>(GotoTypeDeclaration)
 
-map <leader><leader>b <Plug>(easymotion-bd-w)
-map <leader><leader>j <Plug>(easymotion-bd-jk)
-map <leader><leader><leader> <Plug>(easymotion-jumptoanywhere)
+map <leader>b <Plug>(easymotion-bd-w)
+map <leader>j <Plug>(easymotion-bd-jk)
+map s <Plug>(easymotion-s)
 
 nmap <leader>=  <Action>(ReformatCode)
 map <leader>an  <Action>(Annotate)
-map <leader>bb  <Action>(ToggleLineBreakpoint)
-map <leader>bk  <Action>(CloseEditor)
-map <leader>br  <Action>(ViewBreakpoints)
 map <leader>ch  <Action>(CallHierarchy)
 map <leader>cp  <Action>(CopyPaths)
 map <leader>cs  <Action>(ChangeSignature)
