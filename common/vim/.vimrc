@@ -47,6 +47,9 @@ function! s:LoadPlugins()
     " Repeat actions by plugins
     Plug 'tpope/vim-repeat'
 
+    " Replace with register
+    Plug 'inkarkat/vim-ReplaceWithRegister'
+
     " Heuristically adjust indentation
     Plug 'tpope/vim-sleuth'
 
@@ -64,8 +67,21 @@ function! s:LoadPlugins()
     let g:polyglot_disabled = ['latex']
 
     " Auto pairs
-    Plug 'jiangmiao/auto-pairs'
-    call s:AutoPairsConfigPreLoad()
+    " Plug 'jiangmiao/auto-pairs'
+    " call s:AutoPairsConfigPreLoad()
+    Plug 'tmsvg/pear-tree'
+    let g:pear_tree_repeatable_expand = 0
+    let g:pear_tree_smart_openers = 1
+    let g:pear_tree_smart_closers = 1
+    let g:pear_tree_smart_backspace = 1
+
+    " Rainbox parentheses
+    Plug 'junegunn/rainbow_parentheses.vim'
+    " Activation based on file type
+    augroup rainbow_lisp
+        autocmd!
+        autocmd FileType lisp,clojure,scheme RainbowParentheses
+    augroup END
 
     " Easy-motion
     Plug 'easymotion/vim-easymotion'
@@ -185,10 +201,14 @@ function! s:EasyMotionConfigPreLoad()
 endfunction
 
 function! s:CamelCaseMotionConfigPreLoad()
-    map <silent> w <Plug>CamelCaseMotion_w
-    map <silent> b <Plug>CamelCaseMotion_b
-    map <silent> e <Plug>CamelCaseMotion_e
-    map <silent> ge <Plug>CamelCaseMotion_ge
+    nmap <silent> w <Plug>CamelCaseMotion_w
+    xmap <silent> w <Plug>CamelCaseMotion_w
+    nmap <silent> b <Plug>CamelCaseMotion_b
+    xmap <silent> b <Plug>CamelCaseMotion_b
+    nmap <silent> e <Plug>CamelCaseMotion_e
+    xmap <silent> e <Plug>CamelCaseMotion_e
+    nmap <silent> ge <Plug>CamelCaseMotion_ge
+    xmap <silent> ge <Plug>CamelCaseMotion_ge
 
     omap <silent> iw <Plug>CamelCaseMotion_iw
     xmap <silent> iw <Plug>CamelCaseMotion_iw
@@ -337,13 +357,17 @@ function! s:AirlineConfigPreLoad()
 endfunction
 
 function! s:ComfortableMotionConfigPreLoad()
+    " Scroll by visual lines
+    let g:comfortable_motion_scroll_down_key = "gj"
+    let g:comfortable_motion_scroll_up_key = "gk"
+
     " Scroll parameters
-    let g:comfortable_motion_friction = 0.0
-    let g:comfortable_motion_air_drag = 5.0
+    let g:comfortable_motion_friction = 200.0
+    let g:comfortable_motion_air_drag = 0.0
 
     " Scroll proportionally to the window height
     let g:comfortable_motion_no_default_key_mappings = 1
-    let g:comfortable_motion_impulse_multiplier = 1
+    let g:comfortable_motion_impulse_multiplier = 0.7
     nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
     nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
     nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
@@ -536,6 +560,7 @@ function! s:SetupQMK()
 
     " Placeholder for better alignment
     iabbrev /n /*none*/
+    iabbrev /- /*-*/
     " Alias for KC_TRANSPARENT
     iabbrev __ _______
 endfunction
