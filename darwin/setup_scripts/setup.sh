@@ -10,45 +10,45 @@ brew analytics off
 brew tap homebrew/cask-versions
 brew tap homebrew/cask-fonts
 
-brew upgrade brew-cask-completion
-brew upgrade neovim
-brew upgrade tmux
-brew upgrade fish
-brew upgrade stow
+brew install brew-cask-completion
+brew install neovim
+brew install tmux
+brew install fish
+brew install stow
 
-brew upgrade starship
-brew upgrade shellcheck
-brew upgrade git-delta
-brew upgrade mosh
-brew upgrade htop
-brew upgrade fd
-brew upgrade exa
-brew upgrade fasd
-brew upgrade ripgrep
-brew upgrade fzf
-brew upgrade ranger
-brew upgrade bat
-brew upgrade tldr
-brew upgrade direnv
+brew install starship
+brew install shellcheck
+brew install git-delta
+brew install mosh
+brew install htop
+brew install fd
+brew install exa
+brew install fasd
+brew install ripgrep
+brew install fzf
+brew install ranger
+brew install bat
+brew install tldr
+brew install direnv
 brew install federico-terzi/espanso/espanso
 
-brew cask upgrade rectangle
-brew cask upgrade karabiner-elements
-brew cask upgrade haptickey
-brew cask upgrade iterm2
-brew cask upgrade clipy
-brew cask upgrade iglance
-brew cask upgrade firefox-developer-edition
-brew cask upgrade google-chrome
-brew cask upgrade telegram-desktop
-brew cask upgrade wechat
-brew cask upgrade ferdi
-brew cask upgrade bitwarden
-brew cask upgrade nordvpn
-brew cask upgrade nextcloud
-brew cask upgrade gpg-suite-no-mail
+brew install --cask rectangle
+brew install --cask karabiner-elements
+brew install --cask haptickey
+brew install --cask iterm2
+brew install --cask clipy
+brew install --cask iglance
+brew install --cask firefox-developer-edition
+brew install --cask google-chrome
+brew install --cask telegram-desktop
+brew install --cask wechat
+brew install --cask ferdi
+brew install --cask bitwarden
+brew install --cask nordvpn
+brew install --cask nextcloud
+brew install --cask gpg-suite-no-mail
 
-brew cask upgrade font-fira-code-nerd-font
-brew cask upgrade font-sauce-code-pro-nerd-font
-brew cask upgrade font-jetbrains-mono-nerd-font
-brew cask upgrade font-iosevka-nerd-font
+brew install --cask font-fira-code-nerd-font
+brew install --cask font-sauce-code-pro-nerd-font
+brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask font-iosevka-nerd-font
