@@ -55,7 +55,3 @@ abbr --global dcd docker-compose down
 abbr --global dcp docker-compose ps
 abbr --global dcr docker-compose run
 abbr --global dcu docker-compose up
-
-# QMK
-abbr --global qc qmk compile
-abbr --global qf qmk flash
