@@ -6,8 +6,7 @@
     username = gary-lgy
     helper = cache
 [core]
-    ; pager = delta
- 	pager = delta | less -R
+    pager = delta
 [interactive]
     diffFilter = delta --color-only
 [push]

@@ -12,7 +12,8 @@ end
 # Environment variables
 set -gx EDITOR (which nvim)
 set -gx INTERACTIVE_SHELL (which fish)
-set -gx LESS '-+X'
+set -gx LESS '--quit-if-one-screen --RAW-CONTROL-CHARS --mouse'
+set -gx PAGER (which less) # On MacOS, the default is /usr/bin/less, which is outdated
 
 # Machine local config
 set -l fish_local_config $HOME/.config/fish/config.local.fish
