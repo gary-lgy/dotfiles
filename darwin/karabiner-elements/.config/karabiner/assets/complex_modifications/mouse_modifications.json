@@ -1,0 +1,79 @@
+{
+    "title": "Mouse modifications",
+    "rules": [
+        {
+            "description": "use button4 for left click",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "pointing_button": "button4",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "pointing_button": "button1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "hold button5 to scroll with mouse motion",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": {
+                        "pointing_button": "button5",
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "set_variable": {
+                                "name": "enable_mouse_motion_to_scroll",
+                                "value": 1
+                            }
+                        }
+                    ],
+                    "to_after_key_up": [
+                        {
+                            "set_variable": {
+                                "name": "enable_mouse_motion_to_scroll",
+                                "value": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "mouse_motion_to_scroll",
+                    "options": {
+                        "momentum_scroll_enabled": false,
+                        "speed_multiplier": -1.0
+                    },
+                    "from": {
+                        "modifiers": {
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "conditions": [
+                        {
+                            "type": "variable_if",
+                            "name": "enable_mouse_motion_to_scroll",
+                            "value": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
