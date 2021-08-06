@@ -42,6 +42,8 @@ noremap L g$
 nnoremap <silent> <leader>/ :noh<cr>
 nnoremap Y y$
 nmap gh <Action>(QuickJavaDoc)
+vnoremap y ygv<esc>
+nnoremap gG J
 
 noremap <F1> <nop>
 inoremap <F1> <nop>
@@ -98,7 +100,7 @@ map g; <Action>(JumpToLastChange)
 map g, <Action>(JumpToNextChange)
 map gi <Action>(GotoImplementation)
 map gu <Action>(ShowUsages)
-map gT <Action>(GotoTypeDeclaration)
+map gt <Action>(GotoTypeDeclaration)
 
 map <leader>b <Plug>(easymotion-bd-w)
 map <leader>j <Plug>(easymotion-bd-jk)

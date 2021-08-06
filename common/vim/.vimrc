@@ -503,6 +503,8 @@ function! s:BindKeys()
     noremap k gk
     noremap gj j
     noremap gk k
+    noremap <up> gk
+    noremap <down> gj
 
     " Remap % to gm
     map gm %
@@ -540,6 +542,8 @@ function! s:BindKeys()
     " Type jk or kj in insert mode to enter normal mode
     inoremap jk <ESC>
     inoremap kj <ESC>
+    
+    vnoremap y ygv<esc>
 endfunction
 
 function! s:MiscConfig()
