@@ -9,6 +9,8 @@ set textobj-entire
 set argtextobj
 set ReplaceWithRegister
 set highlightedyank
+set exchange
+set matchit
 let g:argtextobj_pairs = "(:),{:},<:>"
 let g:EasyMotion_do_mapping = 0
 
@@ -32,18 +34,16 @@ set visualbell
 " Operators
 noremap gm %
 
-noremap J }
-noremap K {
-
 noremap H g^
 noremap L g$
 
-" Convenience
+"Convenience
+noremap Q @
+noremap <leader>' @@
+
 nnoremap <silent> <leader>/ :noh<cr>
 nnoremap Y y$
-nmap gh <Action>(QuickJavaDoc)
 vnoremap y ygv<esc>
-nnoremap gG J
 
 noremap <F1> <nop>
 inoremap <F1> <nop>
@@ -59,13 +59,12 @@ inoremap <C-e> <Esc>A
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
-inoremap jk <esc>
-inoremap kj <esc>
-
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+map <C-s> <Action>(Switcher)
 
 " The built-in C-O and C-I bindings are broken
 map <C-o> <Action>(Back)
@@ -92,14 +91,16 @@ noremap ]<space> :action EditorStartNewLine<cr>:action EditorUp<cr>
 
 noremap <leader><Tab> <C-S-6>
 nmap ga <Action>(GotoAction)
-nmap gf <Action>(GotoFile)
+nmap go <Action>(GotoFile)
 nmap gl <Action>(GotoClass)
-nmap gs <Action>(GotoSymbol)
+nmap gw <Action>(ShowErrorDescription)
 
 map g; <Action>(JumpToLastChange)
 map g, <Action>(JumpToNextChange)
+map gh <Action>(QuickJavaDoc)
+map gs <Action>(GotoSymbol)
 map gi <Action>(GotoImplementation)
-map gu <Action>(ShowUsages)
+map gp <Action>(ShowUsages)
 map gt <Action>(GotoTypeDeclaration)
 
 map <leader>b <Plug>(easymotion-bd-w)
@@ -136,13 +137,15 @@ map <leader>mv  <Action>(ActivateMavenProjectsToolWindow)
 map <leader>nc  <Action>(NewClass)
 map <leader>oi  <Action>(OptimizeImports)
 map <leader>om  <Action>(OverrideMethods)
-map <leader>q   <Action>(CloseActiveTab)
+map <leader>pp  <Action>(PinActiveTab)
+map <leader>qq  :q<cr>
+map <leader>qa  <Action>(CloseAllUnpinnedEditors)
+map <leader>qt  <Action>(ReopenClosedTab)
 map <leader>rf  <Action>(RenameFile)
 map <leader>rn  <Action>(RenameElement)
 map <leader>rr  <Action>(Run)
 map <leader>sd  <Action>(SafeDelete)
 map <leader>sh  <Action>(SplitHorizontally)
-map <leader>sn  :noh<cr>
 map <leader>ss  <Action>(SplitVertically)
 map <leader>t   <Action>(ActivateTerminalToolWindow)
 map <leader>w   :write<cr>
