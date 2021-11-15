@@ -1,7 +1,7 @@
 # Frequently used
-abbr --global cp cp -i
-abbr --global mv mv -i
-abbr --global rm rm -i
+abbr --global cp cp -iv
+abbr --global mv mv -iv
+abbr --global rm rm -iv
 abbr --global view nvim -R
 abbr --global la ls -FAx
 # abbr --global ll ls -lAhF
