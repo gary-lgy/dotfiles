@@ -7,10 +7,10 @@ abbr --global la ls -FAx
 # abbr --global ll ls -lAhF
 
 # cd
-abbr --global -- - "cd - && ll"
-abbr --global -- .. "cd .. && ll"
-abbr --global -- ... "cd ../.. && ll"
-abbr --global -- .... "cd ../../.. && ll"
+abbr --global -- - "cd - && l"
+abbr --global -- .. "cd .. && l"
+abbr --global -- ... "cd ../.. && l"
+abbr --global -- .... "cd ../../.. && l"
 
 # Brew
 abbr --global bi "brew install"

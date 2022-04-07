@@ -65,7 +65,7 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
       set editor vim
     end
 
-    set cd_command "cd $targets && ll"
+    set cd_command "cd $targets && l"
     set open_command "open $targets"
     set edit_command "$editor $targets"
 
@@ -96,7 +96,7 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
   function fzf-cd-backwards-widget -d 'cd backwards'
     pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | fzf-tmux  +m -1 -0 | read -l result
     if [ -n "$result" ]
-      commandline -- "cd $result && ll"
+      commandline -- "cd $result && l"
       commandline -f repaint-mode
       commandline -f execute
     else
@@ -125,7 +125,7 @@ function fzf_custom_key_bindings -d 'Set up fzf custom key bindings for fish'
 
       string join0 $uniq_dirs | fzf-tmux  +m -1 -0 --read0 | read dir
       if [ -n "$dir" ]
-        commandline -- "cd $dir && ll"
+        commandline -- "cd $dir && l"
         commandline -f repaint-mode
         commandline -f execute
       else
