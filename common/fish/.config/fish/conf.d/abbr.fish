@@ -4,6 +4,7 @@ abbr --global mv mv -iv
 abbr --global rm rm -iv
 abbr --global view nvim -R
 abbr --global la ls -FAx
+abbr --global rs rsync -auzvhP
 # abbr --global ll ls -lAhF
 
 # cd
