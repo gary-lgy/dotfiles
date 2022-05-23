@@ -1,30 +1,11 @@
-#!/usr/bin/env fish
-
-######################    Fisher    #######################{{{
-if status --is-interactive; and not functions -q fisher
-  echo "Fisher not installed, installing Fisher first"
-  curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-end
-#}}}
-
-#######################    General Config    #######################{{{
-
-# Environment variables
-set -gx EDITOR (which nvim)
-set -gx INTERACTIVE_SHELL (which fish)
-set -gx LESS '--quit-if-one-screen --RAW-CONTROL-CHARS --mouse'
-set -gx PAGER (which less) # On MacOS, the default is /usr/bin/less, which is outdated
-
-# Machine local config
-set -l fish_local_config $HOME/.config/fish/config.local.fish
-if test -f $fish_local_config
-  source $fish_local_config
-end
-#}}}
-
-#######################    Package Specific Config    #######################{{{
-
 if status --is-interactive
+
+  set -gx LESS '--RAW-CONTROL-CHARS --mouse'
+
+  # Check fisher
+  if not functions -q fisher
+    echo "Fisher not installed!!!" >&2
+  end
 
   # direnv
   if command -v direnv >/dev/null 2>&1
@@ -46,16 +27,8 @@ if status --is-interactive
   # asdf
   if command -v asdf 2>/dev/null 1>&2
     if is_mac
-      source "/usr/local/opt/asdf/asdf.fish"
+      source "/usr/local/opt/asdf/libexec/asdf.fish"
     end
   end
 
-  # GPG
-  if is_mac
-    set -gx GPG_TTY (tty)
-  end
 end
-
-#}}}
-
-# vim: fdm=marker
