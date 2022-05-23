@@ -56,3 +56,9 @@ abbr --global dcd docker-compose down
 abbr --global dcp docker-compose ps
 abbr --global dcr docker-compose run
 abbr --global dcu docker-compose up
+
+# QMK
+abbr --global qce qmk compile -kb ergodox_ez -km gary-lgy
+abbr --global qfe qmk flash -kb ergodox_ez -km gary-lgy
+abbr --global qcd qmk compile -kb handwired/dactyl_manuform/5x6 -km gary-lgy
+abbr --global qfd qmk flash -kb handwired/dactyl_manuform/5x6 -km gary-lgy
