@@ -4,6 +4,7 @@ espanso
 fish
 fzf
 git
+hammerspoon
 ignore
 karabiner-elements
 nvim
