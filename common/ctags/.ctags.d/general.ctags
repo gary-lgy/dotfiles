@@ -1,9 +1,0 @@
---exclude=.git
---exclude=docs
---exclude=node_modules
---exclude=tmp
---exclude=db
---exclude=cache
---exclude=.vscode
---exclude=.idea
---exclude=.projections.json

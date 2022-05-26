@@ -30,5 +30,4 @@ if status --is-interactive
       source "/usr/local/opt/asdf/libexec/asdf.fish"
     end
   end
-
 end

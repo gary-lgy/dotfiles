@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# Autostart programs
-/usr/bin/dex -ae i3
-
-# DE/WM
-exec i3

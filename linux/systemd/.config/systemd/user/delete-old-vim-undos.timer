@@ -1,9 +1,0 @@
-[Unit]
-Description=Run delete-old-vim-undos daily and on boot
-
-[Timer]
-OnBootSec=11min
-OnUnitActiveSec=1d
-
-[Install]
-WantedBy=timers.target

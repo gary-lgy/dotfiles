@@ -1,9 +1,0 @@
-[Unit]
-Description=Delete (neo)vim undos not used in the last 15 days
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/find /home/gary/.cache/vim/undo -atime +15 -delete
-
-[Install]
-WantedBy=default.target

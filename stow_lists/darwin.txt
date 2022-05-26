@@ -1,6 +1,3 @@
-ctags
-editorconfig
-espanso
 fish
 fzf
 git

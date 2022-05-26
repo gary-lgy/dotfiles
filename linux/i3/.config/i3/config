@@ -183,13 +183,4 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 hide_edge_borders both
 # }}}
 
-# Autostart applications {{{
-exec --no-startup-id /usr/bin/picom -f --vsync --inactive-dim 0.1
-
-exec --no-startup-id i3-msg 'workspace $ws1; exec $BROWSER'
-exec --no-startup-id i3-msg 'workspace $ws9; exec rambox'
-exec --no-startup-id i3-msg 'workspace $ws9; exec telegram-desktop'
-exec --no-startup-id i3-msg 'workspace $ws2; exec emacs'
-# }}}
-
 # vim: ft=i3config fdm=marker

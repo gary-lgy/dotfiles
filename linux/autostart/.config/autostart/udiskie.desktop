@@ -1,6 +1,0 @@
-[Desktop Entry]
-Exec=/usr/bin/udiskie --no-automount --notify --tray
-Name=udiskie
-Comment=Automounter for removable media
-Type=Application
-OnlyShowIn=i3

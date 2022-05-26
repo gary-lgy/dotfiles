@@ -1,3 +1,5 @@
+# This function will be executed by fish to bootstrap keybindings
+# https://fishshell.com/docs/current/cmds/bind.html
 function fish_user_key_bindings
   # Enable default key bindings in insert mode
   fish_default_key_bindings -M insert
@@ -6,7 +8,4 @@ function fish_user_key_bindings
 
   # Fzf
   fzf_custom_key_bindings
-
-  # Git
-  git_fzf_key_bindings
 end
