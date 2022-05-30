@@ -8,4 +8,12 @@ function fish_user_key_bindings
 
   # Fzf
   fzf_key_bindings
+
+  # git fzf widgets
+  bind \eg\ec git_commits_fzf
+  bind \eg\eb git_branches_tags_fzf
+  if bind -M insert > /dev/null 2>&1
+    bind -M insert \eg\ec git_commits_fzf
+    bind -M insert \eg\eb git_branches_tags_fzf
+  end
 end
