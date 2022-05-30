@@ -1,5 +1,4 @@
 fish
-fzf
 git
 hammerspoon
 ignore
