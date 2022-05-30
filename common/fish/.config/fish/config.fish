@@ -27,7 +27,7 @@ if status --is-interactive
   # asdf
   if command -v asdf 2>/dev/null 1>&2
     if is_mac
-      source "/usr/local/opt/asdf/libexec/asdf.fish"
+      source $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish
     end
   end
 end
