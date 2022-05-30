@@ -1,9 +1,4 @@
-[user]
-    name = Liu Guangyuan (Gary)
-    email = garyliu2122@gmail.com
-    signingkey = C48F4770FDB9CB22
 [credential]
-    username = gary-lgy
     helper = cache
 [core]
     pager = delta
@@ -13,11 +8,10 @@
     default = simple
     followTags = true
 [pull]
-	ff = only
-[commit]
-    gpgsign = false
+    ff = only
 [diff]
     ; https://git-scm.com/docs/git-diff#Documentation/git-diff.txt---color-movedltmodegt
+    ; show moved lines
     colorMoved = default
     colorMovedWS = ignore-space-change
 
@@ -30,3 +24,7 @@
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
+
+; local overrides
+[include]
+    path = ~/.local.gitconfig
