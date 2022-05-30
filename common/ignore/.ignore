@@ -1,40 +1,59 @@
-# vim: ft=conf
-.git
+# Default ignore list for tools like fd, ripgrep, etc
+# Since this file is placed in ~, / here means ~.
 
-tmp
-docs
-.thumbnails
-tags
-.DS_Store
+# Notes:
+# - Don't put trailing comments (put comments on new lines); fd does not work with those
+# - The ** before **/venv/lib is necessary
 
-# lib
+###
+# In ~
+/.asdf
 /Library
 /.npm
 /.node_modules
-node_modules
-.bundle
 /.gem
 /.rbenv
 /.vim/plugged
 /.node-gyp
 /.yarn
-.gradle
+/.gradle
 /.m2
 /.local/lib
-.cocoapods
+/.local/share
+/.cargo
+/.rustup
+/Documents/Klei
 
-# Emacs
-/.emacs.d/*
-!/.emacs.d/external
-!/.emacs.d/init.d
-!/.emacs.d/snippets
-!/.emacs.d/*.el
+ # ignore vscode extensions
+/.vscode
+ # tldr manual for each command is a file; ignore those
+/.tldrc
+/Zotero
+/.zotero
+/.matlab
+/.matplotlib
+/.xdebug
+/qmk_firmware
 
-# nix related stuff
+# Nix stuff
 /.nix-defexpr
 /.nix-profile/share
 /.nix-profile/include
 /.nix-profile/lib
+
+###
+# In any directory
+# Make sure these are not too restrictive
+.git
+.thumbnails
+.DS_Store
+node_modules
+.bundle
+**/venv/lib
+**/venv/share
+.pylint.d
+.cocoapods
+cmake-build-debug
 
 # cache
 .cache
@@ -48,48 +67,4 @@ __pycache__
 Trash
 *RECYCLE.BIN*
 
-# cloud drive
-/pCloudDrive
-
-# password store
-/.password-store
-
-# App specific
-/.tldrc
-/.local/share
-.vscode
-.vscode-oss
-.pylint.d
-.idea
-/.mozilla/firefox
-/.thunderbird
-/.gimp*
-/.eclipse
-/snap/telegram-desktop
-/.*dbeaver*
-/.sogouinput
-/Zotero
-/.zotero
-/.matlab
-*RubyMine*/
-*JetBrains*/
-*IntelliJIdea*/
-*WebStorm*/
-*TelegramDesktop*
-qmk_firmware
-.asdf
-
-# Ignore some config files
-/.config/google-chrome
-/.config/chromium
-/.config/Code
-/.config/Code - OSS
-/.config/SogouPY
-/.config/libreoffice
-/.config/sogou-qimpanel
-/.config/pcloud
-/.config/fcitx
-/.config/coc
-/.config/Rambox
-/.config/pulse
-/.config/fisher
+# vim: ft=gitignore
