@@ -9,3 +9,4 @@ starship
 tmux
 vim
 xcode
+autoraise
