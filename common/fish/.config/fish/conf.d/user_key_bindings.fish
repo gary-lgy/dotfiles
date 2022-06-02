@@ -7,7 +7,9 @@ function fish_user_key_bindings
   fish_vi_key_bindings --no-erase
 
   # Fzf
-  fzf_key_bindings
+  if type -q fzf_key_bindings
+    fzf_key_bindings
+  end
 
   # git fzf widgets
   bind \eg\ec git_commits_fzf
