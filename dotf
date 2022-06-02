@@ -4,26 +4,26 @@
 
 set -eu
 
-# Text colors
-color_reset='\033[0m'
-color_green='\033[1;32m'
-color_red='\033[1;31m'
-
 usage() {
   echo "Usage: $0 <link | relink | unlink> <config file>"
   exit 1
 }
 
+# Text colors
+color_reset='\033[0m'
+color_green='\033[1;32m'
+color_red='\033[1;31m'
+
 DOTFILES_PATH="$(dirname "$(realpath "$0")")"
 PACKAGES_PATH="$DOTFILES_PATH/packages"
 
 main() {
-  local action="$1"
-  local conf="$2"
-
-  if [[ -z "$action" || -z "$conf" ]]; then
+  if [[ "$#" != 2 ]]; then
     usage
   fi
+
+  local action="$1"
+  local conf="$2"
 
   if [[ "$action" != stow && "$action" != delete && "$action" != restow ]]; then
     usage
@@ -33,7 +33,7 @@ main() {
     if test -d "$PACKAGES_PATH/$package"; then
       echo -e "Package: ${color_green}${package}${color_reset}"
       ## --no-folding: don't symlink directories, create parent directories as needed
-      stow --"$action" --no-folding --dir="$PACKAGES_PATH" --target="$HOME" --"$package"
+      stow --"$action" "$package" --no-folding --dir="$PACKAGES_PATH" --target="$HOME" --verbose=1
     else
       echo -e "No such package ${color_red}${package}${color_reset}"
     fi
