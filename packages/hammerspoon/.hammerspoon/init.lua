@@ -63,9 +63,7 @@ hyper = { 'cmd', 'ctrl', 'shift', 'alt' }
 
 local rbinder = hs.loadSpoon('RecursiveBinder')
 rbinder.helperFormat = { atScreenEdge = 0 }
-
-hs.hotkey.bind(hyper, 'space',
-    rbinder.recursiveBind({
+local activateRecursiveModal = rbinder.recursiveBind({
         [{ '', 't', 'Vivaldi' }]  = vivaldiSearch,
         [{ '', 'r', 'Reload' }]   = hs.reload,
         [{ '', 'c', 'Console' }]  = hs.toggleConsole,
@@ -76,6 +74,16 @@ hs.hotkey.bind(hyper, 'space',
         [{ '', 'a', 'Apps' }]     = getAppBindings(config.appBindings),
         [{ '', 'n', 'Snippets' }] = getSnippetBindings(config.snippetBindings),
     })
+
+hs.hotkey.bind(hyper, 'space',
+    function()
+        if hs.eventtap.isSecureInputEnabled() then
+            hs.alert.show('⚠️ Secure input enabled!')
+        
+        else
+            activateRecursiveModal()
+        end
+    end
 )
 
 -- https://github.com/dbalatero/SkyRocket.spoon
@@ -122,6 +130,19 @@ hs.hotkey.bind('', 'pad3', function() hs.eventtap.keyStroke({ 'cmd', 'shift' }, 
 hs.hotkey.bind('', 'pad5', windowChooser.toggle)
 
 hs.alert.show('Hammerspoon config reloaded', 1)
+
+secureInputMenuBarIcon = hs.menubar.new(true)
+hs.timer.doEvery(0.5, function()
+    if hs.eventtap.isSecureInputEnabled() and not secureInputMenuBarIcon:isInMenuBar() then
+        secureInputMenuBarIcon:returnToMenuBar()
+        secureInputMenuBarIcon:setTitle('⚠️')
+        secureInputMenuBarIcon:setMenu({
+                { title = 'Secure input is enabled!', disabled = true }
+            })
+    elseif not hs.eventtap.isSecureInputEnabled() and secureInputMenuBarIcon:isInMenuBar() then
+        secureInputMenuBarIcon:removeFromMenuBar()
+    end
+end)
 
 -- TODO: hs.layout
 -- TODO: gestures
