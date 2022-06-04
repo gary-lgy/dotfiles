@@ -4,6 +4,7 @@ lib = require('lib')
 local config = require('config')
 local windowChooser = require('window_chooser')
 local touchWatcher = require('touch_watcher')
+local autoraise = require('autoraise')
 
 local function vivaldiSearch()
     local app = hs.application.get('Vivaldi')
@@ -145,6 +146,6 @@ hs.timer.doEvery(0.5, function()
 end)
 
 touchWatcher.start()
+autoraise.start()
 
 -- TODO: hs.layout
--- TODO: autoraise
