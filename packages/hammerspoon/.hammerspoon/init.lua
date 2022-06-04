@@ -48,12 +48,10 @@ local function getSnippetBindings(map)
             -- recursive binding
             t[key] = getSnippetBindings(snippet)
         else
-            if type(snippet) == 'function' then
-                snippet = snippet()
-            end
-
             t[key] = function()
-                hs.eventtap.keyStrokes(snippet)
+                -- snippet may be a string or a nullary function (for custom logic, e.g. getting current datetime)
+                local text = type(snippet) == 'function' and snippet() or snippet
+                hs.eventtap.keyStrokes(text)
             end
         end
     end
