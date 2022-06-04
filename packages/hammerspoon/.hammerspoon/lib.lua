@@ -155,11 +155,11 @@ module.moveCursorToCurrentWindow = function()
 end
 
 module.showSpaces = function()
-    local mousePos = hs.mouse.getRelativePosition()
+    local mousePos = hs.mouse.absolutePosition()
     hs.mouse.setRelativePosition({ x = 0, y = 0 })
     hs.spaces.openMissionControl()
     hs.timer.doAfter(0.05, function()
-        hs.mouse.setRelativePosition(mousePos)
+        hs.mouse.absolutePosition(mousePos)
     end)
 end
 
