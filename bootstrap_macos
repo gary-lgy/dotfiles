@@ -40,7 +40,6 @@ brew install asdf
 brew install tokei
 
 # mics
-brew install dimentium/autoraise/autoraise
 brew install lolcat
 brew install cowsay
 
