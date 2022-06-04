@@ -2,8 +2,8 @@ log = hs.logger.new('init', 'verbose')
 lib = require('lib')
 
 local config = require('config')
-
 local windowChooser = require('window_chooser')
+local touchWatcher = require('touch_watcher')
 
 local function vivaldiSearch()
     local app = hs.application.get('Vivaldi')
@@ -131,7 +131,7 @@ hs.hotkey.bind('', 'pad5', windowChooser.toggle)
 
 hs.alert.show('Hammerspoon config reloaded', 1)
 
-secureInputMenuBarIcon = hs.menubar.new(true)
+local secureInputMenuBarIcon = hs.menubar.new(true)
 hs.timer.doEvery(0.5, function()
     if hs.eventtap.isSecureInputEnabled() and not secureInputMenuBarIcon:isInMenuBar() then
         secureInputMenuBarIcon:returnToMenuBar()
@@ -144,6 +144,7 @@ hs.timer.doEvery(0.5, function()
     end
 end)
 
+touchWatcher.start()
+
 -- TODO: hs.layout
--- TODO: gestures
 -- TODO: autoraise

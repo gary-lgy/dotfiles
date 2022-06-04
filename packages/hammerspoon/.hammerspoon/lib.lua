@@ -1,5 +1,13 @@
 local module = {}
 
+module.numEntries = function(t)
+    local count = 0
+    for _, _ in pairs(t) do
+        count = count + 1
+    end
+    return count
+end
+
 -- https://stackoverflow.com/a/52697380
 module.isArray = function(t)
     if type(t) ~= 'table' then
@@ -157,7 +165,7 @@ end
 module.showSpaces = function()
     local mousePos = hs.mouse.absolutePosition()
     hs.mouse.setRelativePosition({ x = 0, y = 0 })
-    hs.spaces.openMissionControl()
+    hs.spaces.toggleMissionControl()
     hs.timer.doAfter(0.05, function()
         hs.mouse.absolutePosition(mousePos)
     end)
