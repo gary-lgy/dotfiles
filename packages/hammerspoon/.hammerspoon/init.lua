@@ -1,10 +1,16 @@
 log = hs.logger.new('init', 'verbose')
 lib = require('lib')
 
+-- keepActive is an undocumented call to keep the wf active even without subscription,
+-- which in turn forces it to refresh the window list when we switch spaces.
+hs.window.filter.default:keepActive()
+hs.window.filter.defaultCurrentSpace:keepActive()
+
 local config = require('config')
 local windowChooser = require('window_chooser')
 local touchWatcher = require('touch_watcher')
 local focusFollowsMouse = require('focus_follows_mouse')
+local clipboardHistory = require('clipboard_history')
 
 local function vivaldiSearch()
     local app = hs.application.get('Vivaldi')
@@ -129,6 +135,7 @@ end)
 hs.hotkey.bind('', 'pad1', lib.showSpaces)
 hs.hotkey.bind('', 'pad3', function() hs.eventtap.keyStroke({ 'cmd', 'shift' }, '4') end)
 hs.hotkey.bind('', 'pad5', windowChooser.toggle)
+hs.hotkey.bind({'cmd', 'shift'}, 'c', clipboardHistory.toggleChooser)
 
 hs.alert.show('Hammerspoon config reloaded', 1)
 
@@ -147,5 +154,6 @@ end)
 
 touchWatcher.start()
 focusFollowsMouse.start()
+clipboardHistory.start()
 
 -- TODO: hs.layout

@@ -59,7 +59,6 @@ brew install --cask bitwarden
 brew install --cask nextcloud
 brew install --cask itsycal
 brew install --cask stats
-brew install --cask maccy
 brew install --cask macs-fan-control
 brew install --cask homebrew/cask-fonts/font-jetbrains-mono-nerd-font
 brew install --cask homebrew/cask-fonts/font-iosevka-nerd-font
