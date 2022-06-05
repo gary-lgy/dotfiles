@@ -138,8 +138,7 @@ hs.hotkey.bind('', 'pad1', lib.showSpaces)
 hs.hotkey.bind('', 'pad3', function() hs.eventtap.keyStroke({ 'cmd', 'shift' }, '4') end)
 hs.hotkey.bind('', 'pad5', windowChooser.toggle)
 hs.hotkey.bind({'cmd', 'shift'}, 'c', clipboardHistory.toggleChooser)
-
-hs.alert.show('Hammerspoon config reloaded', 1)
+hs.hotkey.bind(hyper, 'v', hs.fnutils.partial(lib.toggleApplication, 'Vivaldi'))
 
 local secureInputMenuBarIcon = hs.menubar.new(true)
 hs.timer.doEvery(0.5, function()
@@ -157,5 +156,8 @@ end)
 touchWatcher.start()
 focusFollowsMouse.start()
 clipboardHistory.start()
+
+
+hs.alert.show('Hammerspoon config reloaded', 1)
 
 -- TODO: hs.layout

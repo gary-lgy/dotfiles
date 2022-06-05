@@ -185,4 +185,21 @@ module.waitUntil = function(predicateFn, actionFn, checkInterval)
     end
 end
 
+-- Similar to iTerm's hotkey window
+module.toggleApplication = function(name)
+    local app = hs.application.get(name)
+    if app == nil then
+        return
+    end
+
+    if app:isHidden() then
+        app:unhide()
+        app:setFrontmost()
+    elseif not app:isFrontmost() then
+        app:setFrontmost()
+    else
+        app:hide()
+    end
+end
+
 return module
