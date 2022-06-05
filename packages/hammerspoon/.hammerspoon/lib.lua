@@ -157,8 +157,11 @@ module.execute = function(command, cb)
     ):start()
 end
 
-module.moveCursorToCurrentWindow = function()
-    local center = hs.window.frontmostWindow():frame().center
+module.centerCursorInWindow = function(win)
+    if win == nil then
+        return
+    end
+    local center = win:frame().center
     hs.mouse.absolutePosition(center)
 end
 

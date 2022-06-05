@@ -42,7 +42,7 @@ local function focusWindow(win, doWarp)
 
     local newSID = hs.screen.mainScreen():id()
     if doWarp and oldSID ~= newSID then
-        lib.moveCursorToCurrentWindow()
+        lib.centerCursorInWindow(winObj)
     end
 
     return winObj
@@ -230,7 +230,5 @@ function module.toggle()
             y = chooserFrame.y,
         })
 end
-
--- TODO: what can we do in rightClickCallback?
 
 return module

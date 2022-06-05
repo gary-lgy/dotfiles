@@ -18,7 +18,7 @@ local function vivaldiSearch()
     lib.waitUntil(
         function() return app:isFrontmost() end,
         function()
-            lib.moveCursorToCurrentWindow()
+            lib.centerCursorInWindow(app:focusedWindow())
             hs.eventtap.keyStroke({ 'cmd' }, 'e', app)
         end,
         0.2
@@ -39,8 +39,10 @@ local function getAppBindings(map)
             t[{ '', key, app[1] }] = getAppBindings(app[2])
         else
             t[{ '', key, app }] = function()
-                hs.application.open(app)
-                lib.moveCursorToCurrentWindow()
+                local runningApp = hs.application.open(app)
+                if runningApp ~= nil then
+                    lib.centerCursorInWindow(runningApp:focusedWindow() or runningApp:mainWindow())
+                end
             end
         end
     end
@@ -128,7 +130,7 @@ hs.fnutils.ieach({
 }, function(map)
     hs.hotkey.bind(hyper, map[1], function()
         map[2]()
-        lib.moveCursorToCurrentWindow()
+        lib.centerCursorInWindow(hs.window.focusedWindow())
     end)
 end)
 
