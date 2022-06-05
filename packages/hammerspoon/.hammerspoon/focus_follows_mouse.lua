@@ -11,7 +11,7 @@ local function orderedWindows()
     local orderedWinIds = libwindow._orderedwinids()
     local allWindows = {}
     for _, w in ipairs(hs.window.allWindows()) do
-        if w:isVisible() then
+        if w:isVisible() and w:title() ~= 'Notification Center' then
             allWindows[w:id()] = w
         end
     end
@@ -27,7 +27,7 @@ end
 
 module.start = function()
     module.eventtap = hs.eventtap.new({hs.eventtap.event.types.mouseMoved}, lib.debounce(module.waitDuration, function(event)
-        if module.disableMod and hs.eventtap.checkKeyboardModifiers()[module.disableMod] then
+        if module.disableMod and hs.eventtap.checkKeyboardModifiers()[module.disableMod] or #hs.eventtap.checkMouseButtons() > 0 then
             return
         end
 
@@ -41,20 +41,24 @@ module.start = function()
             end
         end
 
-        if windowUnderCursor == nil or windowUnderCursor:id() == hs.window.focusedWindow():id() then
+        local focused = hs.window.focusedWindow()
+        if windowUnderCursor == nil or focused ~= nil and windowUnderCursor:id() == focused:id() then
             return
         end
 
+        -- check if the window is occluded
         for _, w in ipairs(windows) do
             if w:id() == windowUnderCursor:id() then
-                -- no window above us intesects with us, we can safely raise ourselves
+                -- no window above w intersects with it, we can safely raise it
                 break
             end
 
-            local intersection = w:frame():intersect(windowUnderCursor:frame())
-            if intersection.w ~= 0.0 and intersection.h ~= 0.0 then
-                -- intersects with another window, don't raise it
-                return
+            if w:application():name() ~= 'Hammerspoon' then -- allow Hammerspoon windows to occlude other windows
+                local intersection = w:frame():intersect(windowUnderCursor:frame())
+                if intersection.w ~= 0.0 and intersection.h ~= 0.0 then
+                    -- intersects with another window, don't raise it
+                    return
+                end
             end
         end
 
