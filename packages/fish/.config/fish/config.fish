@@ -5,6 +5,7 @@ if status --is-interactive
   # Check fisher
   if not functions -q fisher
     echo "Fisher not installed!!!" >&2
+    echo "https://github.com/jorgebucaran/fisher" >&2
   end
 
   # direnv
