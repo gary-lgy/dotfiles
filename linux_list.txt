@@ -1,5 +1,4 @@
 fish
-fzf
 git
 i3
 ignore
