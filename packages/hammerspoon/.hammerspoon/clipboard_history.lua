@@ -32,28 +32,34 @@ end
 local function getPasteboardContent()
     local types = hs.pasteboard.typesAvailable()
     local bundleID = hs.window.frontmostWindow():application():bundleID()
+    local now = os.time()
+    local filenameDateString = os.date('%Y-%m-%d %H%M%S', now)
+    local timestamp = os.date('%Y-%m-%d %H:%M:%S', now)
 
     local item = nil
     if types['image'] then
         local img = hs.pasteboard.readImage()
-        local filename = getImagesPath() .. '/' .. os.date('%Y-%m-%d %H%M%S') .. '-' .. bundleID .. '-' .. hs.host.uuid() .. '.png'
+        local filename = getImagesPath() .. '/' .. filenameDateString .. '-' .. bundleID .. '-' .. hs.host.uuid() .. '.png'
         img:saveToFile(filename)
         
         item = {
             contentType='image',
             text='image',
-            subText='image',
+            subText=timestamp,
             path=filename,
         }
     elseif types['string'] then
         local text = hs.pasteboard.readString()
-        if utf8.len(text) <= 3 then
+        -- count non-whitespace characters only
+        local stripped = text:gsub('%s', '')
+        if utf8.len(stripped) <= 3 then
             return
         end
 
         item = {
             contentType='string',
-            text=text:gsub('%s+', ' '),
+            text=text:gsub('%s+', ' '), -- coalesce whitespace characters in display text
+            subText=timestamp,
             original=text,
         }
     else
