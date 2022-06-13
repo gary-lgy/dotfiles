@@ -1,5 +1,11 @@
 local module = {}
 
+module.eachKV = function(table, fn)
+    for k, v in pairs(table) do
+        fn(k, v)
+    end
+end
+
 module.numEntries = function(t)
     local count = 0
     for _, _ in pairs(t) do
@@ -158,11 +164,16 @@ module.execute = function(command, cb)
 end
 
 module.centerCursorInWindow = function(win)
+    local center = win:frame().center
+    hs.mouse.absolutePosition(center)
+end
+
+module.centerCursorInApp = function(app)
+    local win = app:focusedWindow() or app:mainWindow()
     if win == nil then
         return
     end
-    local center = win:frame().center
-    hs.mouse.absolutePosition(center)
+    module.centerCursorInWindow(win)
 end
 
 module.showSpaces = function()
@@ -182,23 +193,6 @@ module.waitUntil = function(predicateFn, actionFn, checkInterval)
         return nil
     else
         return hs.timer.waitUntil(predicateFn, actionFn, checkInterval)
-    end
-end
-
--- Similar to iTerm's hotkey window
-module.toggleApplication = function(name)
-    local app = hs.application.get(name)
-    if app == nil then
-        return
-    end
-
-    if app:isHidden() then
-        app:unhide()
-        app:setFrontmost()
-    elseif not app:isFrontmost() then
-        app:setFrontmost()
-    else
-        app:hide()
     end
 end
 

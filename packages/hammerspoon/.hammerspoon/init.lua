@@ -11,14 +11,21 @@ local windowChooser = require('window_chooser')
 local touchWatcher = require('touch_watcher')
 local focusFollowsMouse = require('focus_follows_mouse')
 local clipboardHistory = require('clipboard_history')
+local secureInputWatcher = require('secure_input_watcher')
 
+-- focus Vivaldi and send Cmd-E
 local function vivaldiSearch()
     local app = hs.application.get('Vivaldi')
+    if app == nil then
+        return nil
+    end
+
     app:activate()
+
     lib.waitUntil(
         function() return app:isFrontmost() end,
         function()
-            lib.centerCursorInWindow(app:focusedWindow())
+            lib.centerCursorInApp(app)
             hs.eventtap.keyStroke({ 'cmd' }, 'e', app)
         end,
         0.2
@@ -29,25 +36,6 @@ local function displayPingLatency()
     lib.pingLatency(function(status, latency)
         hs.alert('Ping: ' .. status .. (latency and (' (' .. latency .. 'ms)') or ''))
     end)
-end
-
-local function getAppBindings(map)
-    local t = {}
-    for key, app in pairs(map) do
-        if type(app) == 'table' then
-            -- recursive binding
-            t[{ '', key, app[1] }] = getAppBindings(app[2])
-        else
-            t[{ '', key, app }] = function()
-                local runningApp = hs.application.open(app)
-                if runningApp ~= nil then
-                    lib.centerCursorInWindow(runningApp:focusedWindow() or runningApp:mainWindow())
-                end
-            end
-        end
-    end
-
-    return t
 end
 
 local function getSnippetBindings(map)
@@ -68,7 +56,8 @@ local function getSnippetBindings(map)
     return t
 end
 
-hyper = { 'cmd', 'ctrl', 'shift', 'alt' }
+local meh = { 'shift', 'ctrl', 'alt' }
+local hyper = { 'shift', 'ctrl', 'alt', 'cmd' }
 
 local rbinder = hs.loadSpoon('RecursiveBinder')
 rbinder.helperFormat = { atScreenEdge = 0 }
@@ -80,20 +69,55 @@ local activateRecursiveModal = rbinder.recursiveBind({
         [{ '', 'w', 'Windows' }]  = windowChooser.toggle,
         [{ '', 's', 'Spaces' }]   = lib.showSpaces,
         [{ '', 'd', 'X Notif' }]  = lib.dismissNotifications,
-        [{ '', 'a', 'Apps' }]     = getAppBindings(config.appBindings),
         [{ '', 'n', 'Snippets' }] = getSnippetBindings(config.snippetBindings),
     })
 
-hs.hotkey.bind(hyper, 'space',
+hs.hotkey.bind(meh, 'space',
     function()
         if hs.eventtap.isSecureInputEnabled() then
             hs.alert.show('⚠️ Secure input enabled!')
-        
         else
             activateRecursiveModal()
         end
     end
 )
+
+lib.eachKV(config.appBindings, function(key, appName)
+    hs.hotkey.bind(meh, key, function()
+        local app = hs.application.get(appName)
+        if app == nil then
+            hs.application.open(appName)
+        elseif app:isFrontmost() then
+            app:hide()
+        else
+            app:activate()
+            lib.centerCursorInApp(app)
+        end
+    end)
+end)
+
+-- change focus and bring the cursor along
+hs.fnutils.ieach({
+    { 'left',  hs.window.filter.focusWest },
+    { 'down',  hs.window.filter.focusSouth },
+    { 'right', hs.window.filter.focusEast },
+    { 'up',    hs.window.filter.focusNorth },
+}, function(map)
+    hs.hotkey.bind(meh, map[1], function()
+        map[2]()
+        lib.centerCursorInWindow(hs.window.focusedWindow())
+    end)
+end)
+
+hs.loadSpoon("MiroWindowsManager")
+spoon.MiroWindowsManager:bindHotkeys({
+    up         = { hyper, "up" },
+    right      = { hyper, "right" },
+    down       = { hyper, "down" },
+    left       = { hyper, "left" },
+    fullscreen = { hyper, "return" },
+    nextscreen = { hyper, "tab" }
+})
 
 -- https://github.com/dbalatero/SkyRocket.spoon
 local SkyRocket = hs.loadSpoon("SkyRocket")
@@ -111,52 +135,17 @@ sky = SkyRocket:new({
     resizeMouseButton = 'right',
 })
 
-hs.loadSpoon("MiroWindowsManager")
-spoon.MiroWindowsManager:bindHotkeys({
-    up         = { hyper, "up" },
-    right      = { hyper, "right" },
-    down       = { hyper, "down" },
-    left       = { hyper, "left" },
-    fullscreen = { hyper, "f" },
-    nextscreen = { hyper, "n" }
-})
-
--- change focus and bring the cursor along
-hs.fnutils.ieach({
-    { 'h', hs.window.filter.focusWest },
-    { 't', hs.window.filter.focusSouth },
-    { 's', hs.window.filter.focusEast },
-    { 'c', hs.window.filter.focusNorth },
-}, function(map)
-    hs.hotkey.bind(hyper, map[1], function()
-        map[2]()
-        lib.centerCursorInWindow(hs.window.focusedWindow())
-    end)
-end)
-
+-- mouse buttons
 hs.hotkey.bind('', 'pad1', lib.showSpaces)
-hs.hotkey.bind('', 'pad3', function() hs.eventtap.keyStroke({ 'cmd', 'shift' }, '4') end)
+hs.hotkey.bind('', 'pad3', function() hs.eventtap.keyStroke({ 'ctrl', 'cmd', 'shift' }, '4') end)
 hs.hotkey.bind('', 'pad5', windowChooser.toggle)
-hs.hotkey.bind({'cmd', 'shift'}, 'c', clipboardHistory.toggleChooser)
-hs.hotkey.bind(hyper, 'v', hs.fnutils.partial(lib.toggleApplication, 'Vivaldi'))
 
-local secureInputMenuBarIcon = hs.menubar.new(true)
-hs.timer.doEvery(0.5, function()
-    if hs.eventtap.isSecureInputEnabled() and not secureInputMenuBarIcon:isInMenuBar() then
-        secureInputMenuBarIcon:returnToMenuBar()
-        secureInputMenuBarIcon:setTitle('⚠️')
-        secureInputMenuBarIcon:setMenu({
-                { title = 'Secure input is enabled!', disabled = true }
-            })
-    elseif not hs.eventtap.isSecureInputEnabled() and secureInputMenuBarIcon:isInMenuBar() then
-        secureInputMenuBarIcon:removeFromMenuBar()
-    end
-end)
+hs.hotkey.bind({'cmd', 'shift'}, 'c', clipboardHistory.toggleChooser)
 
 touchWatcher.start()
 focusFollowsMouse.start()
 clipboardHistory.start()
-
+secureInputWatcher.start()
 
 hs.alert.show('Hammerspoon config reloaded', 1)
 
