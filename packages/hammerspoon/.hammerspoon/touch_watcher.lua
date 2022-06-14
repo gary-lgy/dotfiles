@@ -13,7 +13,7 @@ local function touchChanged(touches)
 end
 
 module.touches = {}
-module.staleThreshold = 500 * 1000 * 1000 -- ns = 500ms
+module.staleThresholdMS = 50
 
 module.start = function()
     module._gestureEventTap = hs.eventtap.new({hs.eventtap.event.types.gesture}, function(event)
@@ -36,7 +36,7 @@ module.start = function()
         -- prune stale touches - some touch events never reach the 'ended' phase
         local stale = {}
         for id, touch in pairs(module.touches) do
-            if hs.timer.absoluteTime() - touch.timestamp * 1e9 > module.staleThreshold then
+            if hs.timer.absoluteTime() - touch.timestamp * 1e9 > module.staleThresholdMS * 1e6 then
                 table.insert(stale, id)
             end
         end
