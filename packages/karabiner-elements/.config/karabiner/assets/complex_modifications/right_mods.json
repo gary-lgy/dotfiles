@@ -19,7 +19,7 @@
               "identifiers": [
                 {
                   "vendor_id": 1452,
-                  "product_id": 635,
+                  "is_keyboard": true,
                   "description": "Apple built-in keyboard"
                 }
               ]
@@ -56,7 +56,7 @@
               "identifiers": [
                 {
                   "vendor_id": 1452,
-                  "product_id": 635,
+                  "is_keyboard": true,
                   "description": "Apple built-in keyboard"
                 }
               ]

@@ -135,7 +135,7 @@ sky = SkyRocket:new({
     resizeMouseButton = 'right',
 })
 
--- mouse buttons
+-- shortcuts
 hs.hotkey.bind('', 'pad1', lib.showSpaces)
 hs.hotkey.bind('', 'pad3', function() hs.eventtap.keyStroke({ 'ctrl', 'cmd', 'shift' }, '4') end)
 hs.hotkey.bind('', 'pad5', windowChooser.toggle)

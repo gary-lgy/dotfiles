@@ -6,7 +6,12 @@ end
 
 # Homebrew
 if is_mac
-    eval (/usr/local/bin/brew shellenv)
+    set -l arc (arch)
+    if test $arc = "i386"
+        eval (/usr/local/bin/brew shellenv)
+    else if test $arc = "arm64"
+        eval (/opt/homebrew/bin/brew shellenv)
+    end
 end
 
 # Environment variables

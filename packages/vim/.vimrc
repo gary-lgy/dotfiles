@@ -104,7 +104,8 @@ function! s:LoadPlugins()
 
     " FZF
     if g:os == 'Darwin'
-        Plug '/usr/local/opt/fzf'
+        let fzfPath = "$HOMEBREW_PREFIX/opt/fzf"
+        Plug fzfPath
     elseif g:os == 'Linux'
         if !empty(glob('/usr/share/vim/vimfiles'))
             " if installed system-wide

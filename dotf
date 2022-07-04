@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# Link, unlink, or relink dotfiles
+# Stow, unstow, or restow dotfiles
 
 set -eu
 
 usage() {
-  echo "Usage: $0 <link | relink | unlink> <config file>"
+  echo "Usage: $0 <stow | delete | restow> <config file>"
   exit 1
 }
 
@@ -14,7 +14,7 @@ color_reset='\033[0m'
 color_green='\033[1;32m'
 color_red='\033[1;31m'
 
-DOTFILES_PATH="$(dirname "$(realpath "$0")")"
+DOTFILES_PATH="$(dirname "$0")"
 PACKAGES_PATH="$DOTFILES_PATH/packages"
 
 main() {
