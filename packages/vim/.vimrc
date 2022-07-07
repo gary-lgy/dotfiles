@@ -446,6 +446,7 @@ function! s:SetOptions()
     set confirm
 
     " Appearance
+    set background=dark
     set termguicolors
     set ruler
     set showcmd
