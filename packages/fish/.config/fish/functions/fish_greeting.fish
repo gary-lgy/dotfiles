@@ -7,7 +7,7 @@ function fish_greeting
   end
 
   if command -v cowthink 2>/dev/null 1>&2; and command -v lolcat 2>/dev/null 1>&2
-    cowthink $message | lolcat -t -S $i
+    cowthink $message | lolcat
   else
     echo $message
   end

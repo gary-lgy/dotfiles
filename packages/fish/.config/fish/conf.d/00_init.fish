@@ -27,3 +27,4 @@ if command -v "$HOMEBREW_PREFIX/bin/less" >/dev/null 2>&1
     set -gx PAGER "$HOMEBREW_PREFIX/bin/less" # On MacOS, the default less is /usr/bin/less, which is outdated
 end
 
+fish_add_path $HOME/bin

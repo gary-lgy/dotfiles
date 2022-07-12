@@ -103,19 +103,7 @@ function! s:LoadPlugins()
     let g:gruvbox_contrast_dark = 'hard'
 
     " FZF
-    if g:os == 'Darwin'
-        let fzfPath = "$HOMEBREW_PREFIX/opt/fzf"
-        Plug fzfPath
-    elseif g:os == 'Linux'
-        if !empty(glob('/usr/share/vim/vimfiles'))
-            " if installed system-wide
-            Plug '/usr/share/vim/vimfiles'
-        elseif !empty(glob('~/.fzf'))
-            " if installed for user
-            Plug '~/.fzf'
-        endif
-    endif
-
+    Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     call s:FzfConfigPreLoad()
 
