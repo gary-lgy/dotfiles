@@ -90,7 +90,7 @@ lib.eachKV(config.appBindings, function(key, appName)
         elseif app:isFrontmost() then
             app:hide()
         else
-            app:activate()
+            hs.application.launchOrFocus(appName)
             lib.centerCursorInApp(app)
         end
     end)
