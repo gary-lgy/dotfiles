@@ -2,21 +2,29 @@
     helper = cache
 [core]
     pager = delta
+[pager]
+    show = delta --paging=always
 [interactive]
     diffFilter = delta --color-only
+[add.interactive]
+    # Delta, required for git 2.37.0
+    useBuiltin = false
 [push]
     default = simple
     followTags = true
 [pull]
     ff = only
+[merge]
+    conflictstyle = diff3
 [diff]
     ; https://git-scm.com/docs/git-diff#Documentation/git-diff.txt---color-movedltmodegt
     ; show moved lines
     colorMoved = default
     colorMovedWS = ignore-space-change
 
-; https://github.com/dandavison/delta#--color-moved-support
 [delta]
+    navigate = true    # use n and N to move between diff sections
+    ; https://github.com/dandavison/delta#--color-moved-support
     features = line-numbers decorations
     whitespace-error-style = 22 reverse
 
