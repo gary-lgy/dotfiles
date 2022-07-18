@@ -31,4 +31,7 @@ if status --is-interactive
       source $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish
     end
   end
+
+  # iTerm shell integration
+  test -e /Users/bytedance/.iterm2_shell_integration.fish ; and source /Users/bytedance/.iterm2_shell_integration.fish ; or true
 end
