@@ -30,6 +30,8 @@ if status --is-interactive
     if is_mac
       source $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish
     end
+  else if test -f ~/.asdf/asdf.fish
+    source ~/.asdf/asdf.fish
   end
 
   # iTerm shell integration
