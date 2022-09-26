@@ -1,5 +1,5 @@
 {
-  "title": "Right modifiers",
+  "title": "Rearrange modifiers",
   "rules": [
     {
       "description": "Right command -> MEH",
@@ -39,11 +39,44 @@
       ]
     },
     {
-      "description": "Right option -> HYPER",
+      "description": "Right option -> Left ctrl",
       "manipulators": [
         {
           "from": {
             "key_code": "right_option",
+            "modifiers": {
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "conditions": [
+            {
+              "type": "device_if",
+              "identifiers": [
+                {
+                  "vendor_id": 1452,
+                  "is_keyboard": true,
+                  "description": "Apple built-in keyboard"
+                }
+              ]
+            }
+          ],
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Left ctrl -> HYPER",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "left_control",
             "modifiers": {
               "optional": [
                 "caps_lock"
