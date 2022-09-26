@@ -38,7 +38,11 @@ local function focusWindowUnderCursor()
     end
 
     local focused = hs.window.focusedWindow()
-    if windowUnderCursor == nil or focused ~= nil and windowUnderCursor:id() == focused:id() then
+    if windowUnderCursor == nil or -- no window under cursor
+        focused ~= nil and windowUnderCursor:id() == focused:id() or -- window under cursor already focused
+        focused == nil and hs.application.frontmostApplication():name() == 'Finder' or -- renaming item in Finder window
+        windowUnderCursor:application():name() == 'Lark Meetings' -- window under cursor is Lark Meeting (screen sharing, small window preview etc)
+        then
         return
     end
 
