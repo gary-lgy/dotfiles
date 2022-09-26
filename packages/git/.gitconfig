@@ -2,6 +2,7 @@
     helper = cache
 [core]
     pager = delta
+    excludesFile = ~/.gitignore_global
 [pager]
     show = delta --paging=always
 [interactive]
