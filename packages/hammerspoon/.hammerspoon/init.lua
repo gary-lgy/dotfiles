@@ -82,15 +82,15 @@ hs.hotkey.bind(meh, 'space',
     end
 )
 
-lib.eachKV(config.appBindings, function(key, appName)
+lib.eachKV(config.appBindings, function(key, bundleID)
     hs.hotkey.bind(meh, key, function()
-        local app = hs.application.get(appName)
+        local app = hs.application.applicationsForBundleID(bundleID)[1]
         if app == nil then
-            hs.application.open(appName)
-        elseif app:isFrontmost() then
+            hs.application.open(bundleID)
+        elseif app:isFrontmost() and #(app:allWindows()) > 0 then
             app:hide()
         else
-            hs.application.launchOrFocus(appName)
+            hs.application.launchOrFocusByBundleID(bundleID)
             lib.centerCursorInApp(app)
         end
     end)
