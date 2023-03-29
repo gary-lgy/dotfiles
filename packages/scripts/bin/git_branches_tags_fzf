@@ -21,14 +21,14 @@ git tag |
 
 # Get all branches
 branches=$(
-git branch --all | grep -v "HEAD\|no branch" |
-  sed "s/.* //" | sed "s#remotes/##" | sort -u |
+git branch --sort=-committerdate | grep -v "HEAD\|no branch" |
+  sed "s/.* //" |
   xargs -I% printf "${branch_color}branch\t${normal_color}%\n") ||
   exit 1
 
 # Combine the results
 if [ -n "$tags" ]; then
-  candidates=$(echo "$tags"; echo "$branches")
+  candidates=$(echo "$branches"; echo "$tags")
 else
   candidates="$branches"
 fi
