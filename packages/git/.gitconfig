@@ -36,3 +36,5 @@
 ; local overrides
 [include]
     path = ~/.local.gitconfig
+[init]
+	defaultBranch = main
