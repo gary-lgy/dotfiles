@@ -351,6 +351,9 @@ function! s:GitGutterConfigPreLoad()
     " Turn off default key mappings
     let g:gitgutter_map_keys = 0
 
+    " turn off for files with large diff to avoid slow startup
+    let g:gitgutter_max_signs = 2000
+
     " Define custom key mappings
     nmap ]h         <Plug>(GitGutterNextHunk)
     nmap [h         <Plug>(GitGutterPrevHunk)
