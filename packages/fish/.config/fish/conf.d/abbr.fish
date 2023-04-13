@@ -1,64 +1,73 @@
 # Frequently used
-abbr --global cp cp -iv
-abbr --global mv mv -iv
-abbr --global rm rm -iv
-abbr --global view nvim -R
-abbr --global la ls -FAx
-abbr --global rs rsync -auzvhP
-# abbr --global ll ls -lAhF
+abbr --add cp cp -iv
+abbr --add mv mv -iv
+abbr --add rm rm -iv
+abbr --add view nvim -R
+abbr --add la ls -FAx
+abbr --add rs rsync -auzvhP
+# abbr --add ll ls -lAhF
 
 # cd
-abbr --global -- - "cd - && l"
-abbr --global -- .. "cd .. && l"
-abbr --global -- ... "cd ../.. && l"
-abbr --global -- .... "cd ../../.. && l"
+function multicd
+    echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
+end
+
+abbr --add dotdot --regex '^\.\.+$' --function multicd
 
 # Brew
-abbr --global bi "brew install"
-abbr --global bic "brew install --cask"
-abbr --global bu "brew uninstall"
-abbr --global bp "brew update"
-abbr --global bg "brew upgrade"
-abbr --global bf "brew info"
-abbr --global bs "brew search"
+abbr --add bi "brew install"
+abbr --add bic "brew install --cask"
+abbr --add bu "brew uninstall"
+abbr --add bp "brew update"
+abbr --add bg "brew upgrade"
+abbr --add bf "brew info"
+abbr --add bs "brew search"
 
 # Git
-abbr --global ga git add
-abbr --global gb git branch
-abbr --global gc git checkout
-abbr --global gm git commit -m
-abbr --global gd git diff
-abbr --global gda git diff --cached
-abbr --global gf git fetch
-abbr --global gl git log --pretty=oneline -10
-abbr --global gp git pull
-abbr --global gpu git push -u origin HEAD
-abbr --global gs git status
+function gitlog
+    set -l num_l (math (string length -- $argv[1]) - 1)
+    echo git log --pretty=oneline -(math "$num_l * 10")
+end
+
+abbr --add ga git add
+abbr --add gbc git branch -c
+abbr --add gb git branch --sort=-committerdate
+abbr --add gc git checkout
+abbr --add gda git diff --cached
+abbr --add gd git diff
+abbr --add gf git fetch
+abbr --add gitlog --regex '^gl+$' --function gitlog
+abbr --add gman git commit --amend --no-edit
+abbr --add gm git commit -m
+abbr --add gp git pull
+abbr --add gpu git push -u origin HEAD
+abbr --add gri git rebase -i
+abbr --add gs git status
 
 # Tmux
-abbr --global tl tmux ls
-abbr --global ta tmux a -t
-abbr --global tn tmux new -s
+abbr --add tl tmux ls
+abbr --add ta tmux a -t
+abbr --add tn tmux new -s
 
 # Docker
-abbr --global db docker build
-abbr --global de docker exec
-abbr --global di docker images
-abbr --global dl docker logs
-abbr --global dn docker network
-abbr --global dp docker ps
-abbr --global dr docker run
-abbr --global ds docker stop
-abbr --global dv docker volume
-abbr --global dc docker-compose
-abbr --global dcb docker-compose build
-abbr --global dcd docker-compose down
-abbr --global dcp docker-compose ps
-abbr --global dcr docker-compose run
-abbr --global dcu docker-compose up
+abbr --add db docker build
+abbr --add de docker exec
+abbr --add di docker images
+abbr --add dl docker logs
+abbr --add dn docker network
+abbr --add dp docker ps
+abbr --add dr docker run
+abbr --add ds docker stop
+abbr --add dv docker volume
+abbr --add dc docker-compose
+abbr --add dcb docker-compose build
+abbr --add dcd docker-compose down
+abbr --add dcp docker-compose ps
+abbr --add dcr docker-compose run
+abbr --add dcu docker-compose up
 
 # QMK
-abbr --global qce qmk compile -kb ergodox_ez -km gary-lgy
-abbr --global qfe qmk flash -kb ergodox_ez -km gary-lgy
-abbr --global qcd qmk compile -kb handwired/dactyl_manuform/5x6 -km gary-lgy
-abbr --global qfd qmk flash -kb handwired/dactyl_manuform/5x6 -km gary-lgy
+abbr --add qce qmk compile -kb ergodox_ez -km gary-lgy
+abbr --add qfe qmk flash -kb ergodox_ez -km gary-lgy
+abbr --add qcd qmk compile -kb handwired/dactyl_manuform/5x6 -km gary-lgy
+abbr --add qfd qmk flash -kb handwired/dactyl_manuform/5x6 -km gary-lgy
