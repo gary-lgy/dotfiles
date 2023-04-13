@@ -133,8 +133,7 @@ function! s:LoadPlugins()
     let g:startify_fortune_use_unicode = 1
 
     " Smooth scrolling
-    Plug 'yuttie/comfortable-motion.vim'
-    call s:ComfortableMotionConfigPreLoad()
+    Plug 'psliwka/vim-smoothie'
 
     " Git
     Plug 'tpope/vim-fugitive' " TODO: compare with jreybert/vimagit
@@ -343,28 +342,6 @@ function! s:AirlineConfigPreLoad()
         endif
         return l:filename
     endfunction
-endfunction
-
-function! s:ComfortableMotionConfigPreLoad()
-    " Scroll by visual lines
-    let g:comfortable_motion_scroll_down_key = "gj"
-    let g:comfortable_motion_scroll_up_key = "gk"
-
-    " Scroll parameters
-    let g:comfortable_motion_friction = 200.0
-    let g:comfortable_motion_air_drag = 0.0
-
-    " Scroll proportionally to the window height
-    let g:comfortable_motion_no_default_key_mappings = 1
-    let g:comfortable_motion_impulse_multiplier = 0.7
-    nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
-    nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-    nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
-    nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
-
-    " Make mouse scroll smooth too
-    noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-    noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 endfunction
 
 function! s:GitGutterConfigPreLoad()
