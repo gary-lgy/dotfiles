@@ -1,4 +1,6 @@
 # Frequently used
+abbr --add hm history merge
+abbr --add exf exec fish
 abbr --add cp cp -iv
 abbr --add mv mv -iv
 abbr --add rm rm -iv
@@ -31,7 +33,9 @@ end
 
 abbr --add ga git add
 abbr --add gbc git branch -c
-abbr --add gb git branch --sort=-committerdate
+abbr --add gb git branch
+abbr --add gbm git branch -m
+abbr --add gbs git branch --sort=-committerdate
 abbr --add gc git checkout
 abbr --add gda git diff --cached
 abbr --add gd git diff
@@ -42,6 +46,7 @@ abbr --add gm git commit -m
 abbr --add gp git pull
 abbr --add gpu git push -u origin HEAD
 abbr --add gri git rebase -i
+abbr --add grv git remote -v
 abbr --add gs git status
 
 # Tmux
