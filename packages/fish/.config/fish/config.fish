@@ -40,5 +40,7 @@ if status --is-interactive
   end
 
   # iTerm shell integration
-  test -e ~/.iterm2_shell_integration.fish ; and source ~/.iterm2_shell_integration.fish ; or true
+  if test -e ~/.iterm2_shell_integration.fish
+    source ~/.iterm2_shell_integration.fish
+  end
 end

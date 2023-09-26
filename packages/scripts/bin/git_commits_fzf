@@ -17,9 +17,10 @@ ${key_color}ctlr-s${normal_color} to toggle sort, \
 ${key_color}alt-y${normal_color} to yank commit hash, \
 ${key_color}Enter${normal_color} to show commit"
 
-# Yanking is achieved with xclip or pbcopy
-# Give warning if neither is found
-if command -v xclip &>/dev/null; then
+# Warn if no clipboard utility is found
+if [[ ! -z "$CLIPBOARD" ]]; then
+  yank_command="$CLIPBOARD"
+elif command -v xclip &>/dev/null; then
   yank_command="xclip -selection clipboard"
 elif command -v pbcopy &>/dev/null; then
   yank_command="pbcopy"
