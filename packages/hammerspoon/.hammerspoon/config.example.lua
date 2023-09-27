@@ -21,4 +21,8 @@ return {
         -- do not support OPT/ALT key shortcuts.
         ['com.googlecode.iterm2'] = 'com.apple.keylayout.UnicodeHexInput',
     }
+    focusFollowsMouse = {
+        occlusionAllowedApps = {},
+        ignoredApps = {},
+    }
 }

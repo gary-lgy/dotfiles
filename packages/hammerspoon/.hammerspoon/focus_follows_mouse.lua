@@ -1,11 +1,37 @@
 local module = {}
 
+-- TODO: look at how other libraries prevent new windows being immediately put under
+
 local libwindow = require('hs.libwindow')
 
+module.logger = hs.logger.new('focus_follows_mouse')
 module.mouseMoveWaitDurationSeconds = 0.1
 module.timerPeriodSeconds = 0.25
 module.disableMod = 'fn' -- hold to disable
-module.occlusionThresholdPixels = 20.0 -- occlusion with either height or width below this value will be ignored
+module.occlusionThresholdPixels = 40.0 -- occlusion with either height or width below this value will be ignored
+module.newWindowDisableSeconds = 1.0 -- disable autofocus for this period after a new window is created
+-- List of app names which do not stop window under cursor from being focused when
+-- the occluding it. Usually for picture-in-picture style windows.
+module.occlusionAllowedApps = {}
+-- List of app names which should not be focused even when under cursor.
+-- Usually for picture-in-picture style windows.
+-- TODO: should these be the same config?
+module.ignoredApps = {}
+
+module.occlusionAllowed = function(window)
+    if window:title() == 'Hammerspoon Console' then
+        return true
+    end
+
+    local appName = window:application():name()
+    for _, allowedAppName in ipairs(module.occlusionAllowedApps) do
+        if allowedAppName == appName then
+            return true
+        end
+    end
+
+    return false
+end
 
 -- use this instead of hs.window.orderedWindows() so we include the Hammerspoon console window
 -- https://github.com/Hammerspoon/hammerspoon/blob/master/extensions/window/window.lua#L173
@@ -35,10 +61,15 @@ module.getOccludingWindow = function(window, orderedWindows)
             return nil
         end
 
-        if w:application():name() ~= 'Hammerspoon' then -- allow Hammerspoon windows to occlude other windows
-            local intersection = w:frame():intersect(window:frame())
+        if not module.occlusionAllowed(w) then
+            local occludingFrame = w:frame()
+            local targetFrame = window:frame()
+            local intersection = occludingFrame:intersect(targetFrame)
+            
             -- ignore small intersections
-            if intersection.w > module.occlusionThresholdPixels and intersection.h > module.occlusionThresholdPixels then
+            local isFullyContained = occludingFrame:inside(targetFrame)
+            local isIntersectionSignificant = intersection.w > module.occlusionThresholdPixels and intersection.h > module.occlusionThresholdPixels
+            if isFullyContained or isIntersectionSignificant then
                 -- found the occluding window
                 return w
             end
@@ -48,46 +79,118 @@ module.getOccludingWindow = function(window, orderedWindows)
     return nil
 end
 
-module.focusWindowUnderCursor = function()
-    local windows = module.orderedWindows()
-    local windowUnderCursor = nil
+module.getWindowUnderCursor = function(windows)
     local cursorPosition = hs.geometry.new(hs.mouse.absolutePosition())
     for _, w in ipairs(windows) do
         if cursorPosition:inside(w:frame()) then
-            windowUnderCursor = w
-            break
+            return w
         end
     end
 
+    return nil
+end
+
+module.focusWindowUnderCursor = function()
+    local windows = module.orderedWindows()
+    local windowUnderCursor = module.getWindowUnderCursor(windows)
+    if windowUnderCursor == nil then
+        -- no window under cursor
+        return
+    end
+    module.logger.df('window under cursor appname=%s id=%d title=%s',
+        windowUnderCursor:application():name(),
+        windowUnderCursor:id(),
+        windowUnderCursor:title())
+
     local focused = hs.window.focusedWindow()
-    if windowUnderCursor == nil or -- no window under cursor
-        focused ~= nil and windowUnderCursor:id() == focused:id() or -- window under cursor already focused
-        focused == nil and hs.application.frontmostApplication():name() == 'Finder' or -- renaming item in Finder window
-        windowUnderCursor:application():name() == 'Lark Meetings' -- window under cursor is Lark Meeting (screen sharing, small window preview etc)
-        then
+    local frontmostApp = hs.application.frontmostApplication()
+    if focused == nil and frontmostApp:name() == 'Finder' then
+        -- renaming item in Finder window, focusing anything (including the Finder window) will cause renaming to be aborted
+        module.logger.d('Finder renaming in progress, aborting')
+        return
+    end
+    if focused == nil then
+        module.logger.d('no currently focused window')
+    else
+        module.logger.df('currently focused window appname=%s id=%s',
+            focused:application():name(),
+            focused:id(),
+            focused:title())
+    end
+
+    -- window under cursor already focused
+    if focused ~= nil and windowUnderCursor:id() == focused:id() then
+        module.logger.d('window under cursor is already focused')
         return
     end
 
+    -- window under cursor should not be focused
+    for _, ignoredAppName in ipairs(module.ignoredApps) do
+        if ignoredAppName == windowUnderCursor:application():name() then
+            module.logger.df('application %s is in the ignore list, aborting', ignoredAppName)
+            return
+        end
+    end
+    
     -- check if the window is occluded
     occludingWindow = module.getOccludingWindow(windowUnderCursor, windows)
-    if occludingWindow == nil then
-        windowUnderCursor:focus()
+    if occludingWindow ~= nil then
+        module.logger.df('occluding window appname=%s id=%d title=%s',
+            occludingWindow:application():name(),
+            occludingWindow:id(),
+            occludingWindow:title())
+        return
     end
+
+    module.logger.df('focusing appname=%s id=%d title=%s',
+        windowUnderCursor:application():name(),
+        windowUnderCursor:id(),
+        windowUnderCursor:title())
+    windowUnderCursor:focus()
 end
 
 module.start = function()
-    module._mouseMovedEventTap = hs.eventtap.new({hs.eventtap.event.types.mouseMoved}, lib.debounce(module.mouseMoveWaitDurationSeconds, function(event)
+    -- record the timestamp of the last possible window creation (e.g. left click, key down, etc), so we could disable autofocus for a while
+    -- to prevent the new window from being immediately put under an existing window.
+    local lastPossibleWindowCreationTimestamp = 0
+    module._possibleWindowCreationEventTap = hs.eventtap.new({
+            hs.eventtap.event.types.leftMouseDown,
+            hs.eventtap.event.types.leftMouseUp,
+            hs.eventtap.event.types.keyUp,
+            hs.eventtap.event.types.keyDown,
+        },
+        function(event)
+            lastPossibleWindowCreationTimestamp = hs.timer.secondsSinceEpoch()
+        end
+        ):start()
+
+    shouldTrigger = function()
+        -- don't trigger if module.disableMod is being held
         if module.disableMod and hs.eventtap.checkKeyboardModifiers()[module.disableMod] or #hs.eventtap.checkMouseButtons() > 0 then
-            return
+            module.logger.d('auto focus disabled due to modifier or button clicks')
+            return false
         end
 
-        module.focusWindowUnderCursor()
+        -- don't autofocus if a new window is (possibly) being created
+        if hs.timer.secondsSinceEpoch() - lastPossibleWindowCreationTimestamp < module.newWindowDisableSeconds then
+            module.logger.d('auto focus disabled due to possible new window creation')
+            return false
+        end
+
+        return true
+    end
+
+    -- listen to mouse move events to focus the window under cursor
+    module._mouseMovedEventTap = hs.eventtap.new({hs.eventtap.event.types.mouseMoved}, lib.debounce(module.mouseMoveWaitDurationSeconds, function(event)
+        if shouldTrigger() then
+            module.focusWindowUnderCursor()
+        end
     end)):start()
 
     -- sometimes after closing a window none of the existing windows are focused
     -- use this timer to focus the window under the cursor in such scenarios
     module._timer = hs.timer.doEvery(module.timerPeriodSeconds, function()
-        if hs.window.focusedWindow() == nil then
+        if shouldTrigger() and hs.window.focusedWindow() == nil then
             module.focusWindowUnderCursor()
         end
     end)

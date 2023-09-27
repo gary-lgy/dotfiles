@@ -132,8 +132,11 @@ hs.hotkey.bind(hyper, '3', windowChooser.toggle)
 
 hs.hotkey.bind({'cmd', 'shift'}, 'c', clipboardHistory.toggleChooser)
 
-touchWatcher.start()
+focusFollowsMouse.occlusionAllowedApps = config.focusFollowsMouse.occlusionAllowedApps
+focusFollowsMouse.ignoredApps = config.focusFollowsMouse.ignoredApps
 focusFollowsMouse.start()
+
+touchWatcher.start()
 clipboardHistory.start()
 secureInputWatcher.start()
 inputSourceSwitch.start(config.appInputMethods)
