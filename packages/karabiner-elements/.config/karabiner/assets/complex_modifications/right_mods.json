@@ -13,18 +13,6 @@
               ]
             }
           },
-          "conditions": [
-            {
-              "type": "device_if",
-              "identifiers": [
-                {
-                  "vendor_id": 1452,
-                  "is_keyboard": true,
-                  "description": "Apple built-in keyboard"
-                }
-              ]
-            }
-          ],
           "to": [
             {
               "key_code": "left_shift",
@@ -50,18 +38,6 @@
               ]
             }
           },
-          "conditions": [
-            {
-              "type": "device_if",
-              "identifiers": [
-                {
-                  "vendor_id": 1452,
-                  "is_keyboard": true,
-                  "description": "Apple built-in keyboard"
-                }
-              ]
-            }
-          ],
           "to": [
             {
               "key_code": "left_control"
@@ -83,18 +59,6 @@
               ]
             }
           },
-          "conditions": [
-            {
-              "type": "device_if",
-              "identifiers": [
-                {
-                  "vendor_id": 1452,
-                  "is_keyboard": true,
-                  "description": "Apple built-in keyboard"
-                }
-              ]
-            }
-          ],
           "to": [
             {
               "key_code": "left_shift",
