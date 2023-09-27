@@ -16,4 +16,9 @@ return {
     appBindings = {
         c = 'com.microsoft.VSCode',
     },
+    appInputMethods = {
+        -- Use unicode hex input instead of default US/UK keyboards which
+        -- do not support OPT/ALT key shortcuts.
+        ['com.googlecode.iterm2'] = 'com.apple.keylayout.UnicodeHexInput',
+    }
 }

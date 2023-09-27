@@ -6,6 +6,7 @@ local touchWatcher = require('touch_watcher')
 local focusFollowsMouse = require('focus_follows_mouse')
 local clipboardHistory = require('clipboard_history')
 local secureInputWatcher = require('secure_input_watcher')
+local inputSourceSwitch = require('input_source_switch')
 
 local function getSnippetBindings(map)
     local t = {}
@@ -135,5 +136,6 @@ touchWatcher.start()
 focusFollowsMouse.start()
 clipboardHistory.start()
 secureInputWatcher.start()
+inputSourceSwitch.start(config.appInputMethods)
 
 hs.alert.show('Hammerspoon config reloaded', 1)
