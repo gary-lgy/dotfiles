@@ -119,16 +119,15 @@ sky = SkyRocket:new({
 })
 
 -- shortcuts
-hs.hotkey.bind('', 'pad1', lib.showSpaces)
-hs.hotkey.bind('', 'pad3', function() hs.eventtap.keyStroke({ 'ctrl', 'cmd', 'shift' }, '4') end)
-hs.hotkey.bind('', 'pad4', function()
+hs.hotkey.bind(hyper, '1', lib.showSpaces)
+hs.hotkey.bind(hyper, '2', function()
     local win = hs.window.filter.default:getWindows(hs.window.filter.sortByFocusedLast)[2]
     if win ~= nil then
         win:focus()
         lib.centerCursorInWindow(win)
     end
 end)
-hs.hotkey.bind('', 'pad5', windowChooser.toggle)
+hs.hotkey.bind(hyper, '3', windowChooser.toggle)
 
 hs.hotkey.bind({'cmd', 'shift'}, 'c', clipboardHistory.toggleChooser)
 
