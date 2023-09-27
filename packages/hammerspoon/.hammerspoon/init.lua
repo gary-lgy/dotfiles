@@ -25,6 +25,20 @@ local function getSnippetBindings(map)
     return t
 end
 
+local function getFunctionBindings(map)
+    local t = {}
+    for key, fn in pairs(map) do
+        if type(snippet) == 'table' then
+            -- recursive binding
+            t[key] = getFunctionBindings(snippet)
+        else
+            t[key] = fn
+        end
+    end
+
+    return t
+end
+
 local meh = { 'shift', 'ctrl', 'alt' }
 local hyper = { 'shift', 'ctrl', 'alt', 'cmd' }
 
@@ -36,6 +50,7 @@ local activateRecursiveModal = rbinder.recursiveBind({
         [{ '', 'w', 'Windows' }]  = windowChooser.toggle,
         [{ '', 's', 'Spaces' }]   = lib.showSpaces,
         [{ '', 'n', 'Snippets' }] = getSnippetBindings(config.snippetBindings),
+        [{ '', 'f', 'Functions' }] = getFunctionBindings(config.functionBindings),
     })
 
 hs.hotkey.bind(meh, 'space',
