@@ -1,10 +1,4 @@
-log = hs.logger.new('init', 'verbose')
 lib = require('lib')
-
--- keepActive is an undocumented call to keep the wf active even without subscription,
--- which in turn forces it to refresh the window list when we switch spaces.
-hs.window.filter.default:keepActive()
-hs.window.filter.defaultCurrentSpace:keepActive()
 
 local config = require('config')
 local windowChooser = require('window_chooser')
@@ -12,31 +6,6 @@ local touchWatcher = require('touch_watcher')
 local focusFollowsMouse = require('focus_follows_mouse')
 local clipboardHistory = require('clipboard_history')
 local secureInputWatcher = require('secure_input_watcher')
-
--- focus Vivaldi and send Cmd-E
-local function vivaldiSearch()
-    local app = hs.application.get('Vivaldi')
-    if app == nil then
-        return nil
-    end
-
-    app:activate()
-
-    lib.waitUntil(
-        function() return app:isFrontmost() end,
-        function()
-            lib.centerCursorInApp(app)
-            hs.eventtap.keyStroke({ 'cmd' }, 'e', app)
-        end,
-        0.2
-    )
-end
-
-local function displayPingLatency()
-    lib.pingLatency(function(status, latency)
-        hs.alert('Ping: ' .. status .. (latency and (' (' .. latency .. 'ms)') or ''))
-    end)
-end
 
 local function getSnippetBindings(map)
     local t = {}
@@ -62,13 +31,10 @@ local hyper = { 'shift', 'ctrl', 'alt', 'cmd' }
 local rbinder = hs.loadSpoon('RecursiveBinder')
 rbinder.helperFormat = { atScreenEdge = 0 }
 local activateRecursiveModal = rbinder.recursiveBind({
-        [{ '', 't', 'Vivaldi' }]  = vivaldiSearch,
         [{ '', 'r', 'Reload' }]   = hs.reload,
         [{ '', 'c', 'Console' }]  = hs.toggleConsole,
-        [{ '', 'p', 'Ping' }]     = displayPingLatency,
         [{ '', 'w', 'Windows' }]  = windowChooser.toggle,
         [{ '', 's', 'Spaces' }]   = lib.showSpaces,
-        [{ '', 'd', 'X Notif' }]  = lib.dismissNotifications,
         [{ '', 'n', 'Snippets' }] = getSnippetBindings(config.snippetBindings),
     })
 
@@ -154,5 +120,3 @@ clipboardHistory.start()
 secureInputWatcher.start()
 
 hs.alert.show('Hammerspoon config reloaded', 1)
-
--- TODO: hs.layout

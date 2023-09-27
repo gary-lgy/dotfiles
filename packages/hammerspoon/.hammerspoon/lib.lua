@@ -34,19 +34,6 @@ module.isArray = function(t)
     return true
 end
 
-module.dismissNotifications = function()
-    hs.osascript.applescript([[
-    tell application "System Events"
-        tell process "NotificationCenter"
-            set windowCount to count windows
-            repeat with i from windowCount to 1 by -1
-                click button "Close" of window i
-            end repeat
-        end tell
-    end tell
-        ]])
-end
-
 module.debounce = function(delay, fn)
     local timer = nil
     local arg = nil
@@ -106,11 +93,6 @@ module.fuzzyScore = function(text, query)
 end
 
 module.pingLatency = function(fn)
-    if fn == nil or type(fn) ~= 'function' then
-        log.e('Expected a function as the first argument')
-        return
-    end
-
     local count = 5
     local sendFailCount = 0
     hs.network.ping(
@@ -144,23 +126,6 @@ module.pingLatency = function(fn)
             end
         end
     )
-end
-
-module.execute = function(command, cb)
-    hs.task.new(
-        '/bin/bash',
-        function(exitCode, stdOut, stdErr)
-            if exitCode ~= 0 then
-                log.e('Command `' .. command .. '` returned error - [stdout] ' .. stdOut .. ' [stderr] ' .. stdErr)
-                return
-            end
-
-            if cb ~= nil then
-                cb(stdOut)
-            end
-        end,
-        { '-c', command }
-    ):start()
 end
 
 module.centerCursorInWindow = function(win)
