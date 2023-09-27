@@ -39,6 +39,7 @@ local function getFunctionBindings(map)
     return t
 end
 
+hs.hotkey.setLogLevel(hs.logger.defaultLogLevel) -- fix verbose default logging level of hs.hotkey
 local meh = { 'shift', 'ctrl', 'alt' }
 local hyper = { 'shift', 'ctrl', 'alt', 'cmd' }
 
