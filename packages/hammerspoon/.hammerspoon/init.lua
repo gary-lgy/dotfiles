@@ -91,7 +91,9 @@ hs.fnutils.ieach({
     end)
 end)
 
+-- https://github.com/miromannino/miro-windows-manager
 hs.loadSpoon("MiroWindowsManager")
+hs.window.animationDuration = 0
 spoon.MiroWindowsManager:bindHotkeys({
     up         = { hyper, "up" },
     right      = { hyper, "right" },
