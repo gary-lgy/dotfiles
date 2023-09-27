@@ -7,6 +7,7 @@ local focusFollowsMouse = require('focus_follows_mouse')
 local clipboardHistory = require('clipboard_history')
 local secureInputWatcher = require('secure_input_watcher')
 local inputSourceSwitch = require('input_source_switch')
+local lastCursorPosition = require('last_cursor_position')
 
 local function getSnippetBindings(map)
     local t = {}
@@ -74,7 +75,8 @@ lib.eachKV(config.appBindings, function(key, bundleID)
             app:hide()
         else
             hs.application.launchOrFocusByBundleID(bundleID)
-            lib.centerCursorInApp(app)
+            lastCursorPosition.moveCursorToLastKnownOrCenter(
+                app:focusedWindow() or app:mainWindow())
         end
     end)
 end)
@@ -88,7 +90,8 @@ hs.fnutils.ieach({
 }, function(map)
     hs.hotkey.bind(meh, map[1], function()
         map[2]()
-        lib.centerCursorInWindow(hs.window.focusedWindow())
+        lastCursorPosition.moveCursorToLastKnownOrCenter(
+            hs.window.focusedWindow():application())
     end)
 end)
 
@@ -125,7 +128,7 @@ hs.hotkey.bind(hyper, '2', function()
     local win = hs.window.filter.default:getWindows(hs.window.filter.sortByFocusedLast)[2]
     if win ~= nil then
         win:focus()
-        lib.centerCursorInWindow(win)
+        lastCursorPosition.moveCursorToLastKnownOrCenter(win)
     end
 end)
 hs.hotkey.bind(hyper, '3', windowChooser.toggle)
@@ -140,5 +143,6 @@ touchWatcher.start()
 clipboardHistory.start()
 secureInputWatcher.start()
 inputSourceSwitch.start(config.appInputMethods)
+lastCursorPosition.start()
 
 hs.alert.show('Hammerspoon config reloaded', 1)
