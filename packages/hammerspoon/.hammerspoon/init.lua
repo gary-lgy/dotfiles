@@ -121,7 +121,6 @@ spoon.MiroWindowsManager:bindHotkeys({
 
 -- https://github.com/dbalatero/SkyRocket.spoon
 local SkyRocket = hs.loadSpoon("SkyRocket")
-
 sky = SkyRocket:new({
     -- Opacity of resize canvas
     opacity = 0.3,

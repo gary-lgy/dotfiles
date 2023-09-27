@@ -3,12 +3,16 @@ local fuzzyScore = lib.fuzzyScore
 
 local module = {}
 
--- scenario:
--- Space 1 has window 1 (current space), Space 2 has window 2 (for the same app)
--- If we go to space 2 and focus window 2, then go back to space 1 and invoke `getWindows`,
--- window 2 will not be in the returned list.
--- This is because the window list is only refreshed when we actually invoke `getWindows`.
--- keepActive is an undocumented call to keep the wf active even without subscription,
+-- The call to undocumented `keepActive` is necessary because:
+-- 1. By default, hs.window.filter only refreshes its window list when `getWindows` is invoked.
+-- 2. MacOS API currently does not support getting windows from another space (except the primary window of each app)
+-- This can become a problem in the following scenario:
+-- 1. We're initially on space 1 with window 1 from app A.
+-- 2. We switch to space 2 with window 2 from app A.
+-- 3. We switch back to space 1 and invoke `getWindows`.
+-- The list will only contain window 1 and not window 2 because
+-- window 2 did not have an opportunity to be registered in the window filter.
+-- `keepActive` keeps the wf active even without subscription,
 -- which in turn forces it to refresh the window list when we switch spaces.
 module._wf = hs.window.filter.new():setDefaultFilter({}):keepActive()
 

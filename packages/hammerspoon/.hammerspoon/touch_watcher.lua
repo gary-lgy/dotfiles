@@ -35,8 +35,9 @@ module.start = function()
 
         -- prune stale touches - some touch events never reach the 'ended' phase
         local stale = {}
+        local now = hs.timer.absoluteTime()
         for id, touch in pairs(module.touches) do
-            if hs.timer.absoluteTime() - touch.timestamp * 1e9 > module.staleThresholdMS * 1e6 then
+            if now - touch.timestamp * 1e9 > module.staleThresholdMS * 1e6 then
                 table.insert(stale, id)
             end
         end
