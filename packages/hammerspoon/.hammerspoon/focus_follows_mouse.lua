@@ -104,7 +104,7 @@ module.focusWindowUnderCursor = function()
 
     local focused = hs.window.focusedWindow()
     local frontmostApp = hs.application.frontmostApplication()
-    if focused == nil and frontmostApp:name() == 'Finder' then
+    if focused == nil and frontmostApp ~= nil and frontmostApp:name() == 'Finder' then
         -- renaming item in Finder window, focusing anything (including the Finder window) will cause renaming to be aborted
         module.logger.d('Finder renaming in progress, aborting')
         return
