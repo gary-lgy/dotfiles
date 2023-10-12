@@ -1,0 +1,48 @@
+#!/bin/bash
+
+set -eux
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Install homebrew first!" >&2
+  exit 1
+fi
+
+brew analytics off
+
+formulae=(
+# core; replace default/outdated versions in MacOS
+coreutils
+stow
+bash
+git
+less
+
+# cli
+fish
+neovim
+tmux
+htop
+brew-cask-completion
+starship
+fd
+exa
+ripgrep
+fzf
+nnn
+bat
+tldr
+jq
+
+# dev
+shellcheck
+git-delta
+direnv
+asdf
+tokei
+
+# mics
+lolcat
+cowsay
+)
+
+brew install "${formulae[@]}"

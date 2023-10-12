@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -eux
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Install homebrew first!" >&2
+  exit 1
+fi
+
+casks=(
+vivaldi
+iterm2
+hammerspoon
+bettertouchtool
+mos
+karabiner-elements
+iina
+coteditor
+visual-studio-code
+telegram-desktop
+wechat
+bitwarden
+nextcloud
+itsycal
+stats
+macs-fan-control
+homebrew/cask-fonts/font-jetbrains-mono-nerd-font
+homebrew/cask-fonts/font-iosevka-nerd-font
+)
+
+brew install --cask "${casks[@]}"
