@@ -1,7 +1,7 @@
 # tide prmopt item to display whether proxy is enabled
 
 # icon
-set -U tide_proxy_icon 䀹
+set -U tide_proxy_icon 󰗕
 
 # color
 set -U tide_proxy_color CCFF00
