@@ -13,6 +13,9 @@ if status --is-interactive
     echo "https://github.com/jorgebucaran/fisher" >&2
   end
 
+  # Replace vim with nvim
+  alias vim=nvim
+
   # direnv
   if command -v direnv >/dev/null 2>&1
     direnv hook fish | source
