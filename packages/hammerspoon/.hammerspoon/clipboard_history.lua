@@ -31,7 +31,8 @@ end
 
 local function getPasteboardContent()
     local types = hs.pasteboard.typesAvailable()
-    local bundleID = hs.window.frontmostWindow():application():bundleID()
+    local application = hs.window.frontmostWindow():application()
+    local bundleID = application:bundleID()
     local now = os.time()
     local filenameDateString = os.date('%Y-%m-%d %H%M%S', now)
     local timestamp = os.date('%Y-%m-%d %H:%M:%S', now)
@@ -44,7 +45,7 @@ local function getPasteboardContent()
         
         item = {
             contentType='image',
-            text='image',
+            text='image from ' .. application:name() .. ' (' .. bundleID .. ')',
             subText=timestamp,
             path=filename,
         }
