@@ -113,25 +113,25 @@ sky = SkyRocket:new({
     -- Opacity of resize canvas
     opacity = 0.3,
     -- Which modifiers to hold to move a window?
-    moveModifiers = { 'fn' },
+    moveModifiers = hyper,
     -- Which mouse button to hold to move a window?
     moveMouseButton = 'left',
     -- Which modifiers to hold to resize a window?
-    resizeModifiers = { 'fn' },
+    resizeModifiers = hyper,
     -- Which mouse button to hold to resize a window?
     resizeMouseButton = 'right',
 })
 
 -- shortcuts
-hs.hotkey.bind(hyper, '1', lib.showSpaces)
-hs.hotkey.bind(hyper, '2', function()
+hs.hotkey.bind(meh, '1', lib.showSpaces)
+hs.hotkey.bind(meh, '2', function()
     local win = hs.window.filter.default:getWindows(hs.window.filter.sortByFocusedLast)[2]
     if win ~= nil then
         win:focus()
         lastCursorPosition.moveCursorToLastKnownOrCenter(win)
     end
 end)
-hs.hotkey.bind(hyper, '3', windowChooser.toggle)
+hs.hotkey.bind(meh, '3', windowChooser.toggle)
 
 hs.hotkey.bind({'cmd', 'shift'}, 'c', clipboardHistory.toggleChooser)
 
