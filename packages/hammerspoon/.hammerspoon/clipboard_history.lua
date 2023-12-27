@@ -74,8 +74,7 @@ local function getPasteboardContent()
     while #module._history > module.maxHistorySize do
         local item = table.remove(module._history)
         if item.contentType == 'image' then
-            print(hs.inspect(item))
-            print(os.remove(hs.fs.pathToAbsolute(item.path)))
+            os.remove(hs.fs.pathToAbsolute(item.path))
         end
     end
 
@@ -182,8 +181,15 @@ function module.toggleChooser()
 
     local allHistory = {}
     hs.fnutils.ieach(module._history, function(item)
+        -- cache the app icons; this can speed up 10x
+        local appIcon = module._appIcons[item.bundleID]
+        if appIcon == nil then
+            appIcon = hs.image.imageFromAppBundle(item.bundleID)
+            module._appIcons[item.bundleID] = appIcon
+        end
+
         local o = {
-            image=hs.image.imageFromAppBundle(item.bundleID),
+            image=appIcon,
         }
         for k, v in pairs(item) do
             o[k] = v
@@ -246,6 +252,7 @@ module.start = function()
 
     module._history = loadHistory()
     module._watcher = hs.pasteboard.watcher.new(getPasteboardContent):start()
+    module._appIcons = {}
 end
 
 return module
