@@ -1,5 +1,6 @@
 local debounce = lib.debounce
 local fuzzyScore = lib.fuzzyScore
+local lastCursorPosition = require('last_cursor_position')
 
 local module = {}
 
@@ -28,7 +29,7 @@ local function getWindows()
     end)
 end
 
-local function focusWindow(win, doWarp)
+local function focusWindow(win)
     local winObj = hs.fnutils.find(module._wf:getWindows(), function(w)
         return w:id() == win.id
     end)
@@ -37,17 +38,12 @@ local function focusWindow(win, doWarp)
         return nil
     end
 
-    local oldSID = hs.screen.mainScreen():id()
-
     if win.isMinimized then
         winObj:unminimize()
     end
     winObj:focus()
 
-    local newSID = hs.screen.mainScreen():id()
-    if doWarp and oldSID ~= newSID then
-        lib.centerCursorInWindow(winObj)
-    end
+    lastCursorPosition.moveCursorToLastKnownOrCenter(winObj)
 
     return winObj
 end
@@ -91,7 +87,7 @@ module._chooser = hs.chooser.new(function(choice)
         return
     end
 
-    focusWindow(choice, true)
+    focusWindow(choice)
 end)
 
 function module.toggle()
