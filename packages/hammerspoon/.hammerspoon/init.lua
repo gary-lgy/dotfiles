@@ -5,7 +5,7 @@ local windowChooser = require('window_chooser')
 local touchWatcher = require('touch_watcher')
 local focusFollowsMouse = require('focus_follows_mouse')
 local clipboardHistory = require('clipboard_history')
-local secureInputWatcher = require('secure_input_watcher')
+local watcherIcon = require('watcher_icon')
 local inputSourceSwitch = require('input_source_switch')
 local lastCursorPosition = require('last_cursor_position')
 
@@ -139,9 +139,19 @@ focusFollowsMouse.occlusionAllowedApps = config.focusFollowsMouse.occlusionAllow
 focusFollowsMouse.ignoredApps = config.focusFollowsMouse.ignoredApps
 focusFollowsMouse.start()
 
+secureInputWatcher = watcherIcon.new(0.5, function()
+    if hs.eventtap.isSecureInputEnabled() then
+        return true, '⚠️🔒', {
+            { title = 'Secure input is enabled!', disabled = true }
+        }
+    else
+        return false, nil, nil
+    end
+end)
+secureInputWatcher:start()
+
 touchWatcher.start()
 clipboardHistory.start()
-secureInputWatcher.start()
 inputSourceSwitch.start(config.appInputMethods)
 lastCursorPosition.start()
 
