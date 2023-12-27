@@ -2,9 +2,9 @@ if status --is-interactive
 
   if test (less --version | grep -E '^less [[:digit:]]+' | cut -d' ' -f2) -ge 543
     # enable `--mouse` only if less is new enough to support it
-    set -gx LESS '--RAW-CONTROL-CHARS --mouse'
+    set -gx LESS '--RAW-CONTROL-CHARS --ignore-case --mouse'
   else
-    set -gx LESS '--RAW-CONTROL-CHARS'
+    set -gx LESS '--RAW-CONTROL-CHARS --ignore-case'
   end
 
   # Check fisher
