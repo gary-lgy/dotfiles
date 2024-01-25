@@ -146,6 +146,15 @@ function! s:LoadPlugins()
     let g:EditorConfig_exclude_patterns = ['fugitive://.*']
     let g:EditorConfig_disable_rules = ['trim_trailing_whitespace']
 
+    " Yank to local clipboard over SSH
+    Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
+    autocmd TextYankPost *
+                \ if v:event.operator is 'y' && v:event.regname is '' |
+                \ execute 'OSCYankRegister +' |
+                \ endif
+    let g:oscyank_silent     = 1  " disable message on successful copy
+    let g:oscyank_trim       = 1  " trim surrounding whitespaces before copy
+
     call plug#end()
     " All the plugins have been loaded
 endfunction
