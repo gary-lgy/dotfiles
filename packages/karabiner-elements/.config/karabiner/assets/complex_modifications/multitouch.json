@@ -77,7 +77,7 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "k",
+            "key_code": "i",
             "modifiers": {
               "optional": [
                 "any"
@@ -100,7 +100,7 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "j",
+            "key_code": "k",
             "modifiers": {
               "optional": [
                 "any"
@@ -123,7 +123,7 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "h",
+            "key_code": "j",
             "modifiers": {
               "optional": [
                 "any"
@@ -169,7 +169,7 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "k",
+            "key_code": "i",
             "modifiers": {
               "optional": [
                 "any"
@@ -192,7 +192,7 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "j",
+            "key_code": "k",
             "modifiers": {
               "optional": [
                 "any"
@@ -215,7 +215,7 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "h",
+            "key_code": "j",
             "modifiers": {
               "optional": [
                 "any"
