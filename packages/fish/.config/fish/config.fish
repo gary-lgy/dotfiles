@@ -14,7 +14,9 @@ if status --is-interactive
   end
 
   # Replace vim with nvim
-  alias vim=nvim
+  if command -v nvim >/dev/null 2>&1
+    alias vim=nvim
+  end
 
   # direnv
   if command -v direnv >/dev/null 2>&1
