@@ -1,4 +1,10 @@
-function l --wraps=exa
-  command exa --long --all --binary --group --header --links --color-scale $argv
+if command -v exa &>/dev/null
+  function l --wraps=exa
+    command exa --long --all --binary --group --header --links --color-scale $argv
+  end
+else
+  function l --wraps=ls
+    command ls -lAh --color=auto
+  end
 end
 
