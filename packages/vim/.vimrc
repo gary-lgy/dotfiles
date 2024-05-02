@@ -148,10 +148,13 @@ function! s:LoadPlugins()
 
     " Yank to local clipboard over SSH
     Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
-    autocmd TextYankPost *
-                \ if v:event.operator is 'y' && v:event.regname is '' |
-                \ execute 'OSCYankRegister +' |
-                \ endif
+
+    if exists('##TextYankPost')
+        autocmd TextYankPost *
+                    \ if v:event.operator is 'y' && v:event.regname is '' |
+                    \ execute 'OSCYankRegister +' |
+                    \ endif
+    endif
     let g:oscyank_silent     = 1  " disable message on successful copy
     let g:oscyank_trim       = 1  " trim surrounding whitespaces before copy
 
@@ -471,7 +474,9 @@ function! s:BindKeys()
     nnoremap <Leader>e :edit<space>
 
     " Escape in terminal
-    tnoremap <Esc> <C-\><C-n>
+    if has('nvim')
+        tnoremap <Esc> <C-\><C-n>
+    endif
 
     " Remappings to retain sanity
     " Make Y's behavior consistent with other commands.
