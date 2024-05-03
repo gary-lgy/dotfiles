@@ -38,3 +38,5 @@
     path = ~/.local.gitconfig
 [init]
 	defaultBranch = main
+[alias]
+    bk = "!git checkout -b \"$(git rev-parse --abbrev-ref HEAD)\"-backup"
