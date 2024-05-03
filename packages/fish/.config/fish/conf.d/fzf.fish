@@ -1,3 +1,8 @@
+# only apply for interactive shell
+if not status --is-interactive
+    exit
+end
+
 if not command -v fzf >/dev/null 2>&1
     echo "fzf not installed!" >&2
     exit
@@ -13,14 +18,14 @@ set -gx FZF_DEFAULT_OPTS --height=40% --reverse \
   --bind=alt-j:preview-down,alt-k:preview-up \
   --bind=alt-a:select-all
 
-# Set fzf to use fd by default
+# Set fzf to use fd if it is available
 if command -v fd >/dev/null 2>&1
     set fd_bin fd
 else if command -v fdfind >/dev/null 2>&1
     # On Debian fd is fdfind
     set fd_bin fdfind
 else
-    echo "fd not installed!" >&2
+    echo "fd not installed! falling back to slow search" >&2
     exit
 end
 
