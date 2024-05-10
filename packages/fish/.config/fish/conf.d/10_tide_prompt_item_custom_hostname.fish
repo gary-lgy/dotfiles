@@ -3,8 +3,8 @@
 
 # color
 # need to be universal variable and follow the naming scheme tide_ITEMNAME_color
-set -U tide_custom_hostname_color yellow
-set -U tide_custom_hostname_bg_color normal
+set -U tide_custom_hostname_color $tide_os_color
+set -U tide_custom_hostname_bg_color $tide_os_bg_color
 
 # prompt item
 function _tide_item_custom_hostname
@@ -19,6 +19,3 @@ function _tide_item_custom_hostname
     _tide_print_item custom_hostname $text
 end
 
-if not contains custom_hostname $tide_right_prompt_items
-    set --prepend tide_right_prompt_items custom_hostname
-end

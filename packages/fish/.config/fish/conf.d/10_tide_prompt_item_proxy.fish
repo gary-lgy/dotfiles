@@ -4,8 +4,8 @@
 set -U tide_proxy_icon 󰗕
 
 # color
-set -U tide_proxy_color CCFF00
-set -U tide_proxy_bg_color normal
+set -U tide_proxy_color $tide_status_color
+set -U tide_proxy_bg_color $tide_status_bg_color
 
 # prompt item
 function _tide_item_proxy
@@ -14,6 +14,3 @@ function _tide_item_proxy
     end && _tide_print_item proxy $tide_proxy_icon
 end
 
-if not contains proxy $tide_right_prompt_items
-    set --append tide_right_prompt_items proxy
-end
