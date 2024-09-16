@@ -47,6 +47,7 @@ local hyper = { 'shift', 'ctrl', 'alt', 'cmd' }
 
 local rbinder = hs.loadSpoon('RecursiveBinder')
 rbinder.helperFormat = { atScreenEdge = 0 }
+rbinder.helperEntryLengthInChar = 30
 local activateRecursiveModal = rbinder.recursiveBind({
         [{ '', 'r', 'Reload' }]   = hs.reload,
         [{ '', 'c', 'Console' }]  = hs.toggleConsole,
@@ -66,19 +67,67 @@ hs.hotkey.bind(meh, 'space',
     end
 )
 
-lib.eachKV(config.appBindings, function(key, bundleID)
-    hs.hotkey.bind(meh, key, function()
-        local app = hs.application.applicationsForBundleID(bundleID)[1]
-        if app == nil then
-            hs.application.open(bundleID)
-        elseif app:isFrontmost() and #(app:allWindows()) > 0 then
-            app:hide()
-        else
-            hs.application.launchOrFocusByBundleID(bundleID)
-            lastCursorPosition.moveCursorToLastKnownOrCenter(
-                app:focusedWindow() or app:mainWindow())
+lib.eachKV(config.appBindings, function(key, value)
+    if type(value) == 'string' then
+        -- app bindings
+        local bundleID = value
+        hs.hotkey.bind(meh, key, function()
+            local app = hs.application.applicationsForBundleID(bundleID)[1]
+            if app == nil then
+                hs.application.open(bundleID)
+            elseif app:isFrontmost() and #(app:allWindows()) > 0 then
+                app:hide()
+            else
+                hs.application.launchOrFocusByBundleID(bundleID)
+                lastCursorPosition.moveCursorToLastKnownOrCenter(
+                    app:focusedWindow() or app:mainWindow())
+            end
+        end)
+    elseif type(value) == 'table' then
+        -- window bindings
+        local bundleID = value[1]
+        local windowTitleHints = value[2]
+
+        local recursiveBindSpec = {}
+        for windowKey, hint in pairs(windowTitleHints) do
+            local hintText, _ = hint:gsub('%%', '') -- hack to remove the % characters in the displayed hints.
+            recursiveBindSpec[{ '', windowKey, hintText }] = function()
+                local app = hs.application.find(bundleID)
+                if app == nil then
+                    return
+                end
+
+                local windows = app:allWindows()
+                local matchedWindows = hs.fnutils.imap(windows, function(window)
+                    -- there might be multiple matches due to overlapping names - we prefer the title with the least unmatched chracters
+                    local i, j = string.find(window:title(), hint)
+                    if i == nil then
+                        return nil
+                    end
+                    return { window, (i-1) + (window:title():len()-j) }
+                end)
+                
+                if #matchedWindows == 0 then
+                    return
+                end
+
+                table.sort(matchedWindows, function(lhs, rhs)
+                    return lhs[2] <= rhs[2]
+                end)
+                local matchedWindow = matchedWindows[1][1]
+
+                if app:isFrontmost() and app:focusedWindow():id() == matchedWindow:id() then
+                    app:hide()
+                else
+                    app:activate() -- without this, another window from the application might be focused
+                    matchedWindow:focus()
+                    lastCursorPosition.moveCursorToLastKnownOrCenter(matchedWindow)
+                end
+            end
         end
-    end)
+
+        hs.hotkey.bind(meh, key, rbinder.recursiveBind(recursiveBindSpec))
+    end
 end)
 
 -- change focus and bring the cursor along

@@ -15,6 +15,11 @@ return {
     },
     appBindings = {
         c = 'com.microsoft.VSCode',
+        -- window bindings
+        r = { 'com.microsoft.VSCode', {
+                k = 'kubernetes',
+            },
+        },
     },
     appInputMethods = {
         -- Use unicode hex input instead of default US/UK keyboards which
