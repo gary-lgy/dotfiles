@@ -23,6 +23,11 @@ module.occlusionAllowed = function(window)
         return true
     end
 
+    -- popup windows
+    if not window:isStandard() then
+        return true
+    end
+
     local appName = window:application():name()
     for _, allowedAppName in ipairs(module.occlusionAllowedApps) do
         if allowedAppName == appName then
