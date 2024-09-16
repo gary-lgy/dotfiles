@@ -156,7 +156,6 @@ function! s:LoadPlugins()
                     \ endif
     endif
     let g:oscyank_silent     = 1  " disable message on successful copy
-    let g:oscyank_trim       = 1  " trim surrounding whitespaces before copy
 
     call plug#end()
     " All the plugins have been loaded
