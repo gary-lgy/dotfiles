@@ -86,47 +86,66 @@ lib.eachKV(config.appBindings, function(key, value)
     elseif type(value) == 'table' then
         -- window bindings
         local bundleID = value[1]
-        local windowTitleHints = value[2]
-
-        local recursiveBindSpec = {}
-        for windowKey, hint in pairs(windowTitleHints) do
-            local hintText, _ = hint:gsub('%%', '') -- hack to remove the % characters in the displayed hints.
-            recursiveBindSpec[{ '', windowKey, hintText }] = function()
-                local app = hs.application.find(bundleID)
-                if app == nil then
-                    return
-                end
-
-                local windows = app:allWindows()
-                local matchedWindows = hs.fnutils.imap(windows, function(window)
-                    -- there might be multiple matches due to overlapping names - we prefer the title with the least unmatched chracters
-                    local i, j = string.find(window:title(), hint)
-                    if i == nil then
-                        return nil
-                    end
-                    return { window, (i-1) + (window:title():len()-j) }
-                end)
-                
-                if #matchedWindows == 0 then
-                    return
-                end
-
-                table.sort(matchedWindows, function(lhs, rhs)
-                    return lhs[2] <= rhs[2]
-                end)
-                local matchedWindow = matchedWindows[1][1]
-
-                if app:isFrontmost() and app:focusedWindow():id() == matchedWindow:id() then
-                    app:hide()
-                else
-                    app:activate() -- without this, another window from the application might be focused
-                    matchedWindow:focus()
-                    lastCursorPosition.moveCursorToLastKnownOrCenter(matchedWindow)
-                end
-            end
+        local app = hs.application.find(bundleID)
+        if app == nil then
+            return
         end
 
-        hs.hotkey.bind(meh, key, rbinder.recursiveBind(recursiveBindSpec))
+        local windowTitleHints = value[2]
+        if windowTitleHints ~= nil then
+            -- fixed window hints
+            local recursiveBindSpec = {}
+            for windowKey, hint in pairs(windowTitleHints) do
+                local hintText, _ = hint:gsub('%%', '') -- hack to remove the % characters in the displayed hints.
+                recursiveBindSpec[{ '', windowKey, hintText }] = function()
+                    local windows = app:allWindows()
+                    local matchedWindows = hs.fnutils.imap(windows, function(window)
+                        -- there might be multiple matches due to overlapping names - we prefer the title with the least unmatched chracters
+                        local i, j = string.find(window:title(), hint)
+                        if i == nil then
+                            return nil
+                        end
+                        return { window, (i-1) + (window:title():len()-j) }
+                    end)
+
+                    if #matchedWindows == 0 then
+                        return
+                    end
+
+                    table.sort(matchedWindows, function(lhs, rhs)
+                        return lhs[2] <= rhs[2]
+                    end)
+                    local matchedWindow = matchedWindows[1][1]
+
+                    if app:isFrontmost() and app:focusedWindow():id() == matchedWindow:id() then
+                        app:hide()
+                    else
+                        app:activate() -- without this, another window from the application might be focused
+                        matchedWindow:focus()
+                        lastCursorPosition.moveCursorToLastKnownOrCenter(matchedWindow)
+                    end
+                end
+            end
+            hs.hotkey.bind(meh, key, rbinder.recursiveBind(recursiveBindSpec))
+        else
+            -- dynamic window hints
+            hs.hotkey.bind(meh, key, function()
+                local windows = app:allWindows()
+                local recursiveBindSpec = {}
+                for _, window in ipairs(windows) do
+                    local title = window:title()
+                    local i = string.find(title, "%w")
+                    if i then
+                        recursiveBindSpec[{ '', string.sub(title, i, i), title }] = function()
+                            window:focus()
+                            lastCursorPosition.moveCursorToLastKnownOrCenter(window)
+                        end
+                    end
+                end
+
+                rbinder.recursiveBind(recursiveBindSpec)()
+            end)
+        end
     end
 end)
 
