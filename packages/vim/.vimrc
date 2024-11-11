@@ -133,7 +133,9 @@ function! s:LoadPlugins()
     let g:startify_fortune_use_unicode = 1
 
     " Smooth scrolling
-    Plug 'psliwka/vim-smoothie'
+    if has('nvim-0.3') || v:version > 822
+        Plug 'psliwka/vim-smoothie'
+    endif
 
     " Git
     Plug 'tpope/vim-fugitive' " TODO: compare with jreybert/vimagit
