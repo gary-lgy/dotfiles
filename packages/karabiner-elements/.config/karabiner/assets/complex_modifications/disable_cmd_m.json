@@ -1,0 +1,20 @@
+{
+  "title": "Disable CMD-M (minimize window shortcut)",
+  "rules": [
+    {
+      "description": "Disable CMD-M (minimize window shortcut)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["command"],
+              "optional": ["caps_lock"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
