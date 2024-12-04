@@ -95,6 +95,31 @@ module.getWindowUnderCursor = function(windows)
     return nil
 end
 
+module.shouldAbort = function(focusedWindow, windowUnderCursor)
+    local frontmostApp = hs.application.frontmostApplication()
+    if focusedWindow == nil and frontmostApp ~= nil then
+        -- check for ongoing transient stuff
+        if frontmostApp:bundleID() == 'com.apple.finder' then
+            -- renaming item in Finder window, focusing anything (including the Finder window) will cause renaming to be aborted
+            module.logger.d('Finder renaming in progress, aborting')
+            return true
+        elseif frontmostApp:bundleID() == 'com.apple.dock.helper' then
+            -- menu for a dock item is opened
+            module.logger.df('hovering over dock, aborting')
+            return true
+        end
+    end
+
+    for _, ignoredAppName in ipairs(module.ignoredApps) do
+        if ignoredAppName == windowUnderCursor:application():name() then
+            module.logger.df('application %s is in the ignore list, aborting', ignoredAppName)
+            return true
+        end
+    end
+
+    return false
+end
+
 module.focusWindowUnderCursor = function()
     local windows = module.orderedWindows()
     local windowUnderCursor = module.getWindowUnderCursor(windows)
@@ -108,12 +133,6 @@ module.focusWindowUnderCursor = function()
         windowUnderCursor:title())
 
     local focused = hs.window.focusedWindow()
-    local frontmostApp = hs.application.frontmostApplication()
-    if focused == nil and frontmostApp ~= nil and frontmostApp:name() == 'Finder' then
-        -- renaming item in Finder window, focusing anything (including the Finder window) will cause renaming to be aborted
-        module.logger.d('Finder renaming in progress, aborting')
-        return
-    end
     if focused == nil then
         module.logger.d('no currently focused window')
     else
@@ -129,14 +148,11 @@ module.focusWindowUnderCursor = function()
         return
     end
 
-    -- window under cursor should not be focused
-    for _, ignoredAppName in ipairs(module.ignoredApps) do
-        if ignoredAppName == windowUnderCursor:application():name() then
-            module.logger.df('application %s is in the ignore list, aborting', ignoredAppName)
-            return
-        end
+    if module.shouldAbort(focused, windowUnderCursor) then
+        module.logger.d('aborting autofocus')
+        return
     end
-    
+
     -- check if the window is occluded
     occludingWindow = module.getOccludingWindow(windowUnderCursor, windows)
     if occludingWindow ~= nil then
