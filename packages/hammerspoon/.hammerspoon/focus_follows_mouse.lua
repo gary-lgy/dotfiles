@@ -24,15 +24,21 @@ module.occlusionAllowed = function(window)
     end
 
     -- popup windows
-    if not window:isStandard() then
-        return true
-    end
+    -- this targets too many windows, and would de-focus too many pop-up windows
+    -- if not window:isStandard() then
+    --     return true
+    -- end
 
     local appName = window:application():name()
     for _, allowedAppName in ipairs(module.occlusionAllowedApps) do
         if allowedAppName == appName then
             return true
         end
+    end
+
+    -- ignore occlusion by invisible brave windows
+    if window:application():bundleID() == 'com.brave.Browser' and not window:isStandard() then
+        return true
     end
 
     return false
