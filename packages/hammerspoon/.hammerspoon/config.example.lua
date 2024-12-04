@@ -27,7 +27,7 @@ return {
         ['com.googlecode.iterm2'] = 'com.apple.keylayout.UnicodeHexInput',
     }
     focusFollowsMouse = {
-        occlusionAllowedApps = {},
+        ignoreOcclusionApps = {},
         ignoredApps = {},
     }
 }

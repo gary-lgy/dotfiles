@@ -6,19 +6,21 @@ local libwindow = require('hs.libwindow')
 
 module.logger = hs.logger.new('focus_follows_mouse')
 module.mouseMoveWaitDurationSeconds = 0.1
-module.timerPeriodSeconds = 0.25
+module.timerPeriodSeconds = 5
 module.disableMod = 'fn' -- hold to disable
-module.occlusionThresholdPixels = 40.0 -- occlusion with either height or width below this value will be ignored
+module.occlusionRatioThreshold = 0.1 -- occluding windows with either height or weight below this ratio will be ignored
 module.newWindowDisableSeconds = 1.0 -- disable autofocus for this period after a new window is created
 -- List of app names which do not stop window under cursor from being focused when
--- the occluding it. Usually for picture-in-picture style windows.
-module.occlusionAllowedApps = {}
+-- occluding it. Usually for floating always-on-top windows.
+module.ignoreOcclusionApps = {}
 -- List of app names which should not be focused even when under cursor.
 -- Usually for picture-in-picture style windows.
 -- TODO: should these be the same config?
 module.ignoredApps = {}
 
-module.occlusionAllowed = function(window)
+-- windows for which this function returns true will not block the window under
+-- cursor from being focused, even if occluding.
+module.ignoreOccluding = function(window)
     if window:title() == 'Hammerspoon Console' then
         return true
     end
@@ -30,7 +32,7 @@ module.occlusionAllowed = function(window)
     -- end
 
     local appName = window:application():name()
-    for _, allowedAppName in ipairs(module.occlusionAllowedApps) do
+    for _, allowedAppName in ipairs(module.ignoreOcclusionApps) do
         if allowedAppName == appName then
             return true
         end
@@ -64,29 +66,57 @@ module.orderedWindows = function()
     return r
 end
 
+module.isOcclusionSignificant = function(occludingFrame, targetFrame)
+    local intersection = occludingFrame:intersect(targetFrame)
+    module.logger.d(string.format(
+            'intersection h=%d w=%d, occludingFrame h=%d w=%d, ratios h=%f w=%f',
+            intersection.h, intersection.w,
+            occludingFrame.h, occludingFrame.w,
+            intersection.h / occludingFrame.h,
+            intersection.w / occludingFrame.w
+        ))
+    return intersection.w / occludingFrame.w > module.occlusionRatioThreshold and intersection.h / occludingFrame.h > module.occlusionRatioThreshold
+end
+
 module.getOccludingWindow = function(window, orderedWindows)
     -- look at each window from top to bottom
     for _, w in ipairs(orderedWindows) do
         if w:id() == window:id() then
             -- no window above w intersects with it
+            module.logger.d('no occluding window found')
             return nil
         end
 
-        if not module.occlusionAllowed(w) then
+        if not module.ignoreOccluding(w) then
             local occludingFrame = w:frame()
             local targetFrame = window:frame()
-            local intersection = occludingFrame:intersect(targetFrame)
+            module.logger.d(string.format(
+                'evaluating occlusion bundleID=%s title=%s isStandard=%s role=%s subrole=%s',
+                w:application():bundleID(),
+                w:title(),
+                w:isStandard(),
+                w:role(),
+                w:subrole()
+            ))
             
             -- ignore small intersections
-            local isFullyContained = occludingFrame:inside(targetFrame)
-            local isIntersectionSignificant = intersection.w > module.occlusionThresholdPixels and intersection.h > module.occlusionThresholdPixels
-            if isFullyContained or isIntersectionSignificant then
-                -- found the occluding window
+            if module.isOcclusionSignificant(occludingFrame, targetFrame) then
+                module.logger.d('found occluding window')
                 return w
             end
+        else
+            module.logger.d(string.format(
+                'skip occlusion evaluation bundleID=%s title=%s isStandard=%s role=%s subrole=%s',
+                w:application():bundleID(),
+                w:title(),
+                w:isStandard(),
+                w:role(),
+                w:subrole()
+            ))
         end
     end
 
+    module.logger.d('potential bug, did not find focused window in all windows')
     return nil
 end
 
