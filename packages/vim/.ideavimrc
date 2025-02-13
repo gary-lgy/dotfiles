@@ -6,17 +6,21 @@ set surround
 set multiple-cursors
 set commentary
 set textobj-entire
+set textobj-indent
+set functiontextobj
 set argtextobj
 set ReplaceWithRegister
 set highlightedyank
 set exchange
 set matchit
+set NERDTree
 let g:argtextobj_pairs = "(:),{:},<:>"
 let g:EasyMotion_do_mapping = 0
 
 " Idea specific settings
 set ideajoin
 set idearefactormode=keep
+" Disable ideavim in dialogs
 set ideavimsupport=
 
 " Options
@@ -63,6 +67,11 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" requires https://github.com/dkandalov/tab-shifter#tab-shifter
+nmap <C-S-h> <Action>(TabShiftActions.ShiftLeft)
+nmap <C-S-j> <Action>(TabShiftActions.ShiftDown)
+nmap <C-S-k> <Action>(TabShiftActions.ShiftUp)
+nmap <C-S-l> <Action>(TabShiftActions.ShiftRight)
 
 map <C-s> <Action>(Switcher)
 
@@ -93,23 +102,19 @@ noremap <leader><Tab> <C-S-6>
 nmap ga <Action>(GotoAction)
 nmap go <Action>(GotoFile)
 nmap gl <Action>(GotoClass)
-nmap gw <Action>(ShowErrorDescription)
 
 map g; <Action>(JumpToLastChange)
 map g, <Action>(JumpToNextChange)
-map gh <Action>(QuickJavaDoc)
-map gy <Action>(ShowErrorDescription)
+map gy <Action>(QuickImplementations)
+map gh <Action>(ShowHoverInfo)
 map gs <Action>(GotoSymbol)
 map gi <Action>(GotoImplementation)
 map gp <Action>(ShowUsages)
 map gt <Action>(GotoTypeDeclaration)
 
-map <leader>b <Plug>(easymotion-bd-w)
-map <leader>j <Plug>(easymotion-bd-jk)
 map s <Plug>(easymotion-s)
 
 nmap <leader>=  <Action>(ReformatCode)
-map <leader>an  <Action>(Annotate)
 map <leader>ch  <Action>(CallHierarchy)
 map <leader>cp  <Action>(CopyPaths)
 map <leader>cs  <Action>(ChangeSignature)
@@ -124,9 +129,13 @@ map <leader>fp  <Action>(ReformatWithPrettierAction)
 map <leader>fr  <Action>(RecentFiles)
 map <leader>fu  <Action>(FindUsages)
 map <leader>ge  <Action>(Gradle.ExecuteTask)
+" git blame
+map <leader>gb  <Action>(Annotate)
 map <leader>gr  <Action>(GotoRelated)
 map <leader>gs  <Action>(GotoSuperMethod)
 map <leader>gt  <Action>(GotoTest)
+map <leader>hv  <Action>(VcsShowCurrentChangeMarker)
+map <leader>hr  <Action>(Vcs.RollbackChangedLines)
 map <leader>ic  <Action>(IntroduceConstant)
 map <leader>if  <Action>(IntroduceField)
 map <leader>ii  <Action>(Inline)
@@ -142,6 +151,7 @@ map <leader>pp  <Action>(PinActiveTab)
 map <leader>qq  :q<cr>
 map <leader>qa  <Action>(CloseAllUnpinnedEditors)
 map <leader>qt  <Action>(ReopenClosedTab)
+map <leader>rc  <Action>(RunClass)
 map <leader>rf  <Action>(RenameFile)
 map <leader>rn  <Action>(RenameElement)
 map <leader>rr  <Action>(Run)
