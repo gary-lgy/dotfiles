@@ -17,7 +17,7 @@ bash
 git
 less
 
-# cli
+# tools
 fish
 neovim
 tmux
@@ -25,16 +25,15 @@ htop
 brew-cask-completion
 starship
 fd
-exa
+eza
 ripgrep
 fzf
 nnn
 bat
-tldr
+tealdeer # tldr
 jq
-
-# dev
-shellcheck
+dasel
+lnav
 git-delta
 direnv
 asdf
