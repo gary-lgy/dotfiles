@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+
+exec tmux -CC new-sessions -A -s default
