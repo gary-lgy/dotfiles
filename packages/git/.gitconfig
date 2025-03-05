@@ -27,6 +27,7 @@
     ; https://github.com/dandavison/delta#--color-moved-support
     features = line-numbers decorations
     whitespace-error-style = 22 reverse
+    dark = true # stop wrong color theme detection. see https://github.com/dandavison/delta/pull/1615
 
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
